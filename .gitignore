@@ -34,4 +34,5 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+#dotenv file
 .env
