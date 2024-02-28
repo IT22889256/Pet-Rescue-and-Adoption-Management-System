@@ -1,13 +1,21 @@
-// create a new user
-app.post('/api/users', (req, res) => {
-    const newUser = new User(req.body);
-    console.log(newUser);
-    newUser.save().then(item => {
-      console.log(item);
-      res.status(201).json({ message: 'Item added successfully' });
+const router = require('express').Router();
+let Complaint = require('../modules/complaint');
+
+// create a complaint
+app.post('/addcomplaint', (req, res) => {
+    
+    const {userName,contact,location,image,date} = req.body;
+    const newComplaint = new Complaint({
+        val
     })
-      .catch(err => {
+
+    newComplaint.save().then(() => {
+        res.json("Complaint is send");
+    }).catch((err)=> {
         console.log(err);
-        res.status(500).json({ message: 'Server error' });
-      });
-  });
+    })
+
+});
+
+
+module.exports = router;
