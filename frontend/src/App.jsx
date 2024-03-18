@@ -4,6 +4,7 @@ import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
 import HeplAndSupport from './pages/HeplAndSupport'
 
 //pet mangemnt imports
+import PetLayout from './components/petManager/PetLayout'
 import RescueRequest from './pages/petManament/RescueRequest'
 import RescueTask from './pages/petManament/RescueTask'
 import PetProfile from './pages/petManament/PetProfile'
@@ -18,11 +19,16 @@ import DeleteRescueTask from './pages/petManament/rescueTask/DeleteRescueTask'
 import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueRequest'
 import EmployeeProfile from './components/EmployeeProfile'
 
+
+//Employeee
+
+
+
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/petManager" element={<Layout />}>
+                <Route path="/petManager" element={<PetLayout />}>
                     <Route index path="/petManager" element={<PetManagerDashboard />} />
                     <Route path="/petManager/employeeProfile" element={<EmployeeProfile />} />
                     <Route path="/petManager/heplAndSupport" element={<HeplAndSupport />} />
@@ -46,11 +52,6 @@ function App() {
                 </Route>
             </Routes>
             <Routes>
-                <Route path="/userManager" element={<Layout />}>
-                    <Route index path="/userManager" element={<PetManagerDashboard />} />
-                    <Route path="/userManager/employeeProfile" element={<EmployeeProfile />} />
-                </Route>
-
             </Routes>
         </Router>
     )
