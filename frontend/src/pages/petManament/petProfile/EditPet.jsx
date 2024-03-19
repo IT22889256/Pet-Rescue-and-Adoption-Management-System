@@ -6,7 +6,7 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditPet() {
     
-  const [request_id, setReqId] = useState()
+    const [request_id, setReqId] = useState()
     const [task_id, setTaskId] = useState()
     const [pet_name, setPetName] = useState()
     const [pet_type, setPettype] = useState()
@@ -17,10 +17,8 @@ export default function EditPet() {
     const [location, setLocation] = useState()
     const [pet_image, setPetImage] = useState()
     const navigate = useNavigate()
-    const [setLoading] = useState(false);
     const {id} = useParams()
     useEffect((e) => {
-        setLoading(true);
         axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
         .then((res) => {
             setReqId(res.data.request_id)
@@ -35,14 +33,12 @@ export default function EditPet() {
             setPetImage(res.data.pet_image)
 
             console.log(res);
-            setLoading(false);
         }).catch(err => console.log(err))
     },[])
     const Edit = (e) => {
         const data = {
         request_id,task_id,pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,pet_image
         };
-        setLoading(true);
         console.log('result')
         axios.put(`http://localhost:3000/petManager/petProfile/editPet/${id}`,data)
         .then(result => {
