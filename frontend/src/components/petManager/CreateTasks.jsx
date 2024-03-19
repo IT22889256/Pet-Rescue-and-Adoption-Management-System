@@ -21,7 +21,6 @@ const Tasks = [
 		product_thumbnail: 'https://source.unsplash.com/100x100?macbook',
 		Progress_Status: "Rejected"
 	},
-	
 ]
 
 function CreatedTasks() {

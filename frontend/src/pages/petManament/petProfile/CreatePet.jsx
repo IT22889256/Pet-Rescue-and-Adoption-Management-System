@@ -31,7 +31,6 @@ export default function CreatePet() {
         })
         .catch(err => console.log(err))
     }
-
         return (
 
             <div>
