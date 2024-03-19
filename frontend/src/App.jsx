@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Layout from './components/shared/Layout'
 import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
 import HeplAndSupport from './pages/HeplAndSupport'
 
@@ -18,11 +17,6 @@ import EditRescueTask from './pages/petManament/rescueTask/EditRescueTask'
 import DeleteRescueTask from './pages/petManament/rescueTask/DeleteRescueTask'
 import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueRequest'
 import EmployeeProfile from './components/EmployeeProfile'
-
-
-//Employeee
-
-
 
 function App() {
     return (
@@ -50,8 +44,6 @@ function App() {
                     {/* rescue request routes */}
                     <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
                 </Route>
-            </Routes>
-            <Routes>
             </Routes>
         </Router>
     )

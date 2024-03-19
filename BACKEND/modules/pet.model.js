@@ -1,58 +1,5 @@
 const mongoose = require('mongoose');
 
-// const PetSchema = mongoose.Schema(
-//     {
-//         request_id: String,
-//         required: true
-//     },
-//     {
-//         request_id: String,
-//         required: true
-//     },
-//     {
-//         pet_name: String,
-//         required: true
-//     },
-//     {
-//         pet_type: String,
-//         required: true
-//     },
-//     {
-//         pet_appearance: String,
-//         required: true
-//     },
-//     {
-//         gender: String,
-//         required: true
-//     },
-//     {
-//         health_status: String,
-//         required: true
-//     },
-//     {
-//         street_address: String,
-//         required: true
-//     },
-//     {
-//         city: String,
-//         required: true
-//     },
-//     {
-//         region: String,
-//         required: true
-//     },
-//     {
-//         postal_code: String,
-//         required: true
-//     },
-//     {
-//         file_upload: String,
-//         required: true
-//     },
-
-//     )
-
-
 const PetSchema = mongoose.Schema({
     request_id: {
         type: String,
@@ -92,7 +39,6 @@ const PetSchema = mongoose.Schema({
     },
     pet_image:{
         type: String,
-        required: true
     },
 })
 
