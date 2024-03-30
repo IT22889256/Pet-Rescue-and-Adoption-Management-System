@@ -22,6 +22,14 @@ connection.once('open', () => {
 const complaintRouter = require('./routes/complaint.route');
 const petRouter = require('./routes/pet.route')
 
+//import routes(Schedule)
+const Schedule = require('./modules/schedule.model.js');
+const scheduleRoute = require('./routes/schedule.route.js');
+
+//routes(Schedule)
+app.use("/api/schedules", scheduleRoute);
+
+
 //complaint
 app.use("/complain", complaintRouter);
 app.use("/petManager", petRouter);

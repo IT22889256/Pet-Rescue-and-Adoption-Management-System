@@ -91,8 +91,7 @@ const PetSchema = mongoose.Schema({
         required: true
     },
     pet_image:{
-        type: String,
-        required: true
+        type: String
     },
 })
 

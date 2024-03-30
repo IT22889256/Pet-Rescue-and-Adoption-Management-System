@@ -5,35 +5,31 @@ import {
 import { MdOutlinePets } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
 import {IoPeople} from 'react-icons/io5'
+import { MdEmojiTransportation } from 'react-icons/md'
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
 		label: 'Dashboard',
-		path: '/petManager',
+		path: '/transportManager',
 		icon: <HiOutlineViewGrid />
 	},
 	{
 		key: 'Rescue Requests',
-		label: 'Rescue Requests',
-		path: '/petManager/rescueRequest',
+		label: 'Requested Task',
+		path: '/transportManager/rescueRequest',
 		icon: <IoPeople />
 	},
 	{
 		key: 'Rescue Tasks',
-		label: 'Rescue Tasks',
-		path: '/petManager/rescueTask',
+		label: 'Transportation Schedule',
+		path: '/transportManager/rescueTask',
 		icon: <FaTasks />
 	},
 	{
 		key: 'Pets',
-		label: 'Pets',
-		path: '/petManager/petProfile',
-		icon: <MdOutlinePets />
-	},
-	{
-		key: 'test',
-		label: 'Test one',
-		path: '/petManager/petProfile',
+		label: 'Vehicles',
+		path: '/transportManager/petProfile',
+		icon: <MdEmojiTransportation />
 	},
 
 ]

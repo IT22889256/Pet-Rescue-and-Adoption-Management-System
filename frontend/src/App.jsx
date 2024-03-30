@@ -20,7 +20,13 @@ import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueReque
 import EmployeeProfile from './components/EmployeeProfile'
 
 
-//Employeee
+
+//Transport managemnt imports
+import TransportLayout from './components/transportManager/TransportLayout'
+import TransportManagerDashboard from './pages/transportManagement/TransportManagerDashboard'
+import ScheduleProfile from './pages/transportManagement/ScheduleProfile'
+import CreateSchedule from './pages/transportManagement/scheduleProfile/CreateSchedule'
+
 
 
 
@@ -50,8 +56,30 @@ function App() {
                     {/* rescue request routes */}
                     <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
                 </Route>
+
             </Routes>
+
             <Routes>
+                <Route path="/transportManager" element={<TransportLayout />}>
+                    <Route index path="/transportManager" element={<TransportManagerDashboard />} />
+                    <Route path="/transportManager/employeeProfile" element={<EmployeeProfile />} />
+                    <Route path="/transportManager/heplAndSupport" element={<HeplAndSupport />} />
+                    {/* main routes */}
+                    <Route path="/transportManager/rescueRequest" element={<RescueRequest />} />
+                    <Route path="/transportManager/rescueTask" element={<RescueTask />} />
+                    <Route path="/transportManager/scheduleProfile" element={<ScheduleProfile />} />
+
+                    
+                    {/* Schedule profile routes */}
+                    <Route path="/transportManager/scheduleProfile/createSchedule" element={<CreateSchedule />} />
+         
+          
+                   
+                  
+                   
+                </Route>
+  
+
             </Routes>
         </Router>
     )
