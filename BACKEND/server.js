@@ -19,12 +19,16 @@ connection.once('open', () => {
 })
 
 //import routes
-const complaintRouter = require('./routes/complaint.route');
-const petRouter = require('./routes/pet.route')
+const petRouter = require('./routes/pet.route');
+// const sideBarRouter = require('./routes/sideBar.route');
+const rescueTask = require('./routes/task.route');
+//request
+const rescueRequest = require('./routes/rescueRequest.route')
+//rescue task
 
-//complaint
-app.use("/complain", complaintRouter);
 app.use("/petManager", petRouter);
+app.use("/petManager", rescueTask);
+app.use("/petManager", rescueRequest);
 
 app.listen(PORT, () =>{
     console.log(`Server is up and running on ${PORT}`);

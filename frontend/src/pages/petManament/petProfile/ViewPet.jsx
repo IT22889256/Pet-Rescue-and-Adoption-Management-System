@@ -54,7 +54,6 @@ return (
 									{pet.health_status}
 								</td >
 							</tr>
-						
 					</tbody>
 					
 				</table>
