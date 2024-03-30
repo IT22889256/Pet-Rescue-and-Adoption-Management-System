@@ -51,22 +51,19 @@ export default function EditPet() {
         return (
 
         
-            <div>
+        <div>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                 <div className='text-xl font-bold '>Edit Pet Profile</div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                     <div className="col-span-full">
-          <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
+            <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
             Profile picture
-          </label>
-          <div className="mt-2 flex items-center gap-x-3">
+            </label>
+            <div className="mt-2 flex items-center gap-x-3">
             <img className="h-20 w-20 text-gray-300" alt='image' />
-          </div>
+            </div>
         </div>
-
-
-
                         <div className="sm:col-span-3">
                             <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
                                 Request ID

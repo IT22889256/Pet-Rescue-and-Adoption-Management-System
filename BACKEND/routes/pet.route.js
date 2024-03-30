@@ -16,5 +16,4 @@ router.get('/petProfile/viewPet/:id', displayOnePet)
 //delete a complaint
 router.delete('/petProfile/removePet/:id', deletePet);
 
-
 module.exports = router;
