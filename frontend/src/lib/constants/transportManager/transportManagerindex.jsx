@@ -28,7 +28,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'Pets',
 		label: 'Vehicles',
-		path: '/transportManager/petProfile',
+		path: '/transportManager/scheduleProfile',
 		icon: <MdEmojiTransportation />
 	},
 
