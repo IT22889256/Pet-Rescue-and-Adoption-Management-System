@@ -4,35 +4,35 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
-export default function EditPet() {
+export default function EditRequest() {
     
-  const [request_id, setReqId] = useState()
-    const [task_id, setTaskId] = useState()
-    const [pet_name, setPetName] = useState()
-    const [pet_type, setPettype] = useState()
-    const [health_status, setHealStatus] = useState()
-    const [pet_gender, setPetGender] = useState()
-    const [pet_age, setPetAge] = useState()
-    const [pet_appearance, setPetappearance] = useState()
-    const [location, setLocation] = useState()
-    const [pet_image, setPetImage] = useState()
+    const [_id, setReqId] = useState()
+    const [adopter_nic, setNIC] = useState()
+    const [adopter_name, setName] = useState()
+    const [adopter_phone, setPhoneNumber] = useState()
+    const [adopter_email, setEmail] = useState()
+    const [adopter_pettype, setPetType] = useState()
+    const [adopter_petname, setPetName] = useState()
+    const [adopter_message, setMessage] = useState()
+    //const [location, setLocation] = useState()
+    //const [pet_image, setPetImage] = useState()
     const navigate = useNavigate()
     const [setLoading] = useState(false);
     const {id} = useParams()
     useEffect((e) => {
         
-        axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
+        axios.get(`http://localhost:3000/adoptionManager/adoptionProfile/viewRequest/${id}`)
         .then((res) => {
-            setReqId(res.data.request_id)
-            setTaskId(res.data.task_id)
-            setPetName(res.data.pet_name)
-            setPettype(res.data.pet_type)
-            setHealStatus(res.data.health_status)
-            setPetGender(res.data.pet_gender)
-            setPetAge(res.data.pet_age)
-            setPetappearance(res.data.pet_appearance)
-            setLocation(res.data.location)
-            setPetImage(res.data.pet_image)
+            setReqId(res.data._id)
+            setNIC(res.data.adopter_nic)
+            setName(res.data.adopter_name)
+            setPhoneNumber(res.data.adopter_phone)
+            setEmail(res.data.adopter_email)
+            setPetType(res.data.adopter_pettype)
+            setPetName(res.data.adopter_petname)
+            setMessage(res.data.adopter_message)
+            //setLocation(res.data.location)
+            //setPetImage(res.data.pet_image)
 
             console.log(res);
             
@@ -40,136 +40,118 @@ export default function EditPet() {
     },[])
     const Edit = (e) => {
         const data = {
-        request_id,task_id,pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,pet_image
+            _id,adopter_nic,adopter_name,adopter_phone,adopter_email,adopter_pettype,adopter_petname,adopter_message,
         };
         
         console.log('result')
-        axios.put(`http://localhost:3000/petManager/petProfile/editPet/${id}`,data)
+        axios.put(`http://localhost:3000/adoptionManager/adoptionProfile/editRequest/${id}`,data)
         .then(result => {
             alert('updated')
             console.log(result)
-            navigate('/petManager/petProfile')
+            navigate('/adoptionManager/Adoption')
         })
         .catch(err => console.log(err))
     }
         return (
 
-        
             <div>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
-                <div className='text-xl font-bold '>Edit Pet Profile</div>
-                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
-                    <div className="col-span-full">
-          <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
-            Profile picture
-          </label>
-          <div className="mt-2 flex items-center gap-x-3">
-            <img className="h-20 w-20 text-gray-300" alt='image' />
-          </div>
-        </div>
-
-
-
+                <div className='text-xl font-bold '>Edit Adoption Profile</div>
+                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
+                <div className="col-span-full">
+                    <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
+                         Profile picture
+                    </label>
+                <div className="mt-2 flex items-center gap-x-3">
+                    <img className="h-20 w-20 text-gray-300" alt='image' />
+                </div>
+                </div>
                         <div className="sm:col-span-3">
                             <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                Request ID
+                                Adoption ID
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
                                     name="request_id"
                                     id="request-id"
-                                    value={request_id}
+                                    value={_id}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Task ID
+                                <label htmlFor="adopter-nic" className="block text-sm font-medium leading-6 text-gray-900">
+                                    NIC
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="task_id"
-                                        id="task-id"
-                                        value={task_id}
+                                        name="adopter_nic"
+                                        id="adopter-nic"
+                                        value={adopter_nic}
+                                        onChange={(e) => setNIC(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Name
+                                <label htmlFor="adopter-name" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Adopter Name
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="pet_name"
-                                        id="pet-name"
-                                        value={pet_name}
-                                        onChange={(e) => setPetName(e.target.value)}
+                                        name="adopter_name"
+                                        id="adopter-name"
+                                        value={adopter_name}
+                                        onChange={(e) => setName(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="pet-gender" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Gender
+                                <label htmlFor="adopter-phone" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Phone Number
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="pet_gender"
-                                        id="pet-gender"
-                                        value={pet_gender}
-                                        onChange={(e) => setPetGender(e.target.value)}
+                                        name="adopter_phone"
+                                        id="adopter-phone"
+                                        value={adopter_phone}
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Age
+                                <label htmlFor="adopter-email" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Email
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="pet_age"
-                                        id="pet-age"
-                                        value={pet_age}
-                                        onChange={(e) => setPetAge(e.target.value)}
+                                        name="adopter_email"
+                                        id="adopter-email"
+                                        value={adopter_email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Appearance
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="pet_appearance"
-                                        id="pet-appearance"
-                                        value={pet_appearance}
-                                        onChange={(e) => setPetappearance(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
-                            <div className="sm:col-span-3">
-                                <label htmlFor="pet-type" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet type
+                                <label htmlFor="adopter-pettype" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Pet Type
                                 </label>
                                     <div className="mt-2">
                                         <select
-                                            id="pet-type"
-                                            name="pet_type"
-                                            value={pet_type}
+                                            id="adopter-pettype"
+                                            name="adopter_pettype"
+                                            value={adopter_pettype}
                                             
-                                            onChange={(e) => setPettype(e.target.value)}
+                                            onChange={(e) => setPetType(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                             ><option></option>
                                             <option>Cat</option>
@@ -178,24 +160,36 @@ export default function EditPet() {
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="health-status" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Health Status
+                                <label htmlFor="adopter-petname" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Pet Name
                                 </label>
-                                    <div className="mt-2">
-                                        <select
-                                            id="health-status"
-                                            name="health_status"
-                                            value={health_status}
-                                            onChange={(e) => setHealStatus(e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                            ><option></option>
-                                            <option className='bg-[#15803d]'>Good</option>
-                                            <option className='bg-[#be123c]'>Need Treament</option>
-                                            <option className='bg-[#ca8a04]'>Treating</option>
-                                        </select>
+                                <div className="mt-2">
+                                    <input
+                                        type="text"
+                                        name="adopter_petname"
+                                        id="adopter-petname"
+                                        value={adopter_petname}
+                                        onChange={(e) => setPetName(e.target.value)}
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
                                 </div>
                             </div>
-
+                            <div className="sm:col-span-3">
+                                <label htmlFor="adopter-message" className="block text-sm font-medium leading-6 text-gray-900">
+                                     Message
+                                </label>
+                                <div className="mt-2">
+                                    <textarea
+                                        type="text"
+                                        name="adopter_message"
+                                        id="adopter-message"
+                                        value={adopter_message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
+                                </div>
+                            
+                            {/*
                             <div className="col-span-full">
                                 <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
                                     Location
@@ -234,9 +228,9 @@ export default function EditPet() {
                                 </div>
                                     <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                             </div>
-                            </div>
-                            </div> }
-                            </div>
+                            </div>*/}
+                        </div>
+                        </div>
                         </div>
                     </div>
                     <div className="mt-6 flex items-center justify-end gap-x-6">

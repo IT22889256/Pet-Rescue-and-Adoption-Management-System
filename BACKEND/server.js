@@ -21,10 +21,12 @@ connection.once('open', () => {
 //import routes
 const complaintRouter = require('./routes/complaint.route');
 const petRouter = require('./routes/pet.route')
+const adoptionRouter = require('./routes/pet_adoption.route')
 
 //complaint
 app.use("/complain", complaintRouter);
 app.use("/petManager", petRouter);
+app.use("/adoptionManager", adoptionRouter);
 
 app.listen(PORT, () =>{
     console.log(`Server is up and running on ${PORT}`);

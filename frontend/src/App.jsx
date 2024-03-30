@@ -3,6 +3,7 @@ import Layout from './components/shared/Layout'
 import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
 import HeplAndSupport from './pages/HeplAndSupport'
 
+
 //pet mangemnt imports
 import PetLayout from './components/petManager/PetLayout'
 import RescueRequest from './pages/petManament/RescueRequest'
@@ -19,8 +20,14 @@ import DeleteRescueTask from './pages/petManament/rescueTask/DeleteRescueTask'
 import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueRequest'
 import EmployeeProfile from './components/EmployeeProfile'
 
+import AdoptionLayout from './components/adoptionManager/AdoptionLayout'
+import AdoptionManagerDashboard from './pages/adoptionManagement/AdoptionManagerDashboard'
+import Adoption from '../src/pages/adoptionManagement/Adoption'
+import CreateRequest from './pages/adoptionManagement/adoptionRequest/CreateRequest'
+import ViewRequest from './pages/adoptionManagement/adoptionRequest/ViewRequest'
+import EditRequest from './pages/adoptionManagement/adoptionRequest/EditRequest'
 
-//Employeee
+//Employeee 
 
 
 
@@ -51,8 +58,27 @@ function App() {
                     <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
                 </Route>
             </Routes>
+
             <Routes>
+                <Route path="/adoptionManager" element={<AdoptionLayout />}>
+                    <Route index path="/adoptionManager" element={<AdoptionManagerDashboard />} />
+                    <Route path="/adoptionManager/employeeProfile" element={<EmployeeProfile />} />
+                    <Route path="/adoptionManager/heplAndSupport" element={<HeplAndSupport />} />
+                    {/* main routes */}
+                    <Route path="/adoptionManager/adoption" element={<Adoption />} />
+                    <Route path="/adoptionManager/rescueTask" element={<RescueTask />} />
+                    <Route path="/adoptionManager/petProfile" element={<PetProfile />} />
+                    {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}  
+
+                    {/*adoption profile routes*/}
+                    <Route path="/adoptionManager/adoptionRequest/CreateRequest" element={<CreateRequest />} />
+                    <Route path="/adoptionManager/adoptionRequest/viewRequest/:id" element={<ViewRequest />} />
+                    <Route path="/adoptionManager/adoptionRequest/editRequest/:id" element={<EditRequest />} />
+
+                    /adoptionManager/adoptionProfile/viewRequest
+                </Route>
             </Routes>
+
         </Router>
     )
 }
