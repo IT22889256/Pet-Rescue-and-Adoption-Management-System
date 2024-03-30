@@ -20,12 +20,30 @@ connection.once('open', () => {
 
 //import routes
 const petRouter = require('./routes/pet.route');
+
+
 // const sideBarRouter = require('./routes/sideBar.route');
 const rescueTask = require('./routes/task.route');
+
+
 //request
 const rescueRequest = require('./routes/rescueRequest.route')
-//rescue task
 
+//import routes(Schedule)
+const Schedule = require('./modules/schedule.model.js');
+const scheduleRoute = require('./routes/schedule.route.js');
+
+//import routes(vehicle)
+const Vehicle = require('./modules/vehicle.model.js');
+const vehicleRoute = require('./routes/vehicle.route.js');
+
+//routes(vehicle)
+app.use("/api/vehicles", vehicleRoute);
+
+//routes(Schedule)
+app.use("/api/schedules", scheduleRoute);
+
+//rescue task
 app.use("/petManager", petRouter);
 app.use("/petManager", rescueTask);
 app.use("/petManager", rescueRequest);

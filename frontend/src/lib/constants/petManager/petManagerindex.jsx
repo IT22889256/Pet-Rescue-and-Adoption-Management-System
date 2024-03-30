@@ -30,11 +30,6 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/petManager/petProfile',
 		icon: <MdOutlinePets />
 	},
-	{
-		key: 'test',
-		label: 'Test one',
-		path: '/petManager/petProfile',
-	},
 
 ]
 

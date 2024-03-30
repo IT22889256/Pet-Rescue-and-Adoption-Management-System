@@ -19,6 +19,13 @@ import DeleteRescueTask from './pages/petManament/rescueTask/DeleteRescueTask'
 import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueRequest'
 import CreateRescueRequest from './pages/petManament/rescueRequest/CreateRescueRequest'
 
+//Transport managemnt imports
+import TransportLayout from './components/transportManager/TransportLayout'
+import TransportManagerDashboard from './pages/transportManagement/TransportManagerDashboard'
+import ScheduleProfile from './pages/transportManagement/ScheduleProfile'
+import CreateSchedule from './pages/transportManagement/scheduleProfile/CreateSchedule'
+import CreateVehicle from './pages/transportManagement/VehicleProfile/CreateVehicle'
+
 function App() {
     return (
         <Router>
@@ -48,6 +55,31 @@ function App() {
                     <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
                     <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
                 </Route>
+
+            
+                <Route path="/transportManager" element={<TransportLayout />}>
+                    <Route index path="/transportManager" element={<TransportManagerDashboard />} />
+                    <Route path="/transportManager/employeeProfile" element={<EmployeeProfile />} />
+                    <Route path="/transportManager/heplAndSupport" element={<HeplAndSupport />} />
+                    {/* main routes */}
+                    <Route path="/transportManager/rescueRequest" element={<RescueRequest />} />
+                    <Route path="/transportManager/rescueTask" element={<RescueTask />} />
+                    <Route path="/transportManager/scheduleProfile" element={<ScheduleProfile />} />
+
+
+                    {/* Schedule profile routes */}
+                    <Route path="/transportManager/scheduleProfile/createSchedule" element={<CreateSchedule />} />
+
+                    {/* Vehicle profile routes */}
+                    <Route path="/transportManager/VehicleProfile/CreateVehicle" element={<CreateVehicle />} />
+
+
+
+
+
+                </Route>
+            
+                
 
             </Routes>
             

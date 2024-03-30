@@ -13,18 +13,21 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/transportManager',
 		icon: <HiOutlineViewGrid />
 	},
+
 	{
 		key: 'Rescue Requests',
-		label: 'Requested Task',
+		label: 'Requests',
 		path: '/transportManager/rescueRequest',
 		icon: <IoPeople />
 	},
 	{
 		key: 'Rescue Tasks',
-		label: 'Transportation Schedule',
+		label: 'Requested Task',
 		path: '/transportManager/rescueTask',
 		icon: <FaTasks />
 	},
+
+
 	{
 		key: 'Pets',
 		label: 'Vehicles',
