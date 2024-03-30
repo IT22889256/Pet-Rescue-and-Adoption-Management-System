@@ -21,7 +21,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'Rescue Tasks',
 		label: 'Rescue Tasks',
-		path: '/petManager/rescueTask',
+		path: '/petManager/RescueTask',
 		icon: <FaTasks />
 	},
 	{

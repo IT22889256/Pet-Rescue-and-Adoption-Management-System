@@ -12,7 +12,6 @@ export default function PetProfile() {
 			setPets(res.data)
 		})
 	},[])
-
 	return (
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Pet Profiles</strong>
@@ -55,6 +54,9 @@ export default function PetProfile() {
 									<Link to={`/petManager/petProfile/EditPet/${pet._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
 								
 									<Link to={`/petManager/petProfile/RemovePet/${pet._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>
+									{/* {pet.health_status==='Good' &&(
+										<Link to={`/petManager/petProfile/RemovePet/${pet._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Move</Link>
+									)} */}
 								</td>
 							</tr>
 						))}

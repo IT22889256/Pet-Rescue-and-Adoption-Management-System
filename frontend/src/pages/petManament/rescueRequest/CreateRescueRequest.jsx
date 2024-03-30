@@ -4,30 +4,30 @@ import { useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
-export default function CreatePet() {
+export default function CreateRescueRequest() {
+    
+    const d = new Date()
+    const day = d.getUTCDate()
 
-    const [request_id, setReqId] = useState()
-    const [task_id, setTaskId] = useState()
-    const [pet_name, setPetName] = useState()
+    const [user_id, setUserId] = useState()
     const [pet_type, setPettype] = useState()
     const [health_status, setHealStatus] = useState()
-    const [pet_gender, setPetGender] = useState()
-    const [pet_age, setPetAge] = useState()
-    const [pet_appearance, setPetappearance] = useState()
     const [location, setLocation] = useState()
+    const [date, setDate] = useState(day)
     const [pet_image, setPetImage] = useState()
+    const [rescue_request_status, setRescueRequestStatus] = useState("Pending")
     const navigate = useNavigate()
 
     const Submit = (e) => {
 
         const data = {
-            request_id,task_id,pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,pet_image,
+            user_id,pet_type,health_status,date,location,rescue_request_status,pet_image,
         };
         console.log('result')
-        axios.post('http://localhost:3000/petManager/petProfile/createPet',data)
+        axios.post('http://localhost:3000/petManager/rescueRequest/createRescueRequest',data)
         .then(result => {
             console.log(result)
-            navigate('/petManager/petProfile')
+            navigate('/petManager/rescueRequest')
         })
         .catch(err => console.log(err))
     }
@@ -36,95 +36,20 @@ export default function CreatePet() {
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
-                        <div className='text-xl font-bold '>Create Pet Profile</div>
+                        <div className='text-xl font-bold '>Create Rescue Request</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                                 <div className="sm:col-span-3">
-                                    <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                        Request ID
+                                    <label htmlFor="user-id" className="block text-sm font-medium leading-6 text-gray-900">
+                                        User ID
                                     </label>
                                     <div className="mt-2">
                                         <input
                                             type="text"
-                                            name="request_id"
-                                            id="request-id"
-                                            value={request_id}
-                                            onChange={(e) => setReqId(e.target.value)}
+                                            name="user_id"
+                                            id="user-id"
+                                            value={user_id}
+                                            onChange={(e) => setUserId(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                                </div>
-                                    <div className="sm:col-span-3">
-                                        <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Task ID
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="task_id"
-                                                id="task-id"
-                                                value={task_id}
-                                                onChange={(e) => setTaskId(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="sm:col-span-3">
-                                        <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet Name
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="pet_name"
-                                                id="pet-name"
-                                                value={pet_name}
-                                                onChange={(e) => setPetName(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="sm:col-span-3">
-                                        <label htmlFor="pet-gender" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet Gender
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="pet_gender"
-                                                id="pet-gender"
-                                                value={pet_gender}
-                                                onChange={(e) => setPetGender(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="sm:col-span-3">
-                                        <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet Age
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="pet_age"
-                                                id="pet-age"
-                                                value={pet_age}
-                                                onChange={(e) => setPetAge(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="sm:col-span-3">
-                                        <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet Appearance
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="pet_appearance"
-                                                id="pet-appearance"
-                                                value={pet_appearance}
-                                                onChange={(e) => setPetappearance(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
                                     </div>
@@ -160,11 +85,10 @@ export default function CreatePet() {
                                                     ><option></option>
                                                     <option className='bg-[#15803d]'>Good</option>
                                                     <option className='bg-[#be123c]'>Need Treament</option>
-                                                    <option className='bg-[#ca8a04]'>Treating</option>
+                                                    
                                                 </select>
                                         </div>
                                     </div>
-
                                     <div className="col-span-full">
                                         <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
                                             Location
@@ -181,9 +105,9 @@ export default function CreatePet() {
                                             />
                                         </div>
                                     </div>
-                                    { <div className="col-span-full">
+                                    {<div className="col-span-full">
                                     <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Image
+                                        Pet Image
                                     </label>
                                     <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                                     <div className="text-center">
