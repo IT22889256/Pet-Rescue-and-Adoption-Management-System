@@ -19,12 +19,19 @@ connection.once('open', () => {
 })
 
 //import routes
-const complaintRouter = require('./routes/complaint.route');
-const petRouter = require('./routes/pet.route')
+//const complaintRouter = require('./routes/complaint.route');
+//const petRouter = require('./routes/pet.route')
+const feedbackRouter = require('./routes/feedback.route');
+const issuesandconcernsRouter = require('./routes/issuesandconcerns.route');
+const galleryRouter = require('./routes/gallery.route');
 
 //complaint
-app.use("/complain", complaintRouter);
-app.use("/petManager", petRouter);
+//app.use("/complain", complaintRouter);
+//app.use("/petManager", petRouter);
+app.use("/userAffairsManager", feedbackRouter);
+app.use("/userAffairsManager", issuesandconcernsRouter);
+app.use("/userAffairsManager", galleryRouter);
+
 
 app.listen(PORT, () =>{
     console.log(`Server is up and running on ${PORT}`);
