@@ -20,8 +20,20 @@ import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueReque
 import EmployeeProfile from './components/EmployeeProfile'
 
 
-//Employeee
 
+//Inventory manager
+import Inventorylayout from './components/InventoryManager/Inventorylayout'
+import InventoryManagerdashboard from '../src/pages/Inventorymanagement/InventoryManagerdashboard'
+import Items from '../src/pages/Inventorymanagement/Items'
+import Additem from '../src/pages/Inventorymanagement/Items/additem'
+import Edititem from '../src/pages/Inventorymanagement/Items/Edititem'
+import Removeitem from '../src/pages/Inventorymanagement/Items/Removeitem'
+import Viewitem from '../src/pages/Inventorymanagement/Items/Viewitem'
+import Supplier from '../src/pages/Inventorymanagement/supplier'
+import Addsupplier from '../src/pages/Inventorymanagement/supplier/addsupplier'
+import Editsupplier from '../src/pages/Inventorymanagement/supplier/editsupplier'
+import Removesupplier from '../src/pages/Inventorymanagement/supplier/removesupplier'
+import Viewsupplier from '../src/pages/Inventorymanagement/supplier/viewsupplier'
 
 
 function App() {
@@ -52,6 +64,28 @@ function App() {
                 </Route>
             </Routes>
             <Routes>
+                <Route path="/InventoryManager" element={<Inventorylayout />}>
+                    <Route index path="/InventoryManager" element={<InventoryManagerdashboard />} />
+                    <Route path="/InventoryManager/employeeProfile" element={<EmployeeProfile />} />
+                    <Route path="/InventoryManager/heplAndSupport" element={<HeplAndSupport />} />
+                     {/* main routes */}
+                     <Route path="/InventoryManager/Items" element={<Items />} />
+                     {/* item routes*/}
+                     <Route path="/InventoryManager/Items/veiwitem/:id" element={<Viewitem />} />
+                    <Route path="/InventoryManager/Items/additem" element={<Additem />} />
+                    <Route path="/InventoryManager/Items/edititem/:id" element={<Edititem />} />
+                    <Route path="/InventoryManager/Items/removeitem/:id" element={<Removeitem />} />
+
+                     {/* main routes */}
+                     <Route path="/InventoryManager/supplier" element={<Supplier />} />
+                     {/* supplier routes*/}
+                     <Route path="/InventoryManager/supplier/veiwsupplier/:id" element={<Viewsupplier/>} />
+                    <Route path="/InventoryManager/supplier/addsupplier/" element={<Addsupplier />} />
+                    <Route path="/InventoryManager/supplier/editsupplier/:id" element={<Editsupplier />} />
+                    <Route path="/InventoryManager/supplier/removesupplier/:id" element={<Removesupplier />} />
+                    <Route path="/InventoryManager/supplier/viewsupplier/:id" element={<Viewsupplier />} />
+                   
+                    </Route>
             </Routes>
         </Router>
     )
