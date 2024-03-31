@@ -20,6 +20,20 @@ import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueReque
 import EmployeeProfile from './components/EmployeeProfile'
 
 
+//donation management imports
+import DonationLayout from './components/DonationManager/DonationLayout'
+import DonationDashboard from './pages/donationManagement/DonationManagerDashboard'
+import SponserPetProfile from './pages/donationManagement/SponserPetProfile'
+import CreateSponsorPet from './pages/donationManagement/SponsorshipPetProfile/CreateSponsorPet'
+import ViewSponsorPet from './pages/donationManagement/SponsorshipPetProfile/ViewSponsorPet'
+import EditSponsorPet from './pages/donationManagement/SponsorshipPetProfile/EditSponsorPet'
+import RemoveSponsorPet from './pages/donationManagement/SponsorshipPetProfile/RemoveSponsorPet'
+
+
+
+//fund reuests
+import FundRequest from './pages/donationManagement/fundrequests/fundrequests'
+import ViewFundRequest from './pages/donationManagement/fundrequests/Viewfundrequests'
 //Employeee
 
 
@@ -52,6 +66,27 @@ function App() {
                 </Route>
             </Routes>
             <Routes>
+                <Route path="/DonationManager" element={<DonationLayout />}>
+                    <Route index path="/DonationManager" element={<DonationDashboard/>} />
+                    <Route path="/DonationManager/employeeProfile" element={<EmployeeProfile />} />
+                    <Route path="/DonationManager/heplAndSupport" element={<HeplAndSupport />} />
+                    {/* main routes */}
+                    <Route path="/DonationManager/rescueRequest" element={<RescueRequest />} />
+                    <Route path="/DonationManager/rescueTask" element={<RescueTask />} />
+                    <Route path="/DonationManager/SponsorshipPets" element={<SponserPetProfile />} />
+
+                    {/*sponsor pet profile routes */}
+                    <Route path="/DonationManager/SponsorshipPets/createSponsorPet" element={<CreateSponsorPet />} />
+                    <Route path="/DonationManager/SponsorshipPets/viewSponsorPet/:id" element={<ViewSponsorPet />} />
+                    <Route path ="/DonationManager/SponsorshipPets/editSponsorPet/:id" element={<EditSponsorPet />} />
+                    <Route path ="/DonationManager/SponsorshipPets/removeSponsorPet/:id" element={<RemoveSponsorPet />} />
+
+
+                    {/* fund request routes */}
+                    <Route path="/DonationManager/fundrequests" element={<FundRequest />} />
+                    <Route path="/DonationManager/fundrequets/Viewfundrequests" element={<ViewFundRequest />} />
+                    {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
+                     </Route>
             </Routes>
         </Router>
     )
