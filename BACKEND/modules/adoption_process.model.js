@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AdoptionSchema = mongoose.Schema(
+const AdoptionProcessSchema = mongoose.Schema(
   {
     adopter_nic: {
       type: String,
@@ -30,7 +30,7 @@ const AdoptionSchema = mongoose.Schema(
       type: String,
       required: false,
     },
-    adopter_status: {
+    adoption_process_status: {
        type: String,
        //enum: ["pending", "approved", "rejected"],
        //default: "pending",
@@ -43,6 +43,6 @@ const AdoptionSchema = mongoose.Schema(
   }
 );
 
-const Adoption = mongoose.model("Adoption", AdoptionSchema);
+const AdoptionProcess = mongoose.model("AdoptionProcess", AdoptionProcessSchema);
 
-module.exports = Adoption;
+module.exports = AdoptionProcess;

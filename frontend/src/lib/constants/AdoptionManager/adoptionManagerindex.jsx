@@ -17,22 +17,32 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		label: 'Pet Profile',
 		path: '/adoptionManager/petProfile',
 		icon: <IoPeople />
-	},/*
-	{
-		key: 'AdoptionRequest',
-		label: 'Rescue Tasks',
-		path: '/adoptionManager/rescueTask',
-		icon: <FaTasks />
-	},*/
+	},
 	{
 		key: 'Adoption',
 		label: 'Adoption',
 		path: '/adoptionManager/Adoption',
 		icon: <MdOutlinePets />
 	},
-
+	{
+		key: 'Pet Supply',
+		label: 'Pet Supply',
+		path: '/adoptionManager/PetSupply',
+		icon: <FaTasks />
+	},
+	{
+	key: 'Adoption Process',
+	label: 'Adoption Process',
+	path: '/adoptionManager/adoptionProcess',
+	icon: <MdOutlinePets />
+	},
+	{
+		key: 'Appoinment Schedule',
+		label: 'Appoinment Schedule',
+		path: '/adoptionManager/AppoinmentSchedule',
+		icon: <FaTasks />
+	},
 ]
-
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
 	{
 		key: 'support',

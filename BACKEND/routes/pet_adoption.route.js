@@ -16,6 +16,6 @@ router.get("/adoptionProfile/viewRequest/:id", getAdoption)
 router.put("/adoptionProfile/editRequest/:id", updateAdoption);
 
 // delete an adoption
-router.delete("/:id", deleteAdoption);
+router.delete("/adoptionProfile/deleteRequest/:id", deleteAdoption);
 
 module.exports = router;

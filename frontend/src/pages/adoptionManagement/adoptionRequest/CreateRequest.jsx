@@ -14,14 +14,14 @@ export default function CreateRequest() {
     const [adopter_pettype, setPetType] = useState()
     const [adopter_petname, setPetName] = useState()
     const [adopter_message, setMessage] = useState()
-    {/*const [location, setLocation] = useState()
-const [pet_image, setPetImage] = useState()*/}
+    const [adopter_status, setStatus] = useState("Pending")
+
     const navigate = useNavigate()
 
     const Submit = (e) => {
 
         const data = {
-            request_id,adopter_nic,adopter_name,adopter_phone,adopter_email,adopter_pettype,adopter_petname,adopter_message,
+            request_id,adopter_nic,adopter_name,adopter_phone,adopter_email,adopter_pettype,adopter_petname,adopter_message,adopter_status,
         };
         console.log('result')
         axios.post('http://localhost:3000/adoptionManager/adoptionProfile/createRequest',data)
@@ -114,21 +114,6 @@ const [pet_image, setPetImage] = useState()*/}
                                             />
                                         </div>
                                     </div>
-                                 {/*<div className="sm:col-span-3">
-                                        <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet Appearance
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="pet_appearance"
-                                                id="pet-appearance"
-                                                value={pet_appearance}
-                                                onChange={(e) => setPetappearance(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>*/}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-pettype" className="block text-sm font-medium leading-6 text-gray-900">
                                             Pet Type
@@ -147,24 +132,6 @@ const [pet_image, setPetImage] = useState()*/}
                                                 </select>
                                         </div>
                                     </div>
-                                  {/*<div className="sm:col-span-3">
-                                        <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet Name
-                                        </label>
-                                            <div className="mt-2">
-                                                <select
-                                                    id="pet-name"
-                                                    name="pet_name"
-                                                    value={pet_name}
-                                                    onChange={(e) => setPetName(e.target.value)}
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                                 <option></option>
-                                                    <option className='bg-[#15803d]'>Good</option>
-                                                    <option className='bg-[#be123c]'>Need Treament</option>
-                                                    <option className='bg-[#ca8a04]'>Treating</option>
-                                                </select>
-                                        </div>
-                                    </div>*/}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-petname" className="block text-sm font-medium leading-6 text-gray-900">
                                             Pet Name
@@ -195,47 +162,6 @@ const [pet_image, setPetImage] = useState()*/}
                                             />
                                         </div>
                                     </div>
-
-                                {/* <div className="col-span-full">
-                                        <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Location
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="location"
-                                                id="locations"
-                                                value={location}
-                                                onChange={(e) => setLocation(e.target.value)}
-                                                autoComplete="street-address"
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>*/}
-                                 {/* <div className="col-span-full">
-                                    <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Image
-                                    </label>
-                                    <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                                    <div className="text-center">
-                                        <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
-                                        <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                            <label
-                                                htmlFor="file-upload"
-                                                className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                            >
-                                                <span>Upload a file</span>
-                                                <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                                    value={pet_image}
-                                                    onChange={(e) => setPetImage(e.target.value)}
-                                                />
-                                            </label>
-                                            <p className="pl-1">or drag and drop</p>
-                                        </div>
-                                            <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-                                    </div>
-                                    </div>
-                                </div> */}
                                     </div>
                                 </div>
                             </div>
