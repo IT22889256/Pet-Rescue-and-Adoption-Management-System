@@ -23,8 +23,7 @@ const VehicleSchema = new mongoose.Schema(
             type: String,
             required: [true],
         },
-
-        Vehicle_Color: {
+        vehicle_status: {
             type: String,
             required: [true],
         },
@@ -33,11 +32,17 @@ const VehicleSchema = new mongoose.Schema(
             type: String,
             required: [true],
         },
-
+        
         Chassis_Number: {
             type: String,
             required: [true],
         },
+
+        Vehicle_Type: {
+            type: String,
+            required: [true],
+        },
+
     
     },
         {

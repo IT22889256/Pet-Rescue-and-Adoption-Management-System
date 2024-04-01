@@ -19,12 +19,16 @@ import DeleteRescueTask from './pages/petManament/rescueTask/DeleteRescueTask'
 import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueRequest'
 import CreateRescueRequest from './pages/petManament/rescueRequest/CreateRescueRequest'
 
-//Transport managemnt imports
+//Transport management imports
 import TransportLayout from './components/transportManager/TransportLayout'
 import TransportManagerDashboard from './pages/transportManagement/TransportManagerDashboard'
 import ScheduleProfile from './pages/transportManagement/ScheduleProfile'
 import CreateSchedule from './pages/transportManagement/scheduleProfile/CreateSchedule'
-import CreateVehicle from './pages/transportManagement/VehicleProfile/CreateVehicle'
+import CreateVehicle from './pages/transportManagement/vehicleProfile/CreateVehicle'
+import VehicleProfile from './pages/transportManagement/VehicleProfile'
+import EditVehicle from './pages/transportManagement/vehicleProfile/EditVehicle'
+import ViewVehicle from './pages/transportManagement/vehicleProfile/ViewVehicle'
+import RemoveVehicle from './pages/transportManagement/vehicleProfile/RemoveVehicle'
 
 function App() {
     return (
@@ -65,19 +69,18 @@ function App() {
                     <Route path="/transportManager/rescueRequest" element={<RescueRequest />} />
                     <Route path="/transportManager/rescueTask" element={<RescueTask />} />
                     <Route path="/transportManager/scheduleProfile" element={<ScheduleProfile />} />
+                    <Route path="/transportManager/vehicleProfile" element={<VehicleProfile />} />
 
 
                     {/* Schedule profile routes */}
                     <Route path="/transportManager/scheduleProfile/createSchedule" element={<CreateSchedule />} />
 
                     {/* Vehicle profile routes */}
-                    <Route path="/transportManager/VehicleProfile/CreateVehicle" element={<CreateVehicle />} />
-
-
-
-
-
-                </Route>
+                    <Route path="/transportManager/vehicleProfile/CreateVehicle" element={<CreateVehicle />} />
+                    <Route path="/transportManager/vehicleProfile/editVehicle/:id" element={<EditVehicle />} />
+                    <Route path="/transportManager/vehicleProfile/ViewVehicle/:id" element={<ViewVehicle />} />
+                    <Route path="/transportManager/vehicleProfile/removeVehicle/:id" element={<RemoveVehicle />} />
+               </Route>
             
                 
 

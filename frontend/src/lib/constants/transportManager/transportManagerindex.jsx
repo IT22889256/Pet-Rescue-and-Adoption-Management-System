@@ -2,7 +2,7 @@ import {
 	HiOutlineViewGrid,
 	HiOutlineQuestionMarkCircle
 } from 'react-icons/hi'
-import { MdOutlinePets } from "react-icons/md";
+//import { MdOutlinePets } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
 import {IoPeople} from 'react-icons/io5'
 import { MdEmojiTransportation } from 'react-icons/md'
@@ -27,11 +27,10 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <FaTasks />
 	},
 
-
 	{
-		key: 'Pets',
+		key: 'vehicles',
 		label: 'Vehicles',
-		path: '/transportManager/scheduleProfile',
+		path: '/transportManager/vehicleProfile',
 		icon: <MdEmojiTransportation />
 	},
 
