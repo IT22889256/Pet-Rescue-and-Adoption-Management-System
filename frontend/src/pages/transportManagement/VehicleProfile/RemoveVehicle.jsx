@@ -29,12 +29,6 @@ export default function RemoveVehicle() {
     >
       Yes, Delete it
     </button></div>
-
-
-
 </div>
-
-
-
   )
 }

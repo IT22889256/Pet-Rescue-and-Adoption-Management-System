@@ -1,75 +1,68 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-//import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import {useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function ViewVehicle() {
-	
-	const [vehicle, setVehicle] = useState({})
-	const {id} = useParams()
+    const [vehicle, setVehicle] = useState({});
+    const { id } = useParams();
 
-	useEffect(() => {
-		axios.get(`http://localhost:3000/api/vehicles/${id}`)
-		.then((res) => {
-			setVehicle(res.data)
-			
-		}).catch((err) => {
-			console.log(err);
-		})
-	},[])
-return (
-		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-			<strong className="text-gray-700 font-medium">Vehicle Profiles</strong>
-			<div className="border-x border-gray-200 rounded-sm mt-3">
-				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
-					<thead className="bg-[#c1c3c558]" >
-						<tr>
-							<th>Vehicle_Serial_No</th>
-							<th>Vehicle_Model</th>
-							<th>Plate_Number</th>
-							<th>vehicle_status</th>
-							<th>Year_Manufactured</th>
-							<th>Engine_Number</th>
-							<th>Chassis_Number</th>
-							<th>Vehicle_Type</th>
-							<th>Vehicle_Status</th>
-						</tr>
-					</thead>
-						<tbody>
-						<tr className='border-b-2 border-[#c1c3c558] text-center'>
-								<td>
-									{vehicle._id}
-								</td >
-								<td>
-									{vehicle.Vehicle_Serial_No}
-								</td >
-								<td>
-									{vehicle.Vehicle_Model}
-								</td >
-								<td>
-									{vehicle.Plate_Number}
-								</td>
-								<td>
-									{vehicle.Year_Manufactured}
-								</td >
-								<td>
-									{vehicle.Engine_Number}
-								</td >
-								<td>
-									{vehicle.Chassis_Number}
-								</td >
-								<td>
-									{vehicle.Vehicle_Type}
-								</td>
-								<td>
-									{vehicle.vehicle_status}
-								</td>
-							</tr>
-					</tbody>
-					
-				</table>
-			</div>
-		</div>
-	)
+    useEffect(() => {
+        axios.get(`http://localhost:3000/api/vehicles/${id}`)
+            .then((res) => {
+                setVehicle(res.data);
+            }).catch((err) => {
+                console.log(err);
+            });
+    }, [id]);
+
+    return (
+        <div className="max-w-4xl mx-auto px-4 py-8 bg-blue-100">
+            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+                <div className="px-4 py-5 sm:px-6">
+                    <h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Vehicle Profile</h3>
+                </div>
+                <div className="border-t border-gray-200">
+                    <dl>
+					<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Vehicle ID</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle._id}</dd>
+                        </div>
+                        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Vehicle Serial Number</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.Vehicle_Serial_No}</dd>
+                        </div>
+                        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Vehicle Model</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.Vehicle_Model}</dd>
+                        </div>
+                        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Plate Number</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.Plate_Number}</dd>
+                        </div>
+						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Year Manufactured</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.Year_Manufactured}</dd>
+                        </div>
+						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Engine Number</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.Engine_Number}</dd>
+                        </div>
+						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Chassis Number</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.Chassis_Number}</dd>
+                        </div>
+						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Vehicle Type</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.Vehicle_Type}</dd>
+                        </div>
+                        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Vehicle Status</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.vehicle_status}</dd>
+                        </div>
+                       
+                    </dl>
+                </div>
+            </div>
+        </div>
+    );
 }
-

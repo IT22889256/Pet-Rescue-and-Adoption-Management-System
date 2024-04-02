@@ -35,7 +35,7 @@ export default function CreateVehicle() {
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
-                        <div className='text-xl font-bold'>Create Vehicle Profile</div>
+                        <div className='text-xl font-bold text-center'>Create Vehicle Profile</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                                 <div className="sm:col-span-3">
                                     <label htmlFor="Vehicle_Serial_No" className="block text-sm font-medium leading-6 text-gray-900">
