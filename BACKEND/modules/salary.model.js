@@ -44,10 +44,18 @@ const SalarySchema = mongoose.Schema(
       //required: [true, "Please enter Total Salary"],
     },
 
+    firstName: {
+      type: String,
+      //required: [true, "Please enter first name"],
+    },
+    
     month: {
-      type: Date,
+      type: Number, // Change the type to Number
+      default: new Date().getMonth() + 1, // Get the current month (1-indexed)
      // required: [true, "Please enter month"],
-  },
+
+
+    },
 
   },
   {

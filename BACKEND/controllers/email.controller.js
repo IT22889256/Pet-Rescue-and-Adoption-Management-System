@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const port = 3001;
+//const port = 3001;
 
 
 const SendMail = async (req, res)=>{
@@ -23,7 +23,7 @@ const SendMail = async (req, res)=>{
         from: 'projectforitp@gmail.com', // sender address
         to: req.body.email, // list of receivers
         subject: 'Hello from Project ResQ', // Subject line
-        html: "<b>Hello idiot</b>", // html body
+        html: "<b>Hello world</b>", // html body
         // attachments: [ // use URL as an attachment
         //     {
         //       filename: 'receipt_test.pdf',

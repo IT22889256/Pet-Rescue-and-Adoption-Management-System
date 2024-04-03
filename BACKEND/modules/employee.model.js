@@ -76,7 +76,13 @@ const EmployeeSchema = mongoose.Schema(
       type: String,
        enum: ['single', 'married', 'divorced','widowed'], // Enum field with values 'single', 'married', 'divorced'
        default: 'single' // Default value set to 'single'
-    }
+    },
+
+    availability: {
+      type: String,
+      enum: ['available', 'unavailable'], 
+      default:'available' ,
+    },
     
   },
   {

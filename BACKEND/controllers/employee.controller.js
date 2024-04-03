@@ -114,43 +114,64 @@ const updateEmployeeByEmployeeId = async (req, res) => {
 
   
 // Delete an employee
-const deleteEmployee = async (req, res) => {
+// const deleteEmployee = async (req, res) => {
+//   try {
+//     // Find the employee document by ID
+//     const {id} = req.params;
+//     const employee = await Employee.findById({id});
+//     console.log(employee);
+//     if (!employee) {
+//       return res.status(404).send('Employee not found');
+//     }
+
+//     // Create a new document in DeletedEmployee collection
+//     const deletedEmployee = await DeletedEmployee.create({
+//       eid: employee.eid,
+//       nic: employee.nic,
+//       firstName: employee.firstName,
+//       middleName: employee.middleName,
+//       lastName: employee.lastName,
+//       birthday: employee.birthday,
+//       address: employee.address,
+//       city: employee.city,
+//       postalCode: employee.postalCode,
+//       phoneNumber: employee.phoneNumber,
+//       email: employee.email,
+//       maritalStatus: employee.maritalStatus,
+//       ReasonForDelete: req.body.ReasonForDelete
+//     }); // Copy the employee data
+
+//     // Delete the original employee document
+//     await Employee.deleteOne({ eid: req.body.eid });
+
+//     res.send('Employee data transferred and deleted successfully');
+//   } catch (error) {
+//     console.error('Error deleting employee:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// };
+
+
+
+//delete an employee after click the conformed button,
+//but actually not deleting, change the availability
+
+const DeleteEmployee = async (req, res) => {
   try {
-    // Find the employee document by ID
-    const {id} = req.params;
-    const employee = await Employee.findById({id});
-    console.log(employee);
+    const { id } = req.params;
+
+    const employee = await Employee.findByIdAndUpdate(id, req.body);
+
     if (!employee) {
-      return res.status(404).send('Employee not found');
+      return res.status(404).json({ message: "Employee not found" });
     }
 
-    // Create a new document in DeletedEmployee collection
-    const deletedEmployee = await DeletedEmployee.create({
-      eid: employee.eid,
-      nic: employee.nic,
-      firstName: employee.firstName,
-      middleName: employee.middleName,
-      lastName: employee.lastName,
-      birthday: employee.birthday,
-      address: employee.address,
-      city: employee.city,
-      postalCode: employee.postalCode,
-      phoneNumber: employee.phoneNumber,
-      email: employee.email,
-      maritalStatus: employee.maritalStatus,
-      ReasonForDelete: req.body.ReasonForDelete
-    }); // Copy the employee data
-
-    // Delete the original employee document
-    await Employee.deleteOne({ eid: req.body.eid });
-
-    res.send('Employee data transferred and deleted successfully');
+    const updatedEmployee = await Employee.findById(id);
+    res.status(200).json(updatedEmployee);
   } catch (error) {
-    console.error('Error deleting employee:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({ message: error.message });
   }
 };
-
 
 
 
@@ -163,6 +184,6 @@ module.exports = {
   createEmployee,
   updateEmployee,
   updateEmployeeByEmployeeId,
-  deleteEmployee,
+  DeleteEmployee,
  
 };

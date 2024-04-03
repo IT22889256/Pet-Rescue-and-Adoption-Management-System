@@ -90,7 +90,9 @@ const createSalary = async (req, res) => {
 
     const { otHours, bonus,eid} = req.body; // Assuming you send these in the request body
     // Fetch the job role details for the employee
-    const {jobRole} = await Employee.findOne({ eid: req.body.eid}); // Adjust this based on your actual data
+    const {jobRole} = await Employee.findOne({ eid: req.body.eid});
+    const {firstName} = await Employee.findOne({ eid : req.body.eid});
+    
     console.log(jobRole);
 
     const jobRoleData = await JobRoles.findOne({ jobRole : jobRole}); // Adjust this based on your actual data
@@ -119,6 +121,7 @@ const createSalary = async (req, res) => {
       totalOT: overtimePay,
       totalSalary: totalSalary,
       bonus: bonus,
+      firstName:firstName,
     });
 
     // Save the salary entry
