@@ -146,48 +146,55 @@ return (<>
         </div>
     </div>
 	</div> */}
-<div className="max-w-4xl mx-auto px-4 py-8 bg-blue-100">
+<div className="max-w-4xl mx-auto px-1 py-1 bg-neutral-200 sm:rounded-lg">
             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
                 <div className="px-4 py-5 sm:px-6">
-                    <h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Vehicle Profile</h3>
+                    <h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Pet Profile</h3>
                 </div>
+				<div className="mt-3 flex text-xs justify-center">
+                <img className='object-cover h-60 w-60 m-5 rounded-full' src="https://i.ibb.co/713YjHp/pexels-emrah-ayvali-1981111.jpg" alt='profile_Image'/>
+				</div>
                 <div className="border-t border-gray-200">
                     <dl>
 					<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Pet ID</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet._id}</dd>
+                            <dt className="text-lg text-black-500 font-bold">Pet ID</dt>
+                            <dd className="mt-1 text-base text-gray-900 sm:col-span-2">{Pet._id}</dd>
                         </div>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Request IDr</dt>
+                            <dt className="text-sm font-medium text-gray-500">Request ID</dt>
                             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.request_id}</dd>
                         </div>
                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-sm font-medium text-gray-500">Task ID</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.Vehicle_Model}</dd>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.task_id}</dd>
                         </div>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-sm font-medium text-gray-500">Pet Name</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.Plate_Number}</dd>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_name}</dd>
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Year Manufactured</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.Year_Manufactured}</dd>
+                            <dt className="text-sm font-medium text-gray-500">Pet Type</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_type}</dd>
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Engine Number</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.Engine_Number}</dd>
+                            <dt className="text-sm font-medium text-gray-500">Pet Health Status</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.health_status}</dd>
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Chassis Number</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.Chassis_Number}</dd>
+                            <dt className="text-sm font-medium text-gray-500">Pet Gender</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_gender}</dd>
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Vehicle Type</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.Vehicle_Type}</dd>
+                            <dt className="text-sm font-medium text-gray-500">Pet Age</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_age}</dd>
+                        </div>
+						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-500">Pet Appearance</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_appearance}</dd>
                         </div>
                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Vehicle Status</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.vehicle_status}</dd>
+                            <dt className="text-sm font-medium text-gray-500">Found Location</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.location}</dd>
                         </div>
                     </dl>
                 </div>
