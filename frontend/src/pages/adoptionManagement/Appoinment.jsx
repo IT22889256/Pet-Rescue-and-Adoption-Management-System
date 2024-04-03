@@ -25,6 +25,7 @@ export default function Appoinment() {
 							<th>Date</th>
 							<th>Time</th>
 							<th>Doctor</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					{<tbody>

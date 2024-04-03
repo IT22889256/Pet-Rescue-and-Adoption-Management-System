@@ -50,7 +50,12 @@ import ViewAppoinment from './pages/adoptionManagement/AppoinmentSchedule/ViewAp
 import EditAppoinment from './pages/adoptionManagement/AppoinmentSchedule/EditAppoinment'
 import DeleteAppoinment from './pages/adoptionManagement/AppoinmentSchedule/DeleteAppoinment'
 
-//Employeee 
+//Doctor
+import DoctorLayout from './components/doctor/DoctorLayout'
+import DoctorDashboard from './pages/doctorManagement/DoctorDashboard'
+
+import AllPetHealth from './pages/doctorManagement/pet_/AllPetHealth'
+import ViewPetHealth from './pages/doctorManagement/pet_/ViewPetHealth'
 
 function App() {
     return (
@@ -81,7 +86,7 @@ function App() {
             </Routes>
 
             <Routes>
-                <Route path="/adoptionManager" element={<AdoptionLayout />}>
+                    <Route path="/adoptionManager" element={<AdoptionLayout />}>
                     <Route index path="/adoptionManager" element={<AdoptionManagerDashboard />} />
                     <Route path="/adoptionManager/employeeProfile" element={<EmployeeProfile />} />
                     <Route path="/adoptionManager/heplAndSupport" element={<HeplAndSupport />} />
@@ -120,6 +125,17 @@ function App() {
 
                     /adoptionManager/adoptionProfile/viewRequest
                 </Route>
+            </Routes>
+            <Routes>
+                    <Route path="/doctor" element={<DoctorLayout />}>
+                    <Route index path="/doctor" element={<DoctorDashboard />} />
+                    <Route path="/doctor/employeeProfile" element={<EmployeeProfile />} />
+                    <Route path="/doctor/heplAndSupport" element={<HeplAndSupport />} />
+
+                    {/*doctor routes*/}
+                    <Route path="/doctor/petHealth" element={<AllPetHealth />} />
+                    <Route path="/doctor/petHeaalth/ViewPetHealth/:id" element={<ViewPetHealth />} />
+            </Route>
             </Routes>
 
         </Router>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams} from 'react-router-dom'
 import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
@@ -32,7 +32,7 @@ return (
 							<th>Pet Name</th>
 							<th>Pet Type</th>
 							<th>Message</th>
-							<th>Action</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 						<tbody>
@@ -60,6 +60,16 @@ return (
 								</td>
 								<td>
 									{adopter.adopter_message}
+								</td>
+								<td>
+								{adopter.adopter_status=== "Accept" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
+										<div>{adopter.adopter_status}</div>
+									</td>)}
+									{adopter.adopter_status=== "Reject" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+										<div>{adopter.adopter_status}</div>
+									</td>)}
 								</td>
 							</tr>
 						

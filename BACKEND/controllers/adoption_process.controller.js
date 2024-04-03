@@ -1,5 +1,4 @@
-const AdoptionProcess = require("../modules/adoption_process.model");
-
+const AdoptionProcess = require("../modules/pet_adoption.model")
 const getAdoptionProcesses = async (req, res) => {
   try {
     const adoptionProcesses = await AdoptionProcess.find({});

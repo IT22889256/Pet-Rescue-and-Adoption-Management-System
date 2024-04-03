@@ -58,7 +58,7 @@ export default function AdoptionProcess() {
 									{adoptionProcess.adopter_message}
 								</td>
 								<td>
-									{adoptionProcess.adoption_process_status}
+									{adoptionProcess.adopter_status}
 								</td>
 								<td>
 									<Link to={'/adoptionManager/adoptionProcess/ViewAdoptionProcess/${adoptionProcess._id}'} className="bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>

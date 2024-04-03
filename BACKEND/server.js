@@ -25,16 +25,16 @@ const adoptionRouter = require('./routes/pet_adoption.route')
 const supplyRouter = require('./routes/pet_supply.route')
 const appoinmentRouter = require('./routes/appoinment_schedule.route')
 const adoptionProcessRouter = require('./routes/adoption_process.route')
+const doctorRouter = require('./routes/pet.route')
 
-
-//complaint
-// app.use("/complain", complaintRouter);
 app.use("/petManager", petRouter);
+
 app.use("/adoptionManager", adoptionRouter);
 app.use("/adoptionManager", supplyRouter);
 app.use("/adoptionManager", appoinmentRouter)
 app.use("/adoptionManager", adoptionProcessRouter)
 
+app.use("/doctor", doctorRouter)
 
 
 app.listen(PORT, () =>{

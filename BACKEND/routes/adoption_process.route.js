@@ -10,12 +10,12 @@ router.get('/adoptionProcess', getAdoptionProcesses);
 router.post("/adoptionProcess/createAdoptionProcess", createAdoptionProcess);
 
 //view an adoption
-router.get("/adoptionProfile/viewAdoptionProcess/:id", getAdoptionProcess)
+router.get("/adoptionProcess/ViewAdoptionProcess/:id", getAdoptionProcess)
 
 // update an adoption
-router.put("/adoptionProfile/editAdoptionProcess/:id", updateAdoptionProcess);
+router.put("/adoptionProcess/editAdoptionProcess/:id", updateAdoptionProcess);
 
 // delete an adoption
-router.delete("/adoptionProfile/deleteAdoptionProcess/:id", deleteAdoptionProcess);
+router.delete("/adoptionProcess/deleteAdoptionProcess/:id", deleteAdoptionProcess);
 
 module.exports = router;

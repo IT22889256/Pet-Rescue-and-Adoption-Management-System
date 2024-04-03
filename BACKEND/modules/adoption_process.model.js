@@ -30,7 +30,7 @@ const AdoptionProcessSchema = mongoose.Schema(
       type: String,
       required: false,
     },
-    adoption_process_status: {
+    adopter_status: {
        type: String,
        //enum: ["pending", "approved", "rejected"],
        //default: "pending",
