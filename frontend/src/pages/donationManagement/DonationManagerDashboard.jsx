@@ -1,9 +1,9 @@
 import React from 'react'
-import DashboardStatsGrid from '../../components/petManager/DashboardStatsGrid'
-import RescueChart from '../../components/petManager/RescueRequestChart'
-import RecentRequests from '../../components/petManager/RecentRequest'
-import RescueRequstsChart from '../../components/petManager/RescueRequestPieChart'
-import CreatedTasks from '../../components/petManager/CreateTasks'
+import DashboardStatsGrid from '../../components/DonationManager/DashboardStatsGrid'
+ import RescueChart from '../../components/DonationManager/RescueRequestChart'
+import RecentRequests from '../../components/DonationManager/RecentRequest'
+import RescueRequstsChart from '../../components/DonationManager/RescueRequestPieChart'
+import CreatedTasks from '../../components/DonationManager/CreateTasks'
 
 export default function Dashboard() {
 	return (

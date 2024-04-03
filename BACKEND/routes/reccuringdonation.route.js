@@ -12,7 +12,7 @@ router.post('/add' , addReccuringDonation);
 router.put('/update/:id', editReccuringDonation);
 
 //delete a recurring donation
-router.delete('/:id', deleteReccuringDonation);
+router.delete('/delete/:id', deleteReccuringDonation);
 
 //display one recurring donation
 router.get('/display/:id', displayOneReccuringDonation);

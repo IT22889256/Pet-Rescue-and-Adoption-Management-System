@@ -1,10 +1,10 @@
-const specificNeedDonation = require('../modules/specificneeddonation.model');
+const SpecificNeedDonation = require('../modules/specificneeddonation.model');
 
 //display all specific need donations
 
 const displaySpecificNeedDonations = async(req, res) => {
     try{
-        const specificNeedDonations = await specificNeedDonation.find({});
+        const specificNeedDonations = await SpecificNeedDonation.find({});
         res.status(200).json(specificNeedDonations);
     }catch(error) {
         res.status(500).json({message: error.message});
@@ -15,7 +15,7 @@ const displaySpecificNeedDonations = async(req, res) => {
 const addSpecificNeedDonation = async (req, res) => {
 
     try {
-        specificNeedDonation.create(req.body)
+        SpecificNeedDonation.create(req.body)
         .then(specificNeedDonation => res.json(specificNeedDonation))
         .catch(err => res.json(err))
     }catch(error) {
@@ -28,8 +28,8 @@ const addSpecificNeedDonation = async (req, res) => {
 const editSpecificNeedDonation = async(req, res) => {
     try{
         const {id} = req.params;
-        const specificNeedDonation =  await specificNeedDonation.findByIdAndUpdate(id, req.body);
-        if(!specificNeedDonation) {
+        const specificNeedDonationData =  await SpecificNeedDonation.findByIdAndUpdate(id, req.body);
+        if(!specificNeedDonationData) {
             return res.status(404).json({message: "Specific Need Donation not found"});
         }
         const updateSpecificNeedDonation = await specificNeedDonation.findById(id);
@@ -44,11 +44,11 @@ const editSpecificNeedDonation = async(req, res) => {
 const displayOneSpecificNeedDonation = async(req, res) => {
     try{
         const {id} = req.params;
-        const specificNeedDonation = await specificNeedDonation.findById(id);
-        if(!specificNeedDonation) {
+        const specificNeedDonationData = await SpecificNeedDonation.findById(id);
+        if(!specificNeedDonationData) {
             return res.status(404).json({message: "Specific Need Donation not found"});
         }
-        res.status(200).json(specificNeedDonation);
+        res.status(200).json(specificNeedDonationData);
     }
     catch (error) {
         res.status(500).json({message: error.message});
@@ -60,8 +60,8 @@ const displayOneSpecificNeedDonation = async(req, res) => {
 const deleteSpecificNeedDonation = async(req, res) => {
     try{
         const {id} = req.params;
-        const specificNeedDonation = await specificNeedDonation.findByIdAndDelete(id);
-        if(!specificNeedDonation) {
+        const specificNeedDonationData = await SpecificNeedDonation.findByIdAndDelete(id);
+        if(!specificNeedDonationData) {
             return res.status(404).json({message: "Specific Need Donation not found"});
         }
         res.status(200).json({message: "Specific Need Donation deleted successfully"});

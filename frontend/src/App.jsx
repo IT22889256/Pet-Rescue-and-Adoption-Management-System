@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Layout from './components/shared/Layout'
 import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
+
 import HeplAndSupport from './pages/HeplAndSupport'
 
 //pet mangemnt imports
@@ -30,7 +31,22 @@ import EditSponsorPet from './pages/donationManagement/SponsorshipPetProfile/Edi
 import RemoveSponsorPet from './pages/donationManagement/SponsorshipPetProfile/RemoveSponsorPet'
 
 
+//reccuring donations
+import CreateReccuringDonation from './pages/donationManagement/reccuringdonations/createreccuringdonations'
+import ReccuringDonations from './pages/donationManagement/RescueTask'
+import ViewReccuringDonations from './pages/donationManagement/reccuringdonations/viewreccuringdonations'
+import EditReccuringDonations from './pages/donationManagement/reccuringdonations/editreccuringdonations'
+import UnsubsribeReccuringDonation from './pages/donationManagement/reccuringdonations/deletereccuringdonations'  
 
+
+import SpecificNeedDonations from './pages/donationManagement/specificneedsdonations'
+import CreateSpecificNeedDonations from './pages/donationManagement/specificneedsdonations/createspecificneedsdonations'
+import ViewSpecificNeedsDonations from './pages/donationManagement/specificneedsdonations/viewspecificneedsdonations'
+
+
+import SponsorDonations from './pages/donationManagement/sponsordonations'
+import CreateSponsorDonations from './pages/donationManagement/sponsordonations/createsponsordonations'
+// import ViewSponsorDonations from './pages/donationManagement/sponsordonations/viewsponsordonations'
 //fund reuests
 import FundRequest from './pages/donationManagement/fundrequests/fundrequests'
 import ViewFundRequest from './pages/donationManagement/fundrequests/Viewfundrequests'
@@ -72,8 +88,10 @@ function App() {
                     <Route path="/DonationManager/heplAndSupport" element={<HeplAndSupport />} />
                     {/* main routes */}
                     <Route path="/DonationManager/rescueRequest" element={<RescueRequest />} />
-                    <Route path="/DonationManager/rescueTask" element={<RescueTask />} />
+                    <Route path="/DonationManager/reccuringdonations" element={<ReccuringDonations />} />
                     <Route path="/DonationManager/SponsorshipPets" element={<SponserPetProfile />} />
+                    <Route path ="/DonationManager/specificneedsdonations" element={<SpecificNeedDonations />} />
+                    <Route path ="/DonationManager/sponsordonations" element={<SponsorDonations />} />
 
                     {/*sponsor pet profile routes */}
                     <Route path="/DonationManager/SponsorshipPets/createSponsorPet" element={<CreateSponsorPet />} />
@@ -81,10 +99,22 @@ function App() {
                     <Route path ="/DonationManager/SponsorshipPets/editSponsorPet/:id" element={<EditSponsorPet />} />
                     <Route path ="/DonationManager/SponsorshipPets/removeSponsorPet/:id" element={<RemoveSponsorPet />} />
 
+                    {/* reccuring donations routes */}
+                    <Route path="/DonationManager/reccuringdonations/createReccuringDonations" element={<CreateReccuringDonation />} />
+                    <Route path="/DonationManager/reccuringdonations/viewreccuringdonations/:id" element={<ViewReccuringDonations />} />
+                    <Route path ="/DonationManager/reccuringdonations/editreccuringdonations/:id" element={<EditReccuringDonations />} />
+                    <Route path="/DonationManager/reccuringdonations/deletereccuringdonations/:id" element={<UnsubsribeReccuringDonation />} />
 
+                    {/* specific need donations routes */}
+                    <Route path="/DonationManager/specificneeddonations/createspecificneeddonations" element={<CreateSpecificNeedDonations />} />
+                     <Route path ="/DonationManager/specificneeddonations/viewspecificneedsdonations/:id" element={<ViewSpecificNeedsDonations />} />
+                     
                     {/* fund request routes */}
                     <Route path="/DonationManager/fundrequests" element={<FundRequest />} />
-                    <Route path="/DonationManager/fundrequets/Viewfundrequests" element={<ViewFundRequest />} />
+                    <Route path="/DonationManager/fundrequets/Viewfundrequests/:id" element={<ViewFundRequest />} />
+
+                    {/* sponsor donations routes */}
+                     <Route path ="/DonationManager/sponsordonations/createsponsordonations" element={<CreateSponsorDonations />} />                 
                     {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
                      </Route>
             </Routes>

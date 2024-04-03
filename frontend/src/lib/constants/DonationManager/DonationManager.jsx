@@ -5,6 +5,9 @@ import {
 import { MdOutlinePets } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
 import {IoPeople} from 'react-icons/io5'
+import { FaMoneyCheckAlt } from "react-icons/fa";
+import { FaShieldDog } from "react-icons/fa6";
+import { FcMoneyTransfer } from "react-icons/fc";
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
@@ -16,20 +19,37 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		key: 'Fund Requests',
 		label: 'Fund Requests',
 		path: '/DonationManager/fundrequests',
-		icon: <IoPeople />
+		icon: <FaMoneyCheckAlt />
 	},
-	// {
-	// 	key: 'Rescue Tasks',
-	// 	label: 'Rescue Tasks',
-	// 	path: '/DonationManager/rescueTask',
-	// 	icon: <FaTasks />
-	// },
+	{
+		key: ' Reccuring Donations',
+		label: '  Reccuring Donations',
+		path: '/DonationManager/reccuringdonations',
+		icon: <FcMoneyTransfer />
+	},
+
+	{
+		key:'Specific Needs Donations',
+		label:'Specific Needs Donations',
+	  path:'/DonationManager/SpecificNeedsDonations',
+		icon:<FcMoneyTransfer />
+		},
+		{
+			key:'Sponsor a Pet Donations',
+			label:'Sponsor a Pet Donations',
+			path:'/DonationManager/sponsordonations',
+			icon:<FcMoneyTransfer />
+			},
+
+
 	{
 		key: 'Sponsorship Pets',
 		label: 'Sponsorship Pets',
 		path: '/DonationManager/SponsorshipPets',
-		icon: <MdOutlinePets />
+		icon: <FaShieldDog />
 	},
+	
+	
 
 ]
 

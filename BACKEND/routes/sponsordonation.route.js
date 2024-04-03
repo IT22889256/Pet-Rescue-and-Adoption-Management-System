@@ -1,21 +1,20 @@
-const route = require('express').Router();
-const {displayReccuringDonations, addReccuringDonation, editReccuringDonation, displayOneReccuringDonation, deleteReccuringDonation} = require('../controllers/reccuringdonation.controller');  
+const express = require('express');
+const router = express.Router();
+const { displaySponsorDonations,addSponsorDonation,editSponsorDonation,displayOneSponsorDonation,deleteSponsorDonation } = require('../controllers/sponsordonation.contoller');
 
-//display all recurring donations
-route.get('/display', displayReccuringDonations);
+//display all sponsor donations
+router.get('/display', displaySponsorDonations);
 
-// create a recurring donation
-route.post('/add' , addReccuringDonation);
+// create a sponsor donation
+router.post('/add', addSponsorDonation);
 
-//  update a recurring donation
-route.put('/update/:id', editReccuringDonation);
+// edit a sponsor donation
+router.put('/update/:id', editSponsorDonation);
 
-//delete a recurring donation
-route.delete('/:id', deleteReccuringDonation);
+//display one sponsor donation
+router.get('/display/:id', displayOneSponsorDonation);
 
-//display one recurring donation
-route.get('/display/:id', displayOneReccuringDonation);
+//delete a sponsor donation
+router.delete('/delete/:id', deleteSponsorDonation);
 
-module.exports = route;
-// Path: routes/sponsordonation.route.js
-// Compare this snippet from controllers/sponsordonation.controller.js:
+module.exports = router;

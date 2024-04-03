@@ -25,9 +25,13 @@ const sponserpetRouter = require('./routes/sponserpet.route');
 
 
 //donations
+const donationRouter = require('./routes/donation.route');
 const reccuringdonationsRouter = require('./routes/reccuringdonation.route');
 const specificneeddonationRouter =require('./routes/specificneeddonation.route');
-const sponserdonationRouter = require('./routes/sponsordonation.route');
+const sponsorDonationRouter = require('./routes/sponsordonation.route');
+
+
+
 
 
 //complaint
@@ -39,12 +43,21 @@ app.use("/donationManager", sponserpetRouter);
 
 
 //donations
-app.use("/donationmanager", reccuringdonationsRouter);
-app.use("/donationManager", specificneeddonationRouter);
-app.use("/donationMnager", sponserdonationRouter);
+app.use("/donationManager/donation", donationRouter);
+app.use("/donationManager/reccuringdonation", reccuringdonationsRouter);
+app.use("/donationManager/specificneedsdonations", specificneeddonationRouter);
+app.use("/donationManager/sponsordonation", sponsorDonationRouter);
+
+
 
 // app.use('/donationManager',require('./routes/reccuringdonation.route'));
 
+
+// const rescueTask = require('./routes/task.route');
+// app.use("/petManager", rescueTask);
+
+const rescueRequest = require('./routes/rescueRequest.route')
+app.use("/petManager", rescueRequest);
 
 
 app.listen(PORT, () =>{

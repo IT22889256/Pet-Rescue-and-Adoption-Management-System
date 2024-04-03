@@ -27,8 +27,8 @@ const addReccuringDonation = async (req, res) => {
 const editReccuringDonation = async(req, res) => {
     try{
         const {id} = req.params;
-        const reccuringDonation =  await reccuringDonation.findByIdAndUpdate(id, req.body);   
-        if(!reccuringDonation) {
+        const reccuringDonationData =  await reccuringDonation.findByIdAndUpdate(id, req.body);   
+        if(!reccuringDonationData) {
             return res.status(404).json({message: "Reccuring Donation not found"});
         }
         const updateReccuringDonation = await reccuringDonation.findById(id);
@@ -43,11 +43,12 @@ const editReccuringDonation = async(req, res) => {
 const displayOneReccuringDonation = async(req, res) => {
     try{
         const {id} = req.params;
-        const reccuringDonation = await reccuringDonation.findById(id);
-        if(!reccuringDonation) {
+        const reccuringDonationData = await reccuringDonation.findById(id);
+        console.log(reccuringDonationData);
+        if(!reccuringDonationData) {
             return res.status(404).json({message: "Reccuring Donation not found"});
         }
-        res.status(200).json(reccuringDonation);
+        res.status(200).json(reccuringDonationData);
     }
     catch (error) {
         res.status(500).json({message: error.message});
@@ -59,8 +60,8 @@ const displayOneReccuringDonation = async(req, res) => {
 const deleteReccuringDonation = async(req, res) => {
     try{
         const {id} = req.params;
-        const reccuringDonation = await reccuringDonation.findByIdAndDelete(id);
-        if(!reccuringDonation) {
+        const reccuringDonationData = await reccuringDonation.findByIdAndDelete(id);
+        if(!reccuringDonationData) {
             return res.status(404).json({message: "Reccuring Donation not found"});
         }
 

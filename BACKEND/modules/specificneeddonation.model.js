@@ -14,22 +14,11 @@ const SpecificNeedDonationSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    donation_date: {
-        type: String,
-        required: true
-    },
-    donation_status: {
-        type: String,
-        required: true
-    },
-    payment_status: {
-        type: String,
-        required: true
-    },
-    transaction_id: {
-        type: String,
-        required: true
-    }})
+ 
+   
+},
+    { timestamps: true}
+    )
 
     const specificNeedDonation = mongoose.model('specificNeedDonation', SpecificNeedDonationSchema);
     module.exports = specificNeedDonation;

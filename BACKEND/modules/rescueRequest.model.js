@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
-const TaskSchema = mongoose.Schema({
-    request_id: {
-        type: String,
-        required: true
-    },
+const RescueRequestSchema = mongoose.Schema({
     user_id:{
         type: String,
         required: true
@@ -25,15 +21,7 @@ const TaskSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    rescue_task_priority:{
-        type: String,
-        required: true
-    },
     health_status:{
-        type: String,
-        required: true
-    },
-    rescue_task_status:{
         type: String,
         required: true
     },
@@ -45,11 +33,15 @@ const TaskSchema = mongoose.Schema({
         type: Date,
         required: true
     },
+    rescue_request_status:{
+        type: String,
+        required: true
+    },
     pet_image:{
         type: String,
     },
-});
+})
 
-const Task = mongoose.model("Task", TaskSchema);
+const RescueRequest = mongoose.model("RescueRequest", RescueRequestSchema);
 
-module.exports = Task;
+module.exports = RescueRequest;

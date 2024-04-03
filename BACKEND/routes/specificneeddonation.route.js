@@ -11,7 +11,7 @@ router.post('/add' , addSpecificNeedDonation);
 router.put('/update/:id', editSpecificNeedDonation);
 
 //delete a specific need donation
-router.delete('/:id', deleteSpecificNeedDonation);
+router.delete('/delete/:id', deleteSpecificNeedDonation);
 
 //display one specific need donation
 router.get('/display/:id', displayOneSpecificNeedDonation);

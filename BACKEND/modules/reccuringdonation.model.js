@@ -1,23 +1,19 @@
-const mongoose = require
-('mongoose');
+const mongoose = require('mongoose');
 const RecurringDonationSchema = mongoose.Schema({
     user_id: {
         type: String,
         required: true
     },
    
-      amount: {
+    amount: {
         type: Number,
         required: true
     },
-    donation_date: {
-        type: String,
-        required: true
-    },
-    donation_status: {
-        type: String,
-        required: true
-    },
+   
+    // donation_status: {
+    //     type: String,
+    //     required: true
+    // },
     donation_frequency: {
         type: String,
         enum:['monthly','once'],
@@ -26,21 +22,26 @@ const RecurringDonationSchema = mongoose.Schema({
 
     donation_start_date: {
         type: String,
-        required: true
+        // required: true
     },
     donation_end_date: {
         type: String,
-        required: true
+        // required: true
     },
-    payment_status: {
-        type: String,
-        required: true
-    },
-    transaction_id: {
-        type: String,
-        required: true}
-    })
+    // payment_status: {
+    //     type: String,
+    //     required: true
+    // },
+    // transaction_id: {
+    //     type: String,
+    //     required: true
+    // },
+        
+},
+    { timestamps: true}
 
-    const reccuringDonation = mongoose.model('reccuringDonation', RecurringDonationSchema);
-    
-    module.exports = reccuringDonation;
+);
+
+const reccuringDonation = mongoose.model('reccuringDonation', RecurringDonationSchema);
+
+module.exports = reccuringDonation;
