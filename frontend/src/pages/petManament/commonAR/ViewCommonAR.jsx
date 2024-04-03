@@ -4,7 +4,7 @@ import { Link, useParams,useNavigate } from 'react-router-dom'
 import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
-export default function ViewRescueRequest() {
+export default function CommonAR() {
 	
 	const [rescueRequest, setRescueRequest] = useState({})
 	const {id} = useParams()
@@ -18,16 +18,6 @@ export default function ViewRescueRequest() {
 			console.log(err);
 		})
 	},[])
-
-	
-	const [rescue_request_status, setRescueRequestStatus] = useState()
-	useEffect((e) => {
-        axios.get(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`)
-        .then((res) => {
-            console.log(res);
-        }).catch(err => console.log(err))
-    },[])
-
 	const Accept = (e) => {
 		
 		const data = {
@@ -101,7 +91,7 @@ return (
 									{rescueRequest.location}
 								</td >
 								<td>
-									{rescueRequest.createdAt}
+									{rescueRequest.date}
 								</td >
 									{rescueRequest.rescue_request_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-centerml">
@@ -119,8 +109,7 @@ return (
 								<td>
 								{rescueRequest.rescue_request_status==='Pending' &&(
 								<>
-									<Link onClick={Accept} to={`/petManager/rescueRequest/viewRescueRequest/${rescueRequest._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept
-									</Link>
+									<Link onClick={Accept} to={`/petManager/rescueRequest/viewRescueRequest/${rescueRequest._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept</Link>
 									<Link  onClick={Reject} to={`/petManager/rescueRequest/viewRescueRequest/${rescueRequest._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link>
 								</>
 

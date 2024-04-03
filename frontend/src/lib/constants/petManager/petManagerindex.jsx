@@ -31,6 +31,14 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <MdOutlinePets />
 	},
 
+	// {
+	// 	key: 'Common',
+	// 	label: 'Common',
+	// 	path: '/petManager/commonAr',
+	// 	icon: <MdOutlinePets />
+	// },
+
+
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
