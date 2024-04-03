@@ -37,7 +37,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'Task Test',
 		label: 'Task Test',
-		path: '/transportManager/rescueTask',
+		path: '/transportManager/taskRequest',
 		icon: <FaTasks />
 	},
 

@@ -29,6 +29,9 @@ import VehicleProfile from './pages/transportManagement/VehicleProfile'
 import EditVehicle from './pages/transportManagement/vehicleProfile/EditVehicle'
 import ViewVehicle from './pages/transportManagement/vehicleProfile/ViewVehicle'
 import RemoveVehicle from './pages/transportManagement/vehicleProfile/RemoveVehicle'
+import TaskRequest from './pages/transportManagement/TaskRequest'
+import ViewTaskRequest from './pages/transportManagement/taskRequest/ViewTaskRequest'
+import EditTaskRequest from './pages/transportManagement/taskRequest/EditTaskRequest'
 
 function App() {
     return (
@@ -71,6 +74,11 @@ function App() {
                     <Route path="/transportManager/scheduleProfile" element={<ScheduleProfile />} />
                     <Route path="/transportManager/vehicleProfile" element={<VehicleProfile />} />
 
+                    <Route path="/transportManager/taskRequest" element={<TaskRequest />} />
+                    <Route path="/transportManager/taskRequest/viewTaskRequest/:id" element={<ViewTaskRequest />} />
+                    <Route path="/transportManager/taskRequest/editTaskRequest/:id" element={<EditTaskRequest />} />
+        
+                    
 
                     {/* Schedule profile routes */}
                     <Route path="/transportManager/scheduleProfile/createSchedule" element={<CreateSchedule />} />
