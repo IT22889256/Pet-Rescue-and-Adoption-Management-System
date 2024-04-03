@@ -19,6 +19,10 @@ import DeleteRescueTask from './pages/petManament/rescueTask/DeleteRescueTask'
 import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueRequest'
 import CreateRescueRequest from './pages/petManament/rescueRequest/CreateRescueRequest'
 
+//common ar
+import ViewCommonAR from './pages/petManament/commonAR/ViewCommonAR'
+import CommonAR from './pages/petManament/commonAR/CommonAR'
+
 function App() {
     return (
         <Router>
@@ -47,6 +51,10 @@ function App() {
                     <Route path="/petManager/rescueRequest/createRescueRequest" element={<CreateRescueRequest />} />
                     <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
                     <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
+                    {/* common AR */}
+                    <Route path="/petManager/commonAr/" element={<CommonAR />} />
+                    <Route path="/petManager/commonAr/viewCommonAR/:id" element={<ViewCommonAR />} />
+
                 </Route>
             </Routes>
             

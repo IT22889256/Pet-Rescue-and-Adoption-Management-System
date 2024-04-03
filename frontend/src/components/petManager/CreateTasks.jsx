@@ -1,64 +1,54 @@
 import classNames from 'classnames'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+// import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
-
-const Tasks = [
-	{
-		id: '3432',
-		request_id: '134',
-		product_thumbnail: 'https://source.unsplash.com/100x100?macbook',
-		Progress_Status: "Complted"
-	},
-	{
-		id: '3432',
-		request_id: '123',
-		product_thumbnail: 'https://source.unsplash.com/100x100?macbook',
-		Progress_Status: "Progress"
-	},
-	{
-		id: '3432',
-		request_id: '124',
-		product_thumbnail: 'https://source.unsplash.com/100x100?macbook',
-		Progress_Status: "Rejected"
-	},
-]
+// import { getTaskStatus } from '../../lib/helpers/petManager/rescueTaskStatus'
+// import PopUp from './PopUp'
+// import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
+import axios from 'axios'
 
 function CreatedTasks() {
+	const [rescueTasks, setTasks] = useState([]);
+
+	useEffect(() => {
+		axios.get('http://localhost:3000/petManager/rescueTask').then(res => {
+			console.log(res);
+			setTasks(res.data)
+		})
+	},[])
 	return (
 		<div className="w-[20rem] bg-white p-4 rounded-sm border border-gray-200">
-			<strong className="text-gray-700 font-medium">Created Tasks</strong>
+			<strong className="text-gray-700 font-medium">Pending Tasks</strong>
 			<div className="mt-4 flex flex-col gap-3">
-				{Tasks.map((task) => (
+				{rescueTasks.map((rescueTask) => (
+					rescueTask.rescue_task_status === 'Pending' &&(
 					<Link
-						key={task.id}
-						to={`/product/${task.id}`}
+						key={rescueTask._id}
+						to={`/petManager/rescueTask/viewRescueTask/${rescueTask._id}`}
 						className="flex items-start hover:no-underline border-b-2 border-[[#c1c3c558]]"
 					>
 						<div className="w-10 h-10 min-w-[2.5rem] bg-gray-200 rounded-sm">
 							<img
 								className="w-full h-full object-cover rounded-sm"
-								src={task.product_thumbnail}
-								alt={task.request_id}
+								src={rescueTask.product_thumbnail}
+								alt={rescueTask.request_id}
 							/>
 						</div>
 						<div className="ml-4 flex-1">
-							<p className="text-sm text-gray-800">{task.request_id}</p>
+							<p className="text-sm text-gray-800">{rescueTask._id}</p>
 							<span
 								className={classNames(
-									task.Progress_Status === "Rejected"
-										? 'text-red-500'
-										: task.Progress_Status === "Progress"
-										? 'text-yellow-500'
-										: 'text-green-500',
 									'text-xs font-medium'
 								)}
 							>
-								{task.Progress_Status === 0 ? 'Out of Stock' : task.Progress_Status}
+								{rescueTask.rescue_task_status=== "Pending" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center p-1">
+										<div>{rescueTask.rescue_task_status}</div>
+									</td>)}
 							</span>
 						</div>
-						<div className="text-xs text-gray-400 pl-1.5 py-3"><Link to='/petManager/rescueTask/viewRescueTask'class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View</Link></div>
 					</Link>
-				))}
+				)))}
 			</div>
 		</div>
 	)

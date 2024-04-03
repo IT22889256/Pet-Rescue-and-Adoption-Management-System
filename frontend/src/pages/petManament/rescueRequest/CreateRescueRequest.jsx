@@ -6,14 +6,14 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateRescueRequest() {
     
-    const d = new Date()
-    const day = d.getUTCDate()
+    // const d = new Date()
+    // const day = d.getUTCDate()
 
     const [user_id, setUserId] = useState()
     const [pet_type, setPettype] = useState()
     const [health_status, setHealStatus] = useState()
     const [location, setLocation] = useState()
-    const [date, setDate] = useState(day)
+    // const [date, setDate] = useState(day)
     const [pet_image, setPetImage] = useState()
     const [rescue_request_status, setRescueRequestStatus] = useState("Pending")
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ export default function CreateRescueRequest() {
     const Submit = (e) => {
 
         const data = {
-            user_id,pet_type,health_status,date,location,rescue_request_status,pet_image,
+            user_id,pet_type,health_status,location,rescue_request_status,pet_image,
         };
         console.log('result')
         axios.post('http://localhost:3000/petManager/rescueRequest/createRescueRequest',data)
