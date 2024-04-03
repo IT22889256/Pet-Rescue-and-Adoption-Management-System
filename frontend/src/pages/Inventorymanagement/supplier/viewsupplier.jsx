@@ -35,7 +35,7 @@ return (
 					</thead>
 						<tbody>
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
-						<td>
+								<td>
 									{supplier._id}
 								</td >
 								<td>

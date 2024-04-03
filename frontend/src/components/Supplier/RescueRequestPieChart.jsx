@@ -25,10 +25,26 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 export default function RescueRequstsChart() {
 	return (
 		<div className="w-[20rem] h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
-			<strong className="text-gray-700 font-medium">Item category Status</strong>
+			<strong className="text-gray-700 font-medium">Rescue Requests Status</strong>
 			<div className="mt-3 w-full flex-1 text-xs">
 				<ResponsiveContainer width="100%" height="100%">
-				<iframe  src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660bf950-2f26-4228-811d-d9960d5f3a09&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+					<PieChart width={400} height={300}>
+						<Pie
+							data={data}
+							cx="50%"
+							cy="45%"
+							labelLine={false}
+							label={renderCustomizedLabel}
+							outerRadius={105}
+							fill="#8884d8"
+							dataKey="value"
+						>
+							{data.map((_, index) => (
+								<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+							))}
+						</Pie>
+						<Legend />
+					</PieChart>
 				</ResponsiveContainer>
 			</div>
 		</div>

@@ -37,9 +37,16 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <MdOutlinePets />
 	},
 	{
-		key: 'Request for funds',
-		label: 'Request for funds',
+		key: 'Requests',
+		label: 'Requests',
 		path: "/InventoryManager/request" ,
+		icon: <MdOutlinePets />
+	},
+
+	{
+		key: 'order',
+		label: 'order',
+		path: "/InventoryManager/order" ,
 		icon: <MdOutlinePets />
 	},
 

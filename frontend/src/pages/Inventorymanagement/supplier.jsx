@@ -26,9 +26,10 @@ export default function Supplier () {
 							<th>supplier address</th>
 							<th>supplier email</th>
 							<th>supplier age</th>
-							<th>supplier image</th>
 							<th>supplier phonenumber</th>
 							<th>supplier image</th>
+							
+							
 
 							<th>Action</th>
 						</tr>
@@ -53,9 +54,6 @@ export default function Supplier () {
 								</td>
 								<td>
 									{supplier.supplier_phonenumber}
-								</td>
-								<td>
-									{supplier.supplier_date}
 								</td>
 								<td>
 									{supplier.supplier_image}

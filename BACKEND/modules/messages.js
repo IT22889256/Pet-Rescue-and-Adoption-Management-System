@@ -7,38 +7,22 @@ const requestSchema = mongoose.Schema(
      type:String,
      required:true,
     },
-
     request_no: {
       type: String,
       // required: true,
      
   },
-
-  amount: {
-    type: Number,
-    required: true,
-   
-},
-  
-
   request_to: {
-    type: String,
-    enum: ['donation manager', 'supplier'], 
-    default: 'donation manager' 
-
-  },
+      type: String,
+      
+    },
 
     request_date:{
       type:String,
-    },
-  
-  
-    status: {
-      type: String,
-      enum: ['pending', 'accepted', 'rejected'], 
-      default: 'pending' 
-
     }
+  
+  
+
 
     
   // },

@@ -1,4 +1,4 @@
-const Request = require("../modules/request.model");
+const Order = require("../modules/order.model");
 
 // const getProducts = async (req, res) => {
 //   try {
@@ -9,30 +9,30 @@ const Request = require("../modules/request.model");
 //   }
 // };
 
-const displayrequest= async(req, res) => {
+const displayorder= async(req, res) => {
   try{
-      const request = await Request.find({});
-      res.status(200).json(request);
+      const order = await Order.find({});
+      res.status(200).json(order);
   }catch(error) {
       res.status(500).json({message: error.message});
   }
 }
 
-const getrequest = async (req, res) => {
+const getorder = async (req, res) => {
   try {
     const { id } = req.params;
     
-    const request = await Request.findById(id);
-    res.status(200).json(request);
+    const order = await Order.findById(id);
+    res.status(200).json(order);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const createrequest = async (req, res) => {
+const createorder = async (req, res) => {
   try {
-    const request = await Request.create(req.body);
-    res.status(200).json(request);
+    const order = await Order.create(req.body);
+    res.status(200).json(order);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -41,14 +41,14 @@ const createrequest = async (req, res) => {
 
 //display One item
 
-const displayOnerequest= async(req, res) => {
+const displayOneorder= async(req, res) => {
   try{
       const {id} = req.params;
-      const request = await Request.findById(id);
-      if(!request) {
-          return res.status(404).json({message: "request not found"});
+      const order = await Order.findById(id);
+      if(!order) {
+          return res.status(404).json({message: "order not found"});
       }
-      res.status(200).json(request);
+      res.status(200).json(order);
 
   }catch (error) {
       res.status(500).json({message: error.message});
@@ -67,44 +67,44 @@ const displayOnerequest= async(req, res) => {
 //       res.status(500).json({message: error.message});
 //   }
 // }
-const updaterequest = async (req, res) => {
+const updateorder = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const request = await Request.findByIdAndUpdate(id, req.body);
+    const order = await Order.findByIdAndUpdate(id, req.body);
 
-    if (!request) {
-      return res.status(404).json({ message: "request not found" });
+    if (!order) {
+      return res.status(404).json({ message: "order not found" });
     }
 
-    const updatedrequest = await Request.findById(id);
-    res.status(200).json(updatedrequest);
+    const updatedorder = await order.findById(id);
+    res.status(200).json(updatedorder);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const deleterequest = async (req, res) => {
+const deleteorder = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const request = await Request.findByIdAndDelete(id);
+    const order = await Order.findByIdAndDelete(id);
 
-    if (!request) {
-      return res.status(404).json({ message: "request not found" });
+    if (!order) {
+      return res.status(404).json({ message: "order not found" });
     }
 
-    res.status(200).json({ message: "request deleted successfully" });
+    res.status(200).json({ message: "order deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
 module.exports = {
-  displayrequest,
-  getrequest,
-  createrequest,
-  updaterequest,
-  deleterequest,
-  displayOnerequest
+  displayorder,
+  getorder,
+  createorder,
+  updateorder,
+  deleteorder,
+  displayOneorder
 };

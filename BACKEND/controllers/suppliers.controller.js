@@ -1,4 +1,4 @@
-const Supplier = require("../modules/supplier.model");
+const order = require("../modules/order.model");
 
 // const getProducts = async (req, res) => {
 //   try {
@@ -9,46 +9,46 @@ const Supplier = require("../modules/supplier.model");
 //   }
 // };
 
-const displaysupplier= async(req, res) => {
+const displaysuppliers= async(req, res) => {
   try{
-      const supplier = await Supplier.find({});
+      const suppliers = await Suppliers.find({});
       res.status(200).json(supplier);
   }catch(error) {
       res.status(500).json({message: error.message});
   }
 }
 
-const getsupplier = async (req, res) => {
+const getsuppliers = async (req, res) => {
   try {
     const { id } = req.params;
     
-    const supplier = await Supplier.findById(id);
+    const suppliers = await Suppliers.findById(id);
     res.status(200).json(supplier);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const createsupplier = async (req, res) => {
+const createsuppliers = async (req, res) => {
   try {
-    const supplier = await Supplier.create(req.body);
-    res.status(200).json(supplier);
+    const suppliers = await Suppliers.create(req.body);
+    res.status(200).json(suppliers);
   } catch (error) {
     res.status(500).json({ message: error.message });
-  }
+  }s
 };
 
 
 //display One item
 
-const displayOnesupplier= async(req, res) => {
+const displayOnesuppliers= async(req, res) => {
   try{
       const {id} = req.params;
-      const supplier = await Supplier.findById(id);
-      if(!supplier) {
-          return res.status(404).json({message: "supplier not found"});
+      const suppliers = await Suppliers.findById(id);
+      if(!suppliers) {
+          return res.status(404).json({message: "suppliers not found"});
       }
-      res.status(200).json(supplier);
+      res.status(200).json(suppliers);
 
   }catch (error) {
       res.status(500).json({message: error.message});
@@ -67,44 +67,44 @@ const displayOnesupplier= async(req, res) => {
 //       res.status(500).json({message: error.message});
 //   }
 // }
-const updatesupplier = async (req, res) => {
+const updatesuppliers = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const supplier = await Supplier.findByIdAndUpdate(id, req.body);
+    const suppliers = await suppliers.findByIdAndUpdate(id, req.body);
 
-    if (!supplier) {
-      return res.status(404).json({ message: "supplier not found" });
+    if (!suppliers) {
+      return res.status(404).json({ message: "suppliers not found" });
     }
 
-    const updatedsupplier = await supplier.findById(id);
-    res.status(200).json(updatedsupplier);
+    const updatedsuppliers = await suppliers.findById(id);
+    res.status(200).json(updatedsuppliers);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const deletesupplier = async (req, res) => {
+const deletesuppliers = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const supplier = await Supplier.findByIdAndDelete(id);
+    const suppliers = await Suppliers.findByIdAndDelete(id);
 
-    if (!supplier) {
-      return res.status(404).json({ message: "supplier not found" });
+    if (!suppliers) {
+      return res.status(404).json({ message: "suppliers not found" });
     }
 
-    res.status(200).json({ message: "supplier deleted successfully" });
+    res.status(200).json({ message: "suppliers deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
 module.exports = {
-  displaysupplier,
-  getsupplier,
-  createsupplier,
-  updatesupplier,
-  deletesupplier,
-  displayOnesupplier
+  displaysuppliers,
+  getsuppliers,
+  createsuppliers,
+  updatesuppliers,
+  deletesuppliers,
+  displayOnesuppliers
 };

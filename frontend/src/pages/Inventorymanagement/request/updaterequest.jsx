@@ -4,54 +4,17 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
-export default function Editsupplier() {
+export default function Updaterequest() {
     
-//   const [request_id, setReqId] = useState()
-//     const [task_id, setTaskId] = useState()
-//     const [pet_name, setPetName] = useState()
-//     const [pet_type, setPettype] = useState()
-//     const [health_status, setHealStatus] = useState()
-//     const [pet_gender, setPetGender] = useState()
-//     const [pet_age, setPetAge] = useState()
-//     const [pet_appearance, setPetappearance] = useState()
-//     const [location, setLocation] = useState()
-//     const [pet_image, setPetImage] = useState()
-// supplier_id:{
-//     type:String,
-//     // required:true,
-
-//   },
-
-//   supplier_name: {
-//     type: String,
-//     // required: true,
-   
-// },
-
-
-// supplier_address: {
-//     type: String,
     
-//   },
-
-//   supplier_email:{
-//     type:String,
-//   },
-
-//   supplier_age:{
-//     type: String
     
-// },
-// supplier_phonenumber:{
-//   type:String
-// }
-const [supplier_id, setsupplierid] = useState()
-const [supplier_name, setsuppliername] = useState()
-const [supplier_address, setsupplieraddress] = useState()
-const [supplier_email,setsupplieremail] = useState()
-const [supplier_age,setsupplierage] = useState()
-const [supplier_phonenumber,setsupplierphonenumber] = useState()
-const [supplier_image,setsupplierimage] = useState()
+
+
+const [request_id, setrequestid] = useState()
+const [request_no, setrequestno] = useState()
+const [request_to, setrequestto] = useState()
+const [request_date,setrequestdate] = useState()
+
 
 
     const navigate = useNavigate()
@@ -59,15 +22,13 @@ const [supplier_image,setsupplierimage] = useState()
     const {id} = useParams()
     useEffect((e) => {
         
-        axios.get(`http://localhost:3000/InventoryManager/supplier/viewsupplier/${id}`)
+        axios.get(`http://localhost:3000/InventoryManager/request/viewrequest/${id}`)
         .then((res) => {
-            
-            setsuppliername(res.data.supplier_name)
-            setsupplieraddress(res.data.supplier_address)
-            setsupplieremail(res.data.supplier_email)
-            setsupplierage(res.data.supplier_age)
-            setsupplierphonenumber(res.data.supplier_phonenumber)
-            setsupplierimage(res.data.supplier_image)
+            setrequestid(res.data.request_id)
+            setrequestno(res.data.request_no)
+            setrequestto(res.data.request_to)
+            setrequestdate(res.data.request_date)
+          
             // setPetAge(res.data.pet_age)
             // setPetappearance(res.data.pet_appearance)
             // setLocation(res.data.location)
@@ -79,21 +40,21 @@ const [supplier_image,setsupplierimage] = useState()
     },[])
     const Edit = (e) => {
         const data = {
-            supplier_name,supplier_address,supplier_email,supplier_age,supplier_phonenumber,supplier_image
+            request_id,request_no,request_to,request_date
         };
     
         console.log('result')
-        axios.put(`http://localhost:3000/InventoryManager/supplier/editsupplier/${id}`,data)
+        axios.put(`http://localhost:3000/InventoryManager/request/updaterequest/${id}`,data)
         .then(result => {
             alert('updated')
             console.log(result)
-            navigate('/InventoryManager/supplier')
+            navigate('/InventoryManager/request')
         })
         .catch(err => console.log(err))
     }
         return (
 
-        
+    
             <div>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
@@ -107,34 +68,37 @@ const [supplier_image,setsupplierimage] = useState()
             <img className="h-20 w-20 text-gray-300" alt='image' />
           </div>
         </div>
-
+        {/* const [request_id, setrequestid] = useState()
+const [request_no, setrequestno] = useState()
+const [request_to, setrequestto] = useState()
+const [request_date,setrequestdate] = useState() */}
 
 
                         <div className="sm:col-span-3">
                             <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                            Supplier Id
+                            request Id
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
-                                    name="supplier_id"
-                                    id="supplier_id"
-                                    value={id}
+                                    name="request_id"
+                                    id="request_id"
+                                    value={request_id}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Supplier name
+                                request no
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="supplier_name"
-                                        id="supplier_name"
-                                        value={supplier_name}
-                                        onChange={(e) => setsuppliername(e.target.value)}
+                                        name="request_no"
+                                        id="request_no"
+                                        value={request_no}
+                                        onChange={(e) => setrequestno(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -146,10 +110,10 @@ const [supplier_image,setsupplierimage] = useState()
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="supplier_address"
-                                        id="supplier_address"
-                                        value={supplier_address}
-                                        onChange={(e) => setsupplieraddress(e.target.value)}
+                                        name="request_to"
+                                        id="request_to"
+                                        value={request_to}
+                                        onChange={(e) => setrequestto(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -157,49 +121,20 @@ const [supplier_image,setsupplierimage] = useState()
 
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                    supplier email
+                                    request date
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="supplier_email"
-                                        id="supplier_email"
-                                        value={supplier_email}
-                                        onChange={(e) => setsupplieremail(e.target.value)}
+                                        name="request_date"
+                                        id="request_date"
+                                        value={request_date}
+                                        onChange={(e) => setrequestdate(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
-                            <div className="sm:col-span-3">
-                                <label htmlFor="pet-gender" className="block text-sm font-medium leading-6 text-gray-900">
-                                    supplier age
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="supplier_age"
-                                        id="supplier_age"
-                                        value={supplier_age}
-                                        onChange={(e) => setsupplierage(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
-                            <div className="sm:col-span-3">
-                                <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Supplier phonenumber
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="supplier_phonenumber"
-                                        id="supplier_phonenumber"
-                                        value={supplier_phonenumber}
-                                        onChange={(e) => setsupplierphonenumber(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                           
                            
                            
                             {/* <div className="sm:col-span-3">
@@ -255,7 +190,7 @@ const [supplier_image,setsupplierimage] = useState()
                                     />
                                 </div>
                             </div> */}
-                            { <div className="col-span-full">
+                            {/* { <div className="col-span-full">
                             <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
                             supplier image
                             </label>
@@ -278,7 +213,7 @@ const [supplier_image,setsupplierimage] = useState()
                                     <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                             </div>
                             </div>
-                            </div> }
+                            </div> } */}
                             </div>
                         </div>
                     </div>

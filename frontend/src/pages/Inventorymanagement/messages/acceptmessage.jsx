@@ -40,7 +40,7 @@ export default function Createrequest() {
          
         };
         console.log('result')
-        axios.post('http://localhost:3000/inventoryManager/request/createrequest',data)
+        axios.post('http://localhost:3000/InventoryManager/request/createrequest',data)
         .then(result => {
             console.log(result)
             navigate('/InventoryManager/request')
@@ -94,67 +94,26 @@ export default function Createrequest() {
                                             name="request_to"
                                             id="request_to"
                                             value={request_to}
-                                            onChange={(e) =>setsupplieraddress (e.target.value)}
+                                            onChange={(e) =>setrequestto (e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div> 
                                     </div>
                                     <div className="sm:col-span-3">
                                     <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    supplier email                                   </label>
+                                    Request date                              </label>
                                     <div className="mt-2">
                                         <input
                                             type="text"
-                                            name="supplier_email"
-                                            id="supplier_email"
-                                            value={supplier_email}
-                                            onChange={(e) => setsupplieremail(e.target.value)}
+                                            name="request_date"
+                                            id="request_date"
+                                            value={request_date}
+                                            onChange={(e) => setrequestdate(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div> 
                                     </div>
-                                    <div className="sm:col-span-3">
-                                    <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    supplier age                                 </label>
-                                    <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="supplier_age"
-                                            id="supplier_age"
-                                            value={supplier_age}
-                                            onChange={(e) => setsupplierage(e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div> 
-                                    </div>
-                                    <div className="sm:col-span-3">
-                                    <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    supplier phonenumber                                </label>
-                                    <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="supplier_phonenumber"
-                                            id="supplier_phonenumber"
-                                            value={supplier_phonenumber}
-                                            onChange={(e) => setsupplierphonenumber(e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div> 
-                                    </div>
-                                    <div className="sm:col-span-3">
-                                    <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    supplier image                                </label>
-                                    <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="supplier_image"
-                                            id="supplier_image"
-                                            value={supplier_image}
-                                            onChange={(e) => setsupplierimage(e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div> 
-                                    </div>
+                                   
                                   
                                     
                             </div>

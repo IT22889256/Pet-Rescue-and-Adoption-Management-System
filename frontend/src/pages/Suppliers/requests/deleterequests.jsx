@@ -2,16 +2,16 @@ import React from 'react'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-export default function Removeitem() {
+export default function Deleterequests() {
   const navigate = useNavigate();
   const { id } = useParams();
   const handleDeleteBook = () => {
     
     axios
-      .delete(`http://localhost:3000/inventoryManager/supplier/removesupplier/${id}`)
+      .delete(`http://localhost:3000/suppliers/requests/deleterequests/${id}`)
       .then(() => {
         alert('deleted')
-        navigate('/InventoryManager/supplier');
+        navigate('/Suppliers/requests');
       })
       .catch((error) => {
         
