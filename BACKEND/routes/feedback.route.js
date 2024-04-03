@@ -7,7 +7,7 @@ const {getFeedbacks, getFeedback, createFeedback, updateFeedback, deleteFeedback
 router.get('/feedback', getFeedbacks);
 
 //display one feedback
-router.get("/feedback/getFeedback:id", getFeedback);
+router.get("/feedback/getFeedback/:id", getFeedback);
 
 //create a feedback
 router.post("/feedback/createFeedback", createFeedback);

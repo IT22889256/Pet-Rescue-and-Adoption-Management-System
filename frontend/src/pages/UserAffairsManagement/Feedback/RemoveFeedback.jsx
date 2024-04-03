@@ -8,10 +8,10 @@ export default function RemovePet() {
   const handleDeleteBook = () => {
     
     axios
-      .delete(`http://localhost:3000/petManager/petProfile/removePet/${id}`)
+      .delete(`http://localhost:3000/userAffairsManager/feedback/removeFeedback/${id}`)
       .then(() => {
         alert('deleted')
-        navigate('/petManager/petProfile');
+        navigate('/UserAffairsManager/Feedback');
       })
       .catch((error) => {
         

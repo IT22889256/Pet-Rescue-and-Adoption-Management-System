@@ -3,15 +3,15 @@ import { Link, useParams } from 'react-router-dom'
 import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
-export default function ViewPet() {
+export default function ViewFeedback() {
 	
-	const [pet, setPet] = useState({})
+	const [feedback, setFeedback] = useState({})
 	const {id} = useParams()
 
 	useEffect(() => {
-		axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
+		axios.get(`http://localhost:3000/userAffairsManager/feedback/getFeedback/${id}`)
 		.then((res) => {
-			setPet(res.data)
+			setFeedback(res.data)
 			
 		}).catch((err) => {
 			console.log(err);
@@ -24,35 +24,27 @@ return (
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
-							<th>Pet ID</th>
-							<th>Request ID</th>
-							<th>Task ID</th>
-							<th>Pet Name</th>
-							<th>Type</th>
-							<th>Health Status</th>
+						<th>Feedback ID</th>
+							<th>User Id</th>
+							<th>Email</th>
+							<th>Message</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 						<tbody>
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
-								<td>
-									{pet._id}
+						<td>
+									{feedback._id}
 								</td >
 								<td>
-									{pet.request_id}
-								</td >
+									{feedback.user_id}
+								</td>
+								 <td>
+									{feedback.email}
+								</td>
 								<td>
-									{pet.task_id}
-								</td >
-								<td>
-									{pet.pet_name}
-								</td >
-								<td>
-									{pet.pet_type}
-								</td >
-								<td>
-									{pet.health_status}
-								</td >
+									{feedback.reason}
+								</td>
 							</tr>
 						
 					</tbody>

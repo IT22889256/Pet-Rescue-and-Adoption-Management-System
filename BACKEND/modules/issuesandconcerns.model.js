@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const IssuesAndConcernsSchema = mongoose.Schema(
   {
-    name: {
+    user_id: {
       type: String,
       //required: [true, "Please enter name"],
     },
@@ -13,7 +13,7 @@ const IssuesAndConcernsSchema = mongoose.Schema(
      
     },
 
-    issuesandconcerns: {
+    message: {
       type: String,
      // required: [true, "Please enter adoption related concerns or technical issues"],
     

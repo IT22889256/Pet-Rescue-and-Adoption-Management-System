@@ -3,7 +3,6 @@ import Layout from './components/shared/Layout'
 import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
 import HeplAndSupport from './pages/HeplAndSupport'
 
-
 //pet mangemnt imports
 import PetLayout from './components/petManager/PetLayout'
 import RescueRequest from './pages/petManament/RescueRequest'
@@ -40,6 +39,14 @@ import CreateGallery from '../src/pages/UserAffairsManagement/Gallery/CreateGall
 import EditGallery from '../src/pages/UserAffairsManagement/Gallery/EditGallery'
 import RemoveGallery from '../src/pages/UserAffairsManagement/Gallery/RemoveGallery'
 import ViewGallery from '../src/pages/UserAffairsManagement/Gallery/ViewGallery'
+
+//handle issues concerns
+import IssuesConcerns from '../src/pages/UserAffairsManagement/handleIssuesConcerns/IssuesConcerns'
+import ViewIssuesConcerns from '../src/pages/UserAffairsManagement/handleIssuesConcerns/ViewIssuesConcerns'
+
+//handle feedback
+import AllFeedback from '../src/pages/UserAffairsManagement/handleFeedback/AllFeedback'
+import ViewFeedback1 from '../src/pages/UserAffairsManagement/handleFeedback/viewFeedback'
 
 //Employeee
 
@@ -78,7 +85,6 @@ function App() {
                     <Route path="/UserAffairsManager/heplAndSupport" element={<HeplAndSupport />} />
                     {/* main routes */}
                     <Route path="/UserAffairsManager/feedback" element={<Feedback/>} />
-                    <Route path="/UserAffairsManager/rescueTask" element={<RescueTask />} />
                     <Route path="/UserAffairsManager/issuesandconcerns" element={<IssuesAndConcerns />} />
                     <Route path="/UserAffairsManager/gallery" element={<Gallery />} />
                     {/* Issues & Concerns routes */}
@@ -96,6 +102,12 @@ function App() {
                     <Route path="/UserAffairsManager/Gallery/CreateGallery" element={<CreateGallery />} />
                     <Route path="/UserAffairsManager/Gallery/EditGallery/:id" element={<EditGallery />} />
                     <Route path="/UserAffairsManager/Gallery/RemoveGallery/:id" element={<RemoveGallery />} />
+                    {/* handle IC routes */}
+                    <Route path="/UserAffairsManager/handleIssuesConcerns" element={<IssuesConcerns />} />
+                    <Route path="/UserAffairsManager/handleIssuesConcerns/ViewIssuesConcerns/:id" element={<ViewIssuesConcerns />} />
+                    {/* handle F routes */}
+                    <Route path="/UserAffairsManager/handleFeedback" element={<AllFeedback />} />
+                    <Route path="/UserAffairsManager/handleFeedback/viewFeedback/:id" element={<ViewFeedback1 />} />
                 </Route>
             </Routes>
         </Router>

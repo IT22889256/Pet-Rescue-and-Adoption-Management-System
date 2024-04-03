@@ -32,6 +32,8 @@ app.use("/userAffairsManager", feedbackRouter);
 app.use("/userAffairsManager", issuesandconcernsRouter);
 app.use("/userAffairsManager", galleryRouter);
 
+const rescueRequest = require('./routes/rescueRequest.route')
+app.use("/petManager", rescueRequest);
 
 app.listen(PORT, () =>{
     console.log(`Server is up and running on ${PORT}`);

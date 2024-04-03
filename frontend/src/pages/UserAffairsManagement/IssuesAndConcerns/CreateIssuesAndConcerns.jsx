@@ -7,15 +7,15 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateIssuesAndConcerns() {
 
     const [user_id, setUserId] = useState()
-    const [issueorconcern_id, setIssueOrConcernId] = useState()
     const [email, setEmail] = useState()
     const [message, setMessage] = useState()
+    const[issuesandconcerns_status, setStatus] = useState("Waiting")
     const navigate = useNavigate()
 
     const Submit = (e) => {
 
         const data = {
-            user_id,issueorconcern_id,email,message
+            user_id,email,message
         };
         console.log('result')
         axios.post('http://localhost:3001/UserAffairsManager/issuesandconcerns',data)
@@ -48,21 +48,7 @@ export default function CreateIssuesAndConcerns() {
                                             />
                                         </div>
                                                 </div>
-                                    <div className="sm:col-span-3">
-                                        <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Issue Or Concern ID
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="issueorconcern_id"
-                                                id="issueorconcern_id"
-                                                value={issueorconcern_id}
-                                                onChange={(e) => setIssueOrConcernId(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>
+                                    
                                     <div className="sm:col-span-3">
                                         <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
                                             Email
@@ -89,6 +75,21 @@ export default function CreateIssuesAndConcerns() {
                                                 id="message"
                                                 value={message}
                                                 onChange={(e) => setMessage(e.target.value)}
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="pet-gender" className="block text-sm font-medium leading-6 text-gray-900">
+                                          Status
+                                        </label>
+                                        <div className="mt-2">
+                                            <input
+                                                type="text"
+                                                name="status"
+                                                id="status"
+                                                value={issuesandconcerns_status}
+                                                onChange={(e) => setStatus(e.target.value)}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>

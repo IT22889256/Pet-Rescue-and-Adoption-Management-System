@@ -3,8 +3,12 @@ import {
 	HiOutlineQuestionMarkCircle
 } from 'react-icons/hi'
 import { MdOutlinePets } from "react-icons/md";
-import { FaTasks } from "react-icons/fa";
-import {IoPeople} from 'react-icons/io5'
+import { MdErrorOutline } from "react-icons/md";
+import { RiGalleryLine } from "react-icons/ri";
+import { VscFeedback } from "react-icons/vsc";
+
+
+
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
@@ -12,31 +16,35 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/UserAffairsManager',
 		icon: <HiOutlineViewGrid />
 	},
+	
 	{
-		key: 'Issues & Concerns',
-		label: 'Issues & Concerns',
-		path: '/UserAffairsManager/issuesandconcerns',
-		icon: <IoPeople />
-	},
-	{
-		key: 'Rescue Tasks',
-		label: 'Rescue Tasks',
-		path: '/UserAffairsManager/rescueTask',
-		icon: <FaTasks />
+		key: 'Issues/Concerns',
+		label: 'Issues/Concerns',
+		path: '/UserAffairsManager/handleIssuesConcerns',
+		icon: <MdErrorOutline />
+
 	},
 	{
 		key: 'Feedback',
 		label: 'Feedback',
-		path: '/UserAffairsManager/Feedback',
-		icon: <MdOutlinePets />
+		path: '/UserAffairsManager/handleFeedback',
+		icon: <VscFeedback />
 	},
 	{
 		key: 'Gallery',
 		label: 'Gallery',
 		path: '/UserAffairsManager/Gallery',
-		icon: <MdOutlinePets />
+		icon: <RiGalleryLine />
+
 	},
 
+	// {
+	// 	key: 'FCrud',
+	// 	label: 'FCrud',
+	// 	path: '/UserAffairsManager/Feedback',
+	// 	icon: <RiGalleryLine />
+
+	// },
 
 ]
 
