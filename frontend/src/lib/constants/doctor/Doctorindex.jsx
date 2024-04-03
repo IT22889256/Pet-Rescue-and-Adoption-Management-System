@@ -5,6 +5,7 @@ import {
 import { MdOutlinePets } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
 import {IoPeople} from 'react-icons/io5'
+import { FaUserDoctor } from "react-icons/fa6";
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
@@ -22,7 +23,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		key: 'Pet HealthCare',
 		label: 'Pet HealthCare',
 		path: '/doctor/petHealth',
-		icon: <MdOutlinePets />
+		icon: <FaUserDoctor />
 	},
 	
 ]

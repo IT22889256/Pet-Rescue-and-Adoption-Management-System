@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export default function ViewPetHealth() {
 
-	const navigate = useNavigate()
+	{/*const navigate = useNavigate()
 	const Accept = (e) => {
 		
 		const data = {
@@ -38,14 +38,14 @@ export default function ViewPetHealth() {
             navigate('/doctor/petHealth')
         })
         .catch(err => console.log(err))
-	}
+	}*/}
 
 	
 	const [petHealth, setpetHealth] = useState({})
 	const {id} = useParams()
 
 	useEffect(() => {
-		axios.get(`http://localhost:3000/doctor/petProfile/viewPet/${id}`)
+		axios.get(`http://localhost:3000/doctor/petHealth/viewPet/${id}`)
 		.then((res) => {
 			setpetHealth(res.data)
 			
@@ -82,8 +82,12 @@ return (
 									{petHealth.health_status}
 								</td >
 								<td>
+									{/*}
 									<Link onClick={Accept} to={`/doctor/petHealth/ViewPetHealth/${petHealth._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept</Link>
 									<Link onClick={Reject} to={`/doctor/petHealth/ViewPetHealth/${petHealth._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Reject</Link>
+									*/}
+									<Link to={`/doctor/petHealth/EditPetHealth/${petHealth._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
+
 								</td>
 							</tr>
 						

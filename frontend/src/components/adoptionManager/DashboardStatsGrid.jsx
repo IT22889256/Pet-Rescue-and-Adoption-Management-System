@@ -11,48 +11,21 @@ export default function DashboardStatsGrid() {
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
 					<IoPeople className="text-2xl text-white" />
 				</div>
-				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Rescue Request</span>
-					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">60</strong>
-						
-					</div>
-				</div>
+				<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660cf353-d4f5-435a-8e0e-92a7182a786a&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
 			</BoxWrapper>
 			<BoxWrapper>
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-orange-600">
 					<FaTasks className="text-2xl text-white" />
 				</div>
-				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Tasks</span>
-					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">50</strong>
-					</div>
-				</div>
+				<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660cf5c0-7403-44d7-8620-ac7f3a1028c6&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
 			</BoxWrapper>
 			<BoxWrapper>
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-yellow-400">
 					<MdOutlinePets className="text-2xl text-white" />
 				</div>
-				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Pets</span>
-					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">13</strong>
-						{/* <span className="text-sm text-red-500 pl-2">Adopted - 40</span> */}
-					</div>
-				</div>
+				<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660cf6d9-015c-4c18-8fc7-205d5ff09d3c&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 			</BoxWrapper>
-			<BoxWrapper>
-				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-600">
-					<FaHome className="text-2xl text-white" />
-				</div>
-				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Adopted</span>
-					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">2</strong>
-					</div>
-				</div>
-			</BoxWrapper>
+			
 		</div>
 		</div>
 	)

@@ -54,8 +54,9 @@ import DeleteAppoinment from './pages/adoptionManagement/AppoinmentSchedule/Dele
 import DoctorLayout from './components/doctor/DoctorLayout'
 import DoctorDashboard from './pages/doctorManagement/DoctorDashboard'
 
-import AllPetHealth from './pages/doctorManagement/pet_/AllPetHealth'
-import ViewPetHealth from './pages/doctorManagement/pet_/ViewPetHealth'
+import AllPetHealth from './pages/doctorManagement/petHealth/AllPetHealth'
+import ViewPetHealth from './pages/doctorManagement/petHealth/ViewPetHealth'
+import EditPetHealth from './pages/doctorManagement/petHealth/EditPetHealth'
 
 function App() {
     return (
@@ -135,6 +136,7 @@ function App() {
                     {/*doctor routes*/}
                     <Route path="/doctor/petHealth" element={<AllPetHealth />} />
                     <Route path="/doctor/petHeaalth/ViewPetHealth/:id" element={<ViewPetHealth />} />
+                    <Route path="/doctor/petHeaalth/EditPetHealth/:id" element={<EditPetHealth />} />
             </Route>
             </Routes>
 
