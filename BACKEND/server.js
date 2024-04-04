@@ -18,32 +18,27 @@ connection.once('open', () => {
     console.log('Mongodb Connection success');
 })
 
-//import routes
-//const complaintRouter = require('./routes/complaint.route');
-//const petRouter = require('./routes/pet.route')
+//import pet routes
 
-//import routes
+const petRouter = require('./routes/pet.route');
+const rescueTask = require('./routes/task.route');
+const rescueRequest = require('./routes/rescueRequest.route')
+
+app.use("/petManager", petRouter);
+app.use("/petManager", rescueTask);
+app.use("/petManager", rescueRequest);
+
+//import inventory routes
 const itemRouter = require('./routes/product.route');
-
 const supplierRouter =  require('./routes/supplier.routes');
-
 const requestRouter = require('./routes/request.route');
-
 const orderRouter = require('./routes/order.route');
-
-
-//complaint
-// app.use("/complain", complaintRouter);
-// app.use("/petManager", petRouter);
 
 app.use("/inventoryManager",itemRouter);
 app.use("/inventoryManager",supplierRouter);
 app.use("/inventoryManager",requestRouter);
 app.use("/inventoryManager",orderRouter);
-// app.use("/suppliers",SuppliersRouter);
-
 app.use("/suppliers", orderRouter);
-
 
 
 app.listen(PORT, () =>{

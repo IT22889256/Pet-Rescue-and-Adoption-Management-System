@@ -6,7 +6,7 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditPet() {
     
-  const [request_id, setReqId] = useState()
+    const [request_id, setReqId] = useState()
     const [task_id, setTaskId] = useState()
     const [pet_name, setPetName] = useState()
     const [pet_type, setPettype] = useState()
@@ -17,10 +17,9 @@ export default function EditPet() {
     const [location, setLocation] = useState()
     const [pet_image, setPetImage] = useState()
     const navigate = useNavigate()
-    const [setLoading] = useState(false);
     const {id} = useParams()
     useEffect((e) => {
-        
+
         axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
         .then((res) => {
             setReqId(res.data.request_id)
@@ -35,14 +34,14 @@ export default function EditPet() {
             setPetImage(res.data.pet_image)
 
             console.log(res);
-           
+
         }).catch(err => console.log(err))
     },[])
     const Edit = (e) => {
         const data = {
         request_id,task_id,pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,pet_image
         };
-    
+
         console.log('result')
         axios.put(`http://localhost:3000/petManager/petProfile/editPet/${id}`,data)
         .then(result => {
@@ -55,22 +54,19 @@ export default function EditPet() {
         return (
 
         
-            <div>
+        <div>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                 <div className='text-xl font-bold '>Edit Pet Profile</div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                     <div className="col-span-full">
-          <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
+            <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
             Profile picture
-          </label>
-          <div className="mt-2 flex items-center gap-x-3">
+            </label>
+            <div className="mt-2 flex items-center gap-x-3">
             <img className="h-20 w-20 text-gray-300" alt='image' />
-          </div>
+            </div>
         </div>
-
-
-
                         <div className="sm:col-span-3">
                             <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
                                 Request ID

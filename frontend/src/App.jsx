@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Layout from './components/shared/Layout'
-import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
 import HeplAndSupport from './pages/HeplAndSupport'
+import EmployeeProfile from './components/EmployeeProfile'
 
-//pet mangemnt imports
+//pet managemnt imports
+import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
 import PetLayout from './components/petManager/PetLayout'
 import RescueRequest from './pages/petManament/RescueRequest'
 import RescueTask from './pages/petManament/RescueTask'
@@ -13,10 +13,11 @@ import CreatePet from './pages/petManament/petProfile/CreatePet'
 import EditPet from './pages/petManament/petProfile/EditPet'
 import RemovePet from './pages/petManament/petProfile/RemovePet'
 import ViewRescueTask from './pages/petManament/rescueTask/ViewRescueTask'
-import CreatePetTask from './pages/petManament/rescueTask/CreateRescueTask'
+import CreateRescueTask from './pages/petManament/rescueTask/CreateRescueTask'
 import EditRescueTask from './pages/petManament/rescueTask/EditRescueTask'
 import DeleteRescueTask from './pages/petManament/rescueTask/DeleteRescueTask'
 import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueRequest'
+import CreateRescueRequest from './pages/petManament/rescueRequest/CreateRescueRequest'
 import EmployeeProfile from './components/EmployeeProfile'
 
 
@@ -56,8 +57,9 @@ import ViewRequests from '../src/pages/Suppliers/requests/viewrequests'
 import UpdateRequests from '../src/pages/Suppliers/requests/updaterequests'
 
 
-
-
+//common ar
+import ViewCommonAR from './pages/petManament/commonAR/ViewCommonAR'
+import CommonAR from './pages/petManament/commonAR/CommonAR'
 
 function App() {
     return (
@@ -78,14 +80,22 @@ function App() {
                     <Route path="/petManager/petProfile/editPet/:id" element={<EditPet />} />
                     <Route path="/petManager/petProfile/removePet/:id" element={<RemovePet />} />
                     {/* rescue task routes */}
-                    <Route path="/petManager/rescueTask/viewRescueTask" element={<ViewRescueTask />} />
-                    <Route path="/petManager/rescueTask/createPetTask" element={<CreatePetTask />} />
-                    <Route path="/petManager/rescueTask/editRescueTask" element={<EditRescueTask />} />
-                    <Route path="/petManager/rescueTask/deleteRescueTask" element={<DeleteRescueTask />} />
+                    <Route path="/petManager/rescueTask/viewRescueTask/:id" element={<ViewRescueTask />} />
+                    <Route path="/petManager/rescueTask/createRescueTask/:id" element={<CreateRescueTask />} />
+                    <Route path="/petManager/rescueTask/editRescueTask/:id" element={<EditRescueTask />} />
+                    <Route path="/petManager/rescueTask/deleteRescueTask/:id" element={<DeleteRescueTask />} />
                     {/* rescue request routes */}
+                    <Route path="/petManager/rescueRequest/viewRescueRequest/:id" element={<ViewRescueRequest />} />
+                    <Route path="/petManager/rescueRequest/createRescueRequest" element={<CreateRescueRequest />} />
                     <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
+                    <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
+                    {/* common AR */}
+                    <Route path="/petManager/commonAr/" element={<CommonAR />} />
+                    <Route path="/petManager/commonAr/viewCommonAR/:id" element={<ViewCommonAR />} />
+
                 </Route>
             </Routes>
+
             <Routes>
                 <Route path="/InventoryManager" element={<Inventorylayout />}>
                     <Route index path="/InventoryManager" element={<InventoryManagerdashboard />} />
@@ -141,6 +151,7 @@ function App() {
                      <Route path="/Suppliers/requests/Updaterequests/:id" element={<UpdateRequests />} />
                 </Route>
             </Routes> 
+
         </Router>
     )
 }

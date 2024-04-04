@@ -1,19 +1,31 @@
 const mongoose = require('mongoose');
 
-const PetSchema = mongoose.Schema({
+const TaskSchema = mongoose.Schema({
     request_id: {
         type: String,
         required: true
     },
-    task_id:{
+    user_id:{
         type: String,
         required: true
     },
-    pet_name:{
-        type: String,
-        required: true
-    },
+    // user_name:{
+    //     type: String,
+    //     required: true
+    // },
+    // user_contact:{
+    //     type: String,
+    //     required: true
+    // },
+    // user_email:{
+    //     type: String,
+    //     required: true
+    // },
     pet_type:{
+        type: String,
+        required: true
+    },
+    rescue_task_priority:{
         type: String,
         required: true
     },
@@ -21,15 +33,7 @@ const PetSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    pet_gender:{
-        type: String,
-        required: true
-    },
-    pet_age:{
-        type: String,
-        required: true
-    },
-    pet_appearance:{
+    rescue_task_status:{
         type: String,
         required: true
     },
@@ -37,13 +41,15 @@ const PetSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    pet_image:{
-
-        type: String,
-
+    date:{
+        type: Date,
+        required: true
     },
-})
+    pet_image:{
+        type: String,
+    },
+});
 
-const Pet = mongoose.model("Pet", PetSchema);
+const Task = mongoose.model("Task", TaskSchema);
 
-module.exports = Pet;
+module.exports = Task;

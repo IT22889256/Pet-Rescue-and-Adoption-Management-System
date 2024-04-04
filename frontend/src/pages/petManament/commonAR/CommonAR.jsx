@@ -3,7 +3,7 @@ import { Link} from 'react-router-dom'
 // import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
-export default function RescueRequest() {
+export default function CommonAR() {
 
 	const [rescueRequests, setRescueRequests] = useState([]);
 
@@ -45,7 +45,7 @@ export default function RescueRequest() {
 									{rescueRequest.pet_type}
 								</td>
 								<td>
-									{rescueRequest.createdAt}
+									{rescueRequest.date}
 								</td>
 									{rescueRequest.rescue_request_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
@@ -90,7 +90,7 @@ export default function RescueRequest() {
 									{rescueRequest.pet_type}
 								</td>
 								<td>
-									{rescueRequest.createdAt}
+									{rescueRequest.date}
 								</td>
 									{rescueRequest.rescue_request_status=== "Accept" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
@@ -101,7 +101,7 @@ export default function RescueRequest() {
 										<div>{rescueRequest.rescue_request_status}</div>
 									</td>)}
 								<td>
-									<Link to={`/petManager/rescueRequest/viewRescueRequest/${rescueRequest._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
+									<Link to={`/petManager/commonAr/viewCommonAR//${rescueRequest._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								</td>
 							</tr>
 								)
