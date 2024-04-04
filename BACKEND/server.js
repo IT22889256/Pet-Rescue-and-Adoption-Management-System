@@ -19,6 +19,22 @@ connection.once('open', () => {
 })
 
 
+//import routes
+const complaintRouter = require('./routes/complaint.route');
+const petRouter = require('./routes/pet.route');
+const sponserpetRouter = require('./routes/sponserpet.route');
+
+
+//donations
+const donationRouter = require('./routes/donation.route');
+const reccuringdonationsRouter = require('./routes/reccuringdonation.route');
+const specificneeddonationRouter =require('./routes/specificneeddonation.route');
+const sponsorDonationRouter = require('./routes/sponsordonation.route');
+
+
+
+
+
 //import pet routes
 
 const petRouter = require('./routes/pet.route');
@@ -56,6 +72,28 @@ app.use("/adoptionManager", appoinmentRouter)
 app.use("/adoptionManager", adoptionProcessRouter)
 
 app.use("/doctor", doctorRouter)
+
+
+//sponserpet
+app.use("/donationManager", sponserpetRouter);
+
+
+//donations
+app.use("/donationManager/donation", donationRouter);
+app.use("/donationManager/reccuringdonation", reccuringdonationsRouter);
+app.use("/donationManager/specificneedsdonations", specificneeddonationRouter);
+app.use("/donationManager/sponsordonation", sponsorDonationRouter);
+
+
+
+// app.use('/donationManager',require('./routes/reccuringdonation.route'));
+
+
+// const rescueTask = require('./routes/task.route');
+// app.use("/petManager", rescueTask);
+
+const rescueRequest = require('./routes/rescueRequest.route')
+app.use("/petManager", rescueRequest);
 
 
 app.listen(PORT, () =>{
