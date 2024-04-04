@@ -18,19 +18,28 @@ connection.once('open', () => {
     console.log('Mongodb Connection success');
 })
 
-//import routes
+//import pet routes
+
 const petRouter = require('./routes/pet.route');
-// const sideBarRouter = require('./routes/sideBar.route');
 const rescueTask = require('./routes/task.route');
-
-//request
 const rescueRequest = require('./routes/rescueRequest.route')
-
-//rescue task
 
 app.use("/petManager", petRouter);
 app.use("/petManager", rescueTask);
 app.use("/petManager", rescueRequest);
+
+//import inventory routes
+const itemRouter = require('./routes/product.route');
+const supplierRouter =  require('./routes/supplier.routes');
+const requestRouter = require('./routes/request.route');
+const orderRouter = require('./routes/order.route');
+
+app.use("/inventoryManager",itemRouter);
+app.use("/inventoryManager",supplierRouter);
+app.use("/inventoryManager",requestRouter);
+app.use("/inventoryManager",orderRouter);
+app.use("/suppliers", orderRouter);
+
 
 app.listen(PORT, () =>{
     console.log(`Server is up and running on ${PORT}`);

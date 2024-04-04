@@ -6,156 +6,170 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditPet() {
     
-    const [request_id, setReqId] = useState()
-    const [task_id, setTaskId] = useState()
-    const [pet_name, setPetName] = useState()
-    const [pet_type, setPettype] = useState()
-    const [health_status, setHealStatus] = useState()
-    const [pet_gender, setPetGender] = useState()
-    const [pet_age, setPetAge] = useState()
-    const [pet_appearance, setPetappearance] = useState()
-    const [location, setLocation] = useState()
-    const [pet_image, setPetImage] = useState()
+//   const [request_id, setReqId] = useState()
+//     const [task_id, setTaskId] = useState()
+//     const [pet_name, setPetName] = useState()
+//     const [pet_type, setPettype] = useState()
+//     const [health_status, setHealStatus] = useState()
+//     const [pet_gender, setPetGender] = useState()
+//     const [pet_age, setPetAge] = useState()
+//     const [pet_appearance, setPetappearance] = useState()
+//     const [location, setLocation] = useState()
+//     const [pet_image, setPetImage] = useState()
+
+const [item_name, setItemName] = useState()
+const [item_category, setItemcategory] = useState()
+const [item_quantity, setquantity] = useState()
+const [item_price,setprice] = useState()
+const [item_image,setimage] = useState()
+const [item_date,setdate] = useState()
+
     const navigate = useNavigate()
+    const [setLoading] = useState(false);
     const {id} = useParams()
     useEffect((e) => {
-
-        axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
+        
+        axios.get(`http://localhost:3000/InventoryManager/items/viewitem/${id}`)
         .then((res) => {
-            setReqId(res.data.request_id)
-            setTaskId(res.data.task_id)
-            setPetName(res.data.pet_name)
-            setPettype(res.data.pet_type)
-            setHealStatus(res.data.health_status)
-            setPetGender(res.data.pet_gender)
-            setPetAge(res.data.pet_age)
-            setPetappearance(res.data.pet_appearance)
-            setLocation(res.data.location)
-            setPetImage(res.data.pet_image)
+            setItemName(res.data.item_name)
+            setItemcategory(res.data.item_category)
+            setquantity(res.data.item_quantity)
+            setprice(res.data.item_price)
+            setimage(res.data.item_image)
+            setdate(res.data.item_date)
+            // setPetAge(res.data.pet_age)
+            // setPetappearance(res.data.pet_appearance)
+            // setLocation(res.data.location)
+            // setPetImage(res.data.pet_image)
 
             console.log(res);
-
+           
         }).catch(err => console.log(err))
     },[])
     const Edit = (e) => {
         const data = {
-        request_id,task_id,pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,pet_image
+        item_name,item_category,item_quantity,item_price,item_image,item_date
         };
-
+    
         console.log('result')
-        axios.put(`http://localhost:3000/petManager/petProfile/editPet/${id}`,data)
+        axios.put(`http://localhost:3000/InventoryManager/Items/edititem/${id}`,data)
         .then(result => {
             alert('updated')
             console.log(result)
-            navigate('/petManager/petProfile')
+            navigate('/InventoryManager/Items')
         })
         .catch(err => console.log(err))
     }
         return (
 
         
-        <div>
+            <div>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                 <div className='text-xl font-bold '>Edit Pet Profile</div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                     <div className="col-span-full">
-            <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
+          <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
             Profile picture
-            </label>
-            <div className="mt-2 flex items-center gap-x-3">
+          </label>
+          <div className="mt-2 flex items-center gap-x-3">
             <img className="h-20 w-20 text-gray-300" alt='image' />
-            </div>
+          </div>
         </div>
+
+
+
                         <div className="sm:col-span-3">
                             <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                Request ID
+                                Item name
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
-                                    name="request_id"
-                                    id="request-id"
-                                    value={request_id}
+                                    name="item_name"
+                                    id="item_name"
+                                    value={item_name}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Task ID
+                                    Item category
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="task_id"
-                                        id="task-id"
-                                        value={task_id}
+                                        name="item_category"
+                                        id="item_category"
+                                        value={item_category}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Name
+                                    Item quantity
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="pet_name"
-                                        id="pet-name"
-                                        value={pet_name}
-                                        onChange={(e) => setPetName(e.target.value)}
+                                        name="item_quantity"
+                                        id="item_quantity"
+                                        value={item_quantity}
+                                        onChange={(e) => setquantity(e.target.value)}
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="sm:col-span-3">
+                                <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Item price
+                                </label>
+                                <div className="mt-2">
+                                    <input
+                                        type="text"
+                                        name="item_price"
+                                        id="item_price"
+                                        value={item_price}
+                                        onChange={(e) => setprice(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-gender" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Gender
+                                    Item image
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="pet_gender"
-                                        id="pet-gender"
-                                        value={pet_gender}
-                                        onChange={(e) => setPetGender(e.target.value)}
+                                        name="item_image"
+                                        id="item_image"
+                                        value={item_image}
+                                        onChange={(e) => setimage(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Age
+                                    Item date
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="pet_age"
-                                        id="pet-age"
-                                        value={pet_age}
-                                        onChange={(e) => setPetAge(e.target.value)}
+                                        name="item_date"
+                                        id="item_date"
+                                        value={item_date}
+                                        onChange={(e) => item_date(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
-                            <div className="sm:col-span-3">
-                                <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Appearance
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="pet_appearance"
-                                        id="pet-appearance"
-                                        value={pet_appearance}
-                                        onChange={(e) => setPetappearance(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
-                            <div className="sm:col-span-3">
+                           
+                            {/* <div className="sm:col-span-3">
                                 <label htmlFor="pet-type" className="block text-sm font-medium leading-6 text-gray-900">
                                     Pet type
                                 </label>
@@ -207,10 +221,10 @@ export default function EditPet() {
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
-                            </div>
+                            </div> */}
                             { <div className="col-span-full">
                             <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
-                            Pet Image
+                            Item image
                             </label>
                             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                             <div className="text-center">
@@ -222,8 +236,8 @@ export default function EditPet() {
                                     >
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            value={pet_image}
-                                            onChange={(e) => setPetImage(e.target.value)}
+                                            value={item_image}
+                                            onChange={(e) => item_image(e.target.value)}
                                         />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>
