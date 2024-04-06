@@ -1,7 +1,7 @@
 const Salary = require("../modules/salary.model");
 const JobRoles = require("../modules/jobRole.model");
 const Employee = require("../modules/employee.model");
-
+const RequestFunds = require("../modules/requestFunds.model");
 
 
 
@@ -156,21 +156,28 @@ const deleteSalary = async (req, res) => {
 };
 
 
-
 //calculate total salaries to send to donation manager
+//it will update the request fund document
 
 const calculateTotalSalary = async (req, res) => {
+  
   try {
     const salaries = await Salary.find();
     const totalfund = salaries.reduce((acc, emp) => acc + emp.totalSalary, 0);
-    res.json({ totalfund });
+
+    // Create or update the 'reqFund' document
+    const reqFund = await RequestFunds.findOneAndUpdate(
+      {},
+      { amount: totalfund },
+      { upsert: true, new: true }
+    );
+
+    res.json({ totalfund, reqFund });
   } catch (error) {
     console.error('Error fetching total salary:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
-
-
 
 
 

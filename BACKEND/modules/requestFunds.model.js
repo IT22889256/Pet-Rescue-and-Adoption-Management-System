@@ -1,25 +1,33 @@
 const mongoose = require("mongoose");
 
-const requestSchema = mongoose.Schema(
+const requestFundsSchema = mongoose.Schema(
   {
  
     request_id:{
      type:String,
-    // required:true,
+    required:false,
+
     },
 
     request_no: {
       type: String,
-      // required: true,
+      required: false,
      
   },
 
     amount: {
     type: Number,
-   // required: true,
+   required: true,
    
 },
   
+request_from: {
+    type: String,
+    enum: ['employee manager', 'inventory manager'], 
+    default: 'employee manager' 
+
+  },
+
 
   request_to: {
     type: String,
@@ -27,6 +35,8 @@ const requestSchema = mongoose.Schema(
     default: 'donation manager' 
 
   },
+
+  
 
     request_date:{
         type: Date, // Change type to Date
@@ -49,6 +59,6 @@ const requestSchema = mongoose.Schema(
   );
 
 
-const request = mongoose.model("request", requestSchema);
+const requestfunds = mongoose.model("requestFunds", requestFundsSchema);
 
-module.exports = request;
+module.exports = requestfunds;
