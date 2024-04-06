@@ -15,8 +15,6 @@ router.get("/getOneAttendance/:id", getOneAttendance);
 // mark attendance
 router.post("/markAttendance", markAttendance);
 
-//update attendance
-//router.put("/updateAttendance/:id", updateAttendance);
 
 // delete an attendance
 router.delete("/deleteAttendance/:id", deleteAttendance);

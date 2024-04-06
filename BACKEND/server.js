@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 const cors = require('cors')
 require('dotenv').config();
 const nodemailer = require('nodemailer');
-const moment = require('moment');
 const cron = require('node-cron');
 
 
@@ -14,7 +13,7 @@ app.use(express.json()); // Parsing incoming requests with JSON payloads
 app.use(cors());
 app.use(express.urlencoded({ extended: false })); // Parsing incoming requests with URL-encoded payloads
 
-//special induwara automated feature for reset employee leave count every 1st month
+//special automated feature for reset employee leave count every 1st month
 // const {resetEmployeeLeaveCount } = require('./controllers/employeeLeaveCount.controller.js');
 
 

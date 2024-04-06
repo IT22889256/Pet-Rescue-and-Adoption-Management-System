@@ -8,6 +8,17 @@ const AttendanceSchema = mongoose.Schema(
       unique: true,
     },
 
+    firstName: {
+      type: String,
+      required: false,
+    },
+
+    jobRole: {
+      type: String,
+      required: false,
+    },
+    
+
   },
   {
     timestamps: true,
