@@ -1,8 +1,10 @@
 const express = require("express");
 const Salary = require("../modules/salary.model.js");
 const router = express.Router();
-const { getSalaries, getSalary, createSalary, updateSalary, deleteSalary,calculateTotalSalary } = require('../controllers/salary.controller.js');
+const { getSalaries, getSalary, createSalary, updateSalary, deleteSalary,calculateTotalSalary ,getForSalaryCreate} = require('../controllers/salary.controller.js');
 
+// get all employees for salary create
+router.get('/getForSalaryCreate', getForSalaryCreate);
 
 // get all salaries
 router.get('/', getSalaries);
@@ -14,7 +16,7 @@ router.get("/:id", getSalary);
 router.post("/", createSalary);
 
 // update a salary
-router.put("/", updateSalary);
+router.put("/:id", updateSalary);
 
 // delete a salary
 router.delete("/:id", deleteSalary);

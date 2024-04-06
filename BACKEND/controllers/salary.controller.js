@@ -5,6 +5,19 @@ const RequestFunds = require("../modules/requestFunds.model");
 
 
 
+
+const getForSalaryCreate = async (req, res) => {
+  try {
+    // Fetch only name and id from the collection
+    const employees = await Employee.find({ availability: 'available'},'eid firstName jobRole');
+    
+    res.status(200).json(employees);
+  } catch (error) {
+    res.status(500).send('Error fetching employee data');
+  }
+};
+
+
 // get all salaries
 const getSalaries = async (req, res) => {
   try {
@@ -37,7 +50,6 @@ const createSalary = async (req, res) => {
     const {jobRole} = await Employee.findOne({ eid: req.body.eid});
     const {firstName} = await Employee.findOne({ eid : req.body.eid});
     
-    console.log(jobRole);
 
     const jobRoleData = await JobRoles.findOne({ jobRole : jobRole}); // Adjust this based on your actual data
     
@@ -83,10 +95,11 @@ const createSalary = async (req, res) => {
 
 const updateSalary = async (req, res) => {
   try {
+    const SalaryID = req.params.id;
     const { otHours, bonus, eid } = req.body; // Assuming you send these in the request body
 
     // Fetch the existing salary entry for the employee
-    const existingSalary = await Salary.findOne({ eid: eid }); // Adjust this based on your actual data
+    const existingSalary = await Salary.findById(SalaryID); // Adjust this based on your actual data
 
     if (!existingSalary) {
       return res.status(404).json({ message: 'Salary entry not found' });
@@ -190,4 +203,5 @@ module.exports = {
   updateSalary,
   deleteSalary,
   calculateTotalSalary,
+  getForSalaryCreate,
 };

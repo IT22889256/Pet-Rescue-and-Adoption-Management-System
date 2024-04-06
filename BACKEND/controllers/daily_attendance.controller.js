@@ -9,7 +9,7 @@ const Leave = require("../modules/leave.model");
 const getForAttendance = async (req, res) => {
     try {
       // Fetch only name and id from the collection
-      const employees = await Employee.find({},'eid firstName jobRole');
+    const employees = await Employee.find({ availability: 'available'},'eid firstName jobRole');
       
       res.status(200).json(employees);
     } catch (error) {

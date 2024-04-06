@@ -11,16 +11,24 @@ const LeaveSchema = mongoose.Schema(
     reason: {
         type: String,
         enum: ['medical', 'casual', 'emergency'], // Enum field with values 'medical', 'casual', 'emergency'
+        default: 'medical' // Default value set to 'medical'
       },
 
 
+      note:{
+        type: String,
+        //required: false,    
+      },
+      
+      
     startDate: {
       type: Date,
+      default: Date.now,
      // required: false,
     },
 
-    endDate: {
-        type: Date,
+    days: {
+        type: Number,
         //required: false,
         },
 

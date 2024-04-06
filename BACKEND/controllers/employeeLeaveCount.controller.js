@@ -1,7 +1,26 @@
 const EmployeeLeaveCount = require("../modules/employeeLeaveCount.model");
 
 
-//special induwara automated feature for reset employee leave count every 1st month
+//get leave count by id
+
+ const viewLeaveCount = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const leaveCount = await EmployeeLeaveCount.findById(id);
+    
+    if (!leaveCount) {
+      return res.status(404).json({ message: "Employee cannot find" });
+    }
+
+    res.status(200).json(leaveCount);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+//special automated feature for reset employee leave count every 31st midnight
 
 const resetEmployeeLeaveCount = async (req, res) => {
     try {
@@ -25,5 +44,6 @@ const resetEmployeeLeaveCount = async (req, res) => {
   
   module.exports = {
     resetEmployeeLeaveCount,
+    viewLeaveCount,
   };
   

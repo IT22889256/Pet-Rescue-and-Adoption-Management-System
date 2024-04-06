@@ -1,16 +1,16 @@
 const express = require("express");
 const Employee = require("../modules/employee.model.js");
-const DeletedEmployee = require("../modules/deleted_employee.model.js");
 const router = express.Router();
-const { getLeaves, getOneLeave,requestLeave ,markLeave, viewLeave,deleteLeave, deleteAllLeaves} = require('../controllers/leave.controller.js');
+const { getLeaves, getOneLeave,requestLeave ,acceptLeave,deleteLeave, deleteAllLeaves,rejectLeave} = require('../controllers/leave.controller.js');
+const{viewLeaveCount} = require('../controllers/employeeLeaveCount.controller.js');
 
 
 
 //request for leave (employee)
 router.post("/requestLeave", requestLeave);
 
-// view leave
-router.get("/getLeave/:id", viewLeave);
+// view leave count by id
+router.get("/viewLeaveCount/:id", viewLeaveCount);
 
 // get all Leaves employee manager
 router.get("/getLeaves", getLeaves);
@@ -18,11 +18,14 @@ router.get("/getLeaves", getLeaves);
 // get an leave by ID
 router.get("/getLeave/:id", getOneLeave);
 
-// mark leave
-router.post("/markLeave", markLeave);
+// accept leave
+router.put("/acceptLeave/:id", acceptLeave);
+
+//reject leave
+router.put("/rejectLeave/:id", rejectLeave);
 
 //delete leave
-router.delete("/deleteLeave", deleteLeave);
+router.delete("/deleteLeave/:id", deleteLeave);
 
 //delete all leaves
 router.delete("/deleteAllLeaves", deleteAllLeaves);

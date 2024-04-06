@@ -1,7 +1,6 @@
 const Employee = require("../modules/employee.model");
-const DeletedEmployee = require("../modules/deleted_employee.model");
 const Leave = require("../modules/leave.model");
-const EmployeeLeaveCount = require("../modules/employee_leave_count.model");
+const EmployeeLeaveCount = require("../modules/employeeLeaveCount.model");
 
 
 //  Get all employees leaves (employee manager)
@@ -34,7 +33,7 @@ const getLeaves = async (req, res) => {
 
 
 
-  // Request for leave(employee)
+  // Request for leave by (employee)
 
   const requestLeave = async (req, res) => {
     try {
@@ -48,64 +47,72 @@ const getLeaves = async (req, res) => {
 
 
 // Mark leave by employee Manager
-const markLeave = async (req, res) => {
+const acceptLeave = async (req, res) => {
    
   try {
 
       const { id } = req.params;
-      const {reason} = req.body.reason;
 
-      // const eid = req.body.eid;
-      const eid = await Leave.findOne({eid:req.body.eid});
 
-      if (!eid) {
+      const employeeLeave = await Leave.findById(id);
+
+      if (!employeeLeave) {
         return res.status(404).json({ message: 'employee not found' });
       }
 
-      const medical = await EmployeeLeaveCount.findOne(eid);
-      const casual = await EmployeeLeaveCount.findOne(eid);
-      const emergency = await EmployeeLeaveCount.findOne(eid);
+      const reason = employeeLeave.reason;
+      const status = employeeLeave.status;
+      const eid = employeeLeave.eid;
+      const days = employeeLeave.days;
 
      
-      switch (reason) {
-        case "medical":
-          if (medical > 0) {
-            medical--;
-          } else {
-            return res.status(404).json({ message: 'No medical leaves available' });
-          }
-          break;
-        case "casual":
-          if (casual > 0) {
-            casual--;
-          } else {
-            return res.status(404).json({ message: 'No casual leaves available' });
-          }
-          break;
-        case "emergency":
-          if (emergency > 0) {
-            emergency--;
-          } else {
-            return res.status(404).json({ message: 'No emergency leaves available' });
-          }
-          break;
-        default:
-          return res.status(400).json({ message: 'Invalid reason provided' });
-      }
+      const LeaveCount = await EmployeeLeaveCount.findOne({eid:eid});
       
-      const updatedLeaveCount = await EmployeeLeaveCount.findOneAndUpdate({eid:req.body.eid}, { medical, casual, emergency }, { new: true });
+      let medical = LeaveCount.medical;
+      let casual = LeaveCount.casual;
+      let emergency = LeaveCount.emergency;
+
+     
+      
+if(reason === 'medical'){
+  if(medical > 0 && medical >= days){
+    medical--;
+  }else{
+    return res.status(404).json({ message: 'No medical leaves available' });
+  }
+}
+
+if(reason === 'casual'){
+  if(casual > 0 && casual >= days){
+    casual--;
+  }else{
+    return res.status(404).json({ message: 'No casual leaves available' });
+  }
+
+}
+
+if(reason === 'emergency'){
+  if(emergency > 0 && emergency >= days){
+    emergency--;
+  }else{
+    return res.status(404).json({ message: 'No emergency leaves available' });
+  }
+}
 
 
-      const leave = await Leave.findOneAndUpdate({ eid: eid }, req.body, { new: true });
+      const updatedLeaveCount = await EmployeeLeaveCount.findOneAndUpdate({eid:eid}, { medical, casual, emergency }, { new: true });
+
+
+      const leave = await Leave.findOneAndUpdate({ eid: eid }, {status:'accepted'}, { new: true });
 
   
       if (!leave) {
         return res.status(404).json({ message: "Leave not found" });
       }
   
-      const updatedLeave = await Leave.findOne({ eid: eid });
+      const updatedleave = await Leave.findOne({ eid: eid });
 
-      res.status(200).json(updatedLeave);
+      res.status(200).json(updatedleave);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -113,41 +120,47 @@ const markLeave = async (req, res) => {
 
 
 
+//reject leave by employee manager
+
+const rejectLeave = async (req, res) => {
+  try {
+    const { id } = req.params; 
+
+    
+    const rejectedLeave = await Leave.findByIdAndUpdate(id, {status:'rejected'}, { new: true });
+
+    
+    if (!rejectedLeave) {
+      return res.status(404).json({ message: "Leave not found" });
+    }
+
+    
+    res.status(200).json(rejectedLeave);
+  } catch (error) {
+    
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
 
-    // View leave by employee
-    const viewLeave = async (req, res) => {
-        try {
-          const { id } = req.params;
-          // Find all leave documents where the 'eid' field matches the provided ID
-          const leave = await Leave.find({ eid: id });
-          
-          if (!leave || leave.length === 0) {
-            return res.status(404).json({ message: "Cannot find leave" });
-          }
-      
-          res.status(200).json(leave);
-        } catch (error) {
-          res.status(500).json({ message: error.message });
-        }
-      };
+
+
+
       
   //delete leave by employee or manager
 
   const deleteLeave = async (req, res) => {
     try {
-      const { _id } = req.params; // Assuming you send the leave entry ID in the request parameters
+      const { id } = req.params; // Assuming you send the leave entry ID in the request parameters
   
-      // Find the leave entry based on the MongoDB default _id
-      const existingLeave = await Leave.findById(_id);
+      // Find the leave entry
+      const leaveEntry = await Leave.findByIdAndDelete(id);
   
-      if (!existingLeave) {
+      if (!leaveEntry) {
         return res.status(404).json({ message: 'Leave entry not found' });
       }
   
-      // Delete the leave entry
-      await existingLeave.remove();
   
       return res.status(200).json({ message: 'Leave entry deleted successfully' });
     } catch (error) {
@@ -155,6 +168,8 @@ const markLeave = async (req, res) => {
       return res.status(500).json({ message: 'Internal server error' });
     }
   };
+  
+
 
       // Delete all the leaves entry
 
@@ -173,10 +188,10 @@ const markLeave = async (req, res) => {
     getLeaves,
     getOneLeave,
     requestLeave,
-    markLeave,
-    viewLeave,
+    acceptLeave,
     deleteLeave,
     deleteAllLeaves,
+    rejectLeave,
  
   };
   

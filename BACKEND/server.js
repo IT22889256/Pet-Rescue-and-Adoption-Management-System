@@ -58,7 +58,7 @@ const salaryRoute = require("./routes/salary.route.js"); // Importing salary rou
 const jobRoleRoute = require("./routes/jobRole.route.js"); // Importing job role route
 const emailRoute = require("./routes/email.route.js"); // Importing email route
 const deactivateEmployeesRoute = require("./routes/deactivateEmployees.route.js"); // Importing deactivate employees route
-
+const employeeLeave = require("./routes/leave.route.js"); // Importing leave route
 
 
 // Routes
@@ -73,6 +73,7 @@ app.use("/EmployeeManager/salary", salaryRoute); // Salary routes
 app.use("/EmployeeManager/jobRole", jobRoleRoute); // Job role routes
 app.use("/EmployeeManager/email", emailRoute); // Email routes
 app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // Deactivate employees routes
+app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
 
 
 
