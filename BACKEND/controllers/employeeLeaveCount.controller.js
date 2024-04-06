@@ -2,6 +2,7 @@ const EmployeeLeaveCount = require("../modules/employeeLeaveCount.model");
 
 
 //get leave count by id
+//employee can view their leave count, also used by employee manager to view employee leave count
 
  const viewLeaveCount = async (req, res) => {
   try {
@@ -20,27 +21,21 @@ const EmployeeLeaveCount = require("../modules/employeeLeaveCount.model");
 
 
 
-//special automated feature for reset employee leave count every 31st midnight
+//automated feature for reset employee leave count every 31st midnight
 
-const resetEmployeeLeaveCount = async (req, res) => {
-    try {
-      
-      // Your default leave values (modify as needed)
-      const defaultLeaveValues = {
-        medical: 4,
-        casual: 3,
-        emergency: 2,
-      };
-  
-      // Update all existing leave documents with default values
-      await EmployeeLeaveCount.updateMany({}, defaultLeaveValues);
-  
-      res.status(200).json({ message: 'EmployeeLeaveCount collection reset successfully.' });
-    } catch (error) {
-      res.status(500).json({ message: `Error resetting EmployeeLeaveCount collection:` });
-     
-    }
+
+const resetEmployeeLeaveCount = async () => {
+  // Your default leave values (modify as needed)
+  const defaultLeaveValues = {
+    medical: 4,
+    casual: 3,
+    emergency: 2,
   };
+
+  // Update all existing leave documents with default values
+  await EmployeeLeaveCount.updateMany({}, defaultLeaveValues);
+};
+
   
   module.exports = {
     resetEmployeeLeaveCount,

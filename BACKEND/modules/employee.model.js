@@ -31,7 +31,7 @@ const EmployeeSchema = mongoose.Schema(
 
     jobRole: {
       type: String,
-      enum: ['doctor', 'cleaner','driver', 'manager','helper','supportive staff member'], // Enum field with values 'single', 'married', 'divorced'
+      enum: ['doctor', 'cleaner','driver', 'manager','helper','supportive staff member'], 
        default: 'doctor'
       //required: [true, "Please enter job-role"],
     },

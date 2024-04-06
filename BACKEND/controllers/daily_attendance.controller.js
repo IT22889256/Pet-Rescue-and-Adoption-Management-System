@@ -19,6 +19,7 @@ const getForAttendance = async (req, res) => {
 
 
   // Get all attendance
+  //for today
   const getAllAttendance = async (req, res) => {
     try {
 
@@ -26,13 +27,14 @@ const getForAttendance = async (req, res) => {
       today.setHours(0, 0, 0, 0); // Set time to midnight
 
       const attendance = await Attendance.find({ createdAt: { $gte: today }});
-      
+
       res.status(200).json(attendance);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   };
 
+  
   
 // Get an attendance by ID
   const getOneAttendance = async (req, res) => {
@@ -93,6 +95,6 @@ module.exports = {
     getAllAttendance,
     getOneAttendance,
     deleteAttendance,
-    //updateAttendance,
+    
   
   };

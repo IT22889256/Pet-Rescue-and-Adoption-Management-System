@@ -13,8 +13,6 @@ app.use(express.json()); // Parsing incoming requests with JSON payloads
 app.use(cors());
 app.use(express.urlencoded({ extended: false })); // Parsing incoming requests with URL-encoded payloads
 
-//special automated feature for reset employee leave count every 1st month
-// const {resetEmployeeLeaveCount } = require('./controllers/employeeLeaveCount.controller.js');
 
 
 // Connect to database
@@ -29,23 +27,23 @@ connection.once('open', () => {
 })
 
 
+// Reset employee leave count every 31st of the month
 
-//original one
-// cron.schedule('0 0 1 * *', () => {
-//   resetEmployeeLeaveCount();
-// });
+const {resetEmployeeLeaveCount } = require('./controllers/employeeLeaveCount.controller.js');
 
 
-// Schedule the job to run every 10 minutes
-// cron.schedule('*/1 * * * *', async () => {
-//   try {
-//     await resetEmployeeLeaveCount();
+cron.schedule('0 0 28-31 * *', async () => {
+  try {
+    await resetEmployeeLeaveCount();
 
-//     console.log('EmployeeLeaveCount collection reset successfully.');
-//   } catch (error) {
-//     console.error('Error resetting EmployeeLeaveCount collection:', error);
-//   }
-// });
+    console.log('EmployeeLeaveCount collection reset successfully.');
+  } catch (error) {
+    console.error('Error resetting EmployeeLeaveCount collection:', error);
+  }
+});
+
+
+
 
 //import routes
 const complaintRouter = require('./routes/complaint.route');
