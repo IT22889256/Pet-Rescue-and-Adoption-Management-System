@@ -1,5 +1,4 @@
 const Employee = require("../modules/employee.model");
-const DeletedEmployee = require("../modules/deleted_employee.model");
 const Attendance = require("../modules/daily_attendance.model");
 const Leave = require("../modules/leave.model");
 

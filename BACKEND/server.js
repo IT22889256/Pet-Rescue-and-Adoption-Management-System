@@ -57,7 +57,8 @@ const attendanceRoute = require("./routes/daily_attendance.route.js"); // Import
 const salaryRoute = require("./routes/salary.route.js"); // Importing salary route
 const jobRoleRoute = require("./routes/jobRole.route.js"); // Importing job role route
 const emailRoute = require("./routes/email.route.js"); // Importing email route
-const deletedEmployeeRoute = require("./routes/deletedEmployee.route.js"); // Importing deleted employee route
+const deactivateEmployeesRoute = require("./routes/deactivateEmployees.route.js"); // Importing deactivate employees route
+
 
 
 // Routes
@@ -71,7 +72,8 @@ app.use("/EmployeeManager/attendance", attendanceRoute); // Attendance routes
 app.use("/EmployeeManager/salary", salaryRoute); // Salary routes
 app.use("/EmployeeManager/jobRole", jobRoleRoute); // Job role routes
 app.use("/EmployeeManager/email", emailRoute); // Email routes
-app.use("/EmployeeManager/DeletedEmployees", deletedEmployeeRoute); // Deleted employee routes
+app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // Deactivate employees routes
+
 
 
 app.listen(PORT, () =>{

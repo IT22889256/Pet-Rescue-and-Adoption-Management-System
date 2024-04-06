@@ -1,6 +1,5 @@
 const express = require("express");
 const Employee = require("../modules/employee.model.js");
-const DeletedEmployee = require("../modules/deleted_employee.model.js");
 const router = express.Router();
 const { getEmployees, getEmployee, getEmployeeByEmployeeId, createEmployee, updateEmployee, updateEmployeeByEmployeeId, DeleteEmployee} = require('../controllers/employee.controller.js');
 
@@ -26,8 +25,6 @@ router.put("/:id", updateEmployee);
 // update an employee by employee ID
 router.put("/updateByeid/:eid", updateEmployeeByEmployeeId);
 
-// delete an employee
-//router.post("/deleteEmployee/:id", deleteEmployee);
 
 // going to delete an employee
 router.put("/DeleteEmployee/:id", DeleteEmployee);

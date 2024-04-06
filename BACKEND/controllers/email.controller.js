@@ -1,8 +1,16 @@
 const nodemailer = require('nodemailer');
+const Salary = require("../modules/salary.model.js");
+const { getSalaries, getSalary, createSalary, updateSalary, deleteSalary } = require('../controllers/salary.controller.js');
+
 //const port = 3001;
 
 
 const SendMail = async (req, res)=>{
+
+
+const { email, basicSalary, otHours, eid, otRates, totalOT, bonus, totalSalary } = req.body;
+
+
     let config = {
         service: 'gmail', // your email domain
         host: "my.smtp.host",

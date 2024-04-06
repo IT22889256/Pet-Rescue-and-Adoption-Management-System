@@ -1,5 +1,4 @@
 const Employee = require("../modules/employee.model");
-const DeletedEmployee = require("../modules/deleted_employee.model");
 //const Attendance = require("../modules/daily_attendance.model");
 const EmployeeLeaveCount = require("../modules/employeeLeaveCount.model");
 
@@ -8,7 +7,7 @@ const EmployeeLeaveCount = require("../modules/employeeLeaveCount.model");
 //  Get all employees
 const getEmployees = async (req, res) => {
   try {
-    const employees = await Employee.find({});
+    const employees = await Employee.find({ availability: 'available'});
     res.status(200).json(employees);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -113,43 +112,6 @@ const updateEmployeeByEmployeeId = async (req, res) => {
 
 
   
-// Delete an employee
-// const deleteEmployee = async (req, res) => {
-//   try {
-//     // Find the employee document by ID
-//     const {id} = req.params;
-//     const employee = await Employee.findById({id});
-//     console.log(employee);
-//     if (!employee) {
-//       return res.status(404).send('Employee not found');
-//     }
-
-//     // Create a new document in DeletedEmployee collection
-//     const deletedEmployee = await DeletedEmployee.create({
-//       eid: employee.eid,
-//       nic: employee.nic,
-//       firstName: employee.firstName,
-//       middleName: employee.middleName,
-//       lastName: employee.lastName,
-//       birthday: employee.birthday,
-//       address: employee.address,
-//       city: employee.city,
-//       postalCode: employee.postalCode,
-//       phoneNumber: employee.phoneNumber,
-//       email: employee.email,
-//       maritalStatus: employee.maritalStatus,
-//       ReasonForDelete: req.body.ReasonForDelete
-//     }); // Copy the employee data
-
-//     // Delete the original employee document
-//     await Employee.deleteOne({ eid: req.body.eid });
-
-//     res.send('Employee data transferred and deleted successfully');
-//   } catch (error) {
-//     console.error('Error deleting employee:', error);
-//     res.status(500).send('Internal Server Error');
-//   }
-// };
 
 
 
@@ -160,19 +122,22 @@ const DeleteEmployee = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const employee = await Employee.findByIdAndUpdate(id, req.body);
+    // Find the employee by ID and update the availability field
+    const updatedEmployee = await Employee.findByIdAndUpdate(
+      id,
+      { availability: 'unavailable' }, // Set the availability to 'unavailable'
+      { new: true } // Return the updated employee object
+    );
 
-    if (!employee) {
+    if (!updatedEmployee) {
       return res.status(404).json({ message: "Employee not found" });
     }
 
-    const updatedEmployee = await Employee.findById(id);
     res.status(200).json(updatedEmployee);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 
 
@@ -185,5 +150,6 @@ module.exports = {
   updateEmployee,
   updateEmployeeByEmployeeId,
   DeleteEmployee,
+  
  
 };

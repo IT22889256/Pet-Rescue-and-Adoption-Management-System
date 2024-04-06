@@ -1,6 +1,5 @@
 const express = require("express");
 const Employee = require("../modules/employee.model.js");
-const DeletedEmployee = require("../modules/deleted_employee.model.js");
 const router = express.Router();
 const { getForAttendance,markAttendance,getAllAttendance, getOneAttendance ,deleteAttendance} = require('../controllers/daily_attendance.controller.js');
 
