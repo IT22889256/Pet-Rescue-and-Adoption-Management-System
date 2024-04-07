@@ -2,10 +2,12 @@ import {
 	HiOutlineViewGrid,
 	HiOutlineQuestionMarkCircle
 } from 'react-icons/hi'
-//import { MdOutlinePets } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
-import {IoPeople} from 'react-icons/io5'
 import { MdEmojiTransportation } from 'react-icons/md'
+import { GrSchedulePlay } from "react-icons/gr";
+
+
+
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
@@ -15,16 +17,17 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	},
 
 	{
-		key: 'Rescue Requests',
-		label: 'Requests',
-		path: '/transportManager/rescueRequest',
-		icon: <IoPeople />
-	},
-	{
-		key: 'Rescue Tasks',
+		key: 'Task',
 		label: 'Requested Task',
-		path: '/transportManager/rescueTask',
+		path: '/transportManager/taskRequest',
 		icon: <FaTasks />
+	},
+
+	{
+		key: 'Task',
+		label: 'Transportation Schedule',
+		path: '/transportManager/scheduleProfile',
+		icon: <GrSchedulePlay />
 	},
 
 	{
@@ -32,13 +35,6 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		label: 'Vehicles',
 		path: '/transportManager/vehicleProfile',
 		icon: <MdEmojiTransportation />
-	},
-
-	{
-		key: 'Task Test',
-		label: 'Task Test',
-		path: '/transportManager/taskRequest',
-		icon: <FaTasks />
 	},
 
 ]

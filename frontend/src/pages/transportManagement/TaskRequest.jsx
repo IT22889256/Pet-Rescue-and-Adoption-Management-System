@@ -101,9 +101,9 @@ export default function TaskRequest() {
 										<div>{taskRequest.rescue_task_status}</div>
 									</td>)} */}
 									{taskRequest.rescue_task_status}
-									
+										
 								<td>
-									<Link to={`/transportManager/taskRequest/viewTaskRequest/${taskRequest._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
+								<Link to={`/transportManager/taskRequest/viewTaskRequest/${taskRequest._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								</td>
 							</tr>
 								)

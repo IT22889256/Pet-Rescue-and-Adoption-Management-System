@@ -28,39 +28,6 @@ export default function ViewTaskRequest() {
         }).catch(err => console.log(err))
     },[])
 
-	const Accept = (e) => {
-		
-		const data = {
-			"task_request_status":"Accept"
-		}
-		
-		console.log('result')
-        axios.put(`http://localhost:3000/petManager/rescueTask/viewRescueTask/${id}`,data)
-        .then(result => {
-			
-            alert('updated')
-            console.log(result)
-            navigate(`/transportManager/scheduleProfile/CreateSchedule/${id}`)
-        })
-        .catch(err => console.log(err))
-	}
-
-	const Reject = (e) => {
-		
-		const data = {
-			"task_request_status":"Reject"
-		}
-		
-		console.log('result')
-        axios.put(`http://localhost:3000/petManager/rescueTask/viewRescueTask/${id}`,data)
-        .then(result => {
-			
-            alert('updated')
-            console.log(result)
-            navigate(`/transportManager/taskRequest`)
-        })
-        .catch(err => console.log(err))
-	}
 
 return (
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
@@ -80,6 +47,17 @@ return (
 								<th>Action</th>
 
 								)}
+
+								{taskRequest.rescue_task_status==='In Waiting List' &&(
+								<th>Action</th>
+
+								)}
+
+								{taskRequest.rescue_task_status==='In Progress' &&(
+								<th>Action</th>
+
+								)}
+
 						</tr>
 					</thead>
 						<tbody>
@@ -96,19 +74,23 @@ return (
 								<td>
 									{taskRequest.rescue_task_priority}
 								</td >
-								{/* <td>
+								{/* { <td>
 									{taskRequest.rescue_task_status}
-								</td > */}
+								</td > } */}
 								
 									{taskRequest.rescue_task_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-centerml">
 										<div>{taskRequest.rescue_task_status}</div>
 									</td>)}
-									{taskRequest.rescue_task_status=== "Accept" && (
+									{taskRequest.rescue_task_status=== "In Progress" && (
 									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
 										<div>{taskRequest.rescue_task_status}</div>
 									</td>)}
-									{taskRequest.rescue_task_status=== "Reject" && (
+									{taskRequest.rescue_task_status=== "In Waiting List" && (
+									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+										<div>{taskRequest.rescue_task_status}</div>
+									</td>)}
+									{taskRequest.rescue_task_status=== "Failed" && (
 									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
 										<div>{taskRequest.rescue_task_status}</div>
 									</td>)}
@@ -116,9 +98,30 @@ return (
 								<td>
 								{taskRequest.rescue_task_status==='Pending' &&(
 								<>
-									<Link onClick={Accept} to={`/petManager/rescueRequest/viewRescueRequest/${taskRequest._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept
-									</Link>
-									<Link  onClick={Reject} to={`/petManager/rescueRequest/viewRescueRequest/${taskRequest._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link>
+									{/* <Link onClick={Accept} to={`/petManager/rescueRequest/viewRescueRequest/${taskRequest._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept */}
+									{/* </Link> */}
+									{/* <Link  onClick={Reject} to={`/petManager/rescueRequest/viewRescueRequest/${taskRequest._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link> */}
+									<Link   to={`/transportManager/taskRequest/editTaskRequest/${taskRequest._id}`} className=" bg-blue-500 text-white py-2 px-2 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
+								</>
+
+								)}
+
+								{taskRequest.rescue_task_status==='In Progress' &&(
+								<>
+									{/* <Link onClick={Accept} to={`/petManager/rescueRequest/viewRescueRequest/${taskRequest._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept */}
+									{/* </Link> */}
+									{/* <Link  onClick={Reject} to={`/petManager/rescueRequest/viewRescueRequest/${taskRequest._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link> */}
+									<Link   to={`/transportManager/taskRequest/editTaskRequest/${taskRequest._id}`} className=" bg-blue-500 text-white py-2 px-2 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
+								</>
+
+								)}
+
+
+								{taskRequest.rescue_task_status==='In Waiting List' &&(
+								<>
+									{/* <Link onClick={Accept} to={`/petManager/rescueRequest/viewRescueRequest/${taskRequest._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept */}
+									{/* </Link> */}
+									{/* <Link  onClick={Reject} to={`/petManager/rescueRequest/viewRescueRequest/${taskRequest._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link> */}
 									<Link   to={`/transportManager/taskRequest/editTaskRequest/${taskRequest._id}`} className=" bg-blue-500 text-white py-2 px-2 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
 								</>
 
