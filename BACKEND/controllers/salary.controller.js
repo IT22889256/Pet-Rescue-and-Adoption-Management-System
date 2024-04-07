@@ -51,7 +51,7 @@ const createSalary = async (req, res) => {
     const {firstName} = await Employee.findOne({ eid : req.body.eid});
     
 
-    const jobRoleData = await JobRoles.findOne({ jobRole : jobRole}); // Adjust this based on your actual data
+    const jobRoleData = await JobRoles.findOne({ jobRole : jobRole}); 
     
     if (!jobRoleData) {
       return res.status(404).json({ message: 'Job role not found' });
@@ -72,6 +72,7 @@ const createSalary = async (req, res) => {
     const newSalary = new Salary({
       eid:eid,
       basicSalary: basicSalary,
+      jobRole: jobRole,
       otHours: otHours,
       otRates: otRates,
       totalOT: overtimePay,

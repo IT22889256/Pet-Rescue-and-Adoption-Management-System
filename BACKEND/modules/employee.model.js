@@ -38,6 +38,7 @@ const EmployeeSchema = mongoose.Schema(
 
     recruitedDate: {
       type: Date,
+      default: Date.now,
      // required: [true, "Please enter recruitedDate"],
     },
 

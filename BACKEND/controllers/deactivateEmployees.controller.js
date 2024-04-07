@@ -9,7 +9,7 @@ const EmployeeLeaveCount = require("../modules/employeeLeaveCount.model");
 
 //view deactivated employees
 
-const GetDeactiveEmployees = async (req, res) => {
+const GetUnavailableEmployees = async (req, res) => {
     try {
       // Find all employees with availability set to 'active'
       const deactiveEmployees = await Employee.find({ availability: 'unavailable' });
@@ -46,10 +46,40 @@ const GetDeactiveEmployees = async (req, res) => {
     }
   };
   
+
+
+  const ActivateEmployee = async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+      // Find the employee by ID and update the availability field
+      const updatedEmployee = await Employee.findByIdAndUpdate(
+        id,
+        { availability: 'available' }, // Set the availability to 'unavailable'
+        { new: true } // Return the updated employee object
+      );
+  
+      if (!updatedEmployee) {
+        return res.status(404).json({ message: "Employee not found" });
+      }
+  
+      res.status(200).json(updatedEmployee);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+
+
+
+
+
+
 module.exports = {
     
-    GetDeactiveEmployees,
+    GetUnavailableEmployees,
     GetUnavailableEmployeeById,
+    ActivateEmployee,
    
   };
   

@@ -1,14 +1,18 @@
 const express = require("express");
 const Employee = require("../modules/employee.model.js");
 const router = express.Router();
-const { GetDeactiveEmployees,GetUnavailableEmployeeById} = require('../controllers/deactivateEmployees.controller.js');
+const { GetUnavailableEmployees,GetUnavailableEmployeeById,ActivateEmployee} = require('../controllers/deactivateEmployees.controller.js');
 
 
 // get all deactive employees
-router.get("/", GetDeactiveEmployees);
+router.get("/", GetUnavailableEmployees);
 
 // get an unavailable employee
 router.get("/:id", GetUnavailableEmployeeById);
+
+// activate an employee
+router.put("/activate/:id", ActivateEmployee);
+
 
 
 
