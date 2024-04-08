@@ -19,11 +19,11 @@ const requestFundsSchema = mongoose.Schema(
 
     amount: {
     type: Number,
-   required: true,
+    required: true,
    
 },
   
-request_from: {
+  request_from: {
     type: String,
     enum: ['employee manager', 'inventory manager'], 
     default: 'employee manager' 

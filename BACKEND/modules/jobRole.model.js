@@ -6,7 +6,7 @@ const JobRolesSchema = mongoose.Schema(
       type: String,
       //required: [true, "Please enter Job ID"],
      // unique: true,
-     default: 'JR' + Math.floor(Date.now() / 200000)
+     default: 'JR' + Math.random().toString().substring(2, 8)
     },
 
     jobRole: {

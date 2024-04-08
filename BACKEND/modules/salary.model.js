@@ -8,7 +8,7 @@ const SalarySchema = mongoose.Schema(
      // unique: true,
     },
 
-    jobId: {
+    jobRole: {
       type: String,
       //required: [true, "Please enter Job ID"],
       //unique: true,

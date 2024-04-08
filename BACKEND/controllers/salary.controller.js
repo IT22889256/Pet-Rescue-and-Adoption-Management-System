@@ -96,39 +96,29 @@ const createSalary = async (req, res) => {
 
 const updateSalary = async (req, res) => {
   try {
-    const SalaryID = req.params.id;
-    const { otHours, bonus, eid } = req.body; // Assuming you send these in the request body
+    const { id } = req.params;
+    const { otHours, bonus, eid } = req.body;
 
-    // Fetch the existing salary entry for the employee
-    const existingSalary = await Salary.findById(SalaryID); // Adjust this based on your actual data
+    // Fetch the existing salary entry
+    const existingSalary = await Salary.findById(id);
 
+    //console.log(existingSalary)
     if (!existingSalary) {
       return res.status(404).json({ message: 'Salary entry not found' });
     }
 
-    // Fetch the job role details for the employee
-    const { jobRole } = await Employee.findOne({ eid: req.body.eid }); // Adjust this based on your actual data
+    // Calculate new salary
+    //const jobRoleData = await JobRoles.findOne({ jobRole: existingSalary.jobRole });
+    const jobRoleData = await JobRoles.findOne({ jobRole : existingSalary.jobRole}); 
 
-    const jobRoleData = await JobRoles.findOne({ jobRole: jobRole }); // Adjust this based on your actual data
-
-    if (!jobRoleData) {
-      return res.status(404).json({ message: 'Job role not found' });
-    }
-
-    // Calculate basic salary (already provided)
+    
     const basicSalary = jobRoleData.basicSalary;
     const otRates = jobRoleData.otRates;
-
-    // Calculate overtime pay
     const overtimePay = otHours * otRates;
-
-    // Calculate total salary
     const totalSalary = basicSalary + overtimePay + bonus;
 
-    // Update the existing salary entry
-    existingSalary.basicSalary = basicSalary;
+    // Update salary entry
     existingSalary.otHours = otHours;
-    existingSalary.otRates = otRates;
     existingSalary.totalOT = overtimePay;
     existingSalary.totalSalary = totalSalary;
     existingSalary.bonus = bonus;
@@ -142,6 +132,8 @@ const updateSalary = async (req, res) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
 
 
 
