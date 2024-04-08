@@ -1,14 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
-import Layout from './components/shared/Layout'
 import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
-
-
 import HeplAndSupport from './pages/HeplAndSupport'
 import EmployeeProfile from './components/EmployeeProfile'
 
 //pet managemnt imports
-import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
 
 import PetLayout from './components/petManager/PetLayout'
 import RescueRequest from './pages/petManament/RescueRequest'
