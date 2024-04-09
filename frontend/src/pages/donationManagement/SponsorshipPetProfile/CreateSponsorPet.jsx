@@ -14,7 +14,7 @@ export default function CreateSponsorPet() {
     const [added_date, setAddedDate] = useState()
     const [sponsorship_status, setSponsorshipStatus] = useState()
     const [pet_image, setPetImage] = useState()
-    const [health_status, setHealStatus] = useState()
+    const [health_status, setHealthStatus] = useState()
     const navigate = useNavigate()
 
    
@@ -130,41 +130,92 @@ export default function CreateSponsorPet() {
                                         </div>
                                     </div>
                                     <div className="sm:col-span-3">
-                                        <label htmlFor="pet-type" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet type
-                                        </label>
-                                            <div className="mt-2">
-                                                <select
-                                                    id="pet-type"
-                                                    name="pet_type"
-                                                    value={pet_type}
-                                                    
-                                                    onChange={(e) => setPettype(e.target.value)}
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                                    ><option></option>
-                                                    <option>Cat</option>
-                                                    <option>Dog</option>
-                                                </select>
-                                        </div>
-                                    </div>
-                                    { <div className="sm:col-span-3">
-                                        <label htmlFor="health-status" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Health Status
-                                        </label>
-                                            <div className="mt-2">
-                                                <select
-                                                    id="health-status"
-                                                    name="health_status"
-                                                    value={health_status}
-                                                    onChange={(e) => setHealStatus(e.target.value)}
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                                    ><option></option>
-                                                    <option className='bg-[#15803d]'>Good</option>
-                                                    <option className='bg-[#be123c]'>Need Treament</option>
-                                                    <option className='bg-[#ca8a04]'>Treating</option>
-                                                </select>
-                                        </div>
-                                    </div> }
+  <fieldset>
+    <legend className="block text-sm font-medium leading-6 text-gray-900">
+      Pet Type
+    </legend>
+    <div className="mt-2">
+      <div className="flex items-center space-x-4">
+        <input
+          type="radio"
+          id="cat"
+          name="pet_type"
+          value="Cat"
+          checked={pet_type === 'Cat'}
+          onChange={() => setPettype('Cat')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="cat" className="text-sm text-gray-900">
+          Cat
+        </label>
+
+        <input
+          type="radio"
+          id="dog"
+          name="pet_type"
+          value="Dog"
+          checked={pet_type === 'Dog'}
+          onChange={() => setPettype('Dog')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="dog" className="text-sm text-gray-900">
+          Dog
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<div className="sm:col-span-3">
+  <fieldset>
+    <legend className="block text-sm font-medium leading-6 text-gray-900">
+      Health Status
+    </legend>
+    <div className="mt-2">
+      <div className="flex items-center space-x-4">
+        <input
+          type="radio"
+          id="good"
+          name="health_status"
+          value="Good"
+          checked={health_status === 'Good'}
+          onChange={() => setHealthStatus('Good')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="good" className="text-sm text-gray-900">
+          Good
+        </label>
+
+        <input
+          type="radio"
+          id="need-treatment"
+          name="health_status"
+          value="Need Treatment"
+          checked={health_status === 'Need Treatment'}
+          onChange={() => setHealthStatus('Need Treatment')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="need-treatment" className="text-sm text-gray-900">
+          Need Treatment
+        </label>
+
+        <input
+          type="radio"
+          id="treating"
+          name="health_status"
+          value="Treating"
+          checked={health_status === 'Treating'}
+          onChange={() => setHealthStatus('Treating')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="treating" className="text-sm text-gray-900">
+          Treating
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
 
                                     <div className="col-span-full">
                                         <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
