@@ -21,7 +21,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'Rescue Tasks',
 		label: 'Rescue Tasks',
-		path: '/petManager/rescueTask',
+		path: '/petManager/RescueTask',
 		icon: <FaTasks />
 	},
 	{
@@ -30,6 +30,14 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/petManager/petProfile',
 		icon: <MdOutlinePets />
 	},
+
+	// {
+	// 	key: 'Common',
+	// 	label: 'Common',
+	// 	path: '/petManager/commonAr',
+	// 	icon: <MdOutlinePets />
+	// },
+
 
 ]
 

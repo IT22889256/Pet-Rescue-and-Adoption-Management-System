@@ -6,27 +6,28 @@ export default function EmployeeProfile() {
     <div>
     <div className="inline-flex gap-1 table-auto">
         <div>
-          <div className="inline-flex h-[22rem] bg-white p-4 rounded-sm border border-gray-200">
+          <div className="inline-flex h-[22rem] bg-white p-4 rounded-sm border border-gray-200 w-full">
               <div className="mt-3 flex-1 text-xs">
                 <img className='"object-cover h-60 w-50' src={pro} alt='profile_Image'/>
               </div>
               <div className='flex-col'>
                 <div className='flex-row mr-5'>
-                  <h1>name</h1>
-                  <h1>name</h1>
-                </div>
-              </div>
-              <div className='flex-col'>
-                <div className='flex-row'>
-                  <h1>name</h1>
-                  <h1>name</h1>
-                </div>
-              </div>
-              <div className='flex-col'>
-                <div className='flex-row'>
-                  <h1>name</h1>
-                  <h1>name</h1>
-                </div>
+                <div className="sm:col-span-1">
+                      <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
+                        Emplyee ID
+                      </label>
+                      <div className="mt-2">
+                      <input
+                          type="text"
+                          name="request_id"
+                          id="request-id"
+                                            // value={}
+                                            // onChange={(e) => setReqId(e.target.value)}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      />
+                      </div>
+                      </div>
+                </div>                
               </div>
           </div>
         </div>
