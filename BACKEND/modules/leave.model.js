@@ -2,6 +2,13 @@ const mongoose = require("mongoose");
 
 const LeaveSchema = mongoose.Schema(
   {
+    leaveID: {
+      type: String,
+      //required: false,
+      unique: true,
+      default: 'LR' + Math.random().toString().substring(2, 8)
+    },
+
     eid: {
       type: String,
       //required: false,

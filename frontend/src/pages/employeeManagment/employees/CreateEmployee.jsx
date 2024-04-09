@@ -6,7 +6,7 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateEmployee() {
 
-    const [eid, setEid] = useState();
+    // const [eid, setEid] = useState();
     const [nic, setNic] = useState();
     const [firstName, setFirstName] = useState();
     const [middleName, setMiddleName] = useState();
@@ -30,7 +30,7 @@ export default function CreateEmployee() {
     const Submit = (e) => {
 
         const data = {
-            eid,
+            // eid,
             nic,
             firstName,
             middleName,
@@ -63,7 +63,7 @@ export default function CreateEmployee() {
                         <div className='text-xl font-bold '>Create Employee Profile</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                                
-                                <div className="sm:col-span-3">
+                                {/* <div className="sm:col-span-3">
                                     <label htmlFor="eid" className="block text-sm font-medium leading-6 text-gray-900">
                                         Employee ID
                                     </label>
@@ -77,7 +77,7 @@ export default function CreateEmployee() {
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                                </div>
+                                                </div> */}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="nic" className="block text-sm font-medium leading-6 text-gray-900">
                                             NIC Number
@@ -153,6 +153,7 @@ export default function CreateEmployee() {
                     >
                         <option></option>
                         <option>doctor</option>
+                        <option>driver</option>
                         <option>cleaner</option>
                         <option>manager</option>
                         <option>helper</option>

@@ -45,7 +45,7 @@ const getSalary = async (req, res) => {
 const createSalary = async (req, res) => {
   try {
 
-    const { otHours, bonus,eid} = req.body; // Assuming you send these in the request body
+    const { otHours,bonus,eid} = req.body; // Assuming you send these in the request body
     // Fetch the job role details for the employee
     const {jobRole} = await Employee.findOne({ eid: req.body.eid});
     const {firstName} = await Employee.findOne({ eid : req.body.eid});
@@ -65,8 +65,9 @@ const createSalary = async (req, res) => {
     // Calculate overtime pay
     const overtimePay = otHours * otRates;
 
+    
     // Calculate total salary
-    const totalSalary = basicSalary + overtimePay + bonus;
+    const totalSalary = Number(basicSalary) + Number(overtimePay) + Number(bonus);
 
     // Create a new salary entry in the database
     const newSalary = new Salary({

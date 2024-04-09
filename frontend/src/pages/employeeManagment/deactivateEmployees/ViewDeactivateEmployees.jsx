@@ -8,7 +8,7 @@ export default function ViewEmployee() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/EmployeeManager/employees/${id}`)
+        axios.get(`http://localhost:3000/EmployeeManager/deactivateEmployees/${id}`)
             .then((res) => {
                 setEmployee(res.data);
             })
@@ -17,13 +17,13 @@ export default function ViewEmployee() {
             });
     }, [id]);
 
-    const handleDelete = () => {
-        const confirmDelete = window.confirm('Are you sure you want to delete this employee?');
-        if (confirmDelete) {
-            axios.put(`http://localhost:3000/EmployeeManager/employees/DeleteEmployee/${id}`)
+    const handleActivate = () => {
+        const confirmActivate = window.confirm('Are you sure you want to activate this employee?');
+        if (confirmActivate) {
+            axios.put(`http://localhost:3000/EmployeeManager/deactivateEmployees/activate/${id}`)
                 .then(() => {
-                    alert('Employee deleted');
-                    navigate('/EmployeeManager/ManageEmployees');
+                    alert('Employee activated!');
+                    navigate('/EmployeeManager/ManageDeactivateEmployees');
                 })
                 .catch((error) => {
                     console.log(error);
@@ -110,9 +110,8 @@ export default function ViewEmployee() {
                 </div>
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-						<Link to={`/employeeManager/salary/CreateSalary/`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Create salary</Link>
-                        <Link to={`/employeeManager/employees/editEmployee/${employee._id}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
-                        <button onClick={handleDelete} className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 text-xs">Remove</button>
+						
+                        <button onClick={handleActivate} className="bg-green-500 text-white py-2 px-4 rounded hover:bg-red-700 text-xs">activate</button>
                     </div>
                 </div>
             </div>
