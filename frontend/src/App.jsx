@@ -49,6 +49,9 @@ import EditJob from './pages/employeeManagment/JobRoles/EditJobs';
 import ManageDeactivateEmployees from './pages/employeeManagment/ManageDeactivateEmployees';
 import ViewDeactivateEmployees from './pages/employeeManagment/deactivateEmployees/ViewDeactivateEmployees';
 
+//leave requests
+import ManageLeaveRequests from './pages/employeeManagment/ManageLeaveRequests'
+
 function App() {
     return (
         <Router>
@@ -87,6 +90,9 @@ function App() {
                 <Route path="/employeeManager/ManageEmployees" element={<ManageEmployees />} />
                 <Route path="/employeeManager/DeleteEmployees" element={<DeleteEmployees />} />
                 <Route path="/employeeManager/SalaryManagement" element={<ManageSalaries />} />
+
+                <Route path="/employeeManager/LeaveManagement" element={<ManageLeaveRequests />} />
+                
                 <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
                 <Route path="/employeeManager/petProfile" element={<PetProfile />} />
                 <Route path="/employeeManager/ManageDeactivateEmployees" element={<ManageDeactivateEmployees />} />

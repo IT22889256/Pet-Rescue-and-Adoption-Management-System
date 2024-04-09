@@ -21,7 +21,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'Leave Request',
 		label: 'Leave Requests',
-		path: '/EmployeeManager/LeaveRequest',
+		path: 'EmployeeManager/LeaveManagement',
 		icon: <IoPeople />
 	},
 	{

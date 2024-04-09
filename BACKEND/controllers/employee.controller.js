@@ -57,6 +57,7 @@ const createEmployee = async (req, res) => {
 
     const employee = await Employee.create(req.body);
 
+   
     const employeeLeaveCount = await EmployeeLeaveCount.create({
       eid: employee.eid,
       
