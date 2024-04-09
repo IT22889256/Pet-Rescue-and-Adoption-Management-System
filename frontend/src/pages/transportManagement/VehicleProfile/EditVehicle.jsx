@@ -4,209 +4,204 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
-export default function Editorder() {
+export default function EditVehicle() {
     
-//   const [request_id, setReqId] = useState()
-//     const [task_id, setTaskId] = useState()
-//     const [pet_name, setPetName] = useState()
-//     const [pet_type, setPettype] = useState()
-//     const [health_status, setHealStatus] = useState()
-//     const [pet_gender, setPetGender] = useState()
-//     const [pet_age, setPetAge] = useState()
-//     const [pet_appearance, setPetappearance] = useState()
-//     const [location, setLocation] = useState()
-//     const [pet_image, setPetImage] = useState()
-
-
-
-// {order.order_id}
-// </td >
-// <td>
-//     {order.item_id}
-// </td>
-// <td>
-//     {order.order_quantity}
-// </td>
-// <td>
-//     {order.date}
-// </td >
-
-const [order_id, setorderid] = useState()
-const [item_id, setitemid] = useState()
-const [order_quantity, setorderquantity] = useState()
-const [date,setdate] = useState()
-
-
+    const [Vehicle_Serial_No, setSerNo] = useState()
+    const [Vehicle_Model, setVehMod] = useState()
+    const [Plate_Number, setPlateNo] = useState()
+    const [vehicle_status, setVehStatus] = useState()
+    const [Year_Manufactured, setYearMan] = useState()
+    const [Engine_Number, setEngNo] = useState()
+    const [Chassis_Number, setChsNo] = useState()
+    const [Vehicle_Type, setvehType] = useState()
+    const [Vehicle_image, setvehImg] = useState()
     const navigate = useNavigate()
-    const [setLoading] = useState(false);
     const {id} = useParams()
     useEffect((e) => {
-        
-        axios.get(`http://localhost:3000/InventoryManager/order/vieworder/${id}`)
+        axios.get(`http://localhost:3000/api/vehicles/${id}`)
         .then((res) => {
-            setorderid(res.data.order_id)
-            setitemid(res.data.item_id)
-            setorderquantity(res.data.order_quantity)
-            setdate(res.data.date)
-            // setPetAge(res.data.pet_age)
-            // setPetappearance(res.data.pet_appearance)
-            // setLocation(res.data.location)
-            // setPetImage(res.data.pet_image)
+            setSerNo(res.data.Vehicle_Serial_No)
+            setVehMod(res.data.Vehicle_Model)
+            setPlateNo(res.data.Plate_Number)
+            setVehStatus(res.data.vehicle_status)
+            setYearMan(res.data.Year_Manufactured)
+            setEngNo(res.data.Engine_Number)
+            setChsNo(res.data.Chassis_Number)
+            setvehType(res.data.Vehicle_Type)
+            setvehImg(res.data.Vehicle_image)
 
             console.log(res);
-           
         }).catch(err => console.log(err))
     },[])
     const Edit = (e) => {
         const data = {
-            order_id,item_id,order_quantity,date
+            Vehicle_Serial_No,
+            Vehicle_Model,
+            Plate_Number,
+            vehicle_status,
+            Year_Manufactured,
+            Engine_Number,
+            Chassis_Number,
+            Vehicle_Type,
+            Vehicle_image
         };
-    
         console.log('result')
-        axios.put(`http://localhost:3000/InventoryManager/order/editorder/${id}`,data)
+        axios.put(`http://localhost:3000/api/vehicles/${id}`,data)
         .then(result => {
             alert('updated')
             console.log(result)
-            navigate('/InventoryManager/order')
+            navigate('/transportManager/vehicleProfile')
         })
         .catch(err => console.log(err))
     }
         return (
 
         
-            <div>
+        <div>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
-                <div className='text-xl font-bold '>Edit Pet Profile</div>
+                <div className='text-xl font-bold '>Edit Vehicle Profile</div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                     <div className="col-span-full">
-          <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
+            <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
             Profile picture
-          </label>
-          <div className="mt-2 flex items-center gap-x-3">
+            </label>
+            <div className="mt-2 flex items-center gap-x-3">
             <img className="h-20 w-20 text-gray-300" alt='image' />
-          </div>
+            </div>
         </div>
-
-
-
                         <div className="sm:col-span-3">
-                            <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                Order Id
+                            <label htmlFor="Vehicle_Serial_No" className="block text-sm font-medium leading-6 text-gray-900">
+                            Vehicle Serial Number
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
-                                    name="order_id"
-                                    id="order_id"
-                                    value={order_id}
+                                    name="Vehicle_Serial_No"
+                                    id="Vehicle_Serial_No"
+                                    value={Vehicle_Serial_No}
+                                    onChange={(e) => setSerNo(e.target.value)}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Item Id
+                                <label htmlFor="Vehicle_Model" className="block text-sm font-medium leading-6 text-gray-900">
+                                Vehicle Model
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="item_id"
-                                        id="item_id"
-                                        value={item_id}
+                                        name="Vehicle_Model"
+                                        id="Vehicle_Model"
+                                        value={Vehicle_Model}
+                                        onChange={(e) => setVehMod(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Order quantity
+                                <label htmlFor="Plate_Number" className="block text-sm font-medium leading-6 text-gray-900">
+                                Plate Number
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="order_quantity"
-                                        id="order_quantity"
-                                        value={order_quantity}
-                                        onChange={(e) => setorderquantity(e.target.value)}
+                                        name="Plate_Number"
+                                        id="Plate_Number"
+                                        value={Plate_Number}
+                                        onChange={(e) => setPlateNo(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
-
-                           
                             <div className="sm:col-span-3">
-                                <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Item date
+                                <label htmlFor="Year_Manufactured" className="block text-sm font-medium leading-6 text-gray-900">
+                                Year Manufacturedr
                                 </label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
-                                        name="date"
-                                        id="date"
-                                        value={date}
-                                        onChange={(e) => setdate(e.target.value)}
+                                        name="Year_Manufactured"
+                                        id="Year_Manufactured"
+                                        value={Year_Manufactured}
+                                        onChange={(e) => setYearMan(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
-                           
-                            {/* <div className="sm:col-span-3">
-                                <label htmlFor="pet-type" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet type
+                            <div className="sm:col-span-3">
+                                <label htmlFor="Engine_Number" className="block text-sm font-medium leading-6 text-gray-900">
+                                Engine Number
+                                </label>
+                                <div className="mt-2">
+                                    <input
+                                        type="text"
+                                        name="Engine_Number"
+                                        id="Engine_Number"
+                                        value={Engine_Number}
+                                        onChange={(e) => setEngNo(e.target.value)}
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
+                                </div>
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="Chassis_Number" className="block text-sm font-medium leading-6 text-gray-900">
+                                Chassie Number
+                                </label>
+                                <div className="mt-2">
+                                    <input
+                                        type="text"
+                                        name="Chassis_Number"
+                                        id="Chassis_Number"
+                                        value={Chassis_Number}
+                                        onChange={(e) => setChsNo(e.target.value)}
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
+                                </div>
+                            </div>
+                            <div className="sm:col-span-3">
+                                <label htmlFor="Vehicle_Type" className="block text-sm font-medium leading-6 text-gray-900">
+                                Vehicle type
                                 </label>
                                     <div className="mt-2">
                                         <select
-                                            id="pet-type"
-                                            name="pet_type"
-                                            value={pet_type}
+                                            id="Vehicle_Type"
+                                            name="Vehicle_Type"
+                                            value={Vehicle_Type}
                                             
-                                            onChange={(e) => setPettype(e.target.value)}
+                                            onChange={(e) => setvehType(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                             ><option></option>
-                                            <option>Cat</option>
-                                            <option>Dog</option>
+                                           <option>Car</option>
+                                            <option>Van</option>
+                                            <option>Truck</option>
                                         </select>
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="health-status" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Health Status
+                                <label htmlFor="vehicle_status" className="block text-sm font-medium leading-6 text-gray-900">
+                                Vehicle Status
                                 </label>
                                     <div className="mt-2">
                                         <select
-                                            id="health-status"
-                                            name="health_status"
-                                            value={health_status}
-                                            onChange={(e) => setHealStatus(e.target.value)}
+                                            id="vehicle_status"
+                                            name="vehicle_status"
+                                            value={vehicle_status}
+                                            onChange={(e) => setVehStatus(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                             ><option></option>
                                             <option className='bg-[#15803d]'>Good</option>
-                                            <option className='bg-[#be123c]'>Need Treament</option>
-                                            <option className='bg-[#ca8a04]'>Treating</option>
+                                            <option className='bg-[#be123c]'>Need Maintenence</option>
+                                            <option className='bg-[#ca8a04]'>On service</option>
                                         </select>
                                 </div>
                             </div>
 
-                            <div className="col-span-full">
-                                <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Location
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="location"
-                                        id="locations"
-                                        value={location}
-                                        onChange={(e) => setLocation(e.target.value)}
-                                        autoComplete="street-address"
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div> */}
+                            
                             { <div className="col-span-full">
                             <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
-                            Item image
+                            Vehicle Image
                             </label>
                             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                             <div className="text-center">
@@ -218,8 +213,8 @@ const [date,setdate] = useState()
                                     >
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            // value={item_image}
-                                            // onChange={(e) => item_image(e.target.value)}
+                                            value={Vehicle_image}
+                                            onChange={(e) => setvehImg(e.target.value)}
                                         />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>

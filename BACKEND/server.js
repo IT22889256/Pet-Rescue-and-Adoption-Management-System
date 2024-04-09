@@ -20,8 +20,6 @@ connection.once('open', () => {
 
 
 //import routes
-const complaintRouter = require('./routes/complaint.route');
-const petRouter = require('./routes/pet.route');
 const sponserpetRouter = require('./routes/sponserpet.route');
 
 
@@ -38,6 +36,8 @@ const sponsorDonationRouter = require('./routes/sponsordonation.route');
 //import pet routes
 
 const petRouter = require('./routes/pet.route');
+
+
 const rescueTask = require('./routes/task.route');
 const rescueRequest = require('./routes/rescueRequest.route')
 //import adoption routes
@@ -49,6 +49,22 @@ const doctorRouter = require('./routes/pet.route')
 
 
 
+
+//import routes(Schedule)
+const Schedule = require('./modules/schedule.model.js');
+const scheduleRoute = require('./routes/schedule.route.js');
+
+//import routes(vehicle)
+const Vehicle = require('./modules/vehicle.model.js');
+const vehicleRoute = require('./routes/vehicle.route.js');
+
+//routes(vehicle)
+app.use("/api/vehicles", vehicleRoute);
+
+//routes(Schedule)
+app.use("/api/schedules", scheduleRoute);
+
+//rescue task
 app.use("/petManager", petRouter);
 app.use("/petManager", rescueTask);
 app.use("/petManager", rescueRequest);
@@ -92,7 +108,7 @@ app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 // const rescueTask = require('./routes/task.route');
 // app.use("/petManager", rescueTask);
 
-const rescueRequest = require('./routes/rescueRequest.route')
+
 app.use("/petManager", rescueRequest);
 
 
