@@ -101,7 +101,7 @@ return (
 									{rescueRequest.location}
 								</td >
 								<td>
-									{rescueRequest.date}
+									{rescueRequest.createdAt}
 								</td >
 									{rescueRequest.rescue_request_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-centerml">
