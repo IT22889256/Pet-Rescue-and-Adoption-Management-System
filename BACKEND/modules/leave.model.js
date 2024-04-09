@@ -5,7 +5,7 @@ const LeaveSchema = mongoose.Schema(
     leaveID: {
       type: String,
       //required: false,
-      unique: true,
+      //unique: true,
       default: 'LR' + Math.random().toString().substring(2, 8)
     },
 

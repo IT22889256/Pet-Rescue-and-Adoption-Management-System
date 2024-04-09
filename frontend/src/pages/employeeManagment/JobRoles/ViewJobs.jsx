@@ -23,7 +23,7 @@ export default function ViewJob() {
             axios.delete(`http://localhost:3000/EmployeeManager/jobRole/${id}`)
                 .then(() => {
                     alert('Job Role deleted');
-                    navigate('EmployeeManager/JobRoles');
+                    navigate('EmployeeManager/ManageJobRoles');
                 })
                 .catch((error) => {
                     console.log(error);

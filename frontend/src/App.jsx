@@ -54,7 +54,9 @@ import ManageLeaveRequests from './pages/employeeManagment/ManageLeaveRequests'
 
 function App() {
     return (
+        
         <Router>
+            
             <Routes>
 
                 <Route path="/petManager" element={<PetLayout />}>
@@ -92,7 +94,7 @@ function App() {
                 <Route path="/employeeManager/SalaryManagement" element={<ManageSalaries />} />
 
                 <Route path="/employeeManager/LeaveManagement" element={<ManageLeaveRequests />} />
-                
+
                 <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
                 <Route path="/employeeManager/petProfile" element={<PetProfile />} />
                 <Route path="/employeeManager/ManageDeactivateEmployees" element={<ManageDeactivateEmployees />} />
@@ -108,7 +110,7 @@ function App() {
                 {/* salary routes */}
                 { <Route path="/employeeManager/salary/:id" element={<ViewSalary />} />}
                 { <Route path="/employeeManager/salary/EditSalary/:id" element={<EditSalary />} />} 
-                { <Route path="/employeeManager/salary/CreateSalary/" element={<CreateSalary />} />}
+                { <Route path="/employeeManager/salary/CreateSalary/:eid" element={<CreateSalary />} />}
                 {/* job role routes */}
                 <Route path="/employeeManager/jobRoles" element={<ManageJobRoles />} />
                 <Route path="/employeeManager/jobRoles/viewJobs/:id" element={<ViewJobRoles />} />
