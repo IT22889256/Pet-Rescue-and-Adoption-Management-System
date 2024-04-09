@@ -111,6 +111,7 @@ export default function RescueRequest() {
 				</table>
 			</div>
 		</div>
+		
 		</>
 	)
 }
