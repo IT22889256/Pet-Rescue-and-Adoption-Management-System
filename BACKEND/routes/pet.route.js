@@ -19,5 +19,4 @@ router.get('/petHealth/viewPet/:id', displayOnePet);
 //delete a complaint
 router.delete('/petProfile/removePet/:id', deletePet);
 
-
 module.exports = router;
