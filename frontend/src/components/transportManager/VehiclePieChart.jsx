@@ -2,7 +2,7 @@ import React from 'react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'
 
 
-export default function RescueRequstsChart() {
+export default function VehiclePieChart() {
 	return (
 		<div className="w-[20rem] h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
 			<strong className="text-gray-700 font-medium">Vehicle Status</strong>
