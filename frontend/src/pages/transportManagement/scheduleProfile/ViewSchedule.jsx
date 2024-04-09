@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
+import {useParams } from 'react-router-dom'
 import axios from 'axios'
 
 export default function ViewPet() {
 	
-	const [pet, setPet] = useState({})
+	const [schedule, setSchedule] = useState({})
 	const {id} = useParams()
 
 	useEffect(() => {
-		axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
+		axios.get(`http://localhost:3000/api/schedules/${id}`)
 		.then((res) => {
-			setPet(res.data)
+			setSchedule(res.data)
 			
 		}).catch((err) => {
 			console.log(err);
@@ -19,39 +18,38 @@ export default function ViewPet() {
 	},[])
 return (
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-			<strong className="text-gray-700 font-medium">Pet Profiles</strong>
+			<strong className="text-gray-700 font-medium">Schedule Profiles</strong>
 			<div className="border-x border-gray-200 rounded-sm mt-3">
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
-							<th>Pet ID</th>
-							<th>Request ID</th>
-							<th>Task ID</th>
-							<th>Pet Name</th>
-							<th>Type</th>
-							<th>Health Status</th>
-							<th>Action</th>
+							<th>Transport Type</th>
+							<th>Number of Pets</th>
+							<th>Location</th>
+							<th>Driver</th>
+							<th>Vet nary Doctor</th>
+							<th>Staff Member</th>
 						</tr>
 					</thead>
 						<tbody>
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
 								<td>
-									{pet._id}
+									{schedule.Transport_Type}
 								</td >
 								<td>
-									{pet.request_id}
+									{schedule.Number_of_Pets}
 								</td >
 								<td>
-									{pet.task_id}
+									{schedule.Location}
 								</td >
 								<td>
-									{pet.pet_name}
+									{schedule.Driver}
 								</td >
 								<td>
-									{pet.pet_type}
+									{schedule.Vet_nary_Doctor}
 								</td >
 								<td>
-									{pet.health_status}
+									{schedule.Staff_Member}
 								</td >
 							</tr>
 						

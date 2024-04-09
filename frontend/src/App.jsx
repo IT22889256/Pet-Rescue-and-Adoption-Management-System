@@ -136,6 +136,8 @@ import TransportManagerDashboard from './pages/transportManagement/TransportMana
 import ScheduleProfile from './pages/transportManagement/ScheduleProfile'
 import CreateSchedule from './pages/transportManagement/scheduleProfile/CreateSchedule'
 import EditSchedule from './pages/transportManagement/scheduleProfile/EditSchedule'
+import ViewSchedule from './pages/transportManagement/scheduleProfile/ViewSchedule'
+import RemoveSchedule from './pages/transportManagement/scheduleProfile/RemoveSchedule' 
 import CreateVehicle from './pages/transportManagement/vehicleProfile/CreateVehicle'
 import VehicleProfile from './pages/transportManagement/VehicleProfile'
 import EditVehicle from './pages/transportManagement/vehicleProfile/EditVehicle'
@@ -205,7 +207,9 @@ function App() {
                     
                     {/* Schedule profile routes */}
                     <Route path="/transportManager/scheduleProfile/createSchedule" element={<CreateSchedule />} />
+                    <Route path="/transportManager/scheduleProfile/viewSchedule/:id" element={<ViewSchedule />} />
                     <Route path="/transportManager/scheduleProfile/editSchedule/:id" element={<EditSchedule />} />
+                    <Route path="/transportManager/scheduleProfile/removeSchedule/:id" element={<RemoveSchedule />} />
 
                     {/* Vehicle profile routes */}
                     <Route path="/transportManager/vehicleProfile/CreateVehicle" element={<CreateVehicle />} />

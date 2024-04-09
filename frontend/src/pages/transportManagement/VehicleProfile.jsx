@@ -29,8 +29,8 @@ export default function VehicleProfile() {
                         <p className="text-sm font-medium">Vehicle Status: {vehicle.vehicle_status}</p>
                         <div className="flex justify-end mt-2">
                             <Link to={`/transportManager/vehicleProfile/viewVehicle/${vehicle._id}`} className="bg-green-500 text-white py-1 px-2 rounded hover:bg-blue-700 text-xs text-gray-400 ml-1">View</Link>
-                            <Link to={`/transportManager/vehicleProfile/EditVehicle/${vehicle._id}`} className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 text-xs text-gray-400 ml-1">Edit</Link>
-                            <Link to={`/transportManager/vehicleProfile/RemoveVehicle/${vehicle._id}`} className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700 text-xs text-gray-400 ml-1">Remove</Link>
+                            {/* <Link to={`/transportManager/vehicleProfile/EditVehicle/${vehicle._id}`} className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 text-xs text-gray-400 ml-1">Edit</Link> */}
+                            {/* <Link to={`/transportManager/vehicleProfile/RemoveVehicle/${vehicle._id}`} className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700 text-xs text-gray-400 ml-1">Remove</Link> */}
                         </div>
                     </div>
                 ))}
