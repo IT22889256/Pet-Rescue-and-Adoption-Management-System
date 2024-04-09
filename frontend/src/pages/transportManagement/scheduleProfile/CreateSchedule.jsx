@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { PhotoIcon} from '@heroicons/react/24/solid'
+import Apple from '../../Apple'
+
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateSchedule() {
@@ -42,7 +43,7 @@ export default function CreateSchedule() {
                         <div className='text-xl font-bold '>Create Transportation Schedule</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                                 <div className="sm:col-span-3">
-                                    <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
+                                    <label htmlFor="Transport_Type" className="block text-sm font-medium leading-6 text-gray-900">
                                     Transport Type
                                     </label>
                                     <div className="mt-2">
@@ -57,7 +58,7 @@ export default function CreateSchedule() {
                                         </div>
                                                 </div>
                                     <div className="sm:col-span-3">
-                                        <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
+                                        <label htmlFor="Number_of_Pets" className="block text-sm font-medium leading-6 text-gray-900">
                                         Number of Pets
                                         </label>
                                         <div className="mt-2">
@@ -72,7 +73,7 @@ export default function CreateSchedule() {
                                         </div>
                                     </div>
                                     <div className="sm:col-span-3">
-                                        <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
+                                        <label htmlFor="Location" className="block text-sm font-medium leading-6 text-gray-900">
                                         Location
                                         </label>
                                         <div className="mt-2">
@@ -86,54 +87,48 @@ export default function CreateSchedule() {
                                             />
                                         </div>
                                     </div>
+
                                     <div className="sm:col-span-3">
-                                        <label htmlFor="Driver" className="block text-sm font-medium leading-6 text-gray-900">
-                                        Driver
+                                        <label htmlFor="-" className="block text-sm font-medium leading-6 text-gray-900">
+                                        Driver   <span className="text-sm font-small leading-6 text-gray-400">(Available Drivers Appear Here)</span>
                                         </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="Driver"
-                                                id="Driver"
-                                                value={Driver}
-                                                onChange={(e) => setDriver(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
+                                        <div
+                                        id="Driver"
+                                        name="Driver"
+                                        value={Driver}
+                                        
+                                        onChange={(e) => setDriver(e.target.value)}>  <Apple/>
+                                          </div>
                                     </div>
+
                                     <div className="sm:col-span-3">
                                         <label htmlFor="Vet_nary_Doctor" className="block text-sm font-medium leading-6 text-gray-900">
-                                        Vet nary Doctor
+                                        Vetnary Doctor   <span className="text-sm font-small leading-6 text-gray-400">(Available Vetnary Doctors Appear Here)</span>
                                         </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="Vet_nary_Doctor"
-                                                id="Vet_nary_Doctor"
-                                                value={Vet_nary_Doctor}
-                                                onChange={(e) => setVet(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
+                                        <div
+                                        id="Vet_nary_Doctor"
+                                        name="Vet_nary_Doctor"
+                                        value={Vet_nary_Doctor}
+                                        
+                                        onChange={(e) => setVet(e.target.value)}>  <Apple/>
+                                          </div>
                                     </div>
+
                                     <div className="sm:col-span-3">
-                                        <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                        Staff Member
+                                        <label htmlFor="Staff_Member" className="block text-sm font-medium leading-6 text-gray-900">
+                                        Staff Member  <span className="text-sm font-small leading-6 text-gray-400">(Available Staff members Appear Here)</span>
                                         </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="Staff_Member"
-                                                id="Staff_Member"
-                                                value={Staff_Member}
-                                                onChange={(e) => setStaffMem(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
+                                        <div
+                                        
+                                        id="Staff_Member"
+                                        name="Staff_Member"
+                                        value={Staff_Member}
+                                        
+                                        onChange={(e) => setStaffMem(e.target.value)}>  <Apple/>
+                                          </div>
                                     </div>
-                                    
-                                   
-                                            <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+
+                                    <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                                    
                                   
                                     </div>

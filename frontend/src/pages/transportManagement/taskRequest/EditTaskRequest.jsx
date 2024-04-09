@@ -149,8 +149,11 @@ export default function EditTaskRequest() {
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                             >
                                                 <option>{rescue_task_status}</option>
-                                           <option>Accept</option>
-                                            <option>In Waiting LIst</option>
+                                           
+                                            <option>In Waiting List</option>
+                                            <option>In Progress</option>
+                                            <option>Completed</option>
+                                            <option>Failed</option>
                                           
                                         </select>
                                 </div>

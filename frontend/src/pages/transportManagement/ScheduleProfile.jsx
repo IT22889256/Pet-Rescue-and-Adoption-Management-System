@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link} from 'react-router-dom'
-// import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
 export default function ScheduleProfile() {
-	const [pets, setPets] = useState([]);
+	const [schedules, setSchedules] = useState([]);
 
 	useEffect(() => {
 		axios.get('http://localhost:3000/api/schedules').then(res => {
 			console.log(res);
-			setPets(res.data)
+			setSchedules(res.data)
 		})
 	},[])
 
@@ -22,39 +21,39 @@ export default function ScheduleProfile() {
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
 							<th>Transport_Type</th>
-							<th>Pet Type</th>
-							<th>Gender</th>
-							<th>Age</th>
-							<th>Appearance</th>
-							<th>Health Status</th>
+							<th>Number of Pets</th>
+							<th>Location</th>
+							<th>Driver</th>
+							<th>Vet nary Doctor</th>
+							<th>Staff Member</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					{<tbody>
-						{pets.map((pet) => (
-							<tr className='border-b-2 border-[#c1c3c558] text-center' key={pet._id}>
+						{schedules.map((schedule) => (
+							<tr className='border-b-2 border-[#c1c3c558] text-center' key={schedule._id}>
 								<td>
-									{pet.pet_name}
+									{schedule.Transport_Type}
 								</td >
 								<td>
-									{pet.pet_type}
+									{schedule.Number_of_Pets}
 								</td>
 								<td>
-									{pet.pet_gender}
+									{schedule.Location}
 								</td>
 								<td>
-									{pet.pet_age}
+									{schedule.Driver}
 								</td>
 								<td>
-									{pet.pet_appearance}
+									{schedule.Vet_nary_Doctor}
 								</td>
-								<td>{pet.health_status}</td>
+								<td>{schedule.Staff_Member}</td>
 								<td>
-									<Link to={`/petManager/petProfile/viewPet/${pet._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
+									<Link to={`/transportManager/scheduleProfile/viewSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								
-									<Link to={`/petManager/petProfile/EditPet/${pet._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
+									<Link to={`/transportManager/ScheduleProfile/EditSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
 								
-									<Link to={`/petManager/petProfile/RemovePet/${pet._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>
+									<Link to={`/petManager/petProfile/RemovePet/${schedule._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>
 								</td>
 							</tr>
 						))}

@@ -1,39 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {IoPeople} from 'react-icons/io5'
 import { MdOutlinePets  } from "react-icons/md";
 import { FaTasks,FaHome  } from "react-icons/fa";
-
-import axios from 'axios'
-
 export default function DashboardStatsGrid() {
-
-
-
-
-
-	
-	const [pets, setPets] = useState([]);
-
-	useEffect(() => {
-		axios.get('http://localhost:3000/petManager/petProfile').then(res => {
-			console.log(res);
-			setPets(res.data.count)
-		})
-	},[])
-
-
 	return (
 		<div>
 			<div className="text-2xl p-1">Overview</div>
 		<div className="flex gap-4">
-		<BoxWrapper>
+			<BoxWrapper>
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
 					<IoPeople className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
 					<span className="text-sm text-gray-500 font-light">Total Transportation Schedule</span>
 					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">75</strong>
+						<strong className="text-xl text-gray-700 font-semibold">62</strong>
 						
 					</div>
 				</div>
@@ -49,25 +30,27 @@ export default function DashboardStatsGrid() {
 					</div>
 				</div>
 			</BoxWrapper>
-			{/* <BoxWrapper>
+			<BoxWrapper>
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-yellow-400">
 					<MdOutlinePets className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
+					<span className="text-sm text-gray-500 font-light">Complains</span>
 					<div className="flex items-center">
 						<strong className="text-xl text-gray-700 font-semibold">13</strong>
 						{/* <span className="text-sm text-red-500 pl-2">Adopted - 40</span> */}
 					</div>
 				</div>
-			
+			</BoxWrapper>
 			<BoxWrapper>
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-600">
-					{/* <PiVanFill className="text-2xl text-white" /> */}
+					<FaHome className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<div className='flex items-center'>
-					<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=6612d0fc-bbf4-4bf1-8143-ad0e99642daf&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
-						</div>
+					<span className="text-sm text-gray-500 font-light">Total Vehicles</span>
+					<div className="flex items-center">
+						<strong className="text-xl text-gray-700 font-semibold">2</strong>
+					</div>
 				</div>
 			</BoxWrapper>
 		</div>
