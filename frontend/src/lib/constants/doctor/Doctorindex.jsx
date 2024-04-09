@@ -13,12 +13,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/adoptionManager',
 		icon: <HiOutlineViewGrid />
 	},
-	{
-		key: 'Pet Profile',
-		label: 'Pet Profile',
-		path: '/adoptionManager/petProfile',
-		icon: <IoPeople />
-	},
+	// {
+	// 	key: 'Pet Profile',
+	// 	label: 'Pet Profile',
+	// 	path: '/adoptionManager/petProfile',
+	// 	icon: <IoPeople />
+	// },
 	{
 		key: 'Pet HealthCare',
 		label: 'Pet HealthCare',

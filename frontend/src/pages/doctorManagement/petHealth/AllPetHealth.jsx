@@ -51,7 +51,7 @@ export default function AllPetHealth() {
 										<div>{petHealth.health_status}</div>
 									</td>)}
 								<td>
-									<Link to={`/doctor/petHeaalth/ViewPetHealth/${petHealth._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
+									<Link to={`/doctor/petHealth/ViewPetHealth/${petHealth._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								</td>
 							</tr>)
 						)}

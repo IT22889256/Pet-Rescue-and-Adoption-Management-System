@@ -91,7 +91,7 @@ function App() {
                     <Route index path="/adoptionManager" element={<AdoptionManagerDashboard />} />
                     <Route path="/adoptionManager/employeeProfile" element={<EmployeeProfile />} />
                     <Route path="/adoptionManager/heplAndSupport" element={<HeplAndSupport />} />
-
+ 
                     {/* main routes */}
                     <Route path="/adoptionManager/adoption" element={<Adoption />} /> 
                     <Route path="/adoptionManager/rescueTask" element={<RescueTask />} />
@@ -135,8 +135,8 @@ function App() {
 
                     {/*doctor routes*/}
                     <Route path="/doctor/petHealth" element={<AllPetHealth />} />
-                    <Route path="/doctor/petHeaalth/ViewPetHealth/:id" element={<ViewPetHealth />} />
-                    <Route path="/doctor/petHeaalth/EditPetHealth/:id" element={<EditPetHealth />} />
+                    <Route path="/doctor/petHealth/ViewPetHealth/:id" element={<ViewPetHealth />} />
+                    <Route path="/doctor/petHealth/EditPetHealth/:id" element={<EditPetHealth />} />
             </Route>
             </Routes>
 
