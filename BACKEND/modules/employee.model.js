@@ -6,7 +6,7 @@ const EmployeeSchema = mongoose.Schema(
       type: String,
     //  required: [true, "Please enter Employee ID"],
      unique: true,
-     default: 'EMP' + Math.random().toString().substring(2, 8)
+     
     },
 
     nic: {

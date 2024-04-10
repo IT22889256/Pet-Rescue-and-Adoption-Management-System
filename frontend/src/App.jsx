@@ -183,6 +183,7 @@ import ViewDeactivateEmployees from './pages/employeeManagment/deactivateEmploye
 
 //leave requests
 import ManageLeaves from './pages/employeeManagment/ManageLeaves'
+import ViewLeaveRequest from './pages/employeeManagment/LeaveRequests/ViewLeaveRequest'
 
 function App() {
     return (
@@ -262,11 +263,13 @@ function App() {
                 <Route index path="/employeeManager" element={<EmployeeManagerDashboard />} />
                 <Route path="/employeeManager/employeeProfile" element={<EmployeeProfile />} />
                 <Route path="/employeeManager/heplAndSupport" element={<HeplAndSupport />} />
+
                 {/* main routes */}
                 <Route path="/employeeManager/ManageEmployees" element={<ManageEmployees />} />
                 <Route path="/employeeManager/DeleteEmployees" element={<DeleteEmployees />} />
                 <Route path="/employeeManager/SalaryManagement" element={<ManageSalaries />} />
                 <Route path="/employeeManager/LeaveManagement" element={<ManageLeaves />} />
+                <Route path="/employeeManager/jobRoles" element={<ManageJobRoles />} />
                 <Route path="/employeeManager/ManageDeactivateEmployees" element={<ManageDeactivateEmployees />} />
 
                 
@@ -275,23 +278,24 @@ function App() {
                 <Route path="/employeeManager/petProfile" element={<PetProfile />} />
 
                 {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
-                {/* pet profile routes */}
+                {/* employee profile routes */}
                 <Route path="/employeeManager/employees/createEmployee" element={<CreateEmployee />} />
                 <Route path="/employeeManager/employees/viewEmployee/:id" element={<ViewEmployee />} />
                 {<Route path="/employeeManager/employees/editEmployee/:id" element={<EditEmployee />} />}
                 { <Route path="/employeeManager/employees/deleteEmployee/:id" element={<RemoveEmployee />} />}
                 {<Route path="/employeeManager/employees/removeEmployee/:id" element={<RemoveEmployee />} /> }  
-                {/* rescue task routes */}
+               
                 {/* salary routes */}
                 { <Route path="/employeeManager/salary/:id" element={<ViewSalary />} />}
                 { <Route path="/employeeManager/salary/EditSalary/:id" element={<EditSalary />} />} 
                 { <Route path="/employeeManager/salary/CreateSalary/:eid" element={<CreateSalary />} />}
                 {/* job role routes */}
-                <Route path="/employeeManager/jobRoles" element={<ManageJobRoles />} />
+                
                 <Route path="/employeeManager/jobRoles/viewJobs/:id" element={<ViewJobRoles />} />
                 <Route path="/employeeManager/jobRoles/createJobs" element={<CreateJob />} />   
                 <Route path="/employeeManager/jobRoles/editJobs/:id" element={<EditJob />} />
-
+                    {/* leave request routes */}
+                <Route path="/employeeManager/leave/:id" element={<ViewLeaveRequest />} />
                 {/* deactivate employees route */}
                 <Route path="/employeeManager/deactivateEmployees/ViewDeactivateEmployees/:id" element={<ViewDeactivateEmployees />} />
 

@@ -25,12 +25,14 @@ export default function EditSalary() {
             console.log(res);
         }).catch(err => console.log(err))
     },[])
+
+
     const Edit = (e) => {
+
         const data = {
             eid,
             otHours,
             bonus,
-           
         };
         
         console.log('result')
@@ -106,10 +108,6 @@ export default function EditSalary() {
                                             />
                                         </div>
                                     </div>
-
-                           
-                                
-
 
                           </div>
                         </div>
