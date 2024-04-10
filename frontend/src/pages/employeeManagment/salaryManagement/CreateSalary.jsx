@@ -6,7 +6,8 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateSalary() {
 
-    const [eid, setEid] = useState('');
+    const { eid } = useParams()
+    //const [eid, setEid] = useState('');
     const [otHours, setOtHours] = useState('');
     const [bonus, setBonus] = useState('');
 
@@ -48,7 +49,7 @@ export default function CreateSalary() {
                                             id="eid"
                                             value={eid}
                                             readOnly
-                                           onChange={(e) => setEid(e.target.value)}
+                                          // onChange={(e) => setEid(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>

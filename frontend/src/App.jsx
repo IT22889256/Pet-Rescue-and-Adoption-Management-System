@@ -182,7 +182,7 @@ import ManageDeactivateEmployees from './pages/employeeManagment/ManageDeactivat
 import ViewDeactivateEmployees from './pages/employeeManagment/deactivateEmployees/ViewDeactivateEmployees';
 
 //leave requests
-import ManageLeaveRequests from './pages/employeeManagment/ManageLeaveRequests'
+
 
 function App() {
     return (
@@ -267,7 +267,7 @@ function App() {
                 <Route path="/employeeManager/DeleteEmployees" element={<DeleteEmployees />} />
                 <Route path="/employeeManager/SalaryManagement" element={<ManageSalaries />} />
 
-                <Route path="/employeeManager/LeaveManagement" element={<ManageLeaveRequests />} />
+                
 
                 <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
                 <Route path="/employeeManager/petProfile" element={<PetProfile />} />

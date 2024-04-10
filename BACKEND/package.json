@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
-=======
+
 
 
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,7 +12,7 @@
 
 
 
->>>>>>> d39252ca9a0aa277b9aca8c1b3ce0db4a59e9d46
+
   },
   "keywords": [],
   "author": "",
@@ -25,18 +22,12 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-<<<<<<< HEAD
-    "express": "^4.18.2",
-    "mongoose": "^8.2.0",
+
+"express": "^4.19.2",
+"mongoose": "^8.2.2",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.13",
-=======
 
-
-    "express": "^4.19.2",
-
-    "mongoose": "^8.2.2",
->>>>>>> d39252ca9a0aa277b9aca8c1b3ce0db4a59e9d46
     "nodemon": "^3.1.0"
   }
 }

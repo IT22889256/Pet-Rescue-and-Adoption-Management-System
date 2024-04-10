@@ -47,8 +47,6 @@ cron.schedule('0 0 28-31 * *', async () => {
 
 
 //import routes
-const complaintRouter = require('./routes/complaint.route');
-const petRouter = require('./routes/pet.route')
 
 const employeeRoute = require("./routes/employee.route.js"); // Importing employee route
 const attendanceRoute = require("./routes/daily_attendance.route.js"); // Importing attendance route
@@ -61,7 +59,7 @@ const employeeLeave = require("./routes/leave.route.js"); // Importing leave rou
 
 // Routes
 //danuka routes
-app.use("/complain", complaintRouter);
+
 //import routes
 const sponserpetRouter = require('./routes/sponserpet.route');
 
