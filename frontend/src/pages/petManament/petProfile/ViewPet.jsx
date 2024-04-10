@@ -152,7 +152,7 @@ return (<>
                     <h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Pet Profile</h3>
                 </div>
 				<div className="mt-3 flex text-xs justify-center">
-                <img className='object-cover h-60 w-60 m-5 rounded-full' src="https://i.ibb.co/713YjHp/pexels-emrah-ayvali-1981111.jpg" alt='profile_Image'/>
+                <img className='object-cover h-60 w-60 m-5 rounded-full' src={Pet.imgUrl} alt='profile_Image'/>
 				</div>
                 <div className="border-t border-gray-200">
                     <dl>
