@@ -182,7 +182,7 @@ import ManageDeactivateEmployees from './pages/employeeManagment/ManageDeactivat
 import ViewDeactivateEmployees from './pages/employeeManagment/deactivateEmployees/ViewDeactivateEmployees';
 
 //leave requests
-
+import ManageLeaves from './pages/employeeManagment/ManageLeaves'
 
 function App() {
     return (
@@ -266,12 +266,13 @@ function App() {
                 <Route path="/employeeManager/ManageEmployees" element={<ManageEmployees />} />
                 <Route path="/employeeManager/DeleteEmployees" element={<DeleteEmployees />} />
                 <Route path="/employeeManager/SalaryManagement" element={<ManageSalaries />} />
+                <Route path="/employeeManager/LeaveManagement" element={<ManageLeaves />} />
+                <Route path="/employeeManager/ManageDeactivateEmployees" element={<ManageDeactivateEmployees />} />
 
                 
 
                 <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
                 <Route path="/employeeManager/petProfile" element={<PetProfile />} />
-                <Route path="/employeeManager/ManageDeactivateEmployees" element={<ManageDeactivateEmployees />} />
 
                 {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
                 {/* pet profile routes */}
