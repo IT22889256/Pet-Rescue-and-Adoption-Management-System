@@ -6,7 +6,7 @@ const LeaveSchema = mongoose.Schema(
       type: String,
       //required: false,
       //unique: true,
-      default: 'LR' + Math.random().toString().substring(2, 8)
+      //default: 'LR' + Math.random().toString().substring(2, 8)
     },
 
     eid: {

@@ -26,10 +26,10 @@ const employeeLeaveCountSchema = mongoose.Schema(
      // required: [true, "Please enter the Date"],
     },
    
-    // presented_days: {
-    //   type: Number,
-    //  // required: [true, "Please enter the Date"],
-    // },
+    email: {
+      type: String,
+      required: false,
+    },
     
 
   },

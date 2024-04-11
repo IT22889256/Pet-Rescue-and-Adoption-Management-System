@@ -1,6 +1,19 @@
 const Employee = require("../modules/employee.model");
 const Leave = require("../modules/leave.model");
 const EmployeeLeaveCount = require("../modules/employeeLeaveCount.model");
+const { SendMail } = require('../controllers/email.controller');
+const Counter = require('../modules/counter.model');
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com', // Replace with your SMTP server host
+  port: 587, // Replace with your SMTP server port (may vary)
+  secure: false, // Adjust if using TLS or SSL
+  auth: {
+    user: process.env.NODEJS_GMAIL_APP_USER,   // your email address
+    pass: process.env.NODEJS_GMAIL_APP_PASSWORD, // your password     // Replace with your email password (consider using app passwords)
+  }
+});
 
 
 //  Get all employees leaves (employee manager)
@@ -37,7 +50,17 @@ const getLeaves = async (req, res) => {
 
   const requestLeave = async (req, res) => {
     try {
-      const leave = await Leave.create(req.body);
+
+      const counter = await Counter.findByIdAndUpdate(
+        { _id: 'leaverequestId' },
+        { $inc: { seq: 1 } },
+        { new: true, upsert: true }
+      );
+
+      const leaveRequestId = 'LR' + String(counter.seq).padStart(3, '0');
+
+
+      const leave = await Leave.create({...req.body,leaveID: leaveRequestId});
       res.status(200).json(leave);
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -46,78 +69,95 @@ const getLeaves = async (req, res) => {
 
 
 
-// Mark leave by employee Manager
-const acceptLeave = async (req, res) => {
-   
-  try {
-
+  const acceptLeave = async (req, res) => {
+    try {
       const { id } = req.params;
-
-
+  
       const employeeLeave = await Leave.findById(id);
-
       if (!employeeLeave) {
-        return res.status(404).json({ message: 'employee not found' });
+        return res.status(404).json({ message: 'Employee leave not found' });
       }
-
+  
       const reason = employeeLeave.reason;
       const status = employeeLeave.status;
       const eid = employeeLeave.eid;
       const days = employeeLeave.days;
-
-     
-      const LeaveCount = await EmployeeLeaveCount.findOne({eid:eid});
-      
+     // const employeeEmail = employeeLeave.email; // Retrieve employee email
+  
+      const LeaveCount = await EmployeeLeaveCount.findOne({ eid });
+      if (!LeaveCount) {
+        return res.status(404).json({ message: 'Employee leave count not found' });
+      }
+  
       let medical = LeaveCount.medical;
       let casual = LeaveCount.casual;
       let emergency = LeaveCount.emergency;
-
-     
-      
-if(reason === 'medical'){
-  if(medical > 0 && medical >= days){
-    medical--;
-  }else{
-    return res.status(404).json({ message: 'No medical leaves available' });
-  }
-}
-
-if(reason === 'casual'){
-  if(casual > 0 && casual >= days){
-    casual--;
-  }else{
-    return res.status(404).json({ message: 'No casual leaves available' });
-  }
-
-}
-
-if(reason === 'emergency'){
-  if(emergency > 0 && emergency >= days){
-    emergency--;
-  }else{
-    return res.status(404).json({ message: 'No emergency leaves available' });
-  }
-}
-
-
-      const updatedLeaveCount = await EmployeeLeaveCount.findOneAndUpdate({eid:eid}, { medical, casual, emergency }, { new: true });
-
-
-      const leave = await Leave.findOneAndUpdate({ eid: eid }, {status:'accepted'}, { new: true });
-
+      let employeeEmail = LeaveCount.email;
   
-      if (!leave) {
-        return res.status(404).json({ message: "Leave not found" });
+      if (reason === 'medical') {
+        if (medical > 0 && medical >= days) {
+          medical -= days;
+        } else {
+          return res.status(404).json({ message: 'Insufficient medical leaves' });
+        }
+      } else if (reason === 'casual') {
+        if (casual > 0 && casual >= days) {
+          casual -= days;
+        } else {
+          return res.status(404).json({ message: 'Insufficient casual leaves' });
+        }
+      } else if (reason === 'emergency') {
+        if (emergency > 0 && emergency >= days) {
+          emergency -= days;
+        } else {
+          return res.status(404).json({ message: 'Insufficient emergency leaves' });
+        }
       }
   
-      const updatedleave = await Leave.findOne({ eid: eid });
-
-      res.status(200).json(updatedleave);
+      const updatedLeaveCount = await EmployeeLeaveCount.findOneAndUpdate(
+        { eid },
+        { medical, casual, emergency },
+        { new: true }
+      );
+  
+      const leave = await Leave.findOneAndUpdate({ eid }, { status: 'accepted' }, { new: true });
+      if (!leave) {
+        return res.status(404).json({ message: 'Leave update failed' });
+      }
+  
+      const updatedleave = await Leave.findOne({ eid });
+  
+      // Prepare email data (remove unnecessary console.log)
+      const emailData = {
+        from: 'Pet Rescue Management System <projectforitp@gmail.com>',  // Replace with sender email
+        to: `${employeeEmail}`, // Use retrieved employee email
+        subject: 'Leave Request Accepted',
+        html: `<!DOCTYPE html>
+          <html>
+            <body>
+              <p>Dear Employee,</p>
+              <p>This email confirms that your leave request for ${days} days of ${reason} leave has been approved.</p>
+              <p>Your updated leave balances are:</p>
+              <ul>
+                <li>Medical Leave: ${medical} days</li>
+                <li>Casual Leave: ${casual} days</li>
+                <li>Emergency Leave: ${emergency} days</li>
+              </ul>
+              <p>Regards,</p>
+              <p>Leave Management System</p>
+            </body>
+          </html>`
+      };
+  
+      // Send email notification upon leave acceptance (ensure response is not sent before)
+      await transporter.sendMail(emailData); // Use await to wait for email sending
+  
+      res.status(200).json({ message: 'Leave accepted and email sent', updatedleave });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ message: error.message });
     }
   };
-
 
 
 //reject leave by employee manager

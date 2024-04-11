@@ -1,6 +1,7 @@
 const Employee = require("../modules/employee.model");
 //const Attendance = require("../modules/daily_attendance.model");
 const EmployeeLeaveCount = require("../modules/employeeLeaveCount.model");
+const Counter = require('../modules/counter.model');
 
 
 
@@ -52,22 +53,48 @@ const getEmployeeByEmployeeId = async (req, res) => {
 
 
 // Create an employee by employee manager
-const createEmployee = async (req, res) => {
-  try {
+// const createEmployee = async (req, res) => {
+//   try {
 
-    const employee = await Employee.create(req.body);
+//     const employee = await Employee.create(req.body);
 
    
-    const employeeLeaveCount = await EmployeeLeaveCount.create({
-      eid: employee.eid,
+//     const employeeLeaveCount = await EmployeeLeaveCount.create({
+//       eid: employee.eid,
+//       email: employee.email,
       
-    });
+//     });
 
-    res.status(200).json(employee);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+//     res.status(200).json(employee);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+//new feature auto incriment id for employee create
+const createEmployee = async (req, res) => {
+try {
+  const counter = await Counter.findByIdAndUpdate(
+    { _id: 'employeeId' },
+    { $inc: { seq: 1 } },
+    { new: true, upsert: true }
+  );
+
+  const employeeId = 'EMP' + String(counter.seq).padStart(3, '0');
+  // Create new employee using employeeId and request body
+  
+  const employee = await Employee.create({ ...req.body, eid: employeeId });
+
+  const employeeLeaveCount = await EmployeeLeaveCount.create({ eid: employee.eid ,email: employee.email });
+
+  res.status(200).json(employee);
+} catch (error) {
+  res.status(500).json({ message: error.message });
+}
+
 };
+
+
 
 
 

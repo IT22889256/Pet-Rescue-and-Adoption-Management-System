@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import axios from 'axios'
 
@@ -56,7 +56,7 @@ export default function ViewLeave() {
         .then(result => {
             alert('Leave Accepted')
             console.log(result)
-            //navigate('/EmployeeManager/LeaveManagement')
+            navigate('/EmployeeManager/LeaveManagement')
         })
         .catch(err => console.log(err))
     }
@@ -72,7 +72,7 @@ export default function ViewLeave() {
         console.log('result')
         axios.put(`http://localhost:3000/EmployeeManager/leave/rejectLeave/${leaveId}`,data)
         .then(result => {
-            alert('Leave Rejected')
+            //alert('Leave Rejected')
             console.log(result)
             navigate('/EmployeeManager/LeaveManagement')
         })

@@ -5,7 +5,7 @@ const AttendanceSchema = mongoose.Schema(
     eid: {
       type: String,
       required: false,
-      unique: true,
+      //unique: true,
     },
 
     firstName: {
@@ -18,6 +18,11 @@ const AttendanceSchema = mongoose.Schema(
       required: false,
     },
     
+    status: {
+      type: String,
+      enum: ['available', 'unavailable'], 
+      default: 'available'
+    },
 
   },
   {

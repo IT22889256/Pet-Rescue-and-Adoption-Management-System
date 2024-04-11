@@ -1,4 +1,6 @@
 const JobRole = require("../modules/jobRole.model");
+const Counter = require('../modules/counter.model');
+
 
 
 // get all job roles
@@ -27,7 +29,16 @@ const getJobRole = async (req, res) => {
 // create a job role
 const createJobRole = async (req, res) => {
   try {
-    const jobRole = await JobRole.create(req.body);
+
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'jobRoleID' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+
+    const jobRoleID = 'JR' + String(counter.seq).padStart(3, '0');
+
+    const jobRole = await JobRole.create({...req.body,jobId: jobRoleID});
     res.status(200).json(jobRole);
   } catch (error) {
     res.status(500).json({ message: error.message });

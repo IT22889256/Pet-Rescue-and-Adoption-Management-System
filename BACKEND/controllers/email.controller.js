@@ -8,7 +8,7 @@ const { getSalaries, getSalary, createSalary, updateSalary, deleteSalary } = req
 const SendMail = async (req, res)=>{
 
 
-const { email, basicSalary, otHours, eid, otRates, totalOT, bonus, totalSalary } = req.body;
+const { email } = req.body;
 
 
     let config = {
@@ -29,16 +29,31 @@ const { email, basicSalary, otHours, eid, otRates, totalOT, bonus, totalSalary }
 
     let message = {
         from: 'projectforitp@gmail.com', // sender address
-        to: req.body.email, // list of receivers
-        subject: 'Hello from Project ResQ', // Subject line
-        html: "<b>Hello world</b>", // html body
-        // attachments: [ // use URL as an attachment
-        //     {
-        //       filename: 'receipt_test.pdf',
-        //       path: 'receipt_test.pdf',
-        //       cid: 'uniqreceipt_test.pdf' 
-        //     }
-        // ]
+        to: email, // list of receivers
+        subject: 'Leave Request from ResQ', // Subject line
+        html: ` <html>
+        <head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f5f5f5;
+                    padding: 20px;
+                }
+                h1 {
+                    color: #007bff;
+                }
+                p {
+                    font-size: 16px;
+                    line-height: 1.6;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Hello!</h1>
+            <p>Your leave request has been <strong>accepted</strong>.</p>
+            <p>Thank you.</p>
+        </body>
+        </html> `
     };
 
     transporter.sendMail(message).then((info) => {

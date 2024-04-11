@@ -6,14 +6,14 @@ const requestFundsSchema = mongoose.Schema(
     request_id:{
      type:String,
     required:false,
-    default: 'RF' + Math.floor(Date.now() / 1000)
+    //default: 'RF' + Math.floor(Date.now() / 1000)
 
     },
 
     request_no: {
       type: String,
       required: false,
-      default: 'RF' + Math.floor(Date.now() / 2000000)
+     // default: 'RF' + Math.floor(Date.now() / 2000000)
      
   },
 
