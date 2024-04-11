@@ -189,7 +189,10 @@ const deleteAopterRequest = async (req, res) => {
 
 //Accept Adopter Request
 const acceptAdopterRequest = asyncHandler(async (req, res, next) => {
-  console.log("1234 : ", req.body);
+  console.log("1234 : ", req.params.id);
+  const { id } = req.params;
+  const adopterRequest = await AdopterRequest.findById(id);
+  console.log("adopterRequest : ", adopterRequest);
   const {
     name,
     email,
@@ -204,8 +207,8 @@ const acceptAdopterRequest = asyncHandler(async (req, res, next) => {
     image,
     petOwnerShip,
     reason,
-    empStatus,
-  } = req.body; // Make sure to include 'role' if it's being sent from the front end
+  } = adopterRequest; // Make sure to include 'role' if it's being sent from the front end
+
   try {
     const adopter = await Adopter.create({
       name,
@@ -221,7 +224,6 @@ const acceptAdopterRequest = asyncHandler(async (req, res, next) => {
       image,
       petOwnerShip,
       reason,
-      empStatus,
     });
 
     if (adopter) {
@@ -283,6 +285,16 @@ const acceptAdopterRequest = asyncHandler(async (req, res, next) => {
   }
 });
 
+// Get all Adopters
+const getAdopters = async (req, res) => {
+  try {
+    const adopters = await Adopter.find();
+    res.status(200).json(adopters);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createAdopterRequest,
   getAdopterRequests,
@@ -290,4 +302,5 @@ module.exports = {
   updateAdopterRequest,
   deleteAopterRequest,
   acceptAdopterRequest,
+  getAdopters,
 };

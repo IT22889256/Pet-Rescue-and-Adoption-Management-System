@@ -1,9 +1,8 @@
 import React from "react";
 import DashboardStatsGrid from "../../components/petManager/DashboardStatsGrid";
-import RescueChart from "../../components/petManager/RescueRequestChart";
-import RecentRequests from "../../components/petManager/RecentRequest";
+import RescueChart from "../../components/petManager/RescueChart";
+import RecentVerificationRequests from "../../components/userManagement/RecentVerificationRequests";
 import RescueRequstsChart from "../../components/petManager/RescueRequestPieChart";
-import CreatedTasks from "../../components/petManager/CreateTasks";
 
 export default function Dashboard() {
   return (
@@ -14,8 +13,7 @@ export default function Dashboard() {
         <RescueRequstsChart />
       </div>
       <div className="flex flex-row gap-4 w-full">
-        <RecentRequests />
-        <CreatedTasks />
+        <RecentVerificationRequests />
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const chatRoute = require("./routes/chatroute");
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3002", // Adjust accordingly
+    origin: "http://localhost:3001", // Adjust accordingly
     credentials: true,
   })
 );

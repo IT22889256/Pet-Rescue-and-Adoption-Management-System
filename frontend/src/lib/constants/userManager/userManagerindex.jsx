@@ -10,15 +10,15 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     icon: <HiOutlineViewGrid />,
   },
   {
-    key: "Users",
-    label: "Users",
-    path: "/userManager/userRequest",
+    key: "Adopters",
+    label: "Adopters",
+    path: "/userManager/adopters",
     icon: <IoPeople />,
   },
   {
     key: "Verification Requests",
     label: "Verification Requests",
-    path: "/userManager/userTask",
+    path: "/userManager/account-vericifacton-requests",
     icon: <FaTasks />,
   },
   {

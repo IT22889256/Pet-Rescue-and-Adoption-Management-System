@@ -22,10 +22,15 @@ import EmployeeProfile from "./components/EmployeeProfile";
 import UserManagerLayout from "./components/userManagement/userLayout";
 import UserDashboard from "./pages/userManagement/userManagerDashboard";
 import UserLayout from "./components/shared/users/UserLayout";
+import VerificationRequests from "./pages/userManagement/VerificationRequests";
+import ViewRequest from "./pages/userManagement/adopterRequests/VIewRequest";
+import AcceptRequest from "./pages/userManagement/adopterRequests/AcceptRequest";
+import RejectRequest from "./pages/userManagement/adopterRequests/RejectRequest";
+import Adopters from "./pages/userManagement/Adopters";
 
 import UserRequest from "./pages/userManagement/UserRequest";
 import UserProfile from "./pages/userManagement/UserProfile";
-import UserTask from "./pages/userManagement/UserTask";
+
 import CreateUser from "./pages/userManagement/userProfile/CreateUser";
 import ViewUser from "./pages/userManagement/userProfile/ViewUser";
 import EditUser from "./pages/userManagement/userProfile/EditUser";
@@ -126,13 +131,33 @@ function App() {
         <Route path="/userManager" element={<UserManagerLayout />}>
           <Route index path="/userManager" element={<UserDashboard />} />
           {/* main routes */}
-          <Route path="/userManager/userRequest" element={<UserRequest />} />
-          <Route path="/userManager/userTask" element={<UserTask />} />
+          <Route path="/userManager/adopters" element={<Adopters />} />
+          <Route
+            path="/userManager/account-vericifacton-requests"
+            element={<VerificationRequests />}
+          />
           <Route path="/userManager/userProfile" element={<UserProfile />} />
-          {/* pet profile routes */}
           <Route
             path="/userManager/userProfile/viewUser/:id"
             element={<ViewUser />}
+          />
+          <Route
+            path="/userManager/userProfile/RemoveUser/:id"
+            element={<RemoveUser />}
+          />
+          {/* Account verification requests routes */}
+          <Route
+            path="/userManager/verificationRequest/viewRequest/:id"
+            element={<ViewRequest />}
+          />
+          <Route
+            path="/userManager/verificationRequest/viewRequest/rejectRquest/:id"
+            element={<RejectRequest />}
+          />
+
+          <Route
+            path="/userManager/verificationRequest/viewRequest/acceptRquest/:id"
+            element={<AcceptRequest />}
           />
           <Route
             path="/userManager/userProfile/EditUser/:id"
@@ -141,10 +166,6 @@ function App() {
           <Route
             path="/userManager/userProfile/createUser"
             element={<CreateUser />}
-          />
-          <Route
-            path="/userManager/userProfile/removeUser/:id"
-            element={<RemoveUser />}
           />
         </Route>
       </Routes>
