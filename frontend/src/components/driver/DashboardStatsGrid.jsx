@@ -12,9 +12,9 @@ export default function DashboardStatsGrid() {
 					<IoPeople className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Rescue Request</span>
+					<span className="text-sm text-gray-500 font-light">Total Transportation Schedule</span>
 					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">60</strong>
+						<strong className="text-xl text-gray-700 font-semibold">62</strong>
 						
 					</div>
 				</div>
@@ -35,7 +35,7 @@ export default function DashboardStatsGrid() {
 					<MdOutlinePets className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Pets</span>
+					<span className="text-sm text-gray-500 font-light">Complains</span>
 					<div className="flex items-center">
 						<strong className="text-xl text-gray-700 font-semibold">13</strong>
 						{/* <span className="text-sm text-red-500 pl-2">Adopted - 40</span> */}
@@ -47,7 +47,7 @@ export default function DashboardStatsGrid() {
 					<FaHome className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Adopted</span>
+					<span className="text-sm text-gray-500 font-light">Total Vehicles</span>
 					<div className="flex items-center">
 						<strong className="text-xl text-gray-700 font-semibold">2</strong>
 					</div>
