@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
-export default function ViewRequest() {
+export default function ViewVerificationRequest() {
   const [verificationRequest, setVerificationRequest] = useState({});
   const { id } = useParams();
 
