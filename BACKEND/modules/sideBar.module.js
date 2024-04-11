@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ComplaintSchema = mongoose.Schema({
+const SideBarSchema = mongoose.Schema({
     userName: {
         type: String,
         required: true
@@ -11,6 +11,6 @@ const ComplaintSchema = mongoose.Schema({
     }
 });
 
-const Complaint = mongoose.model("Complaint", ComplaintSchema);
+const SideBar = mongoose.model("SideBar", SideBarSchema);
 
-module.exports = Complaint;
+module.exports = SideBar;
