@@ -17,8 +17,10 @@ export default function EditPet() {
     const [location, setLocation] = useState()
     const [pet_image, setPetImage] = useState()
     const navigate = useNavigate()
+
     const {id} = useParams()
     useEffect((e) => {
+
 
         axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
         .then((res) => {
@@ -105,7 +107,7 @@ export default function EditPet() {
                                         name="pet_name"
                                         id="pet-name"
                                         value={pet_name}
-                                        onChange={(e) => setPetName(e.target.value)}
+                                        //onChange={(e) => setPetName(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -120,7 +122,7 @@ export default function EditPet() {
                                         name="pet_gender"
                                         id="pet-gender"
                                         value={pet_gender}
-                                        onChange={(e) => setPetGender(e.target.value)}
+                                        //onChange={(e) => setPetGender(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -135,7 +137,7 @@ export default function EditPet() {
                                         name="pet_age"
                                         id="pet-age"
                                         value={pet_age}
-                                        onChange={(e) => setPetAge(e.target.value)}
+                                        //onChange={(e) => setPetAge(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -150,7 +152,7 @@ export default function EditPet() {
                                         name="pet_appearance"
                                         id="pet-appearance"
                                         value={pet_appearance}
-                                        onChange={(e) => setPetappearance(e.target.value)}
+                                        //onChange={(e) => setPetappearance(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -165,7 +167,7 @@ export default function EditPet() {
                                             name="pet_type"
                                             value={pet_type}
                                             
-                                            onChange={(e) => setPettype(e.target.value)}
+                                            //onChange={(e) => setPettype(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                             ><option></option>
                                             <option>Cat</option>
@@ -202,7 +204,7 @@ export default function EditPet() {
                                         name="location"
                                         id="locations"
                                         value={location}
-                                        onChange={(e) => setLocation(e.target.value)}
+                                        //onChange={(e) => setLocation(e.target.value)}
                                         autoComplete="street-address"
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
@@ -223,7 +225,7 @@ export default function EditPet() {
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
                                             value={pet_image}
-                                            onChange={(e) => setPetImage(e.target.value)}
+                                            //onChange={(e) => setPetImage(e.target.value)}
                                         />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>
