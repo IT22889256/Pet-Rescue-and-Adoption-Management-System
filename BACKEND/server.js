@@ -7,13 +7,10 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 const cron = require('node-cron');
 
-
 // Middleware
 app.use(express.json()); // Parsing incoming requests with JSON payloads
 app.use(cors());
 app.use(express.urlencoded({ extended: false })); // Parsing incoming requests with URL-encoded payloads
-
-
 
 // Connect to database
 const PORT = process.env.PORT || 3000;
@@ -26,10 +23,7 @@ connection.once('open', () => {
     console.log('Mongodb Connection success');
 })
 
-
-
 // Reset employee leave count every 31st of the month
-
 const {resetEmployeeLeaveCount } = require('./controllers/employeeLeaveCount.controller.js');
 
 
@@ -70,10 +64,6 @@ const reccuringdonationsRouter = require('./routes/reccuringdonation.route');
 const specificneeddonationRouter =require('./routes/specificneeddonation.route');
 const sponsorDonationRouter = require('./routes/sponsordonation.route');
 
-
-
-
-
 //import pet routes
 
 const petRouter = require('./routes/pet.route');
@@ -87,9 +77,6 @@ const supplyRouter = require('./routes/pet_supply.route')
 const appoinmentRouter = require('./routes/appoinment_schedule.route')
 const adoptionProcessRouter = require('./routes/adoption_process.route')
 const doctorRouter = require('./routes/pet.route')
-
-
-
 
 //import routes(Schedule)
 const Schedule = require('./modules/schedule.model.js');
