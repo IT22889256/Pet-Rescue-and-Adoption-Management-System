@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
 import HeplAndSupport from './pages/HeplAndSupport'
-//import EmployeeProfile from './components/EmployeeProfile'
+import EmployeeProfile from './components/EmployeeProfile'
 
 //pet managemnt imports
 
