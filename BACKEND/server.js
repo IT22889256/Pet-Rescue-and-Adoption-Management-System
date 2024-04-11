@@ -38,55 +38,41 @@ connection.once("open", () => {
 });
 
 //import routes
-const complaintRouter = require("./routes/complaint.route");
+
 const petRouter = require("./routes/pet.route");
 
 //Routes
 app.get("/", (req, res) => {
   res.send("Home Page");
 });
-//complaint
-app.use("/complain", complaintRouter);
-
 
 //import routes
-const sponserpetRouter = require('./routes/sponserpet.route');
-
+const sponserpetRouter = require("./routes/sponserpet.route");
 
 //donations
-const donationRouter = require('./routes/donation.route');
-const reccuringdonationsRouter = require('./routes/reccuringdonation.route');
-const specificneeddonationRouter =require('./routes/specificneeddonation.route');
-const sponsorDonationRouter = require('./routes/sponsordonation.route');
-
-
-
-
+const donationRouter = require("./routes/donation.route");
+const reccuringdonationsRouter = require("./routes/reccuringdonation.route");
+const specificneeddonationRouter = require("./routes/specificneeddonation.route");
+const sponsorDonationRouter = require("./routes/sponsordonation.route");
 
 //import pet routes
 
-const petRouter = require('./routes/pet.route');
-
-
-const rescueTask = require('./routes/task.route');
-const rescueRequest = require('./routes/rescueRequest.route')
+const rescueTask = require("./routes/task.route");
+const rescueRequest = require("./routes/rescueRequest.route");
 //import adoption routes
-const adoptionRouter = require('./routes/pet_adoption.route')
-const supplyRouter = require('./routes/pet_supply.route')
-const appoinmentRouter = require('./routes/appoinment_schedule.route')
-const adoptionProcessRouter = require('./routes/adoption_process.route')
-const doctorRouter = require('./routes/pet.route')
-
-
-
+const adoptionRouter = require("./routes/pet_adoption.route");
+const supplyRouter = require("./routes/pet_supply.route");
+const appoinmentRouter = require("./routes/appoinment_schedule.route");
+const adoptionProcessRouter = require("./routes/adoption_process.route");
+const doctorRouter = require("./routes/pet.route");
 
 //import routes(Schedule)
-const Schedule = require('./modules/schedule.model.js');
-const scheduleRoute = require('./routes/schedule.route.js');
+const Schedule = require("./modules/schedule.model.js");
+const scheduleRoute = require("./routes/schedule.route.js");
 
 //import routes(vehicle)
-const Vehicle = require('./modules/vehicle.model.js');
-const vehicleRoute = require('./routes/vehicle.route.js');
+const Vehicle = require("./modules/vehicle.model.js");
+const vehicleRoute = require("./routes/vehicle.route.js");
 
 //routes(vehicle)
 app.use("/api/vehicles", vehicleRoute);
@@ -98,9 +84,6 @@ app.use("/api/schedules", scheduleRoute);
 
 app.use("/petManager", petRouter);
 
-app.listen(PORT, () =>{
-    console.log(`Server is up and running on ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is up and running on ${PORT}`);
 });
-
-
-
