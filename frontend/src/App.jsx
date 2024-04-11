@@ -181,9 +181,12 @@ import EditJob from './pages/employeeManagment/JobRoles/EditJobs';
 import ManageDeactivateEmployees from './pages/employeeManagment/ManageDeactivateEmployees';
 import ViewDeactivateEmployees from './pages/employeeManagment/deactivateEmployees/ViewDeactivateEmployees';
 
-//leave requests
+//leave requests manage from manager
 import ManageLeaves from './pages/employeeManagment/ManageLeaves'
 import ViewLeaveRequest from './pages/employeeManagment/LeaveRequests/ViewLeaveRequest'
+
+//leave apply from employee
+import LeaveApply from './pages/employeeManagment/LeaveApply'
 
 function App() {
     return (
@@ -271,7 +274,8 @@ function App() {
                 <Route path="/employeeManager/LeaveManagement" element={<ManageLeaves />} />
                 <Route path="/employeeManager/jobRoles" element={<ManageJobRoles />} />
                 <Route path="/employeeManager/ManageDeactivateEmployees" element={<ManageDeactivateEmployees />} />
-
+                <Route path ="/employeeManager/LeaveApply" element={<LeaveApply />} />  
+'
                 
 
                 <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
@@ -289,13 +293,16 @@ function App() {
                 { <Route path="/employeeManager/salary/:id" element={<ViewSalary />} />}
                 { <Route path="/employeeManager/salary/EditSalary/:id" element={<EditSalary />} />} 
                 { <Route path="/employeeManager/salary/CreateSalary/:eid" element={<CreateSalary />} />}
+               
                 {/* job role routes */}
-                
                 <Route path="/employeeManager/jobRoles/viewJobs/:id" element={<ViewJobRoles />} />
                 <Route path="/employeeManager/jobRoles/createJobs" element={<CreateJob />} />   
                 <Route path="/employeeManager/jobRoles/editJobs/:id" element={<EditJob />} />
                     {/* leave request routes */}
                 <Route path="/employeeManager/leave/:id" element={<ViewLeaveRequest />} />
+
+                {/* leave accept routes */}
+
                 {/* deactivate employees route */}
                 <Route path="/employeeManager/deactivateEmployees/ViewDeactivateEmployees/:id" element={<ViewDeactivateEmployees />} />
 

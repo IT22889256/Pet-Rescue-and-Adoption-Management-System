@@ -156,7 +156,6 @@ export default function CreateEmployee() {
                         <option>driver</option>
                         <option>cleaner</option>
                         <option>manager</option>
-                        <option>helper</option>
                         <option>supportive staff member</option>
 
                      

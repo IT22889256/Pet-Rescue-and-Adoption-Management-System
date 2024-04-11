@@ -24,52 +24,7 @@ export default function ManageLeaves() {
 
 
 
-// 	const accepted = (leaveId) => {
 
-//         const data = {
-// 			status: 'accepted'
-
-//         };
-        
-//         console.log('result')
-//         axios.put(`http://localhost:3000/EmployeeManager/leave/acceptLeave/${leaveId}`,data)
-//         .then(result => {
-//             alert('Leave Accepted')
-//             console.log(result)
-//             //navigate('/EmployeeManager/LeaveManagement')
-// 			//window.location.reload();
-//         })
-//         .catch(err => console.log(err))
-//     }
-
-
-// 	const rejected = (leaveId) => {
-
-//         const data = {
-// 			status: 'rejected'
-
-//         };
-        
-//         console.log('result')
-//         axios.put(`http://localhost:3000/EmployeeManager/leave/rejectLeave/${leaveId}`,data)
-//         .then(result => {
-//             alert('Leave Rejected')
-//             console.log(result)
-//            // navigate('/EmployeeManager/LeaveManagement')
-// 		  // window.location.reload();
-//         })
-//         .catch(err => console.log(err))
-//     }
-
-// //function for accept leave
-// 	const handleAccept = (leaveId) => {
-//         accepted(leaveId); // Call the accepted function with leaveId
-//     };
-
-// //function for reject leave
-// 	const handleReject = (leaveId) => {
-// 		rejected(leaveId); // Call the rejected function with leaveId
-// 	};
 
 
 	const handleDelete = (leaveId) => {
@@ -122,8 +77,7 @@ export default function ManageLeaves() {
                                 <td>
                                     
                                         <>
-                                            {/* <button onClick={() => handleAccept(leave._id)} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400 text-center text-justify ml-1">Accept</button>
-                                            <button onClick={() =>handleReject(leave._id)} className="bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400 text-center text-justify ml-1">Reject</button> */}
+                                            
                                         	<Link to={`/employeeManager/leave/${leave._id}`} className="bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400 text-center ml-1">View</Link>
                                            
 

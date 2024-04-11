@@ -30,6 +30,7 @@ export default function ManageDeleteEmployees() {
 					</thead>
 					{<tbody>
 						{employees.map((employee) => (
+							 employee.availability === 'unavailable' && (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={employee._id}>
 								<td>
 									{employee.eid}
@@ -52,6 +53,7 @@ export default function ManageDeleteEmployees() {
 									<Link to={`/employeeManager/employees/removeEmployee/${employee._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link> */}
 								</td>
 							</tr>
+							 )
 						))}
 					</tbody> }
 

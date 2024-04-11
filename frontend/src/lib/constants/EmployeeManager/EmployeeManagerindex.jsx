@@ -10,6 +10,7 @@ import { MdCoPresent } from "react-icons/md";
 import { AiFillSchedule } from "react-icons/ai";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { PiFolderNotchOpenFill } from "react-icons/pi";
+import { BsFillSendArrowDownFill } from "react-icons/bs";
 
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
@@ -20,7 +21,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	},
 	{
 		key: 'Leave Request',
-		label: 'Leave Requests',
+		label: 'Leaves',
 		path: '/EmployeeManager/LeaveManagement',
 		icon: <IoPeople />
 	},
@@ -63,6 +64,13 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		label: 'Job Roles',
 		path: '/EmployeeManager/JobRoles',
 		icon: <PiFolderNotchOpenFill />
+	},
+
+	{
+		key: 'Leave Apply',
+		label: 'Leave Apply',
+		path: '/EmployeeManager/LeaveApply',
+		icon: <BsFillSendArrowDownFill />
 	},
 
 ]

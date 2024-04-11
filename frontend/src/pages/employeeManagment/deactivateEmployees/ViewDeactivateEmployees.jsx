@@ -23,7 +23,7 @@ export default function ViewEmployee() {
             axios.put(`http://localhost:3000/EmployeeManager/deactivateEmployees/activate/${id}`)
                 .then(() => {
                     alert('Employee activated!');
-                    navigate('/EmployeeManager/ManageDeactivateEmployees');
+                    navigate('/employeeManager/ManageDeactivateEmployees');
                 })
                 .catch((error) => {
                     console.log(error);
