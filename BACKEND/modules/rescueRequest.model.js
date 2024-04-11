@@ -21,8 +21,9 @@ const RescueRequestSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    pet_image:{
+    imgUrl:{
         type: String,
+        required: true
     },
 
     },

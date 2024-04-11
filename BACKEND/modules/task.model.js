@@ -45,8 +45,13 @@ const TaskSchema = mongoose.Schema({
         type: Date,
         required: true
     },
-    pet_image:{
+    imgUrl:{
         type: String,
+        required: true
+    },
+    pet_profile_status:{
+        type: Boolean,
+        required: true
     },
 });
 
