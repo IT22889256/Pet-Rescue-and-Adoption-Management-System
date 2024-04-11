@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PetManagerDashboard from './pages/petManament/PetManagerDashboard'
 import HeplAndSupport from './pages/HeplAndSupport'
+
 import EmployeeProfile from './components/EmployeeProfile'
 
 //pet managemnt imports
-
 import PetLayout from './components/petManager/PetLayout'
 import RescueRequest from './pages/petManament/RescueRequest'
 import RescueTask from './pages/petManament/RescueTask'
@@ -152,10 +152,49 @@ import Apple from './pages/Apple'
 //Driver imports
 import DriverLayout from './components/driver/DriverLayout'
 
+//employee management imports
+import EmployeeLayout from './components/employeeManager/EmployeeLayout';
+import EmployeeManagerDashboard from './pages/employeeManagment/EmployeeManagerDashboard';
+import ManageEmployees from './pages/employeeManagment/ManageEmployees';
+
+import CreateEmployee from './pages/employeeManagment/employees/CreateEmployee';
+import ViewEmployee from './pages/employeeManagment/employees/ViewEmployees';
+import EditEmployee from './pages/employeeManagment/employees/EditEmployee';
+import RemoveEmployee from './pages/employeeManagment/employees/RemoveEmployee';
+
+//salary management imports
+import ManageSalaries from './pages/employeeManagment/ManageSalaries';
+import ViewSalary from './pages/employeeManagment/salaryManagement/ViewSalary';
+import EditSalary from './pages/employeeManagment/salaryManagement/EditSalary';
+import CreateSalary from './pages/employeeManagment/salaryManagement/CreateSalary';
+
+//deactivate employees
+import DeleteEmployees from './pages/employeeManagment/ManageDeactivateEmployees';
+
+//job role management
+import ManageJobRoles from './pages/employeeManagment/ManageJobRoles';
+import ViewJobRoles from './pages/employeeManagment/JobRoles/ViewJobs';
+import CreateJob from './pages/employeeManagment/JobRoles/CreateJobs';
+import EditJob from './pages/employeeManagment/JobRoles/EditJobs';
+
+//deactivated Employees
+import ManageDeactivateEmployees from './pages/employeeManagment/ManageDeactivateEmployees';
+import ViewDeactivateEmployees from './pages/employeeManagment/deactivateEmployees/ViewDeactivateEmployees';
+
+//leave requests manage from manager
+import ManageLeaves from './pages/employeeManagment/ManageLeaves'
+import ViewLeaveRequest from './pages/employeeManagment/LeaveRequests/ViewLeaveRequest'
+
+//leave apply from employee
+import LeaveApply from './pages/employeeManagment/LeaveApply'
+
 function App() {
     return (
+        
         <Router>
+            
             <Routes>
+
                 <Route path="/petManager" element={<PetLayout />}>
                     <Route index path="/petManager" element={<PetManagerDashboard />} />
                     <Route path="/petManager/employeeProfile" element={<EmployeeProfile />} />
@@ -221,161 +260,202 @@ function App() {
 
 
                 <Route path="/apple" element={<Apple />} />
-            
+            </Routes>
+            <Routes>
+            <Route path="/employeeManager" element={<EmployeeLayout />}>
+                <Route index path="/employeeManager" element={<EmployeeManagerDashboard />} />
+                <Route path="/employeeManager/employeeProfile" element={<EmployeeProfile />} />
+                <Route path="/employeeManager/heplAndSupport" element={<HeplAndSupport />} />
+
+                {/* main routes */}
+                <Route path="/employeeManager/ManageEmployees" element={<ManageEmployees />} />
+                <Route path="/employeeManager/DeleteEmployees" element={<DeleteEmployees />} />
+                <Route path="/employeeManager/SalaryManagement" element={<ManageSalaries />} />
+                <Route path="/employeeManager/LeaveManagement" element={<ManageLeaves />} />
+                <Route path="/employeeManager/jobRoles" element={<ManageJobRoles />} />
+                <Route path="/employeeManager/ManageDeactivateEmployees" element={<ManageDeactivateEmployees />} />
+                <Route path ="/employeeManager/LeaveApply" element={<LeaveApply />} />  
+'
                 
 
-            </Routes>
+                <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
+                <Route path="/employeeManager/petProfile" element={<PetProfile />} />
 
+                {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
+                {/* employee profile routes */}
+                <Route path="/employeeManager/employees/createEmployee" element={<CreateEmployee />} />
+                <Route path="/employeeManager/employees/viewEmployee/:id" element={<ViewEmployee />} />
+                {<Route path="/employeeManager/employees/editEmployee/:id" element={<EditEmployee />} />}
+                { <Route path="/employeeManager/employees/deleteEmployee/:id" element={<RemoveEmployee />} />}
+                {<Route path="/employeeManager/employees/removeEmployee/:id" element={<RemoveEmployee />} /> }  
+               
+                {/* salary routes */}
+                { <Route path="/employeeManager/salary/:id" element={<ViewSalary />} />}
+                { <Route path="/employeeManager/salary/EditSalary/:id" element={<EditSalary />} />} 
+                { <Route path="/employeeManager/salary/CreateSalary/:eid" element={<CreateSalary />} />}
+               
+                {/* job role routes */}
+                <Route path="/employeeManager/jobRoles/viewJobs/:id" element={<ViewJobRoles />} />
+                <Route path="/employeeManager/jobRoles/createJobs" element={<CreateJob />} />   
+                <Route path="/employeeManager/jobRoles/editJobs/:id" element={<EditJob />} />
+                    {/* leave request routes */}
+                <Route path="/employeeManager/leave/:id" element={<ViewLeaveRequest />} />
 
-            <Routes>
+                {/* leave accept routes */}
 
-                <Route path="/DonationManager" element={<DonationLayout />}>
-                    <Route index path="/DonationManager" element={<DonationDashboard/>} />
-                    <Route path="/DonationManager/employeeProfile" element={<EmployeeProfile />} />
-                    <Route path="/DonationManager/heplAndSupport" element={<HeplAndSupport />} />
-                    {/* main routes */}
-                    <Route path="/DonationManager/rescueRequest" element={<RescueRequest />} />
-                    <Route path="/DonationManager/reccuringdonations" element={<ReccuringDonations />} />
-                    <Route path="/DonationManager/SponsorshipPets" element={<SponserPetProfile />} />
-                    <Route path ="/DonationManager/specificneedsdonations" element={<SpecificNeedDonations />} />
-                    <Route path ="/DonationManager/sponsordonations" element={<SponsorDonations />} />
+                {/* deactivate employees route */}
+                <Route path="/employeeManager/deactivateEmployees/ViewDeactivateEmployees/:id" element={<ViewDeactivateEmployees />} />
 
-                    {/*sponsor pet profile routes */}
-                    <Route path="/DonationManager/SponsorshipPets/createSponsorPet" element={<CreateSponsorPet />} />
-                    <Route path="/DonationManager/SponsorshipPets/viewSponsorPet/:id" element={<ViewSponsorPet />} />
-                    <Route path ="/DonationManager/SponsorshipPets/editSponsorPet/:id" element={<EditSponsorPet />} />
-                    <Route path ="/DonationManager/SponsorshipPets/removeSponsorPet/:id" element={<RemoveSponsorPet />} />
+            </Route>
+        </Routes>
+        <Routes>
 
-                    {/* reccuring donations routes */}
-                    <Route path="/DonationManager/reccuringdonations/createReccuringDonations" element={<CreateReccuringDonation />} />
-                    <Route path="/DonationManager/reccuringdonations/viewreccuringdonations/:id" element={<ViewReccuringDonations />} />
-                    <Route path ="/DonationManager/reccuringdonations/editreccuringdonations/:id" element={<EditReccuringDonations />} />
-                    <Route path="/DonationManager/reccuringdonations/deletereccuringdonations/:id" element={<UnsubsribeReccuringDonation />} />
+        <Route path="/DonationManager" element={<DonationLayout />}>
+            <Route index path="/DonationManager" element={<DonationDashboard/>} />
+            <Route path="/DonationManager/employeeProfile" element={<EmployeeProfile />} />
+            <Route path="/DonationManager/heplAndSupport" element={<HeplAndSupport />} />
+            {/* main routes */}
+            <Route path="/DonationManager/rescueRequest" element={<RescueRequest />} />
+            <Route path="/DonationManager/reccuringdonations" element={<ReccuringDonations />} />
+            <Route path="/DonationManager/SponsorshipPets" element={<SponserPetProfile />} />
+            <Route path ="/DonationManager/specificneedsdonations" element={<SpecificNeedDonations />} />
+            <Route path ="/DonationManager/sponsordonations" element={<SponsorDonations />} />
 
-                    {/* specific need donations routes */}
-                    <Route path="/DonationManager/specificneeddonations/createspecificneeddonations" element={<CreateSpecificNeedDonations />} />
-                     <Route path ="/DonationManager/specificneeddonations/viewspecificneedsdonations/:id" element={<ViewSpecificNeedsDonations />} />
-                     
-                    {/* fund request routes */}
-                    <Route path="/DonationManager/fundrequests" element={<FundRequest />} />
-                    <Route path="/DonationManager/fundrequets/Viewfundrequests/:id" element={<ViewFundRequest />} />
+            {/*sponsor pet profile routes */}
+            <Route path="/DonationManager/SponsorshipPets/createSponsorPet" element={<CreateSponsorPet />} />
+            <Route path="/DonationManager/SponsorshipPets/viewSponsorPet/:id" element={<ViewSponsorPet />} />
+            <Route path ="/DonationManager/SponsorshipPets/editSponsorPet/:id" element={<EditSponsorPet />} />
+            <Route path ="/DonationManager/SponsorshipPets/removeSponsorPet/:id" element={<RemoveSponsorPet />} />
 
-                    {/* sponsor donations routes */}
-                     <Route path ="/DonationManager/sponsordonations/createsponsordonations" element={<CreateSponsorDonations />} />                 
-                    {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
-                     </Route>
+            {/* reccuring donations routes */}
+            <Route path="/DonationManager/reccuringdonations/createReccuringDonations" element={<CreateReccuringDonation />} />
+            <Route path="/DonationManager/reccuringdonations/viewreccuringdonations/:id" element={<ViewReccuringDonations />} />
+            <Route path ="/DonationManager/reccuringdonations/editreccuringdonations/:id" element={<EditReccuringDonations />} />
+            <Route path="/DonationManager/reccuringdonations/deletereccuringdonations/:id" element={<UnsubsribeReccuringDonation />} />
+
+            {/* specific need donations routes */}
+            <Route path="/DonationManager/specificneeddonations/createspecificneeddonations" element={<CreateSpecificNeedDonations />} />
+             <Route path ="/DonationManager/specificneeddonations/viewspecificneedsdonations/:id" element={<ViewSpecificNeedsDonations />} />
+             
+            {/* fund request routes */}
+            <Route path="/DonationManager/fundrequests" element={<FundRequest />} />
+            <Route path="/DonationManager/fundrequets/Viewfundrequests/:id" element={<ViewFundRequest />} />
+
+            {/* sponsor donations routes */}
+             <Route path ="/DonationManager/sponsordonations/createsponsordonations" element={<CreateSponsorDonations />} />                 
+            {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
+             </Route>
 
 <Route path="/adoptionManager" element={<AdoptionLayout />}>
-                    <Route index path="/adoptionManager" element={<AdoptionManagerDashboard />} />
-                    <Route path="/adoptionManager/employeeProfile" element={<EmployeeProfile />} />
-                    <Route path="/adoptionManager/heplAndSupport" element={<HeplAndSupport />} />
+            <Route index path="/adoptionManager" element={<AdoptionManagerDashboard />} />
+            <Route path="/adoptionManager/employeeProfile" element={<EmployeeProfile />} />
+            <Route path="/adoptionManager/heplAndSupport" element={<HeplAndSupport />} />
 
-                    {/* main routes */}
-                    <Route path="/adoptionManager/adoption" element={<Adoption />} /> 
-                    <Route path="/adoptionManager/rescueTask" element={<RescueTask />} />
-                    <Route path="/adoptionManager/petProfile" element={<PetProfile />} />
-                    <Route path="/adoptionManager/petSupply" element={<PetSupply />} />
-                    <Route path="/adoptionManager/AppoinmentSchedule" element={<Appoinment />} />
-                    {/* <Route path="/adoptionManager/AdoptionProcess" element={<AdoptionProcess />} /> */}
+            {/* main routes */}
+            <Route path="/adoptionManager/adoption" element={<Adoption />} /> 
+            <Route path="/adoptionManager/rescueTask" element={<RescueTask />} />
+            <Route path="/adoptionManager/petProfile" element={<PetProfile />} />
+            <Route path="/adoptionManager/petSupply" element={<PetSupply />} />
+            <Route path="/adoptionManager/AppoinmentSchedule" element={<Appoinment />} />
+            {/* <Route path="/adoptionManager/AdoptionProcess" element={<AdoptionProcess />} /> */}
 
-                    {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}  
+            {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}  
 
-                    {/*adoption profile routes*/}
-                    <Route path="/adoptionManager/adoptionRequest/CreateRequest" element={<CreateRequest />} />
-                    <Route path="/adoptionManager/adoptionRequest/viewRequest/:id" element={<ViewRequest />} />
-                    <Route path="/adoptionManager/adoptionRequest/editRequest/:id" element={<EditRequest />} />
-                    <Route path="/adoptionManager/adoptionRequest/deleteRequest/:id" element={<DeleteRequest />} />
+            {/*adoption profile routes*/}
+            <Route path="/adoptionManager/adoptionRequest/CreateRequest" element={<CreateRequest />} />
+            <Route path="/adoptionManager/adoptionRequest/viewRequest/:id" element={<ViewRequest />} />
+            <Route path="/adoptionManager/adoptionRequest/editRequest/:id" element={<EditRequest />} />
+            <Route path="/adoptionManager/adoptionRequest/deleteRequest/:id" element={<DeleteRequest />} />
 
-                    {/*pet suppliment routes */}
-                    <Route path="/adoptionManager/supplyRequest/CreateSupplyRequest" element={<CreateSupplyRequest />} />
-                    <Route path="/adoptionManager/supplyRequest/viewSupplyRequest/:id" element={<ViewSupplyRequest />} />
-                    <Route path="/adoptionManager/supplyRequest/editSupplyRequest/:id" element={<EditSupplyRequest />} />
-                    <Route path="/adoptionManager/supplyRequest/deleteSupplyRequest/:id" element={<DeleteSupplyRequest />} />
+            {/*pet suppliment routes */}
+            <Route path="/adoptionManager/supplyRequest/CreateSupplyRequest" element={<CreateSupplyRequest />} />
+            <Route path="/adoptionManager/supplyRequest/viewSupplyRequest/:id" element={<ViewSupplyRequest />} />
+            <Route path="/adoptionManager/supplyRequest/editSupplyRequest/:id" element={<EditSupplyRequest />} />
+            <Route path="/adoptionManager/supplyRequest/deleteSupplyRequest/:id" element={<DeleteSupplyRequest />} />
 
-                    {/*adoption process routes*/}
-                    <Route path="/adoptionManager/adoptionProcess" element={<AllAdoptionRequest />} />
-                    <Route path="/adoptionManager/adoptionProcess/ViewAdoptionRequest/:id" element={<ViewAdoptionRequest />} />
+            {/*adoption process routes*/}
+            <Route path="/adoptionManager/adoptionProcess" element={<AllAdoptionRequest />} />
+            <Route path="/adoptionManager/adoptionProcess/ViewAdoptionRequest/:id" element={<ViewAdoptionRequest />} />
 
-                    {/*appoinment scchedule routes*/}
-                    <Route path="/adoptionManager/AppoinmentSchedule/CreateAppoinment" element={<CreateAppoinment />} />
-                    <Route path="/adoptionManager/AppoinmentSchedule/ViewAppoinment/:id" element={<ViewAppoinment />} />
-                    <Route path="/adoptionManager/AppoinmentSchedule/EditAppoinment/:id" element={<EditAppoinment />} />
-                    <Route path="/adoptionManager/AppoinmentSchedule/DeleteAppoinment/:id" element={<DeleteAppoinment />} />
+            {/*appoinment scchedule routes*/}
+            <Route path="/adoptionManager/AppoinmentSchedule/CreateAppoinment" element={<CreateAppoinment />} />
+            <Route path="/adoptionManager/AppoinmentSchedule/ViewAppoinment/:id" element={<ViewAppoinment />} />
+            <Route path="/adoptionManager/AppoinmentSchedule/EditAppoinment/:id" element={<EditAppoinment />} />
+            <Route path="/adoptionManager/AppoinmentSchedule/DeleteAppoinment/:id" element={<DeleteAppoinment />} />
 
-                    /adoptionManager/adoptionProfile/viewRequest
-                </Route>
+            /adoptionManager/adoptionProfile/viewRequest
+        </Route>
 
-            </Routes>
+    </Routes>
+    <Routes>
+            <Route path="/doctor" element={<DoctorLayout />}>
+            <Route index path="/doctor" element={<DoctorDashboard />} />
+            <Route path="/doctor/employeeProfile" element={<EmployeeProfile />} />
+            <Route path="/doctor/heplAndSupport" element={<HeplAndSupport />} />
+
+            {/*doctor routes*/}
+            <Route path="/doctor/petHealth" element={<AllPetHealth />} />
+            <Route path="/doctor/petHeaalth/ViewPetHealth/:id" element={<ViewPetHealth />} />
+            <Route path="/doctor/petHeaalth/EditPetHealth/:id" element={<EditPetHealth />} />
+    </Route>
+    </Routes>
+    <Routes>
+        <Route path="/InventoryManager" element={<Inventorylayout />}>
+            <Route index path="/InventoryManager" element={<InventoryManagerdashboard />} />
+            <Route path="/InventoryManager/employeeProfile" element={<EmployeeProfile />} />
+            <Route path="/InventoryManager/heplAndSupport" element={<HeplAndSupport />} />
+             {/* main routes */}
+             <Route path="/InventoryManager/Items" element={<Items />} />
+             {/* item routes*/}
+             <Route path="/InventoryManager/Items/veiwitem/:id" element={<Viewitem />} />
+            <Route path="/InventoryManager/Items/additem" element={<Additem />} />
+            <Route path="/InventoryManager/Items/edititem/:id" element={<Edititem />} />
+            <Route path="/InventoryManager/Items/removeitem/:id" element={<Removeitem />} />
+
+             {/* main routes */}
+             <Route path="/InventoryManager/supplier" element={<Supplier />} />
+             {/* supplier routes*/}
+             <Route path="/InventoryManager/supplier/veiwsupplier/:id" element={<Viewsupplier/>} />
+            <Route path="/InventoryManager/supplier/addsupplier/" element={<Addsupplier />} />
+            <Route path="/InventoryManager/supplier/editsupplier/:id" element={<Editsupplier />} />
+            <Route path="/InventoryManager/supplier/removesupplier/:id" element={<Removesupplier />} />
+       
+
+
+            {/* main routes */}
+            <Route path="/InventoryManager/order" element={<Order />} />
+             {/* order routes*/}
+             <Route path="/InventoryManager/order/veiworder/:id" element={<Vieworder/>} />
+            <Route path="/InventoryManager/order/createorder/" element={<Createorder />} />
+            <Route path="/InventoryManager/order/editorder/:id" element={<Editorder />} />
+            <Route path="/InventoryManager/order/removeorder/:id" element={<Removeorder />} />
+            <Route path="/InventoryManager/order/vieworder/:id" element={<Vieworder/>} />
+
+
+            {/* main routes */}
+            <Route path="/InventoryManager/request" element={<Request />} />
+             {/* supplier routes*/}
+             <Route path="/InventoryManager/request/createrequest/" element={<Createrequest/>} />
+            <Route path="/InventoryManager/request/viewrequest/:id" element={<Viewrequest />} />
+            <Route path="/InventoryManager/request/Updaterequest/:id" element={<Updaterequest />} />
+            <Route path="/InventoryManager/request/deleterequest/:id" element={<Deleterequest />} />
+            </Route> 
+             </Routes>
+
             <Routes>
-                    <Route path="/doctor" element={<DoctorLayout />}>
-                    <Route index path="/doctor" element={<DoctorDashboard />} />
-                    <Route path="/doctor/employeeProfile" element={<EmployeeProfile />} />
-                    <Route path="/doctor/heplAndSupport" element={<HeplAndSupport />} />
+        <Route path="/Suppliers" element={<Supplierslayout />}>
+            <Route index path="/Suppliers/order" element={<Requests/>} />
+            <Route path="/Suppliers/employeeProfile" element={<EmployeeProfile />} />
+            <Route path="/Suppliers/heplAndSupport" element={<HeplAndSupport />} />
+             
+             <Route path="/Suppliers/requests" element={<Requests/>} />
+            
+             <Route path="/Suppliers/requests/viewrequests/:id" element={<ViewRequests />} />
+             <Route path="/Suppliers/requests/Updaterequests/:id" element={<UpdateRequests />} />
+        </Route>
+    </Routes> 
 
-                    {/*doctor routes*/}
-                    <Route path="/doctor/petHealth" element={<AllPetHealth />} />
-                    <Route path="/doctor/petHeaalth/ViewPetHealth/:id" element={<ViewPetHealth />} />
-                    <Route path="/doctor/petHeaalth/EditPetHealth/:id" element={<EditPetHealth />} />
-            </Route>
-            </Routes>
- <Routes>
-                <Route path="/InventoryManager" element={<Inventorylayout />}>
-                    <Route index path="/InventoryManager" element={<InventoryManagerdashboard />} />
-                    <Route path="/InventoryManager/employeeProfile" element={<EmployeeProfile />} />
-                    <Route path="/InventoryManager/heplAndSupport" element={<HeplAndSupport />} />
-                     {/* main routes */}
-                     <Route path="/InventoryManager/Items" element={<Items />} />
-                     {/* item routes*/}
-                     <Route path="/InventoryManager/Items/veiwitem/:id" element={<Viewitem />} />
-                    <Route path="/InventoryManager/Items/additem" element={<Additem />} />
-                    <Route path="/InventoryManager/Items/edititem/:id" element={<Edititem />} />
-                    <Route path="/InventoryManager/Items/removeitem/:id" element={<Removeitem />} />
-
-                     {/* main routes */}
-                     <Route path="/InventoryManager/supplier" element={<Supplier />} />
-                     {/* supplier routes*/}
-                     <Route path="/InventoryManager/supplier/veiwsupplier/:id" element={<Viewsupplier/>} />
-                    <Route path="/InventoryManager/supplier/addsupplier/" element={<Addsupplier />} />
-                    <Route path="/InventoryManager/supplier/editsupplier/:id" element={<Editsupplier />} />
-                    <Route path="/InventoryManager/supplier/removesupplier/:id" element={<Removesupplier />} />
-               
-
-
-                    {/* main routes */}
-                    <Route path="/InventoryManager/order" element={<Order />} />
-                     {/* order routes*/}
-                     <Route path="/InventoryManager/order/veiworder/:id" element={<Vieworder/>} />
-                    <Route path="/InventoryManager/order/createorder/" element={<Createorder />} />
-                    <Route path="/InventoryManager/order/editorder/:id" element={<Editorder />} />
-                    <Route path="/InventoryManager/order/removeorder/:id" element={<Removeorder />} />
-                    <Route path="/InventoryManager/order/vieworder/:id" element={<Vieworder/>} />
-
-
-                    {/* main routes */}
-                    <Route path="/InventoryManager/request" element={<Request />} />
-                     {/* supplier routes*/}
-                     <Route path="/InventoryManager/request/createrequest/" element={<Createrequest/>} />
-                    <Route path="/InventoryManager/request/viewrequest/:id" element={<Viewrequest />} />
-                    <Route path="/InventoryManager/request/Updaterequest/:id" element={<Updaterequest />} />
-                    <Route path="/InventoryManager/request/deleterequest/:id" element={<Deleterequest />} />
-                    </Route> 
-                     </Routes>
-
-                    <Routes>
-                <Route path="/Suppliers" element={<Supplierslayout />}>
-                    <Route index path="/Suppliers/order" element={<Requests/>} />
-                    <Route path="/Suppliers/employeeProfile" element={<EmployeeProfile />} />
-                    <Route path="/Suppliers/heplAndSupport" element={<HeplAndSupport />} />
-                     
-                     <Route path="/Suppliers/requests" element={<Requests/>} />
-                    
-                     <Route path="/Suppliers/requests/viewrequests/:id" element={<ViewRequests />} />
-                     <Route path="/Suppliers/requests/Updaterequests/:id" element={<UpdateRequests />} />
-                </Route>
-            </Routes> 
-
-
-        </Router>
+    </Router>
     )
 }
 
