@@ -58,7 +58,6 @@ import AdoptionProcess from "./pages/adoptionManagement/AdoptionProcess";
 
 //adoption request
 import CreateRequest from "./pages/adoptionManagement/adoptionRequest/CreateRequest";
-import ViewRequest from "./pages/adoptionManagement/adoptionRequest/ViewRequest";
 import EditRequest from "./pages/adoptionManagement/adoptionRequest/EditRequest";
 import DeleteRequest from "./pages/adoptionManagement/adoptionRequest/DeleteRequest";
 

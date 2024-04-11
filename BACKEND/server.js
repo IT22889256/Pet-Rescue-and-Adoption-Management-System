@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -29,7 +28,6 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(errorHandler);
 
 //routes
-app.use("/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("hellow");
@@ -37,12 +35,8 @@ app.get("/", (req, res) => {
 
 //end of User Management
 
-
-const cors = require('cors')
-
 const nodemailer = require('nodemailer');
 const cron = require('node-cron');
-
 
 // Middleware
 app.use(express.json()); // Parsing incoming requests with JSON payloads
@@ -74,9 +68,6 @@ cron.schedule('0 0 28-31 * *', async () => {
     console.error('Error resetting EmployeeLeaveCount collection:', error);
   }
 });
-
-
-
 
 //import routes
 
@@ -194,8 +185,6 @@ app.use("/EmployeeManager/jobRole", jobRoleRoute); // Job role routes
 app.use("/EmployeeManager/email", emailRoute); // Email routes
 app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // Deactivate employees routes
 app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
-
-
 
 app.listen(PORT, () =>{
 
