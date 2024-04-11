@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../shared/Header";
-import UserSideBar from "./UserSideBar";
+import UserSideBar from "./userSideBar";
 
 export default function userLayout() {
   return (
