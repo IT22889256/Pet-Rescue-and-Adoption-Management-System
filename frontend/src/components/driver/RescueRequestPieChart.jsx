@@ -49,7 +49,7 @@ export default function RescueRequstsChart() {
 	},[])
 	return (
 		<div className="w-[20rem] h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
-			<strong className="text-gray-700 font-medium">Rescue Requests Status</strong>
+			<strong className="text-gray-700 font-medium">Transportation Schedule Status</strong>
 			<div className="mt-3 w-full flex-1 text-xs">
 				<ResponsiveContainer width="100%" height="100%">
 					{/* <PieChart width={400} height={300}>

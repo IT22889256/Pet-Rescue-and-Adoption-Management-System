@@ -17,8 +17,10 @@ export default function EditPet() {
     const [location, setLocation] = useState()
     const [pet_image, setPetImage] = useState()
     const navigate = useNavigate()
+
     const {id} = useParams()
     useEffect((e) => {
+
 
         axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
         .then((res) => {

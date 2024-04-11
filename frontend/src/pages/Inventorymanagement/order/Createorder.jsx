@@ -6,7 +6,7 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreatePet() {
 
-    const [order_id, setorderid] = useState()
+    const [_id, setorderid] = useState()
     const [item_id, setitemid] = useState()
     const [order_quantity, setorderquantity] = useState()
     const [date,setdate] = useState()
@@ -22,7 +22,7 @@ export default function CreatePet() {
         const data = {
             
        
-            order_id,item_id,order_quantity,date,order_status
+            item_id,order_quantity,date,order_status
         };
         console.log('result')
         axios.post('http://localhost:3000/InventoryManager/order/createorder',data)

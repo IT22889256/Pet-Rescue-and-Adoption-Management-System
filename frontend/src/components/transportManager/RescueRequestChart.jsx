@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { ResponsiveContainer } from 'recharts'
 
 export default function RescueChart() {
@@ -8,8 +9,8 @@ export default function RescueChart() {
 			<strong className="text-gray-700 font-medium">Rescue Requests</strong>
 			<div className="mt-3 w-full flex-1 flex text-xs">
 				<ResponsiveContainer>
+				<iframe src={url}></iframe>
 					
-					<iframe src={url}></iframe>
 				</ResponsiveContainer>
 			</div>
 		</div>
