@@ -16,9 +16,9 @@ import ViewRescueTask from './pages/petManament/rescueTask/ViewRescueTask'
 import CreateRescueTask from './pages/petManament/rescueTask/CreateRescueTask'
 import EditRescueTask from './pages/petManament/rescueTask/EditRescueTask'
 import DeleteRescueTask from './pages/petManament/rescueTask/DeleteRescueTask'
-import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueRequest'
-import CreateRescueRequest from './pages/petManament/rescueRequest/CreateRescueRequest'
-import EmployeeProfile from './components/EmployeeProfile'
+// import ViewRescueRequest from './pages/petManament/rescueRequest/ViewRescueRequest'
+// import CreateRescueRequest from './pages/petManament/rescueRequest/CreateRescueRequest'
+// import EmployeeProfile from './components/EmployeeProfile'
 
 
 
@@ -85,10 +85,10 @@ function App() {
                     <Route path="/petManager/rescueTask/editRescueTask/:id" element={<EditRescueTask />} />
                     <Route path="/petManager/rescueTask/deleteRescueTask/:id" element={<DeleteRescueTask />} />
                     {/* rescue request routes */}
-                    <Route path="/petManager/rescueRequest/viewRescueRequest/:id" element={<ViewRescueRequest />} />
+                    {/* <Route path="/petManager/rescueRequest/viewRescueRequest/:id" element={<ViewRescueRequest />} />
                     <Route path="/petManager/rescueRequest/createRescueRequest" element={<CreateRescueRequest />} />
                     <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
-                    <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} />
+                    <Route path="/petManager/rescueRequest/viewRescueRequest" element={<ViewRescueRequest />} /> */}
                     {/* common AR */}
                     <Route path="/petManager/commonAr/" element={<CommonAR />} />
                     <Route path="/petManager/commonAr/viewCommonAR/:id" element={<ViewCommonAR />} />

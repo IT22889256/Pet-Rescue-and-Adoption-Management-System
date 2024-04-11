@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 const requestSchema = mongoose.Schema(
   {
  
-    request_id:{
-     type:String,
-     required:true,
-    },
+    // request_id:{
+    //  type:String,
+    //  required:true,
+    // },
 
     request_no: {
       type: String,
