@@ -1,9 +1,8 @@
 import React from 'react'
-//import DashboardStatsGrid from '../../components/petManager/DashboardStatsGrid'
 import DashboardStatsGrid from '../../components/adoptionManager/DashboardStatsGrid'
-import AdoptionRequestChart from '../../components/adoptionManager/AdoptionRequestChart'
-import RecentRequests from '../../components/adoptionManager/RecentRequest'
-import RescueRequstsChart from '../../components/adoptionManager/AdoptionRequestChart'
+import RescueChart from '../../components/adoptionManager/RescueRequestPieChart'
+import RecentRequests from '../../components/adoptionManager/RescueRequestPieChart'
+import RescueRequstsChart from '../../components/adoptionManager/RescueRequestPieChart'
 import CreatedTasks from '../../components/adoptionManager/CreateTasks'
 
 export default function Dashboard() {
@@ -11,7 +10,7 @@ export default function Dashboard() {
 		<div className="flex flex-col gap-4">
 			<DashboardStatsGrid />
 			<div className="flex flex-row gap-4 w-full">
-				<AdoptionRequestChart />
+				<RescueChart />
 				<RescueRequstsChart />
 			</div>
 			<div className="flex flex-row gap-4 w-full">
