@@ -25,11 +25,11 @@ export default function RescueTask() {
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
 							<th>Task ID</th>
-							<th>Request ID</th>
-							<th>User ID</th>
+							{/* <th>Request ID</th>
+							<th>User ID</th> */}
 							<th>Task Priority</th>
-							<th>Task Status</th>
 							<th>Date</th>
+							<th>Task Status</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -41,21 +41,25 @@ export default function RescueTask() {
 								<td>
 									{rescueTask._id}
 								</td >
-								<td>
+								{/* <td>
 									{rescueTask.request_id}
 								</td>
 								<td>
 									{rescueTask.user_id}
-								</td>
-								<td>
-									{rescueTask.rescue_task_priority}
-								</td>
+								</td> */}
+								{rescueTask.rescue_task_priority === "Low" && (
+								<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
+									<div>{rescueTask.rescue_task_priority}</div>
+								</td>)}
+								{rescueTask.rescue_task_priority === "High" && (
+								<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+									<div >{rescueTask.rescue_task_priority}</div>
+								</td>)}
+								<td>{rescueTask.date}</td>
 								{rescueTask.rescue_task_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
 										<div>{rescueTask.rescue_task_status}</div>
 									</td>)}
-								<td>{rescueTask.date}</td> 
-								
 								<td>
 									<Link to={`/petManager/rescueTask/viewRescueTask/${rescueTask._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								{/* 								
@@ -78,11 +82,11 @@ export default function RescueTask() {
 		<thead className="bg-[#c1c3c558]">
 			<tr>
 				<th>Task ID</th>
-				<th>Request ID</th>
-				<th>User ID</th>
+				{/* <th>Request ID</th>
+				<th>User ID</th> */}
 				<th>Task Priority</th>
-				<th>Task Status</th>
 				<th>Date</th>
+				<th>Task Status</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -94,17 +98,28 @@ export default function RescueTask() {
 					<td>
 						{rescueTask._id}
 					</td >
-					<td>
+					{/* <td>
 						{rescueTask.request_id}
 					</td>
 					<td>
 						{rescueTask.user_id}
-					</td>
-					<td>
-						{rescueTask.rescue_task_priority}
-					</td>
-				
-					{rescueTask.rescue_task_status === "Completed" && (
+					</td> */}
+					
+					
+					{rescueTask.rescue_task_priority === "Low" && (
+						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
+							<div>{rescueTask.rescue_task_priority}</div>
+						</td>)}
+						{rescueTask.rescue_task_priority === "High" && (
+						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+							<div >{rescueTask.rescue_task_priority}</div>
+						</td>)}
+
+						<td>
+						{rescueTask.date}
+						</td>
+
+						{rescueTask.rescue_task_status === "Completed" && (
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
 							<div>{rescueTask.rescue_task_status}</div>
 						</td>)}
@@ -112,10 +127,12 @@ export default function RescueTask() {
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
 							<div >{rescueTask.rescue_task_status}</div>
 						</td>)}
+						{rescueTask.rescue_task_status === "In Progress" && (
+						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
+							<div >{rescueTask.rescue_task_status}</div>
+						</td>)}
 					
-					<td>
-						{rescueTask.date}
-					</td>
+					
 						
 						
 					<td>

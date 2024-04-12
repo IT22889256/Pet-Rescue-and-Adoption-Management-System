@@ -165,8 +165,6 @@ app.use("/donationManager/reccuringdonation", reccuringdonationsRouter);
 app.use("/donationManager/specificneedsdonations", specificneeddonationRouter);
 app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 
-
-
 // app.use('/donationManager',require('./routes/reccuringdonation.route'));
 
 
@@ -175,6 +173,7 @@ app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 
 
 app.use("/petManager", rescueRequest);
+app.use("/petManager", rescueTask)
 
 
 //induwara routes
