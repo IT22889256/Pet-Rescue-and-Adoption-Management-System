@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
-
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import app from '../../../firebase';
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreatePet() {
-
+    
     const [request_id, setReqId] = useState()
     const [task_id, setTaskId] = useState()
     const [pet_name, setPetName] = useState()
@@ -15,22 +16,94 @@ export default function CreatePet() {
     const [pet_age, setPetAge] = useState()
     const [pet_appearance, setPetappearance] = useState()
     const [location, setLocation] = useState()
-    const [pet_image, setPetImage] = useState()
+    const [imgUrl, setPetImage] = useState()
+    
     const navigate = useNavigate()
 
-    const Submit = (e) => {
-
-        const data = {
-            request_id,task_id,pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,pet_image,
-        };
-        console.log('result')
-        axios.post('http://localhost:3000/petManager/petProfile/createPet',data)
-        .then(result => {
-            console.log(result)
-            navigate('/petManager/petProfile')
-        })
-        .catch(err => console.log(err))
+    const [img, setImg] = useState(null);
+    const [imgPerc, setImgPerc] = useState();
+    const [videoPerc, setVideoPerc] = useState();
+  
+  
+    useEffect((e) => {
+        if (img) {
+          uploadFile(img, "imgUrl");
+        }
+      }, [img]);
+  
+    const uploadFile = (file, fileType) => {
+      const storage = getStorage(app);
+      const folder = fileType === "imgUrl" ? "images/" : "videos/";
+      const fileName = new Date().getTime() + file.name;
+      const storageRef = ref(storage, folder + fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+  
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          fileType === "imgUrl"
+            ? setImgPerc(Math.round(progress))
+            : setVideoPerc(Math.round(progress));
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              console.log(error);
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+            default:
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            
+            console.log('DownloadURL - ', downloadURL);
+            
+            setPetImage(() => {
+                // console.log("45"+JSON.parse(downloadURL));
+              return downloadURL
+            });
+          });
+        }
+      );
     }
+        const Submit = (e) => {
+            const data = {
+                request_id,task_id,pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,imgUrl,
+            };
+            console.log('result')
+            console.log(imgUrl);
+            axios.post(`http://localhost:3000/petManager/petProfile/createPet`,{...data})
+           
+            .then(result => {
+                console.log(result)
+                navigate('/petManager/petProfile')
+            })
+            .catch(err => console.log(err))
+        }
+    
         return (
 
             <div>
@@ -194,9 +267,9 @@ export default function CreatePet() {
                                                 className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
                                                 <span>Upload a file</span>
-                                                <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                                    value={pet_image}
-                                                    onChange={(e) => setPetImage(e.target.value)}
+                                                <input id="file-upload" name="file_upload"  type="file" className="sr-only"  accept='image/'
+                                                    
+                                                    onChange={(e) => setImg((prev) => e.target.files[0])}
                                                 />
                                             </label>
                                             <p className="pl-1">or drag and drop</p>
