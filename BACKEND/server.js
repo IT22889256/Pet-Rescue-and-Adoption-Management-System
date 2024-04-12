@@ -74,11 +74,13 @@ const itemRouter = require('./routes/product.route');
 const supplierRouter =  require('./routes/supplier.routes');
 const requestRouter = require('./routes/request.route');
 const orderRouter = require('./routes/order.route');
+const messageRouter = require('./routes/messagesroute.js')
 
 app.use("/inventoryManager",itemRouter);
 app.use("/inventoryManager",supplierRouter);
 app.use("/inventoryManager",requestRouter);
 app.use("/inventoryManager",orderRouter);
+app.use("/inventoryManager",messageRouter);
 app.use("/suppliers", orderRouter);
 
 

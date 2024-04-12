@@ -70,6 +70,11 @@ import Createorder from '../src/pages/Inventorymanagement/order/Createorder'
 import Editorder from '../src/pages/Inventorymanagement/order/Editorder'
 import Vieworder from '../src/pages/Inventorymanagement/order/Vieworder'
 import Removeorder from '../src/pages/Inventorymanagement/order/Removeorder'
+//messages
+import Createmessages from './pages/Inventorymanagement/messages/Createmessages'
+import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
+import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
+import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
 
 
 //appoinment
@@ -321,6 +326,7 @@ function App() {
             </Route>
             </Routes>
  <Routes>
+                  {/* inventoryManager */}
                 <Route path="/InventoryManager" element={<Inventorylayout />}>
                     <Route index path="/InventoryManager" element={<InventoryManagerdashboard />} />
                     <Route path="/InventoryManager/employeeProfile" element={<EmployeeProfile />} />
@@ -351,6 +357,14 @@ function App() {
                     <Route path="/InventoryManager/order/editorder/:id" element={<Editorder />} />
                     <Route path="/InventoryManager/order/removeorder/:id" element={<Removeorder />} />
                     <Route path="/InventoryManager/order/vieworder/:id" element={<Vieworder/>} />
+                     {/* main routes */}
+                     <Route path="/InventoryManager/messages" element={<messages />} />
+                             {/*inventroy messages  routes */}
+                    <Route path="/InventoryManager/messages/Createmessages" element={<Createmessages />} />
+                    <Route path="/InventoryManager/messages/viewmessages/:id" element={<Viewmessages/>} />
+                    <Route path="/InventoryManager/messages/editmessages/:id" element={<Editmessages />} />
+                    <Route path="/InventoryManager/messages/deletemessages/:id" element={<Deletemessages />} />
+
 
 
                     {/* main routes */}
@@ -362,7 +376,7 @@ function App() {
                     <Route path="/InventoryManager/request/deleterequest/:id" element={<Deleterequest />} />
                     </Route> 
                      </Routes>
-
+                     {/* supplier */}
                     <Routes>
                 <Route path="/Suppliers" element={<Supplierslayout />}>
                     <Route index path="/Suppliers/order" element={<Requests/>} />

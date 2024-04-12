@@ -64,7 +64,7 @@ return (
 							<th>Quantity</th>
 							<th>Order date</th>
 							<th>Status</th>
-							<th>Action</th>
+							
 						
 
 								{order.order_status==='Pending' &&(
@@ -87,6 +87,10 @@ return (
 								<td>
 									{order.date}
 								</td >
+								{/* <td>
+									{order.order_status}
+								</td > */}
+								
 								
 							
 									{order.order_status=== "Pending" && (
@@ -102,7 +106,7 @@ return (
 										<div>{order.order_status}</div>
 									</td>)}
 								
-								<td>
+								 <td>
 								{order.order_status==='Pending' &&(
 								<>
 									<Link onClick={Accept} to={`/inventoryManager/order/vieworder/${order._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
@@ -110,7 +114,7 @@ return (
 								</>
 
 								)}
-								</td> 
+								</td>  
 								
 							</tr>
 					</tbody>
