@@ -59,7 +59,7 @@ export default function EditRescueTask() {
             Profile picture
           </label>
           <div className="mt-2 flex items-center gap-x-3">
-            <img className="h-20 w-20 text-gray-300" alt='image' />
+            <img className="h-20 w-20 text-gray-300" src={pet_image} alt='image' />
           </div>
         </div>
                         <div className="sm:col-span-3">

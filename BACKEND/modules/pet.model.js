@@ -37,9 +37,13 @@ const PetSchema = mongoose.Schema({
         type: String,
         required: true
     },
+<<<<<<< HEAD
     pet_image:{
 
 
+=======
+    imgUrl:{
+>>>>>>> 0607282a845092dda93ebc796fc6b007f1c8a745
         type: String,
 
     },

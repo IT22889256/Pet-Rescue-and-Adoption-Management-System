@@ -17,6 +17,7 @@ export default function EditPet() {
     const [location, setLocation] = useState()
     const [pet_image, setPetImage] = useState()
     const navigate = useNavigate()
+<<<<<<< HEAD
 
 
     const {id} = useParams()
@@ -24,6 +25,11 @@ export default function EditPet() {
 
 
 
+=======
+
+    const {id} = useParams()
+    useEffect((e) => {
+>>>>>>> 0607282a845092dda93ebc796fc6b007f1c8a745
         axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
         .then((res) => {
             setReqId(res.data.request_id)
