@@ -44,7 +44,7 @@ const userSchema = mongoose.Schema(
     },
     eid: {
       type: String,
-      unique: true,
+      default: "Null",
     },
     photo: {
       type: String,
@@ -65,14 +65,6 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
-// Generate eid only if the role is 'employee'
-userSchema.pre("save", async function (next) {
-  if (this.role === "employee" && !this.eid) {
-    this.eid = "EMP" + Math.random().toString().substring(2, 8);
-  }
-  next();
-});
 
 // Encrypt password before saving to DB
 userSchema.pre("save", async function (next) {
