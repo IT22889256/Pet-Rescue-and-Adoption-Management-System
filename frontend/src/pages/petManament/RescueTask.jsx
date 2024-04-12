@@ -31,7 +31,6 @@ export default function RescueTask() {
 							<th>Task Priority</th>
 							<th>Date</th>
 							<th>Task Status</th>
-
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -93,6 +92,7 @@ export default function RescueTask() {
 				<th>Date</th>
 				<th>Task Status</th>
 
+
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -105,12 +105,15 @@ export default function RescueTask() {
 						{rescueTask._id}
 					</td >
 
+
 					{/* <td>
+
 
 						{rescueTask.request_id}
 					</td>
 					<td>
 						{rescueTask.user_id}
+
 
 					</td> */}
 					

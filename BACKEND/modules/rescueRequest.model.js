@@ -5,18 +5,6 @@ const RescueRequestSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    // user_name:{
-    //     type: String,
-    //     required: true
-    // },
-    // user_contact:{
-    //     type: String,
-    //     required: true
-    // },
-    // user_email:{
-    //     type: String,
-    //     required: true
-    // },
     pet_type:{
         type: String,
         required: true
@@ -31,26 +19,19 @@ const RescueRequestSchema = mongoose.Schema({
     },
 <<<<<<< HEAD
 =======
-
->>>>>>> developer
     date:{
         type: Date,
         required: true
     },
-<<<<<<< HEAD
-=======
-
 >>>>>>> developer
     rescue_request_status:{
         type: String,
         required: true
     },
-    pet_image:{
+    imgUrl:{
         type: String,
+        required: true
     },
-<<<<<<< HEAD
-})
-=======
 
     },
 
@@ -60,7 +41,6 @@ const RescueRequestSchema = mongoose.Schema({
     
     )
 
->>>>>>> developer
 
 const RescueRequest = mongoose.model("RescueRequest", RescueRequestSchema);
 
