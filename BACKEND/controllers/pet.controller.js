@@ -12,8 +12,8 @@ const displayPets= async(req, res) => {
 }
 //create pet profile
 const addPet = async (req, res) => {
-
     try {
+        
         // await Pet.create(req.body);
         // res.json("Add");
         // res.status(200).json(pet);
@@ -43,9 +43,7 @@ const editPet = async(req, res) => {
     }
 }
 
-
 //display One Pet
-
 const displayOnePet = async(req, res) => {
     try{
         const {id} = req.params;
