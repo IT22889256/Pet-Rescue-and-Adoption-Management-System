@@ -133,14 +133,9 @@ const sponsorDonationRouter = require("./routes/sponsordonation.route");
 
 const rescueTask = require("./routes/task.route");
 
-<<<<<<< HEAD
 
-const rescueTask = require('./routes/task.route');
 
-const rescueRequest = require('./routes/rescueRequest.route')
 
-=======
->>>>>>> 0607282a845092dda93ebc796fc6b007f1c8a745
 //import adoption routes
 
 const adoptionRouter = require("./routes/pet_adoption.route");
