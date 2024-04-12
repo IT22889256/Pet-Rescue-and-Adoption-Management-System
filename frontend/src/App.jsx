@@ -8,7 +8,7 @@ import UserManagerLayout from "./components/userManagement/userLayout";
 import UserDashboard from "./pages/userManagement/userManagerDashboard";
 import UserLayout from "./components/shared/users/UserLayout";
 import VerificationRequests from "./pages/userManagement/VerificationRequests";
-import ViewRequest from "./pages/userManagement/adopterRequests/VIewRequest";
+import ViewVerificationRequest from "./pages/userManagement/adopterRequests/ViewVerificationRequest";
 import AcceptRequest from "./pages/userManagement/adopterRequests/AcceptRequest";
 import RejectRequest from "./pages/userManagement/adopterRequests/RejectRequest";
 import Adopters from "./pages/userManagement/Adopters";
@@ -248,7 +248,7 @@ function App() {
           {/* Account verification requests routes */}
           <Route
             path="/userManager/verificationRequest/viewRequest/:id"
-            element={<ViewRequest />}
+            element={<ViewVerificationRequest />}
           />
           <Route
             path="/userManager/verificationRequest/viewRequest/rejectRquest/:id"
