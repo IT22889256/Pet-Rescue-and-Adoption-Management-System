@@ -9,7 +9,8 @@ const generateToken = (id) => {
 // create User
 const createUser = asyncHandler(async (req, res, next) => {
   console.log("manager", req.body);
-  const { name, email, password, role, phoneNumber, roletype, bio } = req.body; // Make sure to include 'role' if it's being sent from the front end
+  const { name, email, password, role, eid, phoneNumber, roletype, bio } =
+    req.body; // Make sure to include 'role' if it's being sent from the front end
   try {
     // Validation
     if (!name || !email || !password) {
@@ -33,6 +34,7 @@ const createUser = asyncHandler(async (req, res, next) => {
       email,
       password,
       role,
+      eid,
       roletype,
       phone: phoneNumber,
       bio,
@@ -59,6 +61,7 @@ const createUser = asyncHandler(async (req, res, next) => {
         photo,
         phone,
         role,
+        eid,
         roletype,
         bio,
         token,

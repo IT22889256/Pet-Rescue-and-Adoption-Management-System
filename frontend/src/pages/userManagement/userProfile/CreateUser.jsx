@@ -116,6 +116,7 @@ export default function CreateUser() {
                 </select>
               </div>
             </div>
+
             {/* col-span-full */}
             <div className="sm:col-span-3">
               <label
@@ -153,6 +154,11 @@ export default function CreateUser() {
                   <option></option>
                   <option>userManager</option>
                   <option>petManager</option>
+                  <option>transportManager</option>
+                  <option>employeeManager</option>
+                  <option>donationManager</option>
+                  <option>adoptionManager</option>
+                  <option>inventoryManager</option>
                 </select>
               </div>
             </div>

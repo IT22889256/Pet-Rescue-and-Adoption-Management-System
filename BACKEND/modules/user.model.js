@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, "Please add a email"],
+      required: [true, "Please add an email"],
       unique: true,
       trim: true,
       match: [
@@ -20,22 +20,32 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
       required: [true, "Please add a password"],
-      minLength: [6, "Password must be up to 6 characters"],
-      //   maxLength: [23, "Password must not be more than 23 characters"],
+      minLength: [6, "Password must be at least 6 characters long"],
     },
-    // In your user model definition, add a role field
     role: {
       type: String,
       required: true,
-      enum: ["admin", "user", "adopter", "employee"], // This restricts the values to either 'admin' or 'user'
-      default: "user", // Default to 'user' if not specified
+      enum: ["admin", "user", "adopter", "employee"],
+      default: "user",
     },
     roletype: {
       type: String,
-      enum: ["user", "userManager", "petManager"],
-      default: "user", // Default to 'user' if not specified
+      enum: [
+        "user",
+        "userManager",
+        "petManager",
+        "transportManager",
+        "employeeManager",
+        "donationManager",
+        "adoptionManager",
+        "inventoryManager",
+      ],
+      default: "user",
     },
-
+    eid: {
+      type: String,
+      unique: true,
+    },
     photo: {
       type: String,
       required: [true, "Please add a photo"],
@@ -56,7 +66,15 @@ const userSchema = mongoose.Schema(
   }
 );
 
-//   Encrypt password before saving to DB
+// Generate eid only if the role is 'employee'
+userSchema.pre("save", async function (next) {
+  if (this.role === "employee" && !this.eid) {
+    this.eid = "EMP" + Math.random().toString().substring(2, 8);
+  }
+  next();
+});
+
+// Encrypt password before saving to DB
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();

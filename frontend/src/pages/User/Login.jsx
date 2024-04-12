@@ -46,6 +46,16 @@ function Login() {
           navigate("/userManager");
         } else if (data.roletype === "petManager") {
           navigate("/petManager");
+        } else if (data.roletype === "transportManager") {
+          navigate("/transportManager");
+        } else if (data.roletype === "employeeManager") {
+          navigate("/employeeManager");
+        } else if (data.roletype === "donationManager") {
+          navigate("/DonationManager");
+        } else if (data.roletype === "adoptionManager") {
+          navigate("/adoptionManager");
+        } else if (data.roletype === "inventoryManager") {
+          navigate("/InventoryManager");
         } else {
           navigate("/");
         }
