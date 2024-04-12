@@ -218,8 +218,8 @@ const [date,setdate] = useState()
                                     >
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            value={item_image}
-                                            onChange={(e) => item_image(e.target.value)}
+                                            // value={item_image}
+                                            // onChange={(e) => item_image(e.target.value)}
                                         />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>

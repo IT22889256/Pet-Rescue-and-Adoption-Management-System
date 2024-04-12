@@ -111,7 +111,7 @@ return (<>
             <div className='flex-col'>
                 <div className='flex-row mr-5 m-1'>
 					<div className="sm:col-span-1">
-						<label htmlFor="request-id" className="block text-xl text-[#333]  text-sm font-medium leading-6 text-gray-900">
+						<label htmlFor="request-id" className="block text-xl text-[#333]  text-lg font-medium leading-6 text-gray-900">
 							Pet ID
 						</label>
 						<div className="text-xl text-[#806c6c] mt-2">
@@ -120,7 +120,7 @@ return (<>
                     </div>
 					<div className='flex-row mr-5 m-1'>
 						<div className="sm:col-span-1">
-							<label htmlFor="request-id" className="block text-xl text-[#333]  text-sm font-medium leading-6 text-gray-900">
+							<label htmlFor="request-id" className="block text-xl text-[#333]  text-lg font-medium leading-6 text-gray-900">
 								Pet Name
 							</label>
 							<div className="text-xl text-[#806c6c] mt-2">
@@ -130,7 +130,7 @@ return (<>
 					</div>
 					<div className='flex-row mr-5 m-1'>
 						<div className="sm:col-span-1">
-							<label htmlFor="request-id" className="block text-xl text-[#333]  text-sm font-medium leading-6 text-gray-900">
+							<label htmlFor="request-id" className="block text-xl text-[#333]  text-lg font-medium leading-6 text-gray-900">
 								Pet Name
 							</label>
 							<div className="text-xl text-[#806c6c] mt-2">
@@ -152,55 +152,61 @@ return (<>
                     <h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Pet Profile</h3>
                 </div>
 				<div className="mt-3 flex text-xs justify-center">
-                <img className='object-cover h-60 w-60 m-5 rounded-full' src="https://i.ibb.co/713YjHp/pexels-emrah-ayvali-1981111.jpg" alt='profile_Image'/>
+                <img className='object-cover h-60 w-60 m-5 rounded-full' src={Pet.imgUrl} alt='profile_Image'/>
 				</div>
                 <div className="border-t border-gray-200">
                     <dl>
 					<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-lg text-black-500 font-bold">Pet ID</dt>
-                            <dd className="mt-1 text-base text-gray-900 sm:col-span-2">{Pet._id}</dd>
+                            <dt className="text-lg text-black-500 font-medium">Pet ID</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet._id}</dd>
                         </div>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Request ID</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.request_id}</dd>
-                        </div>
-                        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Task ID</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.task_id}</dd>
+                            <dt className="text-lg font-medium text-black-500">Request ID</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet.request_id}</dd>
                         </div>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Pet Name</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_name}</dd>
+                            <dt className="text-lg font-medium text-black-500">Task ID</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet.task_id}</dd>
+                        </div>
+                        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-lg font-medium text-black-500">Pet Name</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet.pet_name}</dd>
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Pet Type</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_type}</dd>
+                            <dt className="text-lg font-medium text-black-500">Pet Type</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet.pet_type}</dd>
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Pet Health Status</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.health_status}</dd>
+                            <dt className="text-lg font-medium text-black-500">Pet Health Status</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet.health_status}</dd>
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Pet Gender</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_gender}</dd>
+                            <dt className="text-lg font-medium text-black-500">Pet Gender</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet.pet_gender}</dd>
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Pet Age</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_age}</dd>
+                            <dt className="text-lg font-medium text-black-500">Pet Age</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet.pet_age}</dd>
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Pet Appearance</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.pet_appearance}</dd>
+                            <dt className="text-lg font-medium text-black-500">Pet Appearance</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet.pet_appearance}</dd>
                         </div>
                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">Found Location</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{Pet.location}</dd>
+                            <dt className="text-lg font-medium text-black-500">Found Location</dt>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{Pet.location}</dd>
                         </div>
+						<div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 justify-center">
+						<Link to={`/petManager/petProfile/EditPet/${Pet._id}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-lg text-gray-400 text-center ml-1">Edit</Link>
+								
+						<Link to={`/petManager/petProfile/RemovePet/${Pet._id}`} className="bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-lg text-gray-400  text-center ml-1">Remove</Link>
+									
+                        </div>
+						
                     </dl>
                 </div>
             </div>
         </div>
 		</>
 	)
-}
-
+}				

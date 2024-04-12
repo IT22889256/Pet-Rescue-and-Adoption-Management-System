@@ -11,6 +11,7 @@ export default function Dashboard() {
 			<DashboardStatsGrid />
 			<div className="flex flex-row gap-4 w-full">
 				<RescueChart />
+
 				<RescueRequstsChart />
 			</div>
 			<div className="flex flex-row gap-4 w-full">
