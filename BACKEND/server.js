@@ -29,6 +29,7 @@ const donationRouter = require('./routes/donation.route');
 const reccuringdonationsRouter = require('./routes/reccuringdonation.route');
 const specificneeddonationRouter =require('./routes/specificneeddonation.route');
 const sponsorDonationRouter = require('./routes/sponsordonation.route');
+const financialRoutes = require('./routes/financial.route');
 
 
 
@@ -82,6 +83,7 @@ app.use("/donationManager/donation", donationRouter);
 app.use("/donationManager/reccuringdonation", reccuringdonationsRouter);
 app.use("/donationManager/specificneedsdonations", specificneeddonationRouter);
 app.use("/donationManager/sponsordonation", sponsorDonationRouter);
+app.use("/donationManager/financial", financialRoutes);
 
 
 
