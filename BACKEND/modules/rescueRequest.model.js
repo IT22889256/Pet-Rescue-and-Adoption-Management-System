@@ -29,18 +29,10 @@ const RescueRequestSchema = mongoose.Schema({
         type: String,
         required: true
     },
-<<<<<<< HEAD
-=======
-
->>>>>>> developer
     date:{
         type: Date,
         required: true
     },
-<<<<<<< HEAD
-=======
-
->>>>>>> developer
     rescue_request_status:{
         type: String,
         required: true
@@ -48,9 +40,6 @@ const RescueRequestSchema = mongoose.Schema({
     pet_image:{
         type: String,
     },
-<<<<<<< HEAD
-})
-=======
 
     },
 
@@ -60,7 +49,6 @@ const RescueRequestSchema = mongoose.Schema({
     
     )
 
->>>>>>> developer
 
 const RescueRequest = mongoose.model("RescueRequest", RescueRequestSchema);
 
