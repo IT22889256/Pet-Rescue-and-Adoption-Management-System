@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link} from 'react-router-dom'
-// import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
 export default function TaskRequest() {
@@ -22,10 +21,10 @@ export default function TaskRequest() {
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-20">
 					<thead className="bg-[#c1c3c558]">
 						<tr>
-							<td className='text-center'>Task ID</td>
-							<th>Request ID</th>
-							<th>User ID</th>
-							<th>Task Priority</th>
+							<td className='text-center'>Task Type</td>
+							<th>Pet type</th>
+							<th>Location</th>
+							<th>Date</th>		
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
@@ -36,17 +35,18 @@ export default function TaskRequest() {
 							taskRequest.rescue_task_status === 'Pending' &&(
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={taskRequest._id}>
 								<td>
-									{taskRequest._id}
+									{taskRequest.rescue_task_priority}
 								</td >
 								<td>
-									{taskRequest.request_id}
+									{taskRequest.pet_type}
 								</td>
 								<td>
-									{taskRequest.user_id}
+									{taskRequest.location}
 								</td>
 								<td>
-									{taskRequest.rescue_task_priority}
+									{taskRequest.date}
 								</td>
+								
 									{taskRequest.rescue_task_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
 										<div>{taskRequest.rescue_task_status}</div>
@@ -62,7 +62,7 @@ export default function TaskRequest() {
 			</div>
 		</div>
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-			<strong className="text-gray-700 font-medium">history</strong>
+			<strong className="text-gray-700 font-medium">Checked List</strong>
 			<div className="border-x border-gray-200 rounded-sm mt-3">
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48 ">
 					<thead className="bg-[#c1c3c558]">

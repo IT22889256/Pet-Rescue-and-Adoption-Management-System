@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {useParams } from 'react-router-dom'
+import {useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 
 export default function ViewPet() {
@@ -29,6 +29,7 @@ return (
 							<th>Driver</th>
 							<th>Vet nary Doctor</th>
 							<th>Staff Member</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 						<tbody>
@@ -51,6 +52,11 @@ return (
 								<td>
 									{schedule.Staff_Member}
 								</td >
+								<td>
+								<Link to={`/transportManager/ScheduleProfile/EditSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
+								
+								<Link to={`/transportManager/ScheduleProfile/RemoveSchedule/${schedule._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>
+								</td>
 							</tr>
 						
 					</tbody>
