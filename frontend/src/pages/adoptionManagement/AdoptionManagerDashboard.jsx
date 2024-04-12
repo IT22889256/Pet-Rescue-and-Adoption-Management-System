@@ -3,7 +3,7 @@ import React from 'react'
 import DashboardStatsGrid from '../../components/adoptionManager/DashboardStatsGrid'
 import AdoptionRequestChart from '../../components/adoptionManager/AdoptionRequestChart'
 import RecentRequests from '../../components/adoptionManager/RecentRequest'
-import RescueRequstsChart from '../../components/adoptionManager/RescueRequestPieChart'
+import RescueRequstsChart from '../../components/adoptionManager/AdoptionRequestChart'
 import CreatedTasks from '../../components/adoptionManager/CreateTasks'
 
 export default function Dashboard() {
