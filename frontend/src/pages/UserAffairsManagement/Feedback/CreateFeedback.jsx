@@ -3,24 +3,25 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 
-export default function HelpAndSupport() {
+// import { PhotoIcon} from '@heroicons/react/24/solid'
+export default function Feedback() {
 
     const [user_id, setUserId] = useState()
     const [email, setEmail] = useState()
-    const [message, setMessage] = useState()
-    const[issuesandconcerns_status, setStatus] = useState("Waiting")
+    const [reason, setMessage] = useState()
+    const[status, setStatus] = useState("Waiting")
     const navigate = useNavigate()
 
     const Submit = (e) => {
 
         const data = {
-            user_id,email,message,issuesandconcerns_status
+            user_id,email,reason,status
         };
         console.log('result')
-        axios.post('http://localhost:3000/userAffairsManager/issueandconcern/createIssueAndConcern',data)
+        axios.post('http://localhost:3001/userAffairsManager/feedback/createFeedback',data)
         .then(result => {
             console.log(result)
-            navigate('/UserAffairsManager/handleIssuesConcerns')
+            navigate('/UserAffairsManager/Feedback')
         })
         .catch(err => console.log(err))
     }
@@ -30,7 +31,7 @@ export default function HelpAndSupport() {
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
-                        <div className='text-xl font-bold '>Help And Support</div>
+                        <div className='text-xl font-bold '>Feedback Form</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                                 <div className="sm:col-span-3">
                                     <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
@@ -72,8 +73,23 @@ export default function HelpAndSupport() {
                                                 type="text"
                                                 name="message"
                                                 id="message"
-                                                value={message}
+                                                value={reason}
                                                 onChange={(e) => setMessage(e.target.value)}
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="pet-gender" className="block text-sm font-medium leading-6 text-gray-900">
+                                          Status
+                                        </label>
+                                        <div className="mt-2">
+                                            <input
+                                                type="text"
+                                                name="status"
+                                                id="status"
+                                                value={status}
+                                                onChange={(e) => setStatus(e.target.value)}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>

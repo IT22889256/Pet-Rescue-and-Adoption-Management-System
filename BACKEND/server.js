@@ -27,6 +27,7 @@ app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(errorHandler);
 
+
 //user management
 
 //user routes
@@ -59,11 +60,13 @@ connection.once("open", () => {
   console.log("Mongodb Connection success");
 });
 
+
 // Reset employee leave count every 31st of the month
 
 const {
   resetEmployeeLeaveCount,
 } = require("./controllers/employeeLeaveCount.controller.js");
+
 
 cron.schedule("0 0 28-31 * *", async () => {
   try {
@@ -76,6 +79,24 @@ cron.schedule("0 0 28-31 * *", async () => {
 });
 
 //import routes
+
+
+//const complaintRouter = require('./routes/complaint.route');
+//const petRouter = require('./routes/pet.route')
+const feedbackRouter = require('./routes/feedback.route');
+const issuesandconcernsRouter = require('./routes/issuesandconcerns.route');
+const galleryRouter = require('./routes/gallery.route');
+
+//complaint
+//app.use("/complain", complaintRouter);
+//app.use("/petManager", petRouter);
+app.use("/userAffairsManager", feedbackRouter);
+app.use("/userAffairsManager", issuesandconcernsRouter);
+app.use("/userAffairsManager", galleryRouter);
+
+const rescueRequest = require('./routes/rescueRequest.route')
+app.use("/petManager", rescueRequest);
+
 
 const employeeRoute = require("./routes/employee.route.js"); // Importing employee route
 const attendanceRoute = require("./routes/daily_attendance.route.js"); // Importing attendance route
@@ -101,21 +122,25 @@ app.get("/", (req, res) => {
 const sponserpetRouter = require("./routes/sponserpet.route");
 
 //donations
+
 const donationRouter = require("./routes/donation.route");
 const reccuringdonationsRouter = require("./routes/reccuringdonation.route");
 const specificneeddonationRouter = require("./routes/specificneeddonation.route");
 const sponsorDonationRouter = require("./routes/sponsordonation.route");
+
 
 //import pet routes
 
 const rescueTask = require("./routes/task.route");
 const rescueRequest = require("./routes/rescueRequest.route");
 //import adoption routes
+
 const adoptionRouter = require("./routes/pet_adoption.route");
 const supplyRouter = require("./routes/pet_supply.route");
 const appoinmentRouter = require("./routes/appoinment_schedule.route");
 const adoptionProcessRouter = require("./routes/adoption_process.route");
 const doctorRouter = require("./routes/pet.route");
+
 
 //import routes(Schedule)
 const Schedule = require("./modules/schedule.model.js");
@@ -134,6 +159,7 @@ app.use("/api/schedules", scheduleRoute);
 //rescue task
 
 app.use("/petManager", petRouter);
+
 
 //import inventory routes
 const itemRouter = require("./routes/product.route");
@@ -168,7 +194,12 @@ app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 // const rescueTask = require('./routes/task.route');
 // app.use("/petManager", rescueTask);
 
-app.use("/petManager", rescueRequest);
+
+
+app.use("/petManager", rescueRequest);
+app.use("/petManager", rescueTask)
+
+
 
 //induwara routes
 app.use("/EmployeeManager/employees", employeeRoute); // Employee routes
@@ -179,6 +210,10 @@ app.use("/EmployeeManager/email", emailRoute); // Email routes
 app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // Deactivate employees routes
 app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
 
-app.listen(PORT, () => {
-  console.log(`Server is up and running on ${PORT}`);
+
+app.listen(PORT, () =>{
+
+    console.log(`Server is up and running on ${PORT}`);
+
+
 });
