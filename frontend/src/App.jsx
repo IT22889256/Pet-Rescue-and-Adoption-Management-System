@@ -118,7 +118,7 @@ import Request from "../src/pages/Inventorymanagement/request";
 import Createrequest from "../src/pages/Inventorymanagement/request/createrequest";
 import Updaterequest from "../src/pages/Inventorymanagement/request/updaterequest";
 import Deleterequest from "../src/pages/Inventorymanagement/request/deleterequest";
-import Viewrequest from "../src/pages/Inventorymanagement/request/viewrequest";
+import ViewRequest from "../src/pages/Inventorymanagement/request/viewrequest";
 import Order from "../src/pages/Inventorymanagement/order";
 import Createorder from "../src/pages/Inventorymanagement/order/Createorder";
 import Editorder from "../src/pages/Inventorymanagement/order/Editorder";
@@ -864,7 +864,7 @@ function App() {
           />
           <Route
             path="/InventoryManager/request/viewrequest/:id"
-            element={<Viewrequest />}
+            element={<ViewRequest />}
           />
           <Route
             path="/InventoryManager/request/Updaterequest/:id"
