@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import {IoPeople} from 'react-icons/io5'
 import { MdOutlinePets  } from "react-icons/md";
@@ -59,6 +60,7 @@ export default function DashboardStatsGrid() {
 				</div>
 			</BoxWrapper>
 			{/* <BoxWrapper>
+
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-600">
 					<FaHome className="text-2xl text-white" />
 				</div>
@@ -69,11 +71,18 @@ export default function DashboardStatsGrid() {
 					</div>
 				</div>
 			</BoxWrapper> */}
-		</div>
-		</div>
-	)
+
+      </div>
+    </div>
+  );
 }
 
 function BoxWrapper({ children }) {
-	return <div className="bg-white rounded-sm p-4 flex-1 border border-gray-200 flex items-center">{children}</div>
+  return (
+    <div className="bg-white rounded-sm p-4 flex-1 border border-gray-200 flex items-center">
+      {children}
+    </div>
+  );
 }
+
+

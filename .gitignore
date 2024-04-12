@@ -36,3 +36,6 @@ typings/
 
 #dotenv file
 .env
+
+#txt files
+*.txt
