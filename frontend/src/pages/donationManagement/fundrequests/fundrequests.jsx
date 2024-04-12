@@ -8,7 +8,7 @@ export default function CommonAR() {
 	const [rescueRequests, setRescueRequests] = useState([]);
 
 	useEffect(() => {
-		axios.get('http://localhost:3000/petManager/rescueRequest').then(res => {
+		axios.get('http://localhost:3000/InventoryManager/request').then(res => {
 			console.log(res);
 			setRescueRequests(res.data)
 		})

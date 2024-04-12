@@ -20,8 +20,7 @@ connection.once('open', () => {
 
 
 //import routes
-const complaintRouter = require('./routes/complaint.route');
-const petRouter = require('./routes/pet.route');
+
 const sponserpetRouter = require('./routes/sponserpet.route');
 
 
@@ -92,7 +91,7 @@ app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 // const rescueTask = require('./routes/task.route');
 // app.use("/petManager", rescueTask);
 
-const rescueRequest = require('./routes/rescueRequest.route')
+
 app.use("/petManager", rescueRequest);
 
 

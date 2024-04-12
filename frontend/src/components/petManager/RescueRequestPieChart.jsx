@@ -1,6 +1,5 @@
 import React, { useEffect, useState }from 'react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'
-import ChartsEmbedSDK, { Chart } from "@mongodb-js/charts-embed-dom";
 import axios from 'axios'
 
 // const data = [

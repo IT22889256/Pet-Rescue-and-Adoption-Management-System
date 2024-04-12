@@ -10,7 +10,8 @@ export default function CommonAR() {
 	const {id} = useParams()
 	const navigate = useNavigate()
 	useEffect(() => {
-		axios.get(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`)
+		axios.get(`http://localhost:3000/InventoryManager/request/viewrequest/${id}`)
+
 		.then((res) => {
 			setRescueRequest(res.data)
 			
