@@ -187,6 +187,7 @@ import ViewLeaveRequest from './pages/employeeManagment/LeaveRequests/ViewLeaveR
 
 //leave apply from employee
 import LeaveApply from './pages/employeeManagment/LeaveApply'
+import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
 
 function App() {
     return (
@@ -302,7 +303,7 @@ function App() {
                 <Route path="/employeeManager/leave/:id" element={<ViewLeaveRequest />} />
 
                 {/* leave accept routes */}
-
+                <Route path="/employeeManager/applyLeave/:id" element={<ViewLeaveApply />} />
                 {/* deactivate employees route */}
                 <Route path="/employeeManager/deactivateEmployees/ViewDeactivateEmployees/:id" element={<ViewDeactivateEmployees />} />
 
