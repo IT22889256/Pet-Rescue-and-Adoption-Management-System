@@ -12,6 +12,8 @@ import ViewVerificationRequest from "./pages/userManagement/adopterRequests/View
 import AcceptRequest from "./pages/userManagement/adopterRequests/AcceptRequest";
 import RejectRequest from "./pages/userManagement/adopterRequests/RejectRequest";
 import Adopters from "./pages/userManagement/Adopters";
+import EmployeesRequests from "./pages/userManagement/employeeRequests/EmployeeRequests";
+import ViewEmployeeRequest from "./pages/userManagement/employeeRequests/ViewEmployeeRequest";
 
 import UserRequest from "./pages/userManagement/UserRequest";
 import UserProfile from "./pages/userManagement/UserProfile";
@@ -26,6 +28,8 @@ import Login from "./pages/User/Login";
 import Profile from "./pages/User/Profile";
 import EditProfile from "./pages/User/EditProfile";
 import PrivateRoute from "./components/common/Header/PrivateRoute";
+import ForgotPassword from "./pages/User/ForgotPassword";
+import ResetPassword from "./pages/User/ResetPassword";
 
 //home page
 import FeedbackForm from "./pages/User/FeedbackForm";
@@ -219,6 +223,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/log-in" element={<Login />} />
+          <Route path="/recovery-password" element={<ForgotPassword />} />
+          <Route path="/resetpassword/:email" element={<ResetPassword />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
@@ -235,6 +241,15 @@ function App() {
           <Route
             path="/userManager/account-vericifacton-requests"
             element={<VerificationRequests />}
+          />
+          <Route
+            path="/userManager/employeeRequests"
+            element={<EmployeesRequests />}
+          />
+
+          <Route
+            path="/userManager/employees/viewEmployee/:id"
+            element={<ViewEmployeeRequest />}
           />
           <Route path="/userManager/userProfile" element={<UserProfile />} />
           <Route

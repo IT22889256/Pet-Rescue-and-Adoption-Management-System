@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
       required: [true, "Please add a password"],
-      minLength: [6, "Password must be at least 6 characters long"],
+      minLength: [10, "Password must be at least 6 characters long"],
     },
     role: {
       type: String,
@@ -32,6 +32,7 @@ const userSchema = mongoose.Schema(
       type: String,
       enum: [
         "user",
+        "employee",
         "userManager",
         "petManager",
         "transportManager",
