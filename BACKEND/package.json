@@ -28,9 +28,11 @@
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.13",
     "nodemon": "^3.1.0",
+
     "openai": "^4.0.0",
     "react-redux": "^9.1.0",
     "redux": "^5.0.1"
+
 
   }
 }

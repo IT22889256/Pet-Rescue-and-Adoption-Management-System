@@ -22,21 +22,27 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(errorHandler);
 
-//routes
 
-app.get("/", (req, res) => {
-  res.send("hellow");
-});
+//user management
+
+//user routes
+
+app.use("/userManager", userManagerRoute);
+app.use("/api/users", userRoute);
+app.use("/api/chat", chatRoute);
+
+//adopter routes
+app.use("/api/adopter", adopterRoute);
 
 //end of User Management
 
-const nodemailer = require('nodemailer');
-const cron = require('node-cron');
+const nodemailer = require("nodemailer");
+const cron = require("node-cron");
 
 // Middleware
 app.use(express.json()); // Parsing incoming requests with JSON payloads
@@ -56,20 +62,24 @@ connection.once("open", () => {
 
 
 // Reset employee leave count every 31st of the month
-const {resetEmployeeLeaveCount } = require('./controllers/employeeLeaveCount.controller.js');
+
+const {
+  resetEmployeeLeaveCount,
+} = require("./controllers/employeeLeaveCount.controller.js");
 
 
-cron.schedule('0 0 28-31 * *', async () => {
+cron.schedule("0 0 28-31 * *", async () => {
   try {
     await resetEmployeeLeaveCount();
 
-    console.log('EmployeeLeaveCount collection reset successfully.');
+    console.log("EmployeeLeaveCount collection reset successfully.");
   } catch (error) {
-    console.error('Error resetting EmployeeLeaveCount collection:', error);
+    console.error("Error resetting EmployeeLeaveCount collection:", error);
   }
 });
 
 //import routes
+
 
 //const complaintRouter = require('./routes/complaint.route');
 //const petRouter = require('./routes/pet.route')
@@ -87,6 +97,7 @@ app.use("/userAffairsManager", galleryRouter);
 const rescueRequest = require('./routes/rescueRequest.route')
 app.use("/petManager", rescueRequest);
 
+
 const employeeRoute = require("./routes/employee.route.js"); // Importing employee route
 const attendanceRoute = require("./routes/daily_attendance.route.js"); // Importing attendance route
 const salaryRoute = require("./routes/salary.route.js"); // Importing salary route
@@ -94,7 +105,6 @@ const jobRoleRoute = require("./routes/jobRole.route.js"); // Importing job role
 const emailRoute = require("./routes/email.route.js"); // Importing email route
 const deactivateEmployeesRoute = require("./routes/deactivateEmployees.route.js"); // Importing deactivate employees route
 const employeeLeave = require("./routes/leave.route.js"); // Importing leave route
-
 
 // Routes
 //danuka routes
@@ -152,29 +162,26 @@ app.use("/petManager", petRouter);
 
 
 //import inventory routes
-const itemRouter = require('./routes/product.route');
-const supplierRouter =  require('./routes/supplier.routes');
-const requestRouter = require('./routes/request.route');
-const orderRouter = require('./routes/order.route');
+const itemRouter = require("./routes/product.route");
+const supplierRouter = require("./routes/supplier.routes");
+const requestRouter = require("./routes/request.route");
+const orderRouter = require("./routes/order.route");
 
-app.use("/inventoryManager",itemRouter);
-app.use("/inventoryManager",supplierRouter);
-app.use("/inventoryManager",requestRouter);
-app.use("/inventoryManager",orderRouter);
+app.use("/inventoryManager", itemRouter);
+app.use("/inventoryManager", supplierRouter);
+app.use("/inventoryManager", requestRouter);
+app.use("/inventoryManager", orderRouter);
 app.use("/suppliers", orderRouter);
-
 
 app.use("/adoptionManager", adoptionRouter);
 app.use("/adoptionManager", supplyRouter);
-app.use("/adoptionManager", appoinmentRouter)
-app.use("/adoptionManager", adoptionProcessRouter)
+app.use("/adoptionManager", appoinmentRouter);
+app.use("/adoptionManager", adoptionProcessRouter);
 
-app.use("/doctor", doctorRouter)
-
+app.use("/doctor", doctorRouter);
 
 //sponserpet
 app.use("/donationManager", sponserpetRouter);
-
 
 //donations
 app.use("/donationManager/donation", donationRouter);
@@ -184,13 +191,14 @@ app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 
 // app.use('/donationManager',require('./routes/reccuringdonation.route'));
 
-
 // const rescueTask = require('./routes/task.route');
 // app.use("/petManager", rescueTask);
 
 
+
 app.use("/petManager", rescueRequest);
 app.use("/petManager", rescueTask)
+
 
 
 //induwara routes
@@ -202,8 +210,10 @@ app.use("/EmployeeManager/email", emailRoute); // Email routes
 app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // Deactivate employees routes
 app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
 
+
 app.listen(PORT, () =>{
 
     console.log(`Server is up and running on ${PORT}`);
+
 
 });
