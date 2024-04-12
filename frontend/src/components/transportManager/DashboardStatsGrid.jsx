@@ -4,6 +4,7 @@ import { MdOutlinePets  } from "react-icons/md";
 import { FaTasks,FaHome  } from "react-icons/fa";
 import { PiVanFill } from "react-icons/pi";
 export default function DashboardStatsGrid() {
+
 	return (
 		<div>
 			<div className="text-2xl p-1">Overview</div>
@@ -29,18 +30,6 @@ export default function DashboardStatsGrid() {
 						</div>
 				</div>
 			</BoxWrapper>
-			{/* <BoxWrapper>
-				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-yellow-400">
-					<MdOutlinePets className="text-2xl text-white" />
-				</div>
-				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Complains</span>
-					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">13</strong>
-						{/* <span className="text-sm text-red-500 pl-2">Adopted - 40</span> */}
-					{/* </div>
-				</div>
-			</BoxWrapper> */} 
 			<BoxWrapper>
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-600">
 					<PiVanFill className="text-2xl text-white" />
@@ -54,6 +43,7 @@ export default function DashboardStatsGrid() {
 			
 		</div>
 		</div>
+		
 	)
 }
 
