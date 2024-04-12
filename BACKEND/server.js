@@ -33,8 +33,7 @@ app.use("/userAffairsManager", feedbackRouter);
 app.use("/userAffairsManager", issuesandconcernsRouter);
 app.use("/userAffairsManager", galleryRouter);
 
-const rescueRequest = require('./routes/rescueRequest.route')
-app.use("/petManager", rescueRequest);
+
 //import routes
 const sponserpetRouter = require('./routes/sponserpet.route');
 
