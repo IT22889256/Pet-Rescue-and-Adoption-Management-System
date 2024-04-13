@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 export default function ViewEmployee() {
     const [employee, setEmployee] = useState({});
@@ -22,13 +24,21 @@ export default function ViewEmployee() {
         if (confirmDelete) {
             axios.put(`http://localhost:3000/EmployeeManager/employees/DeleteEmployee/${id}`)
                 .then(() => {
-                    alert('Employee deleted');
-                    navigate('/EmployeeManager/ManageEmployees');
+                    toast.success('Employee deleted successfully!');
+                    setTimeout(() => navigate('/EmployeeManager/ManageEmployees'), 4000); 
                 })
                 .catch((error) => {
                     console.log(error);
+					toast.error('An error occurred during deletion!');
                 });
         }
+    };
+	const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const month = date.getMonth() + 1; // Month is zero-based
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
     };
 
     return (
@@ -69,12 +79,12 @@ export default function ViewEmployee() {
 
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-sm font-medium text-gray-500">Recruited Date</dt>
-					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{employee.recruitedDate}</dd>
+					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{formatDate(employee.recruitedDate)}</dd>
 				</div>
 
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-sm font-medium text-gray-500">birth Day</dt>
-					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{employee.birthday}</dd>
+					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{formatDate(employee.birthday)}</dd>
 				</div>
 
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -116,6 +126,7 @@ export default function ViewEmployee() {
                     </div>
                 </div>
             </div>
+			<ToastContainer />
         </div>
     );
 }

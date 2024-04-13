@@ -18,6 +18,7 @@ const AttendanceSchema = mongoose.Schema(
       required: false,
     },
     
+ 
     status: {
       type: String,
       enum: ['available', 'unavailable'], 

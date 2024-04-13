@@ -207,7 +207,7 @@ export default function EditEmployee() {
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                                type="text"
+                                                type="date"
                                                 name="recruitedDate"
                                                 id="recruitedDate"
                                                 value={recruitedDate}
@@ -223,7 +223,7 @@ export default function EditEmployee() {
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                                type="text"
+                                                type="date"
                                                 name="birthday"
                                                 id="birthday"
                                                 value={birthday}
