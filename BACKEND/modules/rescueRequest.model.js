@@ -17,13 +17,10 @@ const RescueRequestSchema = mongoose.Schema({
         type: String,
         required: true
     },
-<<<<<<< HEAD
-=======
     date:{
         type: Date,
         required: true
     },
->>>>>>> developer
     rescue_request_status:{
         type: String,
         required: true
