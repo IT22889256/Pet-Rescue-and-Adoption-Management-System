@@ -56,6 +56,8 @@ function Login() {
           navigate("/adoptionManager");
         } else if (data.roletype === "inventoryManager") {
           navigate("/InventoryManager");
+        } else if (data.roletype === "userAffairsManager") {
+          navigate("/userAffairsManager");
         } else {
           navigate("/");
         }

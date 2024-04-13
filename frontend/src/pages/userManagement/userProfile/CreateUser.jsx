@@ -159,6 +159,7 @@ export default function CreateUser() {
                   <option>donationManager</option>
                   <option>adoptionManager</option>
                   <option>inventoryManager</option>
+                  <option>userAffairsManager</option>
                 </select>
               </div>
             </div>

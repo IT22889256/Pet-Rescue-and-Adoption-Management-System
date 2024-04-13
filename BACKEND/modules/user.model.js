@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
       required: [true, "Please add a password"],
-      minLength: [10, "Password must be at least 6 characters long"],
+      minLength: [6, "Password must be at least 6 characters long"],
     },
     role: {
       type: String,
@@ -40,6 +40,7 @@ const userSchema = mongoose.Schema(
         "donationManager",
         "adoptionManager",
         "inventoryManager",
+        "userAffairsManager",
       ],
       default: "user",
     },

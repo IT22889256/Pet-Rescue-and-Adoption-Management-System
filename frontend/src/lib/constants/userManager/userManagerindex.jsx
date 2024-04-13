@@ -40,7 +40,7 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
   {
     key: "support",
     label: "Help & Support",
-    path: "/userManagement/heplAndSupport",
+    path: "/userManager/heplAndSupport",
     icon: <HiOutlineQuestionMarkCircle />,
   },
 ];
