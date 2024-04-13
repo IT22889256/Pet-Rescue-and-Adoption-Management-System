@@ -25,6 +25,7 @@ export default function EmployeesRequests() {
               <th>Name</th>
               <th>Email</th>
               <th>NIC</th>
+              <th>Access Status</th>
               <th>phone Number</th>
               <th>Action</th>
             </tr>
@@ -41,16 +42,27 @@ export default function EmployeesRequests() {
 
                   <td>{employee.email}</td>
                   <td>{employee.nic}</td>
+
+                  {employee.status === "pending" ? (
+                    <td className="text-red-700">{employee.status}</td>
+                  ) : (
+                    <td className="text-green-700">{employee.status}</td>
+                  )}
+
                   <td>{employee.phoneNumber}</td>
 
-                  <td>
-                    <Link
-                      to={`/userManager/employees/viewEmployee/${employee._id}`}
-                      className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 "
-                    >
-                      Create Employee
-                    </Link>
-                  </td>
+                  {employee.status === "pending" ? (
+                    <td>
+                      <Link
+                        to={`/userManager/employees/viewEmployee/${employee._id}`}
+                        className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 "
+                      >
+                        Create Employee
+                      </Link>
+                    </td>
+                  ) : (
+                    <td></td>
+                  )}
                 </tr>
               ))}
             </tbody>
