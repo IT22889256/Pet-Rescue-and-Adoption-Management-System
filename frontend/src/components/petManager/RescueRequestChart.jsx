@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 import React from 'react'
 import { ResponsiveContainer } from 'recharts'
 
@@ -17,4 +16,3 @@ export default function RescueChart() {
 		</div>
 	)
 }
->>>>>>> developer

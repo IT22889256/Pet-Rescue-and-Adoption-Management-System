@@ -20,8 +20,6 @@ export default function EditPet() {
 
     const {id} = useParams()
     useEffect((e) => {
-
-
         axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
         .then((res) => {
             setReqId(res.data.request_id)
