@@ -14,9 +14,23 @@ const RescueRequestSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    location: {
-      type: String,
-      required: true,
+
+    location:{
+        type: String,
+        required: true
+    },
+    date:{
+        type: Date,
+        required: true
+    },
+    rescue_request_status:{
+        type: String,
+        required: true
+    },
+    imgUrl:{
+        type: String,
+        required: true
+
     },
 
     date: {

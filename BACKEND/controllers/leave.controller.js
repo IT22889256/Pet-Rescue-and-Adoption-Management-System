@@ -127,26 +127,60 @@ const getLeaves = async (req, res) => {
   
       const updatedleave = await Leave.findOne({ eid });
   
-      // Prepare email data (remove unnecessary console.log)
+      // Prepare email data 
       const emailData = {
         from: 'Pet Rescue Management System <projectforitp@gmail.com>',  // Replace with sender email
         to: `${employeeEmail}`, // Use retrieved employee email
         subject: 'Leave Request Accepted',
         html: `<!DOCTYPE html>
-          <html>
-            <body>
-              <p>Dear Employee,</p>
-              <p>This email confirms that your leave request for ${days} days of ${reason} leave has been approved.</p>
-              <p>Your updated leave balances are:</p>
-              <ul>
-                <li>Medical Leave: ${medical} days</li>
-                <li>Casual Leave: ${casual} days</li>
-                <li>Emergency Leave: ${emergency} days</li>
-              </ul>
-              <p>Regards,</p>
-              <p>Leave Management System</p>
-            </body>
-          </html>`
+        <html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5; /* Light gray background */
+      }
+      p {
+        margin-bottom: 15px;
+        color: #333; /* Dark gray text */
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 5px;
+        color: #666; /* Lighter gray for list items */
+      }
+      .highlight {
+        color: #007bff; /* Blue for highlighted text */
+      }
+      
+      h1 {
+        color: #2e6da4; /* Darker blue for headings */
+        margin-bottom: 10px;
+      }
+      .regards {
+        font-style: italic;
+        color: #999; /* Lighter gray for regards */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Leave Request Accepted</h1>  <p>Dear Employee,</p>
+    <p>This email confirms that your leave request for <span class="highlight">${days}</span> days of <span class="highlight">${reason}</span> leave has been approved.</p>
+    <p>Your updated leave count is:</p>
+    <ul>
+      <li>Medical Leave: ${medical} days</li>
+      <li>Casual Leave: ${casual} days</li>
+      <li>Emergency Leave: ${emergency} days</li>
+    </ul>
+    <p class="regards">Regards,</p>
+    <p>Employee Management System</p>
+  </body>
+</html>`
       };
   
       // Send email notification upon leave acceptance (ensure response is not sent before)

@@ -236,7 +236,8 @@ import ManageLeaves from "./pages/employeeManagment/ManageLeaves";
 import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveRequest";
 
 //leave apply from employee
-import LeaveApply from "./pages/employeeManagment/LeaveApply";
+import LeaveApply from './pages/employeeManagment/LeaveApply'
+import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
 
 function App() {
   return (

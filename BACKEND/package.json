@@ -19,7 +19,6 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-
     "express": "^4.19.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
@@ -29,7 +28,6 @@
     "node-localstorage": "^3.0.5",
     "nodemailer": "^6.9.13",
     "nodemon": "^3.1.0",
-
     "openai": "^4.0.0",
     "otp-generator": "^4.0.1",
 
@@ -37,8 +35,6 @@
  
     "react-redux": "^9.1.0",
     "redux": "^5.0.1"
-
-
 
   }
 }
