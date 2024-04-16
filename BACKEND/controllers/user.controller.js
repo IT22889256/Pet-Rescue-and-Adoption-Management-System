@@ -119,15 +119,30 @@ const loginUser = asyncHandler(async (req, res) => {
   }
   // Modify the part in your loginUser function that sends the response
   if (user && passwordIsCorrect) {
-    const { _id, name, email, role, photo, roletype } = user; // Include role here
+    const {
+      _id,
+      name,
+      email,
+      role,
+      photo,
+      roletype,
+      phone,
+      eid,
+      bio,
+      jobRole,
+    } = user; // Include role here
 
     res.status(200).json({
       _id,
       name,
       email,
+      phone,
       role, // Send role to the frontend
       roletype, // Send roletype to the frontend
       photo,
+      eid,
+      jobRole,
+      bio,
       token,
     });
   } else {

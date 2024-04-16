@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 
 function Header() {
   const currentUser = useSelector((state) => state.user.currentUser);
+  console.log(useSelector((state) => state.user));
+  const isLogedin = useSelector((state) => state.user.logedIn);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -60,17 +62,25 @@ function Header() {
           </a>
         </Popover.Group>
 
-        <Link to="/profile" className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {currentUser ? (
+        {isLogedin ? (
+          <Link
+            to={`/profile/${currentUser._id}`}
+            className="hidden lg:flex lg:flex-1 lg:justify-end"
+          >
             <img
               src={currentUser.photo}
               alt="profile"
               className="h-10 w-10 rounded-full object-cover"
             />
-          ) : (
-            "Log in"
-          )}
-        </Link>
+          </Link>
+        ) : (
+          <Link
+            to="/log-in"
+            className="hidden lg:flex lg:flex-1 lg:justify-end"
+          >
+            Log in
+          </Link>
+        )}
       </nav>
       <Dialog
         as="div"

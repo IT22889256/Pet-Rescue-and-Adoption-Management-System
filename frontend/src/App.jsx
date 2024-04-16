@@ -14,6 +14,7 @@ import RejectRequest from "./pages/userManagement/adopterRequests/RejectRequest"
 import Adopters from "./pages/userManagement/Adopters";
 import EmployeesRequests from "./pages/userManagement/employeeRequests/EmployeeRequests";
 import ViewEmployeeRequest from "./pages/userManagement/employeeRequests/ViewEmployeeRequest";
+import EmployeeProfiles from "./pages/User/EmployeeProfile";
 
 import UserAffairsLayout from "./components/UserAffairsManager/UserAffairsLayout";
 import UserAffairsManagerDashboard from "./pages/UserAffairsManagement/UserAffairsManagerDashboard";
@@ -236,8 +237,8 @@ import ManageLeaves from "./pages/employeeManagment/ManageLeaves";
 import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveRequest";
 
 //leave apply from employee
-import LeaveApply from './pages/employeeManagment/LeaveApply'
-import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
+import LeaveApply from "./pages/employeeManagment/LeaveApply";
+import ViewLeaveApply from "./pages/employeeManagment/LeaveApply/viewLeaveApply";
 
 function App() {
   return (
@@ -245,6 +246,7 @@ function App() {
       <Routes>
         <Route path="/feedback" element={<FeedbackForm />} />
         <Route path="/donation" element={<RecurringDonationForm />} />
+        <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
       </Routes>
 
       <Routes>
@@ -255,7 +257,7 @@ function App() {
           <Route path="/recovery-password" element={<ForgotPassword />} />
           <Route path="/resetpassword/:email" element={<ResetPassword />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
           </Route>
         </Route>
         <Route path="/edit-profile" element={<EditProfile />} />
