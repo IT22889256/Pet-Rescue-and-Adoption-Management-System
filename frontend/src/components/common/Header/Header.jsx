@@ -42,15 +42,31 @@ function Header() {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            to={`/`}
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Home
-          </a>
+          </Link>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Rescues
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Donation
-          </a>
+          {isLogedin ? (
+            <Link
+              to={`/user/${currentUser._id}/donation`}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Donation
+            </Link>
+          ) : (
+            <a
+              href="#"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Donation
+            </a>
+          )}
+
           {isLogedin && currentUser.role !== "adopter" ? (
             <Link
               to="/user/become-adopter"
@@ -70,9 +86,22 @@ function Header() {
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Gallery
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Feedback
-          </a>
+
+          {isLogedin ? (
+            <Link
+              to={`/user/${currentUser._id}/feedback`}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Feedback
+            </Link>
+          ) : (
+            <a
+              href="#"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Feedback
+            </a>
+          )}
         </Popover.Group>
 
         {isLogedin ? (
@@ -104,10 +133,20 @@ function Header() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img className="h-20 w-auto" src={logo} alt="" />
-            </a>
+            {isLogedin ? (
+              <Link
+                to={`/profile/${currentUser._id}`}
+                className="lg:flex lg:flex-1 lg:justify-end -m-1.5 p-1.5"
+              >
+                <img
+                  src={currentUser.photo}
+                  alt="profile"
+                  className="h-10 w-10 rounded-full object-cover"
+                />
+              </Link>
+            ) : (
+              ""
+            )}
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -120,51 +159,84 @@ function Header() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                <a
-                  href="#"
+                <Link
+                  to={`/`}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Home
-                </a>
+                </Link>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Rescues
                 </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Donation
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Adoption
-                </a>
+
+                {isLogedin ? (
+                  <Link
+                    to={`/user/${currentUser._id}/donation`}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Donation
+                  </Link>
+                ) : (
+                  <a
+                    href="#"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Donation
+                  </a>
+                )}
+
+                {isLogedin && currentUser.role !== "adopter" ? (
+                  <Link
+                    to="/user/become-adopter"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Adoption
+                  </Link>
+                ) : (
+                  <a
+                    href="#"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Adoption
+                  </a>
+                )}
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Gallery
                 </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Feedback
-                </a>
+
+                {isLogedin ? (
+                  <Link
+                    to={`/user/${currentUser._id}/feedback`}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Feedback
+                  </Link>
+                ) : (
+                  <a
+                    href="#"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Feedback
+                  </a>
+                )}
               </div>
-              <div className="py-6">
+
+              {isLogedin ? (
+                ""
+              ) : (
                 <Link
                   to="/log-in"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log in
                 </Link>
-              </div>
+              )}
             </div>
           </div>
         </Dialog.Panel>

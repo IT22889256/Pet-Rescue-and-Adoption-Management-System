@@ -245,8 +245,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/feedback" element={<FeedbackForm />} />
-        <Route path="/donation" element={<RecurringDonationForm />} />
         <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
       </Routes>
 
@@ -258,6 +256,8 @@ function App() {
           <Route path="/recovery-password" element={<ForgotPassword />} />
           <Route path="/resetpassword/:email" element={<ResetPassword />} />
           <Route path="/user/become-adopter" element={<BecomeAdopter />} />
+          <Route path="user/:id/feedback" element={<FeedbackForm />} />
+          <Route path="user/:id/donation" element={<RecurringDonationForm />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile/:id" element={<Profile />} />
           </Route>
