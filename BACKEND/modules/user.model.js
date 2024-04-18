@@ -66,6 +66,34 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "Null",
     },
+    location: {
+      type: String,
+    },
+    nic: {
+      type: String,
+      unique: true,
+      trim: true,
+    },
+    drivngLicense: {
+      type: String,
+      unique: true,
+      trim: true,
+    },
+    image: {
+      type: String,
+    },
+    nicback: {
+      type: String,
+    },
+    petOwnerShip: {
+      type: String,
+    },
+    reason: {
+      type: String,
+    },
+    empStatus: {
+      type: String,
+    },
   },
   {
     timestamps: true,

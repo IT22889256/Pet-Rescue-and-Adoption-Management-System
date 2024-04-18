@@ -24,6 +24,7 @@ import CreateFeedback from "../src/pages/UserAffairsManagement/Feedback/CreateFe
 import EditFeedback from "../src/pages/UserAffairsManagement/Feedback/EditFeedback";
 import RemoveFeedback from "../src/pages/UserAffairsManagement/Feedback/RemoveFeedback";
 import ViewFeedback from "../src/pages/UserAffairsManagement/Feedback/ViewFeedback";
+import BecomeAdopter from "../src/pages/User/BecomeAdopter";
 
 import IssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns";
 import CreateIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/CreateIssuesAndConcerns";
@@ -256,6 +257,7 @@ function App() {
           <Route path="/log-in" element={<Login />} />
           <Route path="/recovery-password" element={<ForgotPassword />} />
           <Route path="/resetpassword/:email" element={<ResetPassword />} />
+          <Route path="/user/become-adopter" element={<BecomeAdopter />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile/:id" element={<Profile />} />
           </Route>

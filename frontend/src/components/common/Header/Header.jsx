@@ -51,9 +51,22 @@ function Header() {
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Donation
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Adoption
-          </a>
+          {isLogedin && currentUser.role !== "adopter" ? (
+            <Link
+              to="/user/become-adopter"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Adoption
+            </Link>
+          ) : (
+            <a
+              href="#"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Adoption
+            </a>
+          )}
+
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Gallery
           </a>

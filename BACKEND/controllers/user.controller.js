@@ -146,7 +146,7 @@ const loginUser = asyncHandler(async (req, res) => {
       token,
     });
   } else {
-    res.status(400).json({ message: "Invalid email or password" });
+    res.status(400).json({ message: "Invalid password" });
   }
 });
 

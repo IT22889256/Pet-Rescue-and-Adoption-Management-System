@@ -37,7 +37,10 @@ function Login() {
       const data = await response.json();
       console.log(data);
 
-      if (data.message === "Invalid email or password") {
+      if (
+        data.message === "Invalid email or password" ||
+        data.message === "User not found, please signup"
+      ) {
         dispatch(logInFailure(data));
         return;
       }
