@@ -9,6 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const [formData, setFormData] = useState({});
@@ -38,7 +39,7 @@ function Login() {
       console.log(data);
 
       if (
-        data.message === "Invalid email or password" ||
+        data.message === "Invalid password" ||
         data.message === "User not found, please signup"
       ) {
         dispatch(logInFailure(data));
@@ -47,6 +48,7 @@ function Login() {
 
       console.log("login Data", data);
       dispatch(logInSuccess(data));
+      alert("Login Success");
       if (data.role === "admin") {
         if (data.roletype === "userManager") {
           navigate("/userManager");
@@ -67,6 +69,8 @@ function Login() {
         } else {
           navigate("/");
         }
+      } else {
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
