@@ -33,6 +33,9 @@ const userSchema = mongoose.Schema(
       enum: [
         "user",
         "employee",
+        "doctor",
+        "supplier",
+        "driver",
         "userManager",
         "petManager",
         "transportManager",
