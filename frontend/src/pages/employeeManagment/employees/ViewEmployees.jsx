@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+ 
 
 export default function ViewEmployee() {
     const [employee, setEmployee] = useState({});
@@ -24,12 +23,12 @@ export default function ViewEmployee() {
         if (confirmDelete) {
             axios.put(`http://localhost:3000/EmployeeManager/employees/DeleteEmployee/${id}`)
                 .then(() => {
-                    toast.success('Employee deleted successfully!');
-                    setTimeout(() => navigate('/EmployeeManager/ManageEmployees'), 4000); 
+                    alert('Employee deleted successfully!');
+                    navigate('/EmployeeManager/ManageEmployees'); 
                 })
                 .catch((error) => {
                     console.log(error);
-					toast.error('An error occurred during deletion!');
+					alert('An error occurred during deletion!');
                 });
         }
     };
@@ -126,7 +125,7 @@ export default function ViewEmployee() {
                     </div>
                 </div>
             </div>
-			<ToastContainer />
+			
         </div>
     );
 }

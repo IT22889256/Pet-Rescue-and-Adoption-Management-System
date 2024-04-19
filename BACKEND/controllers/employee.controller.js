@@ -52,25 +52,6 @@ const getEmployeeByEmployeeId = async (req, res) => {
 
 
 
-// Create an employee by employee manager
-// const createEmployee = async (req, res) => {
-//   try {
-
-//     const employee = await Employee.create(req.body);
-
-   
-//     const employeeLeaveCount = await EmployeeLeaveCount.create({
-//       eid: employee.eid,
-//       email: employee.email,
-      
-//     });
-
-//     res.status(200).json(employee);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
 //new feature auto incriment id for employee create
 const createEmployee = async (req, res) => {
 try {

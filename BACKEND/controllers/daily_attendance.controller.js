@@ -67,8 +67,6 @@ const getForAttendance = async (req, res) => {
 
   
 
-
-
 // Delete an attendance
   const deleteAttendance = async (req, res) => {
     try {

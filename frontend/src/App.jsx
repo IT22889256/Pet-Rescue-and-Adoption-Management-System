@@ -237,6 +237,9 @@ import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveR
 import LeaveApply from './pages/employeeManagment/LeaveApply'
 import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
 
+//employee attendance
+import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+
 function App() {
   return (
     <Router>
@@ -492,12 +495,18 @@ function App() {
             path="/employeeManager/jobRoles"
             element={<ManageJobRoles />}
           />
+
+          <Route
+          path="/employeeManager/AttendanceMark"
+          element={<ManageEmployeeAttendance />}
+          />
+
           <Route
             path="/employeeManager/ManageDeactivateEmployees"
             element={<ManageDeactivateEmployees />}
           />
           <Route path="/employeeManager/LeaveApply" element={<LeaveApply />} />
-          '
+          
           <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
           <Route path="/employeeManager/petProfile" element={<PetProfile />} />
           {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
