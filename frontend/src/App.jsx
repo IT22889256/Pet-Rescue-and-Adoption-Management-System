@@ -12,39 +12,42 @@ import ViewVerificationRequest from "./pages/userManagement/adopterRequests/View
 import AcceptRequest from "./pages/userManagement/adopterRequests/AcceptRequest";
 import RejectRequest from "./pages/userManagement/adopterRequests/RejectRequest";
 import Adopters from "./pages/userManagement/Adopters";
+import EmployeesRequests from "./pages/userManagement/employeeRequests/EmployeeRequests";
+import ViewEmployeeRequest from "./pages/userManagement/employeeRequests/ViewEmployeeRequest";
+import EmployeeProfiles from "./pages/User/EmployeeProfile";
 
-import UserAffairsLayout from './components/UserAffairsManager/UserAffairsLayout'
-import UserAffairsManagerDashboard from './pages/UserAffairsManagement/UserAffairsManagerDashboard'
+import UserAffairsLayout from "./components/UserAffairsManager/UserAffairsLayout";
+import UserAffairsManagerDashboard from "./pages/UserAffairsManagement/UserAffairsManagerDashboard";
 
-import Feedback from '../src/pages/UserAffairsManagement/Feedback'
-import CreateFeedback from '../src/pages/UserAffairsManagement/Feedback/CreateFeedback'
-import EditFeedback from '../src/pages/UserAffairsManagement/Feedback/EditFeedback'
-import RemoveFeedback from '../src/pages/UserAffairsManagement/Feedback/RemoveFeedback'
-import ViewFeedback from '../src/pages/UserAffairsManagement/Feedback/ViewFeedback'
+import Feedback from "../src/pages/UserAffairsManagement/Feedback";
+import CreateFeedback from "../src/pages/UserAffairsManagement/Feedback/CreateFeedback";
+import EditFeedback from "../src/pages/UserAffairsManagement/Feedback/EditFeedback";
+import RemoveFeedback from "../src/pages/UserAffairsManagement/Feedback/RemoveFeedback";
+import ViewFeedback from "../src/pages/UserAffairsManagement/Feedback/ViewFeedback";
+import BecomeAdopter from "../src/pages/User/BecomeAdopter";
 
-import IssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns'
-import CreateIssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns/CreateIssuesAndConcerns'
-import EditIssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns/EditIssuesAndConcerns'
-import RemoveIssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns/RemoveIssuesAndConcerns'
-import ViewIssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns/ViewIssuesAndConcerns'
+import IssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns";
+import CreateIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/CreateIssuesAndConcerns";
+import EditIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/EditIssuesAndConcerns";
+import RemoveIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/RemoveIssuesAndConcerns";
+import ViewIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/ViewIssuesAndConcerns";
 
-import Gallery from '../src/pages/UserAffairsManagement/Gallery'
-import CreateGallery from '../src/pages/UserAffairsManagement/Gallery/CreateGallery'
-import EditGallery from '../src/pages/UserAffairsManagement/Gallery/EditGallery'
-import RemoveGallery from '../src/pages/UserAffairsManagement/Gallery/RemoveGallery'
-import ViewGallery from '../src/pages/UserAffairsManagement/Gallery/ViewGallery'
+import Gallery from "../src/pages/UserAffairsManagement/Gallery";
+import CreateGallery from "../src/pages/UserAffairsManagement/Gallery/CreateGallery";
+import EditGallery from "../src/pages/UserAffairsManagement/Gallery/EditGallery";
+import RemoveGallery from "../src/pages/UserAffairsManagement/Gallery/RemoveGallery";
+import ViewGallery from "../src/pages/UserAffairsManagement/Gallery/ViewGallery";
 
 //handle issues concerns
-import IssuesConcerns from '../src/pages/UserAffairsManagement/handleIssuesConcerns/IssuesConcerns'
-import ViewIssuesConcerns from '../src/pages/UserAffairsManagement/handleIssuesConcerns/ViewIssuesConcerns'
+import IssuesConcerns from "../src/pages/UserAffairsManagement/handleIssuesConcerns/IssuesConcerns";
+import ViewIssuesConcerns from "../src/pages/UserAffairsManagement/handleIssuesConcerns/ViewIssuesConcerns";
 
 //handle feedback
-import AllFeedback from '../src/pages/UserAffairsManagement/handleFeedback/AllFeedback'
-import ViewFeedback1 from '../src/pages/UserAffairsManagement/handleFeedback/viewFeedback'
+import AllFeedback from "../src/pages/UserAffairsManagement/handleFeedback/AllFeedback";
+import ViewFeedback1 from "../src/pages/UserAffairsManagement/handleFeedback/viewFeedback";
 
 import UserRequest from "./pages/userManagement/UserRequest";
 import UserProfile from "./pages/userManagement/UserProfile";
-
 
 import CreateUser from "./pages/userManagement/userProfile/CreateUser";
 import ViewUser from "./pages/userManagement/userProfile/ViewUser";
@@ -56,6 +59,8 @@ import Login from "./pages/User/Login";
 import Profile from "./pages/User/Profile";
 import EditProfile from "./pages/User/EditProfile";
 import PrivateRoute from "./components/common/Header/PrivateRoute";
+import ForgotPassword from "./pages/User/ForgotPassword";
+import ResetPassword from "./pages/User/ResetPassword";
 
 //home page
 import FeedbackForm from "./pages/User/FeedbackForm";
@@ -163,7 +168,6 @@ import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundreq
 import DoctorLayout from "./components/doctor/DoctorLayout";
 import DoctorDashboard from "./pages/doctorManagement/DoctorDashboard";
 
-
 import AllPetHealth from "./pages/doctorManagement/petHealth/AllPetHealth";
 import ViewPetHealth from "./pages/doctorManagement/petHealth/ViewPetHealth";
 import EditPetHealth from "./pages/doctorManagement/petHealth/EditPetHealth";
@@ -234,6 +238,10 @@ import ManageLeaves from "./pages/employeeManagment/ManageLeaves";
 import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveRequest";
 
 //leave apply from employee
+
+
+import RescueRequestForm from './pages/User/RescueRequestForm'
+
 import LeaveApply from './pages/employeeManagment/LeaveApply'
 import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
 
@@ -244,17 +252,22 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/feedback" element={<FeedbackForm />} />
-        <Route path="/donation" element={<RecurringDonationForm />} />
+        <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
       </Routes>
 
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/rescuerequestForm" element={<RescueRequestForm/>} />
           <Route path="/log-in" element={<Login />} />
+          <Route path="/recovery-password" element={<ForgotPassword />} />
+          <Route path="/resetpassword/:email" element={<ResetPassword />} />
+          <Route path="/user/become-adopter" element={<BecomeAdopter />} />
+          <Route path="user/:id/feedback" element={<FeedbackForm />} />
+          <Route path="user/:id/donation" element={<RecurringDonationForm />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
           </Route>
         </Route>
         <Route path="/edit-profile" element={<EditProfile />} />
@@ -264,11 +277,24 @@ function App() {
       <Routes>
         <Route path="/userManager" element={<UserManagerLayout />}>
           <Route index path="/userManager" element={<UserDashboard />} />
+          <Route
+            path="/userManager/heplAndSupport"
+            element={<HeplAndSupport />}
+          />
           {/* main routes */}
           <Route path="/userManager/adopters" element={<Adopters />} />
           <Route
             path="/userManager/account-vericifacton-requests"
             element={<VerificationRequests />}
+          />
+          <Route
+            path="/userManager/employeeRequests"
+            element={<EmployeesRequests />}
+          />
+
+          <Route
+            path="/userManager/employees/viewEmployee/:id"
+            element={<ViewEmployeeRequest />}
           />
           <Route path="/userManager/userProfile" element={<UserProfile />} />
           <Route
@@ -327,6 +353,10 @@ function App() {
           />
           <Route
             path="/petManager/petProfile/createPet"
+            element={<CreatePet />}
+          />
+            <Route
+            path="/petManager/petProfile/createPet/:id"
             element={<CreatePet />}
           />
           <Route
@@ -910,43 +940,102 @@ function App() {
             element={<UpdateRequests />}
           />
         </Route>
-      </Routes> 
-            <Routes>
-                <Route path="/UserAffairsManager" element={<UserAffairsLayout />}>
-                    <Route index path="/UserAffairsManager" element={<UserAffairsManagerDashboard />} />
-                    <Route path="/UserAffairsManager/employeeProfile" element={<EmployeeProfile />} />
-                    <Route path="/UserAffairsManager/heplAndSupport" element={<HeplAndSupport />} />
-                    {/* main routes */}
-                    <Route path="/UserAffairsManager/feedback" element={<Feedback/>} />
-                    <Route path="/UserAffairsManager/issuesandconcerns" element={<IssuesAndConcerns />} />
-                    <Route path="/UserAffairsManager/gallery" element={<Gallery />} />
-                    {/* Issues & Concerns routes */}
-                    <Route path="/UserAffairsManager/IssuesAndConcerns/ViewIssuesAndConcerns/:id" element={<ViewIssuesAndConcerns />} />
-                    <Route path="/UserAffairsManager/IssuesAndConcerns/CreateIssuesAndConcerns" element={<CreateIssuesAndConcerns />} />
-                    <Route path="/UserAffairsManager/IssuesAndConcerns/EditIssuesAndConcerns/:id" element={<EditIssuesAndConcerns />} />
-                    <Route path="/UserAffairsManager/IssuesAndConcerns/RemoveIssuesAndConcerns/:id" element={<RemoveIssuesAndConcerns />} />
-                    {/* feedback routes */}
-                    <Route path="/UserAffairsManager/Feedback/ViewFeedback/:id" element={<ViewFeedback />} />
-                    <Route path="/UserAffairsManager/Feedback/CreateFeedback" element={<CreateFeedback />} />
-                    <Route path="/UserAffairsManager/Feedback/EditFeedback/:id" element={<EditFeedback />} />
-                    <Route path="/UserAffairsManager/Feedback/RemoveFeedback/:id" element={<RemoveFeedback />} />
-                    {/* gallery routes */}
-                    <Route path="/UserAffairsManager/Gallery/ViewGallery/:id" element={<ViewGallery />} />
-                    <Route path="/UserAffairsManager/Gallery/CreateGallery" element={<CreateGallery />} />
-                    <Route path="/UserAffairsManager/Gallery/EditGallery/:id" element={<EditGallery />} />
-                    <Route path="/UserAffairsManager/Gallery/RemoveGallery/:id" element={<RemoveGallery />} />
-                    {/* handle IC routes */}
-                    <Route path="/UserAffairsManager/handleIssuesConcerns" element={<IssuesConcerns />} />
-                    <Route path="/UserAffairsManager/handleIssuesConcerns/ViewIssuesConcerns/:id" element={<ViewIssuesConcerns />} />
-                    {/* handle F routes */}
-                    <Route path="/UserAffairsManager/handleFeedback" element={<AllFeedback />} />
-                    <Route path="/UserAffairsManager/handleFeedback/viewFeedback/:id" element={<ViewFeedback1 />} />
-                </Route>
-            </Routes>
-  
+      </Routes>
+      <Routes>
+        <Route path="/UserAffairsManager" element={<UserAffairsLayout />}>
+          <Route
+            index
+            path="/UserAffairsManager"
+            element={<UserAffairsManagerDashboard />}
+          />
+          <Route
+            path="/UserAffairsManager/employeeProfile"
+            element={<EmployeeProfile />}
+          />
+          <Route
+            path="/UserAffairsManager/heplAndSupport"
+            element={<HeplAndSupport />}
+          />
+          {/* main routes */}
+          <Route path="/UserAffairsManager/feedback" element={<Feedback />} />
+          <Route
+            path="/UserAffairsManager/issuesandconcerns"
+            element={<IssuesAndConcerns />}
+          />
+          <Route path="/UserAffairsManager/gallery" element={<Gallery />} />
+          {/* Issues & Concerns routes */}
+          <Route
+            path="/UserAffairsManager/IssuesAndConcerns/ViewIssuesAndConcerns/:id"
+            element={<ViewIssuesAndConcerns />}
+          />
+          <Route
+            path="/UserAffairsManager/IssuesAndConcerns/CreateIssuesAndConcerns"
+            element={<CreateIssuesAndConcerns />}
+          />
+          <Route
+            path="/UserAffairsManager/IssuesAndConcerns/EditIssuesAndConcerns/:id"
+            element={<EditIssuesAndConcerns />}
+          />
+          <Route
+            path="/UserAffairsManager/IssuesAndConcerns/RemoveIssuesAndConcerns/:id"
+            element={<RemoveIssuesAndConcerns />}
+          />
+          {/* feedback routes */}
+          <Route
+            path="/UserAffairsManager/Feedback/ViewFeedback/:id"
+            element={<ViewFeedback />}
+          />
+          <Route
+            path="/UserAffairsManager/Feedback/CreateFeedback"
+            element={<CreateFeedback />}
+          />
+          <Route
+            path="/UserAffairsManager/Feedback/EditFeedback/:id"
+            element={<EditFeedback />}
+          />
+          <Route
+            path="/UserAffairsManager/Feedback/RemoveFeedback/:id"
+            element={<RemoveFeedback />}
+          />
+          {/* gallery routes */}
+          <Route
+            path="/UserAffairsManager/Gallery/ViewGallery/:id"
+            element={<ViewGallery />}
+          />
+          <Route
+            path="/UserAffairsManager/Gallery/CreateGallery"
+            element={<CreateGallery />}
+          />
+          <Route
+            path="/UserAffairsManager/Gallery/EditGallery/:id"
+            element={<EditGallery />}
+          />
+          <Route
+            path="/UserAffairsManager/Gallery/RemoveGallery/:id"
+            element={<RemoveGallery />}
+          />
+          {/* handle IC routes */}
+          <Route
+            path="/UserAffairsManager/handleIssuesConcerns"
+            element={<IssuesConcerns />}
+          />
+          <Route
+            path="/UserAffairsManager/handleIssuesConcerns/ViewIssuesConcerns/:id"
+            element={<ViewIssuesConcerns />}
+          />
+          {/* handle F routes */}
+          <Route
+            path="/UserAffairsManager/handleFeedback"
+            element={<AllFeedback />}
+          />
+          <Route
+            path="/UserAffairsManager/handleFeedback/viewFeedback/:id"
+            element={<ViewFeedback1 />}
+          />
+        </Route>
+      </Routes>
     </Router>
   );
-
 }
 
 export default App;

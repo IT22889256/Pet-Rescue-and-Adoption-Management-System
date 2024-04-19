@@ -1,26 +1,18 @@
 const mongoose = require('mongoose');
 
 const TaskSchema = mongoose.Schema({
-    request_id: {
+    rescue_req_id: {
         type: String,
         required: true
+    },
+    rescue_task_id: {
+        type: String,
+        unique:true
     },
     user_id:{
         type: String,
         required: true
     },
-    // user_name:{
-    //     type: String,
-    //     required: true
-    // },
-    // user_contact:{
-    //     type: String,
-    //     required: true
-    // },
-    // user_email:{
-    //     type: String,
-    //     required: true
-    // },
     pet_type:{
         type: String,
         required: true

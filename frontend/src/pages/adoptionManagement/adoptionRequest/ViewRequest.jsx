@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export default function ViewRequest() {
 	
-	const [adopter, setRequest] = useState({})
+	const [adopter, setRequest] = useState()
 	const {id} = useParams()
 
 	useEffect(() => {

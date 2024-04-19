@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 
-const EmployeeSchema = mongoose.Schema(
+const AllEmployeeSchema = mongoose.Schema(
   {
     eid: {
       type: String,
       //  required: [true, "Please enter Employee ID"],
       unique: true,
+      //default: 'EMP' + Math.random().toString().substring(2, 8)
     },
 
     nic: {
@@ -41,6 +42,21 @@ const EmployeeSchema = mongoose.Schema(
       ],
       default: "doctor",
       //required: [true, "Please enter job-role"],
+    },
+    roletype: {
+      type: String,
+      enum: [
+        "user",
+        "employee",
+        "userManager",
+        "petManager",
+        "transportManager",
+        "employeeManager",
+        "donationManager",
+        "adoptionManager",
+        "inventoryManager",
+      ],
+      default: "user",
     },
 
     recruitedDate: {
@@ -90,23 +106,12 @@ const EmployeeSchema = mongoose.Schema(
       enum: ["available", "unavailable"],
       default: "available",
     },
-
-    status: {
-      type: String,
-      enum: ["approved", "denied", "pending"],
-      default: "pending",
-    },
-
-    employeeimgUrl: {
-      type: String,
-      required: true,
-    },
   },
   {
     timestamps: true,
   }
 );
 
-const Employee = mongoose.model("Employee", EmployeeSchema);
+const Allemployee = mongoose.model("Allemployee", AllEmployeeSchema);
 
-module.exports = Employee;
+module.exports = Allemployee;

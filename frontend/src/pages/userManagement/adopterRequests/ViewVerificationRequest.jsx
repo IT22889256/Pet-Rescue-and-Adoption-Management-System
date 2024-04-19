@@ -42,19 +42,19 @@ export default function ViewVerificationRequest() {
                 {verificationRequest._id}
               </dd>
             </div>
-            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">User Name</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 {verificationRequest.name}
               </dd>
             </div>
-            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Email</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 {verificationRequest.email}
               </dd>
             </div>
-            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">
                 Contact Number
               </dt>
@@ -68,7 +68,7 @@ export default function ViewVerificationRequest() {
                 {verificationRequest.bio}
               </dd>
             </div>
-            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Role</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 {verificationRequest.role}
@@ -80,29 +80,31 @@ export default function ViewVerificationRequest() {
                 {verificationRequest.location}
               </dd>
             </div>
-            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">NIC</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 {verificationRequest.nic}
               </dd>
             </div>
-            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">
-                Driving License
-              </dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                {verificationRequest.drivngLicense}
-              </dd>
-            </div>
 
-            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">NIC Image</dt>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                NIC Front Image
+              </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 <img src={verificationRequest?.image} className=""></img>
               </dd>
             </div>
-
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                NIC Rear Image
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                <img src={verificationRequest?.nicback} className=""></img>
+              </dd>
+            </div>
+
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">
                 Pet Ownership
               </dt>
@@ -117,7 +119,7 @@ export default function ViewVerificationRequest() {
               </dd>
             </div>
 
-            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Actions</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 <Link
