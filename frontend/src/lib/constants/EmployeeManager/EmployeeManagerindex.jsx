@@ -66,12 +66,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <PiFolderNotchOpenFill />
 	},
 
-	{
-		key: 'Leave Apply',
-		label: 'Leave Apply',
-		path: '/EmployeeManager/LeaveApply',
-		icon: <BsFillSendArrowDownFill />
-	},
+	
 
 ]
 

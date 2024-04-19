@@ -98,19 +98,19 @@ const getLeaves = async (req, res) => {
         if (medical > 0 && medical >= days) {
           medical -= days;
         } else {
-          return res.status(404).json({ message: 'Insufficient medical leaves' });
+          return res.status(200).json({ message: 'Insufficient medical leaves' });
         }
       } else if (reason === 'casual') {
         if (casual > 0 && casual >= days) {
           casual -= days;
         } else {
-          return res.status(404).json({ message: 'Insufficient casual leaves' });
+          return res.status(200).json({ message: 'Insufficient casual leaves' });
         }
       } else if (reason === 'emergency') {
         if (emergency > 0 && emergency >= days) {
           emergency -= days;
         } else {
-          return res.status(404).json({ message: 'Insufficient emergency leaves' });
+          return res.status(200).json({ message: 'Insufficient emergency leaves' });
         }
       }
   
@@ -122,7 +122,7 @@ const getLeaves = async (req, res) => {
   
       const leave = await Leave.findOneAndUpdate({ eid }, { status: 'accepted' }, { new: true });
       if (!leave) {
-        return res.status(404).json({ message: 'Leave update failed' });
+        return res.status(200).json({ message: 'Leave update failed' });
       }
   
       const updatedleave = await Leave.findOne({ eid });

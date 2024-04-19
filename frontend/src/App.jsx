@@ -535,7 +535,7 @@ function App() {
             path="/employeeManager/ManageDeactivateEmployees"
             element={<ManageDeactivateEmployees />}
           />
-          <Route path="/employeeManager/LeaveApply" element={<LeaveApply />} />
+          <Route path="/employeeManager/LeaveApply/:eid" element={<LeaveApply />} />
           
           <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
           <Route path="/employeeManager/petProfile" element={<PetProfile />} />

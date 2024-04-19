@@ -118,11 +118,15 @@ export default function EmployeeProfile() {
               name="bio"
             />
 
-            <button className="bg-red-600 text-white rounded-lg p-2.5 mt-5 ">
-              Apply Leave
-            </button>
+               
           </div>
         </div>
+        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+						            <Link to={`/employeeManager/LeaveApply/${currentUser?.eid}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Apply leave</Link>
+                       
+                    </div>
+                </div>
       </div>
     </div>
   );
