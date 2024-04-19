@@ -20,7 +20,7 @@ export default function EditEmployee() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [maritalStatus, setMaritalStatus] = useState('');
-    const [employeeimage, setEmployeeImage] = useState();
+    const [employeeimgUrl, setEmployeeimgUrl] = useState(); 
 
 
     const navigate = useNavigate()
@@ -42,7 +42,7 @@ export default function EditEmployee() {
             setPhoneNumber(res.data.phoneNumber);
             setEmail(res.data.email);
             setMaritalStatus(res.data.maritalStatus);
-            setEmployeeImage(res.data.employeeimage)
+            setEmployeeimgUrl(res.data.employeeimgUrl)
             
 
             console.log(res);
@@ -64,7 +64,7 @@ export default function EditEmployee() {
             phoneNumber,
             email,
             maritalStatus,
-            employeeimage,
+            employeeimgUrl,
         };
         
         console.log('result')
@@ -103,6 +103,7 @@ export default function EditEmployee() {
                                 <input
                                     type="text"
                                     name="eid"
+                                    readOnly
                                     id="eid"
                                     value={eid}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -199,15 +200,13 @@ export default function EditEmployee() {
                 </div>
             </div>
 
-                            
-
                                     <div className="sm:col-span-3">
                                         <label htmlFor="recruitedDate" className="block text-sm font-medium leading-6 text-gray-900">
                                         RecruitedDate
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                                type="text"
+                                                type="date"
                                                 name="recruitedDate"
                                                 id="recruitedDate"
                                                 value={recruitedDate}
@@ -223,7 +222,7 @@ export default function EditEmployee() {
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                                type="text"
+                                                type="date"
                                                 name="birthday"
                                                 id="birthday"
                                                 value={birthday}
@@ -336,7 +335,7 @@ export default function EditEmployee() {
                 </div>
             </div>
 
-                            { <div className="col-span-full">
+            { <div className="col-span-full">
                             <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
                             Employee Image
                             </label>
@@ -350,8 +349,8 @@ export default function EditEmployee() {
                                     >
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            value={employeeimage}
-                                            onChange={(e) => setEmployeeImage(e.target.value)}
+                                            value={employeeimgUrl}
+                                            //onChange={(e) => setPetImage(e.target.value)}
                                         />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>

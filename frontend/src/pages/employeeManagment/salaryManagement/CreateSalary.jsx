@@ -5,8 +5,9 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateSalary() {
-
+   
     const { eid } = useParams()
+
     //const [eid, setEid] = useState('');
     const [otHours, setOtHours] = useState('');
     const [bonus, setBonus] = useState('');
