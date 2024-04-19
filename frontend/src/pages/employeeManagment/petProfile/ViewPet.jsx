@@ -36,7 +36,7 @@ return (
 						<tbody>
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
 								<td>
-									{pet._id}
+									{pet.pet_id}
 								</td >
 								<td>
 									{pet.request_id}

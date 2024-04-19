@@ -7,37 +7,37 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditRescueTask() {
     
     const {id} = useParams()
-    const [task_id, setTaskId] = useState(id)
-    const [request_id, setReqId] = useState()
+    const [rescue_task_id, setTaskId] = useState(id)
+    const [rescue_req_id, setReqId] = useState()
     const [user_id, setUserId] = useState()
     const [pet_type, setPettype] = useState()
     const [rescue_task_priority, setTaskPriority] = useState()
     const [health_status, setHealStatus] = useState()
     const [rescue_task_status, setRescueTaskStatus] = useState()
     const [location, setLocation] = useState()
-    const [pet_image, setPetImage] = useState()
+    const [imgUrl, setPetImage] = useState()
     const [date, setDate] = useState()
     const navigate = useNavigate()
-    
+
     useEffect((e) => {
         axios.get(`http://localhost:3000/petManager/rescueTask/viewRescueTask/${id}`)
         .then((res) => {
-            setReqId(res.data.request_id)
-            setTaskId(res.data.task_id)
+            setReqId(res.data.rescue_req_id)
+            setTaskId(res.data.rescue_task_id)
             setUserId(res.data.user_id)
             setTaskPriority(res.data.rescue_task_priority)
             setPettype(res.data.pet_type)
             setHealStatus(res.data.health_status)
             setRescueTaskStatus(res.data.rescue_task_status)
             setLocation(res.data.location)
-            setPetImage(res.data.pet_image)
+            setPetImage(res.data.imgUrl)
             setDate(res.data.date)
             console.log(res);
         }).catch(err => console.log(err))
     },[])
     const Edit = (e) => {
         const data = {
-        request_id,task_id,user_id,pet_type,rescue_task_priority,health_status,location,pet_image,date,rescue_task_status
+            rescue_req_id,rescue_task_id,user_id,pet_type,rescue_task_priority,health_status,location,imgUrl,date,rescue_task_status
         };
         console.log('result')
         axios.put(`http://localhost:3000/petManager/rescueTask/editRescueTask/${id}`,data)
@@ -59,7 +59,7 @@ export default function EditRescueTask() {
             Profile picture
           </label>
           <div className="mt-2 flex items-center gap-x-3">
-            <img className="h-20 w-20 text-gray-300" src={pet_image} alt='image' />
+            <img className="h-20 w-20 text-gray-300" src={imgUrl} alt='image' />
           </div>
         </div>
                         <div className="sm:col-span-3">
@@ -71,7 +71,7 @@ export default function EditRescueTask() {
                                     type="text"
                                     name="task_id"
                                     id="task-id"
-                                    value={id}
+                                    value={rescue_task_id}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -85,7 +85,7 @@ export default function EditRescueTask() {
                                     type="text"
                                     name="request_id"
                                     id="request-id"
-                                    value={request_id}
+                                    value={rescue_req_id}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -129,7 +129,7 @@ export default function EditRescueTask() {
                                     name="rescue_task_status"
                                     id="rescue-task-status"
                                     value={rescue_task_status}
-                                    onChange={(e) => setRescueTaskStatus(e.target.value)}
+                                    
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -192,7 +192,6 @@ export default function EditRescueTask() {
                                     >
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            value={pet_image}
                                             onChange={(e) => setPetImage(e.target.value)}
                                         />
                                     </label>

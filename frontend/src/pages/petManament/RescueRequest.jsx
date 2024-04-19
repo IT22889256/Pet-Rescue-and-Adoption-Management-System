@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link} from 'react-router-dom'
-// import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
 export default function RescueRequest() {
@@ -22,7 +21,7 @@ export default function RescueRequest() {
 				<table className="bg-[#f3f3f3] w-full text-gray-700">
 					<thead className="bg-[#c1c3c558]">
 						<tr>
-							
+							<th>Rescue Request ID</th>
 							<th>Pet Type</th>
 							<th>Heath Status</th>
 							<th>Date</th>
@@ -35,6 +34,7 @@ export default function RescueRequest() {
 						{rescueRequests.map((rescueRequest) => (
 							rescueRequest.rescue_request_status === 'Pending' &&(
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={rescueRequest._id}>
+								<td>{rescueRequest.rescue_req_id}</td>
 								<td>
 									{rescueRequest.pet_type}
 								</td >
@@ -69,8 +69,8 @@ export default function RescueRequest() {
 				<table className="bg-[#f3f3f3] w-full text-gray-700">
 					<thead className="bg-[#c1c3c558]">
 						<tr>
-							{/* <th>Request ID</th>
-							<th>User ID</th> */}
+							
+							<th>Rescue Request ID</th>
 							<th>Pet Type</th>
 							<th>Heath Status</th>
 							<th>Date</th>
@@ -83,12 +83,8 @@ export default function RescueRequest() {
 						{rescueRequests.map((rescueRequest) => (
 								rescueRequest.rescue_request_status !== 'Pending' &&(
 									<tr className='border-b-2 border-[#c1c3c558] text-center' key={rescueRequest._id}>
-								{/* <td>
-									{rescueRequest._id}
-								</td >
-								<td>
-									{rescueRequest.user_id}
-								</td> */}
+							
+								<td>{rescueRequest.rescue_req_id}</td>
 								<td>
 									{rescueRequest.pet_type}
 								</td>
