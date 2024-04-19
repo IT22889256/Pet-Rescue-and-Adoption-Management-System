@@ -235,7 +235,7 @@ import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveR
 
 //leave apply from employee
 import LeaveApply from "./pages/employeeManagment/LeaveApply";
-
+import RescueRequestForm from './pages/User/RescueRequestForm'
 function App() {
   return (
     <Router>
@@ -248,6 +248,7 @@ function App() {
         <Route path="/" element={<UserLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/rescuerequestForm" element={<RescueRequestForm/>} />
           <Route path="/log-in" element={<Login />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
@@ -323,6 +324,10 @@ function App() {
           />
           <Route
             path="/petManager/petProfile/createPet"
+            element={<CreatePet />}
+          />
+            <Route
+            path="/petManager/petProfile/createPet/:id"
             element={<CreatePet />}
           />
           <Route

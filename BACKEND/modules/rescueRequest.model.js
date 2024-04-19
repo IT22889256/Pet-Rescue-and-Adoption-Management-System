@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const RescueRequestSchema = mongoose.Schema({
+    rescue_req_id:{
+        type: String,
+        unique:true
+    },
     user_id:{
         type: String,
         required: true
@@ -17,10 +21,6 @@ const RescueRequestSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    // date:{
-    //     type: Date,
-    //     required: true
-    // },
     rescue_request_status:{
         type: String,
         required: true

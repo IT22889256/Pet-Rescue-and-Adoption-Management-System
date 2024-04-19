@@ -9,7 +9,7 @@ export default function CreateRescueTask() {
     const d = new Date()
     const day = d.getUTCDate()
 
-    const [request_id, setReqId] = useState()
+    const [rescue_req_id, setReqId] = useState()
     const [user_id, setUserId] = useState()
     const [pet_type, setPettype] = useState()
     const [location, setLocation] = useState()
@@ -26,7 +26,7 @@ export default function CreateRescueTask() {
     useEffect((e) => {
         axios.get(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`)
         .then((res) => {
-            setReqId(res.data._id)
+            setReqId(res.data.rescue_req_id)
             setUserId(res.data.user_id)
             setPettype(res.data.pet_type)
             setHealStatus(res.data.health_status)
@@ -42,7 +42,7 @@ export default function CreateRescueTask() {
     const Submit = (e) => {
 
         const data = {
-            request_id,user_id,pet_type,health_status,rescue_task_status,rescue_task_priority,location,date,imgUrl,pet_profile_status
+            rescue_req_id,user_id,pet_type,health_status,rescue_task_status,rescue_task_priority,location,date,imgUrl,pet_profile_status
         };
         console.log('result')
         axios.post('http://localhost:3000/petManager/rescueTask/createRescueTask',data)
@@ -85,7 +85,7 @@ export default function CreateRescueTask() {
                                                 type="text"
                                                 name="request_id"
                                                 id="request-id"
-                                                value={request_id}
+                                                value={rescue_req_id}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
