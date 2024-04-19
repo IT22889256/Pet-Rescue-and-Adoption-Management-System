@@ -119,6 +119,8 @@ export default function CreateEmployee() {
       maritalStatus,
       employeeimgUrl,
     };
+  }
+  return(
 
             <div>
                     <div className="space-y-12">
