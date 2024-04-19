@@ -1,17 +1,6 @@
 const mongoose = require('mongoose');
 
 
-
-// </td >
-// 								<td>
-// 									{requests.requests_from}
-// 								</td >
-// 								<td>
-// 									{requests.requests_description}
-// 								</td >
-// 								<td>
-// 									{requests.requests_date}
-
 const requestsSchema = mongoose.Schema({
     requests_id:{
         type: String,

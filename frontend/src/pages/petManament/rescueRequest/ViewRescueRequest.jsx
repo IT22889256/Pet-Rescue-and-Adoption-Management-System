@@ -146,7 +146,7 @@ return (
                     <dl>
 					<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-lg text-black-500 font-medium">Request ID</dt>
-                            <dd className="mt-1 text-base text-gray-900 sm:col-span-2">{rescueRequest._id}</dd>
+                            <dd className="mt-1 text-base text-gray-900 sm:col-span-2">{rescueRequest.rescue_req_id}</dd>
                         </div>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-lg font-medium text-black-500">User ID</dt>
