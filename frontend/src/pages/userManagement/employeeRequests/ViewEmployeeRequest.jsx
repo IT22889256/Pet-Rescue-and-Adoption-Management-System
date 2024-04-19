@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { add } from "date-fns";
 
 export default function ViewEmployee() {
   const [employee, setEmployee] = useState({});
+
   const { id } = useParams();
   const navigate = useNavigate();
   console.log("Employee", employee);
@@ -28,7 +28,6 @@ export default function ViewEmployee() {
         lastName: employee.lastName,
         email: employee.email,
         jobRole: employee.jobRole,
-        password: "password",
         nic: employee.nic,
         recruitedDate: employee.recruitedDate,
         birthday: employee.birthday,
@@ -43,7 +42,7 @@ export default function ViewEmployee() {
       })
       .then(() => {
         alert("Employee created");
-        navigate("/EmployeeManager/ManageEmployees");
+        navigate("/userManager/employeeRequests");
       })
       .catch((error) => {
         console.log(error);
@@ -74,7 +73,7 @@ export default function ViewEmployee() {
       <div className="bg-white shadow overflow-hidden sm:rounded-lg">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-lg font-medium leading-6 text-gray-900 text-center">
-            Create Employee Profile
+            Grant Access to Employee
           </h3>
         </div>
         <div className="mt-3 flex text-xs justify-center">
@@ -85,57 +84,59 @@ export default function ViewEmployee() {
           />
         </div>
         <div className="border-t border-gray-200">
-          <dl>
+          <div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-lg text-black-500 font-bold">Employee ID</dt>
-              <dd className="mt-1 text-base text-gray-900 sm:col-span-2">
+              <div className="text-lg text-black-500 font-bold">
+                Employee ID
+              </div>
+              <div className="mt-1 text-base text-gray-900 sm:col-span-2">
                 {employee.eid}
-              </dd>
+              </div>
             </div>
-            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">Email</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                {employee.email}
-              </dd>
-            </div>
-
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">Name</dt>
+              <div className="text-sm font-medium text-gray-500">Name</div>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 {employee.firstName}
               </dd>
             </div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">NIC</dt>
+              <div className="text-sm font-medium text-gray-500">Email</div>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                {employee.email}
+              </dd>
+            </div>
+
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <div className="text-sm font-medium text-gray-500">NIC</div>
+              <div className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 {employee.nic}
-              </dd>
+              </div>
             </div>
 
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">Job Role</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+              <div className="text-sm font-medium text-gray-500">Job Role</div>
+              <div className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 {employee.jobRole}
-              </dd>
+              </div>
             </div>
 
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">
+              <div className="text-sm font-medium text-gray-500">
                 Phone Number
-              </dt>
+              </div>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 {employee.phoneNumber}
               </dd>
             </div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">
+              <div className="text-sm font-medium text-gray-500">
                 <button
                   onClick={handleCreateEmployee}
                   className="bg-blue-500 text-white py-3 px-8 rounded hover:bg-blue-700 text-xs text-gray-400 ml-1"
                 >
                   Create Employee
                 </button>
-              </dt>
+              </div>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                 <button
                   onClick={handleDelete}
@@ -145,7 +146,7 @@ export default function ViewEmployee() {
                 </button>
               </dd>
             </div>
-          </dl>
+          </div>
         </div>
       </div>
     </div>

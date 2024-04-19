@@ -14,6 +14,7 @@ import RejectRequest from "./pages/userManagement/adopterRequests/RejectRequest"
 import Adopters from "./pages/userManagement/Adopters";
 import EmployeesRequests from "./pages/userManagement/employeeRequests/EmployeeRequests";
 import ViewEmployeeRequest from "./pages/userManagement/employeeRequests/ViewEmployeeRequest";
+import EmployeeProfiles from "./pages/User/EmployeeProfile";
 
 import UserAffairsLayout from "./components/UserAffairsManager/UserAffairsLayout";
 import UserAffairsManagerDashboard from "./pages/UserAffairsManagement/UserAffairsManagerDashboard";
@@ -23,6 +24,7 @@ import CreateFeedback from "../src/pages/UserAffairsManagement/Feedback/CreateFe
 import EditFeedback from "../src/pages/UserAffairsManagement/Feedback/EditFeedback";
 import RemoveFeedback from "../src/pages/UserAffairsManagement/Feedback/RemoveFeedback";
 import ViewFeedback from "../src/pages/UserAffairsManagement/Feedback/ViewFeedback";
+import BecomeAdopter from "../src/pages/User/BecomeAdopter";
 
 import IssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns";
 import CreateIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/CreateIssuesAndConcerns";
@@ -237,17 +239,18 @@ import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveR
 
 //leave apply from employee
 
+
 import RescueRequestForm from './pages/User/RescueRequestForm'
 
 import LeaveApply from './pages/employeeManagment/LeaveApply'
 import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
 
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/feedback" element={<FeedbackForm />} />
-        <Route path="/donation" element={<RecurringDonationForm />} />
+        <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
       </Routes>
 
       <Routes>
@@ -258,8 +261,11 @@ function App() {
           <Route path="/log-in" element={<Login />} />
           <Route path="/recovery-password" element={<ForgotPassword />} />
           <Route path="/resetpassword/:email" element={<ResetPassword />} />
+          <Route path="/user/become-adopter" element={<BecomeAdopter />} />
+          <Route path="user/:id/feedback" element={<FeedbackForm />} />
+          <Route path="user/:id/donation" element={<RecurringDonationForm />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
           </Route>
         </Route>
         <Route path="/edit-profile" element={<EditProfile />} />
