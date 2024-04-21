@@ -239,6 +239,7 @@ import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveR
 
 //leave apply for janitor
 import CreateLeave from "./pages/employeeManagment/LeaveApplyforJanitors";
+import ViewOneAttendance from "./pages/employeeManagment/attendanceManagement/ViewOneAttendance";
 
 
 import RescueRequestForm from './pages/User/RescueRequestForm'
@@ -612,6 +613,12 @@ function App() {
             path="/employeeManager/leave/:id"
             element={<ViewLeaveRequest />}
           />
+          {/* leave one attendance routes */}
+          <Route
+            path="/employeeManager/attendance/:id"
+            element={<ViewOneAttendance />}
+          />
+
           {/* leave accept routes */}
           {/* deactivate employees route */}
           <Route
