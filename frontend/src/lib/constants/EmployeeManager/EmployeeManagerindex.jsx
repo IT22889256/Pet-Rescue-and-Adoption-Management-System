@@ -66,7 +66,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <PiFolderNotchOpenFill />
 	},
 
-	
+	{
+		key: 'Create Leave',
+		label: 'Create Leave',
+		path: '/EmployeeManager/CreateLeave',
+		icon: <BsFillSendArrowDownFill />
+	}
 
 ]
 

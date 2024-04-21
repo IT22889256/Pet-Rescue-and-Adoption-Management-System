@@ -237,7 +237,8 @@ import ViewDeactivateEmployees from "./pages/employeeManagment/deactivateEmploye
 import ManageLeaves from "./pages/employeeManagment/ManageLeaves";
 import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveRequest";
 
-//leave apply from employee
+//leave apply for janitor
+import CreateLeave from "./pages/employeeManagment/LeaveApplyforJanitors";
 
 
 import RescueRequestForm from './pages/User/RescueRequestForm'
@@ -535,6 +536,13 @@ function App() {
             path="/employeeManager/ManageDeactivateEmployees"
             element={<ManageDeactivateEmployees />}
           />
+
+          <Route
+            path="/employeeManager/CreateLeave"
+            element={<CreateLeave />} 
+          />
+
+
           <Route path="/employeeManager/LeaveApply/:eid" element={<LeaveApply />} />
           
           <Route path="/employeeManager/rescueTask" element={<RescueTask />} />

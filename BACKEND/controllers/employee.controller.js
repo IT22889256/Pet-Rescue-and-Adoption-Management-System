@@ -91,7 +91,8 @@ const updateEmployee = async (req, res) => {
     }
 
     const updatedEmployee = await Employee.findById(id);
-    res.status(200).json(updatedEmployee);
+    res.status(200).json({ message: "Employee updated succesfully!" });
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

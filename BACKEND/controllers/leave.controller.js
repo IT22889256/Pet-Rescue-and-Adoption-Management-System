@@ -61,13 +61,14 @@ const getLeaves = async (req, res) => {
 
 
       const leave = await Leave.create({...req.body,leaveID: leaveRequestId});
-      res.status(200).json(leave);
+      res.status(200).json({ message: "Leave request Sent!" });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   };
 
 
+//leave accept by employee manager
 
   const acceptLeave = async (req, res) => {
     try {
@@ -186,7 +187,7 @@ const getLeaves = async (req, res) => {
       // Send email notification upon leave acceptance (ensure response is not sent before)
       await transporter.sendMail(emailData); // Use await to wait for email sending
   
-      res.status(200).json({ message: 'Leave accepted and email sent', updatedleave });
+      res.status(200).json({ message: 'Leave accepted and email sent'});
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: error.message });
@@ -195,28 +196,112 @@ const getLeaves = async (req, res) => {
 
 
 //reject leave by employee manager
+//old version
+// const rejectLeave = async (req, res) => {
+//   try {
+//     const { id } = req.params; 
 
+    
+//     const rejectedLeave = await Leave.findByIdAndUpdate(id, {status:'rejected'}, { new: true });
+
+    
+//     if (!rejectedLeave) {
+//       return res.status(404).json({ message: "Leave not found" });
+//     }
+
+    
+//     res.status(200).json({ message: "Leave rejected successfully" });
+//   } catch (error) {
+    
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+
+//new version
 const rejectLeave = async (req, res) => {
   try {
-    const { id } = req.params; 
+    const { id } = req.params;
 
     
-    const rejectedLeave = await Leave.findByIdAndUpdate(id, {status:'rejected'}, { new: true });
+    // Update leave status to 'rejected'
+    const rejectedLeave = await Leave.findByIdAndUpdate(id, { status: 'rejected' }, { new: true });
 
-    
     if (!rejectedLeave) {
       return res.status(404).json({ message: "Leave not found" });
     }
 
+    // Retrieve employee's email from the rejected leave
+    const employeeId = rejectedLeave.eid;
+    const employeeLeaveCount = await EmployeeLeaveCount.findOne({ eid: employeeId });
+
+    if (!employeeLeaveCount) {
+      return res.status(404).json({ message: 'Employee leave count not found' });
+    }
+
+    const employeeEmail = employeeLeaveCount.email;
+    const medical = employeeLeaveCount.medical;
+    const casual = employeeLeaveCount.casual;
+    const emergency = employeeLeaveCount.emergency;
+  
     
-    res.status(200).json(rejectedLeave);
+    
+    // Prepare email data for rejection notification
+    const emailData = {
+      from: 'Pet Rescue Management System <projectforitp@gmail.com>',
+      to: `${employeeEmail}`,
+      subject: 'Leave Request Rejected',
+      html: `<!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 20px;
+              background-color: #f5f5f5;
+            }
+            p {
+              margin-bottom: 15px;
+              color: #333;
+            }
+            h1 {
+              color: #2e6da4;
+              margin-bottom: 10px;
+            }
+            .regards {
+              font-style: italic;
+              color: #999;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>Leave Request Rejected</h1>
+          <p>Dear Employee,</p>
+          <p>We regret to inform you that your leave request has been rejected.</p>
+          <p>Your leave count is:</p>
+    <ul>
+      <li>Medical Leave: ${medical} days</li>
+      <li>Casual Leave: ${casual} days</li>
+      <li>Emergency Leave: ${emergency} days</li>
+    </ul>
+          <p class="regards">Regards,</p>
+          <p>Employee Management System</p>
+        </body>
+        </html>`
+    };
+
+
+    // Send rejection email
+    await transporter.sendMail(emailData);
+
+    // Respond with success message
+    res.status(200).json({ message: "Leave rejected successfully and Email sent!" });
   } catch (error) {
-    
+    // Handle errors
     res.status(500).json({ message: error.message });
   }
 };
-
-
 
 
 
