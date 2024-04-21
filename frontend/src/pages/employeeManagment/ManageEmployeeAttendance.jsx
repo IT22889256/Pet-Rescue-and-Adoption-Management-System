@@ -5,49 +5,71 @@ import axios from 'axios'
 
 export default function ManageEmployeeAttendance() {
 	const [employees, setEmployees] = useState([]);
-	const [checkboxes, setCheckboxes] = useState({});  // State to track select all checkbox
+	const [selectedEmployeeEids, setSelectedEmployeeEids] = useState([]);
+	const [selectAllChecked, setSelectAllChecked] = useState(false);
 
 	useEffect(() => {
 		axios.get('http://localhost:3000/EmployeeManager/employees').then(res => {
-			const initialCheckboxes = {};	
-			res.data.forEach(employee => {
-				initialCheckboxes[employee._id] = false; // Initialize all checkboxes as unchecked
-			  });
-			  setCheckboxes(initialCheckboxes);
-			  setEmployees(res.data)
-		})
-	},[])
-
-	 // Function to handle individual checkbox toggle
-	 const handleCheckboxChange = (employeeId) => {
-		setCheckboxes({
-		  ...checkboxes,
-		  [employeeId]: !checkboxes[employeeId], // Toggle the checkbox status
+		  setEmployees(res.data);
 		});
+	  }, []);
+	
+	  const handleCheckboxChange = (employeeEid) => {
+		const isSelected = selectedEmployeeEids.includes(employeeEid);
+	
+		if (isSelected) {
+		  setSelectedEmployeeEids(prevSelected => prevSelected.filter(eid => eid !== employeeEid));
+		} else {
+		  setSelectedEmployeeEids(prevSelected => [...prevSelected, employeeEid]);
+		}
 	  };
 	
-	   // Function to handle select all checkbox toggle
-  const handleSelectAll = () => {
-    const updatedCheckboxes = {};
-    const selectAll = !Object.values(checkboxes).every(checked => checked); // Check if all are currently checked
-
-    Object.keys(checkboxes).forEach(employeeId => {
-      updatedCheckboxes[employeeId] = selectAll; // Set all checkboxes to selectAll state
-    });
-
-    setCheckboxes(updatedCheckboxes);
-  };
+	  const handleSelectAll = () => {
+		if (selectAllChecked) {
+		  setSelectedEmployeeEids([]);
+		} else {
+		  const allEmployeeEids = employees.map(employee => employee.eid);
+		  setSelectedEmployeeEids(allEmployeeEids);
+		  
+		}
+	
+		setSelectAllChecked(prevState => !prevState);
+	  };
+	
+	  const handleSaveSelectedEmployees = async () => {
+		const selectedEmployeeDetails = employees.filter(employee => selectedEmployeeEids.includes(employee.eid));
+	
+		try {
+		  const response = await axios.post('http://localhost:3000/EmployeeManager/attendance/markAttendance', selectedEmployeeDetails);
+		  alert('Selected employees saved successfully!');
+		} catch (error) {
+		  console.error('Failed to save selected employees:', error);
+		  alert('Failed to save selected employees. Please try again.');
+		}
+	  };
 
 	return (
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Manage Daily Attendace</strong>
-			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to='/employeeManager/employees/createEmployee' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Mark Attendance</Link>
-			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to='/employeeManager/employees/createEmployee' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >View today attendance</Link>
-			</div>
+			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to='/employeeManager/employees/createEmployee' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >view attendance</Link>
+			
 			{/* Select All Button */}
 			<button onClick={handleSelectAll} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Select All
+          {selectAllChecked ? 'Deselect All' : 'Select All'}
         </button>
+
+		<button
+        onClick={handleSaveSelectedEmployees}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3">
+        Mark Selected Employees
+      </button>
+	  
+		{/* <Link to='/employeeManager/employees/createEmployee' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+          Mark Attendance
+        </Link>
+        <Link to='/employeeManager/employees/createEmployee' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+          View Today's Attendance
+        </Link> */}
 		</div>
 			<div className="border-x border-gray-200 rounded-sm mt-3">
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
@@ -73,21 +95,18 @@ export default function ManageEmployeeAttendance() {
 									{employee.jobRole}
 								</td>
 								<td>
-								{/* Individual Checkbox */}
-								 {/* Individual Checkbox */}
-								 <input
-                   					 type="checkbox"
-                   					 checked={!!checkboxes[employee._id]} // Convert to boolean for checked attribute
-                   					 onChange={() => handleCheckboxChange(employee._id)}
-                 					 />
+								
+								<input
+                    type="checkbox"
+                    checked={selectedEmployeeEids.includes(employee.eid)}
+                    onChange={() => handleCheckboxChange(employee.eid)}
+                  />
 								</td>
 
 								<td>
 									<Link to={`/employeeManager/attendance/${employee._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
-{/*
-									<Link to={`/employeeManager/employees/editEmployee/${employee._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
 
-									<Link to={`/employeeManager/employees/removeEmployee/${employee._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link> */}
+									
 								</td>
 							</tr>
 						))}
@@ -95,6 +114,9 @@ export default function ManageEmployeeAttendance() {
 
 				</table>
 			</div>
-		</div>
+		
+    </div>
 	)
+		
+	
 }

@@ -65,86 +65,97 @@ const getForAttendance = async (req, res) => {
   };
   
 
+  //create a function to get the current date for attendance marking
+  function getCurrentDate() {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  }
 
-//Mark attendance
-//old version
-  // const markAttendance = async (req, res) => {
-  //   try {
-  //     const attendance = await Attendance.create(req.body);
-  //     res.status(200).json(attendance);
-  //   } catch (error) {
-  //     res.status(500).json({ message: error.message });
-  //   }
-  // };
+// Mark attendance  
+//3rd new version
+// const markAttendance =async (req, res) => {
+//   const selectedEmployeeDetails = req.body;
 
-//mark attendance
-//new version
-// const markAttendance = async (req, res) => {
-// try {
-//   const { userId, date } = req.body;
+//   try {
+//     const attendances = selectedEmployeeDetails.map((employee) => ({
+//       eid: employee.eid,
+//       firstName: employee.firstName,
+//       jobRole: employee.jobRole,
+//     }));
 
-//   // Check if attendance for the user on the specified date already exists
-//   let attendance = await Attendance.findOne({ userId, date });
-
-//   if (attendance) {
-//     // If attendance already exists for the user on this date, update it
-//     attendance = await Attendance.findOneAndUpdate(
-//       { userId, date },
-//       { $set: req.body }, // Update the attendance data with the new request body
-//       { new: true } // Return the updated document
-//     );
-//   } else {
-//     // If attendance doesn't exist, create a new attendance record
-//     attendance = await Attendance.create(req.body);
+//     const result = await Attendance.insertMany(attendances);
+//     res.status(201).json({ message: "Attendance marked successfully.", data: result });
+//   } catch (error) {
+//     console.error("Failed to mark attendance:", error);
+//     res.status(500).json({ message: "Failed to mark attendance. Please try again." });
 //   }
-
-//   res.status(200).json(attendance);
-// } catch (error) {
-//   res.status(500).json({ message: error.message });
 // }
-// };
-  
 
-//2nd new version
+// const markAttendance = async (req, res) => {
+//   const selectedEmployeeDetails = req.body;
+//   const currentDate = getCurrentDate();
+
+//   try {
+//     const attendances = selectedEmployeeDetails.map(async (employee) => {
+//       const existingAttendance = await Attendance.findOne({ eid: employee.eid, date: currentDate });
+//       if (!existingAttendance) {
+//         return {
+//           eid: employee.eid,
+//           date: currentDate,
+//           firstName: employee.firstName,
+//           jobRole: employee.jobRole,
+//         };
+//       }
+//       return existingAttendance;
+//     });
+
+//     const results = await Promise.all(attendances); // Wait for all attendances to be processed
+//     const filteredResults = results.filter(attendance => attendance !== null); // Filter out existing attendances
+
+//     const insertedAttendances = await Attendance.insertMany(filteredResults);
+//     res.status(201).json({ message: "Attendance marked successfully.", data: insertedAttendances });
+//   } catch (error) {
+//     console.error("Failed to mark attendance:", error);
+//     res.status(500).json({ message: "Failed to mark attendance. Please try again." });
+//   }
+// }
+
+
 const markAttendance = async (req, res) => {
+  const selectedEmployeeDetails = req.body;
+  const currentDate = getCurrentDate();
+
   try {
-    const { userId } = req.body;
-    
-    // Get the current timestamp
-    const currentDate = new Date();
-
-    // Calculate the start and end of the current day
-    const startOfDay = new Date(currentDate);
-    startOfDay.setHours(0, 0, 0, 0); // Set to the beginning of the day
-    const endOfDay = new Date(currentDate);
-    endOfDay.setHours(23, 59, 59, 999); // Set to the end of the day
-
-    // Check if attendance for the user on the current date already exists
-    let attendance = await Attendance.findOne({ 
-      userId, 
-      date: { 
-        $gte: startOfDay,
-        $lt: endOfDay
+    const attendances = selectedEmployeeDetails.map(async (employee) => {
+      const existingAttendance = await Attendance.findOne({ eid: employee.eid, date: currentDate });
+      if (existingAttendance) {
+        // Handle duplicate employee for attendance (e.g., log a warning or return an error)
+        console.warn(`Duplicate attendance for employee ${employee.eid} on ${currentDate}`);
+        return null; // Skip inserting this employee's attendance
       }
+      return {
+        eid: employee.eid,
+        date: currentDate,
+        firstName: employee.firstName,
+        jobRole: employee.jobRole,
+      };
     });
 
-    if (attendance) {
-      // If attendance already exists for the user on this date, update it
-      attendance = await Attendance.findOneAndUpdate(
-        { userId, date: { $gte: startOfDay, $lt: endOfDay } },
-        { $set: req.body }, // Update the attendance data with the new request body
-        { new: true } // Return the updated document
-      );
-    } else {
-      // If attendance doesn't exist, create a new attendance record
-      attendance = await Attendance.create({ ...req.body, date: currentDate });
-    }
+    const results = await Promise.all(attendances);
+    const filteredResults = results.filter(attendance => attendance !== null); // Filter out skipped attendances
 
-    res.status(200).json(attendance);
+    const insertedAttendances = await Attendance.insertMany(filteredResults);
+    res.status(201).json({ message: "Attendance marked successfully.", data: insertedAttendances });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Failed to mark attendance:", error);
+    res.status(500).json({ message: "Failed to mark attendance. Please try again." });
   }
-};
+}
+
+
+
+
+
 
 
 // Delete an attendance

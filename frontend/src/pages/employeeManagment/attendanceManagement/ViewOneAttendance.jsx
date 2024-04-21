@@ -59,17 +59,21 @@ export default function ViewAttendance() {
                 <div className="mt-3 flex text-xs justify-center">
                 <img className='object-cover h-60 w-60 m-5 rounded-full' src={employee?.employeeimgUrl} alt='profile_Image'/>
 				</div>
+				
                 <div className="border-t border-gray-200">
                     <dl>
+					<div className="px-4 py-5 sm:px-6">
+                    <h4 className="text-lg font-medium leading-6 text-gray-600 text-left font-bold">Employee Details</h4>
+                </div>
 					<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-					<dt className="text-lg text-black-500 font-bold">Employee ID</dt>
+					<dt className="text-sm font-medium text-gray-500 ">Employee ID</dt>
 					<dd className="mt-1 text-base text-gray-900 sm:col-span-2">{employee?.eid}</dd>
 				</div>
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-sm font-medium text-gray-500">NIC</dt>
 					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{employee?.nic}</dd>
 				</div>
-				<div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-sm font-medium text-gray-500">FirstName</dt>
 					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{employee?.firstName}</dd>
 				</div>
@@ -80,14 +84,13 @@ export default function ViewAttendance() {
 				</div>
 
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-					<dt className="text-sm font-medium text-gray-500">Recruited Date</dt>
-					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{formatDate(employee?.recruitedDate)}</dd>
+					<dt className="text-sm font-medium text-gray-500">Email</dt>
+					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{employee?.email}</dd>
 				</div>
 
-				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-					<dt className="text-sm font-medium text-gray-500">birth Day</dt>
-					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{formatDate(employee?.birthday)}</dd>
-				</div>
+				<div className="px-4 py-5 sm:px-6">
+                    <h4 className="text-lg font-medium leading-6 text-gray-600 text-left">Remain Leaves</h4>
+                </div>
 
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-sm font-medium text-gray-500">Medical</dt>
