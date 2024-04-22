@@ -51,7 +51,7 @@ export default function ManageEmployeeAttendance() {
 	return (
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Manage Daily Attendace</strong>
-			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to='/employeeManager/employees/createEmployee' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >view attendance</Link>
+			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to='/employeeManager/attendance/viewTodayAttendance/' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >view attendance</Link>
 			
 			{/* Select All Button */}
 			<button onClick={handleSelectAll} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

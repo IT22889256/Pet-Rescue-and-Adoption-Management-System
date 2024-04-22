@@ -70,15 +70,3 @@ export default function ManageSalaries() {
 		</div>
 	)
 }
-// {pets.map((pets)=>(
-// 	<>
-// 		<tr key={pets.id}>
-// 			<td>{pets.request_id}</td>
-// 			<td>{pets.task_id}</td>
-// 			<td>{pets.pet_name}</td>
-// 			<td>{pets.pet_type}</td>
-// 			<td>{pets.health_status}</td>
-// 		</tr>
-// 	</>
-
-// ))}
