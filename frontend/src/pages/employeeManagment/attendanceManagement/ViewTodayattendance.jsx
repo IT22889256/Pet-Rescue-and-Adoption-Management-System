@@ -11,11 +11,11 @@ export default function ManageEmployeeAttendance() {
     const fetchAttendance = async () => {
       try {
         const response = await axios.get('http://localhost:3000/EmployeeManager/attendance/getTodaysAttendance');
-        setAttendance(response.data);
+        setAttendance(response.data.data);
       } catch (error) {
         console.error('Error fetching attendance:', error);
         // Set attendance to an empty array if the request fails
-        setAttendance([]);
+        //setAttendance([]);
       }
     };
   
@@ -73,14 +73,10 @@ export default function ManageEmployeeAttendance() {
 
   return (
     <div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-      <strong className="text-gray-700 font-medium">Manage Daily Attendance</strong>
+      <strong className="text-gray-700 font-medium">Today Attendance</strong>
       <div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1">
-        <Link
-          to="/employeeManager/employees/createEmployee" // Adjust link as needed
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          View Today's Attendance
-        </Link>
+       {/* Select All Button */}
+		
         {/* Optionally add a "Mark Attendance" button for future functionality */}
       </div>
 
@@ -91,7 +87,6 @@ export default function ManageEmployeeAttendance() {
               <th>EMP ID</th>
               <th>First Name</th>
               <th>Job Role</th>
-              <th>Present</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -104,15 +99,9 @@ export default function ManageEmployeeAttendance() {
                 <td>{attendance.eid}</td>
                 <td>{attendance.firstName}</td>
                 <td>{attendance.jobRole}</td>
+               
                 <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedEmployeeEids.includes(attendance.eid)}
-                    onChange={() => handleCheckboxChange(attendance.eid)}
-                  />
-                </td>
-                <td>
-									<Link to={`/employeeManager/attendance/${attendance._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
+									<Link to={`/employeeManager/attendance/deleteTodayOneAttendance/${attendance._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">delete</Link>
 
 									
 								</td>

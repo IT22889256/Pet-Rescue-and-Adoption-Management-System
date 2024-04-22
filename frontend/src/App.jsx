@@ -247,6 +247,7 @@ import RescueRequestForm from './pages/User/RescueRequestForm'
 import LeaveApply from './pages/employeeManagment/LeaveApply'
 import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
 import ViewTodayattendance from './pages/employeeManagment/attendanceManagement/ViewTodayattendance'
+import DeleteTodayOneAttendance from './pages/employeeManagment/attendanceManagement/DeleteTodayOneAttendance'
 
 //employee attendance
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
@@ -624,6 +625,11 @@ function App() {
           <Route
             path="/employeeManager/attendance/viewTodayAttendance"
             element={<ViewTodayattendance />} />
+
+          {/* delete today one attendance routes */}
+          <Route
+            path="/employeeManager/attendance/deleteTodayOneAttendance/:id"
+            element={<DeleteTodayOneAttendance />} />
 
           {/* deactivate employees route */}
           <Route

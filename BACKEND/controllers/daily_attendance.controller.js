@@ -142,7 +142,7 @@ function getCurrentDate() {
   const deleteAttendance = async (req, res) => {
     try {
       const { id } = req.params;
-  
+
       const attendance = await Attendance.findByIdAndDelete(id);
   
       if (!attendance) {
