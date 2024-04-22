@@ -119,7 +119,7 @@ export default function CreateEmployee() {
       maritalStatus,
       employeeimgUrl,
     };
-
+    return (<>
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
@@ -207,7 +207,6 @@ export default function CreateEmployee() {
                         <option>manager</option>
                         <option>supportive staff member</option>
 
-                     
                     </select>
                 </div>
 
@@ -507,5 +506,7 @@ export default function CreateEmployee() {
         </button>
       </div>
     </div>
+    </>
   );
+}
 }
