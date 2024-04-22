@@ -7,12 +7,12 @@ import { FaTasks } from "react-icons/fa";
 import {IoPeople} from 'react-icons/io5'
 import { FaUserDoctor } from "react-icons/fa6";
 export const DASHBOARD_SIDEBAR_LINKS = [
-	{
-		key: 'dashboard',
-		label: 'Dashboard',
-		path: '/adoptionManager',
-		icon: <HiOutlineViewGrid />
-	},
+	// {
+	// 	key: 'dashboard',
+	// 	label: 'Dashboard',
+	// 	path: '/adoptionManager',
+	// 	icon: <HiOutlineViewGrid />
+	// },
 	// {
 	// 	key: 'Pet Profile',
 	// 	label: 'Pet Profile',
@@ -22,10 +22,9 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'Pet HealthCare',
 		label: 'Pet HealthCare',
-		path: '/doctor/petHealth',
+		path: '/doctor',
 		icon: <FaUserDoctor />
 	},
-	
 ]
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
 	{

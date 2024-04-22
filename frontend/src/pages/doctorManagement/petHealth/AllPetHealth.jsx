@@ -8,7 +8,7 @@ export default function AllPetHealth() {
 	const [petsHealth, setpetsHealth] = useState([]);
 
 	useEffect(() => {
-		axios.get('http://localhost:3000/doctor/petHealth').then(res => {
+		axios.get('http://localhost:3000/petManager/petProfile').then(res => {
 			console.log(res);
 			setpetsHealth(res.data)
 		})

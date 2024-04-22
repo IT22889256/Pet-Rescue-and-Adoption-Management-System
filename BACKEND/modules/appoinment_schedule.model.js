@@ -8,11 +8,11 @@ const AppoinmentSchema = mongoose.Schema(
     // },
     appoinment_time: {
       type: String,
-      required: false,
+      required: true,
     },
     appoinment_doctor: {
       type: String,
-      required: false,
+      required: true,
     },
     // status: {
     //   type: String,
