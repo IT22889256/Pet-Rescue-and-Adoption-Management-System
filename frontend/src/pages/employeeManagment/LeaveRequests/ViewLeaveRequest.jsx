@@ -7,6 +7,8 @@ import axios from 'axios'
 export default function ViewLeave() {
 
 	const [leaves, setLeaves] = useState({})
+	const [message, setMessage] = useState({})
+
 	const {id} = useParams()
     const navigate = useNavigate();
 
@@ -54,8 +56,8 @@ export default function ViewLeave() {
         console.log('result')
         axios.put(`http://localhost:3000/EmployeeManager/leave/acceptLeave/${leaveId}`,data)
         .then(result => {
-            alert('Leave Accepted')
-            console.log(result)
+            alert(result.data.message)
+            console.log(result.data.message);
             navigate('/EmployeeManager/LeaveManagement')
         })
         .catch(err => console.log(err))
@@ -72,8 +74,8 @@ export default function ViewLeave() {
         console.log('result')
         axios.put(`http://localhost:3000/EmployeeManager/leave/rejectLeave/${leaveId}`,data)
         .then(result => {
-            //alert('Leave Rejected')
-            console.log(result)
+            alert(result.data.message)
+            console.log(result.data.message);
             navigate('/EmployeeManager/LeaveManagement')
         })
         .catch(err => console.log(err))
