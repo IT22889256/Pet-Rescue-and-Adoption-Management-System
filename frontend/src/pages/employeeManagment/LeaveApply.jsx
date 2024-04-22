@@ -36,7 +36,8 @@ export default function ApplyLeave() {
         .catch(err => console.log(err))
     }
         return (
-
+            <div className="mx-20 ">
+            <div className="mx-4 rounded-lg my-7 mx-32  p-4 bg-gray-200 ">
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
@@ -144,6 +145,8 @@ export default function ApplyLeave() {
                             Submit
                         </button>
                 </div>
+        </div>
+        </div>
         </div>
     )
 }

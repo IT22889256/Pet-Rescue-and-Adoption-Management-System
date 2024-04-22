@@ -259,6 +259,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
+        <Route path="/employeeProfiles/LeaveApply/:eid" element={<LeaveApply />} />
       </Routes>
 
       <Routes>
