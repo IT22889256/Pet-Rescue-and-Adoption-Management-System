@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import {IoPeople} from 'react-icons/io5'
 import { MdOutlinePets  } from "react-icons/md";
 import { FaTasks,FaHome  } from "react-icons/fa";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import axios from 'axios'
 
 
@@ -47,7 +48,7 @@ export default function DashboardStatsGrid() {
 			</BoxWrapper>
 			<BoxWrapper>
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-yellow-400">
-					<MdOutlinePets className="text-2xl text-white" />
+					<RiMoneyDollarCircleFill  className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
 					

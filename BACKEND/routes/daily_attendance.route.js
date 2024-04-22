@@ -1,7 +1,7 @@
 const express = require("express");
 const Employee = require("../modules/employee.model.js");
 const router = express.Router();
-const { getForAttendance,markAttendance, ViewOneAttendance ,deleteAttendance,getTodaysAttendance,getAttendanceByDate} = require('../controllers/daily_attendance.controller.js');
+const { getForAttendance,markAttendance, ViewOneAttendance ,deleteAttendance,getTodaysAttendance,getAttendanceByDate,getEmployeeAttendanceDays} = require('../controllers/daily_attendance.controller.js');
 
 // get all employees for attendance
 router.get("/getForAttendance", getForAttendance);
@@ -22,5 +22,7 @@ router.get("/getAttendanceByDate", getAttendanceByDate);
 // delete an attendance
 router.delete("/deleteAttendance/:id", deleteAttendance);
 
+//get employee attendance days
+router.get("/getEmployeeAttendanceDays/:id", getEmployeeAttendanceDays);
 
 module.exports = router;

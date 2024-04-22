@@ -31,6 +31,7 @@ export default function ViewAttendance() {
 			axios.get(`http://localhost:3000/EmployeeManager/attendance/getEmployeeAttendanceDays/${id}`)
 			.then((res) => {
 				setLeavecount(res.data);
+				console.log(res.data)
 			})
 			.catch((err) => {
 				console.log(err);

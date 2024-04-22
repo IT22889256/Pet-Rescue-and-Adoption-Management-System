@@ -155,7 +155,45 @@ function getCurrentDate() {
     }
   };
   
-
+  // Get the total number of days an employee has attended
+  const getEmployeeAttendanceDays = async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+     
+      const employee = await Employee.findById(id);
+      if (!employee) {
+        return res.status(404).json({ message: 'Employee not found' });
+      }
+  
+      const empid = employee.eid;
+  
+      const attendanceDays = await Attendance.aggregate([
+        { $match: { eid: empid } },
+        {
+          $group: {
+            _id: { eid: '$eid', day: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } } },
+            count: { $sum: 1 }
+          }
+        },
+        {
+          $group: {
+            _id: '$_id.eid',
+            totalAttendanceDays: { $sum: 1 }
+          }
+        }
+      ]);
+      if (attendanceDays.length > 0) {
+        return res.json(attendanceDays[0].totalAttendanceDays);
+        
+      } else {
+        return res.json(0);
+      }
+    } catch (error) {
+      console.error(error); // Log the error for debugging
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  };
 
   
   
@@ -166,6 +204,7 @@ module.exports = {
     getTodaysAttendance,
     ViewOneAttendance,
     getAttendanceByDate,
+    getEmployeeAttendanceDays,
     deleteAttendance,
   
   };
