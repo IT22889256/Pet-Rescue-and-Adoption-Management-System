@@ -4,23 +4,24 @@ const FeedbackSchema = mongoose.Schema(
   {
     user_id: {
       type: String,
-      required: [true, "Please enter name"],
+      required: true
     },
 
     email: {
       type: String,
-      required: [true, "Please enter email"],
+      required: true
      
     },
 
     reason: {
       type: String,
-      required: [true, "Please enter feedback "],
+      required: true 
     
     },
 
     status: {
       type:String,
+      required: true 
     }
 
   },

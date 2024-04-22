@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import app from '../firebase';
 
 export default function HelpAndSupport() {
 
@@ -24,6 +26,89 @@ export default function HelpAndSupport() {
         })
         .catch(err => console.log(err))
     }
+    const Cancel = (e) => {
+
+      const data = {
+          user_id,email,message,issuesandconcerns_status
+      };
+      console.log('result')
+      axios.post('http://localhost:3000/userAffairsManager/issueandconcern/createIssueAndConcern',data)
+      .then(result => {
+          console.log(result)
+          navigate('/UserAffairsManager/handleIssuesConcerns')
+      })
+      .catch(err => console.log(err))
+  }
+    const [img, setImg] = useState(null);
+    const [imgPerc, setImgPerc] = useState();
+    const [videoPerc, setVideoPerc] = useState();
+    const [imgUrl, setImage] = useState()
+  
+    useEffect((e) => {
+        if (img) {
+          uploadFile(img, "imgUrl");
+        }
+      }, [img]);
+  
+    const uploadFile = (file, fileType) => {
+      const storage = getStorage(app);
+      const folder = fileType === "imgUrl" ? "images/" : "videos/";
+      const fileName = new Date().getTime() + file.name;
+      const storageRef = ref(storage, folder + fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+  
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          fileType === "imgUrl"
+            ? setImgPerc(Math.round(progress))
+            : setVideoPerc(Math.round(progress));
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              console.log(error);
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+            default:
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            
+            console.log('DownloadURL - ', downloadURL);
+            
+            setImage(() => {
+                // console.log("45"+JSON.parse(downloadURL));
+              return downloadURL
+            });
+          });
+        }
+      );
+    }
+
 
         return (
 
@@ -54,7 +139,7 @@ export default function HelpAndSupport() {
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                                type="text"
+                                                type="email"
                                                 name="email"
                                                 id="email"
                                                 value={email}
@@ -78,7 +163,30 @@ export default function HelpAndSupport() {
                                             />
                                         </div>
                                     </div>
+                                    { <div className="col-span-full">
+                            <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
+                            Image
+                            </label>
+                            <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                            <div className="text-center">
+                                <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
+                                <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                                    <label
+                                        htmlFor="file-upload"
+                                        className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                    >
+                                        <span>Upload a file</span>
+                                        <input id="file-upload" name="file_upload"  type="file" className="sr-only" accept='image/'
+                                            onChange={(e) => setImg(() => e.target.files[0])}
+                                        />
+                                    </label>
+                                    <p className="pl-1">or drag and drop</p>
                                 </div>
+                                    <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                            </div>
+                            </div>
+                            </div> }     
+                            </div>
                             </div>
                             <div className="mt-6 flex items-center justify-end gap-x-6">
                         <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
