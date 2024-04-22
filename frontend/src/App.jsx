@@ -239,12 +239,14 @@ import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveR
 
 //leave apply from employee
 
+import RescueRequestForm from "./pages/User/RescueRequestForm";
 
-import RescueRequestForm from './pages/User/RescueRequestForm'
+import LeaveApply from "./pages/employeeManagment/LeaveApply";
+import ViewLeaveApply from "./pages/employeeManagment/LeaveApply/viewLeaveApply";
 
-import LeaveApply from './pages/employeeManagment/LeaveApply'
-import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
-
+import Donation from "./pages/User/Donation";
+import PleaseLogin from "./pages/User/PleaseLogin";
+import SpecificNeedDonationForm from "./pages/User/SpecificNeedDonationForm";
 
 function App() {
   return (
@@ -256,14 +258,28 @@ function App() {
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route path="/" element={<Home />} />
+          <Route
+            path="user/:id/recurring-donation"
+            element={<RecurringDonationForm />}
+          />
+          <Route
+            path="user/:id/specific-need-donation"
+            element={<SpecificNeedDonationForm />}
+          />
           <Route path="/register" element={<Register />} />
-          <Route path="/rescuerequestForm" element={<RescueRequestForm/>} />
+          <Route path="/please-login" element={<PleaseLogin />} />
+
+          <Route
+            path="/user/:id/rescuerequestForm"
+            element={<RescueRequestForm />}
+          />
           <Route path="/log-in" element={<Login />} />
           <Route path="/recovery-password" element={<ForgotPassword />} />
           <Route path="/resetpassword/:email" element={<ResetPassword />} />
           <Route path="/user/become-adopter" element={<BecomeAdopter />} />
           <Route path="user/:id/feedback" element={<FeedbackForm />} />
-          <Route path="user/:id/donation" element={<RecurringDonationForm />} />
+          <Route path="user/:id/donation" element={<Donation />} />
+
           <Route element={<PrivateRoute />}>
             <Route path="/profile/:id" element={<Profile />} />
           </Route>
@@ -353,7 +369,7 @@ function App() {
             path="/petManager/petProfile/createPet"
             element={<CreatePet />}
           />
-            <Route
+          <Route
             path="/petManager/petProfile/createPet/:id"
             element={<CreatePet />}
           />

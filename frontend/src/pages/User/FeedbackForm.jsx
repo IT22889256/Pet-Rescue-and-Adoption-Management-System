@@ -1,7 +1,10 @@
 import React from "react";
 import feedbackFormImg from "../../image/feedbackFormImg.png";
 
+import { useSelector } from "react-redux";
+
 const FeedbackForm = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   return (
     <div>
       <div className="min-h-screen flex flex-col md:flex-row">
@@ -44,6 +47,8 @@ const FeedbackForm = () => {
                 type="email"
                 placeholder="Enter Email"
                 name="email"
+                value={currentUser.email}
+                disabled
               />
             </div>
 
