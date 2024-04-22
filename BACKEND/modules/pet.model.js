@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const PetSchema = mongoose.Schema({
-    request_id: {
+    rescue_req_id: {
         type: String,
         required: true
     },
-    task_id:{
+    rescue_task_id:{
         type: String,
         required: true
+    },
+    pet_id:{
+        type:String,
+        unique:true
     },
     pet_name:{
         type: String,
@@ -37,9 +41,7 @@ const PetSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    pet_image:{
-
-
+    imgUrl:{
         type: String,
 
     },
@@ -48,3 +50,4 @@ const PetSchema = mongoose.Schema({
 const Pet = mongoose.model("Pet", PetSchema);
 
 module.exports = Pet;
+

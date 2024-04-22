@@ -9,15 +9,16 @@ export default function CreateRescueTask() {
     const d = new Date()
     const day = d.getUTCDate()
 
-    const [request_id, setReqId] = useState()
+    const [rescue_req_id, setReqId] = useState()
     const [user_id, setUserId] = useState()
     const [pet_type, setPettype] = useState()
     const [location, setLocation] = useState()
     const [rescue_task_priority, setRescueTaskpriority] = useState()
     const [rescue_task_status] = useState("Pending")
+    const [pet_profile_status] = useState(false)
     const [health_status, setHealStatus] = useState()
     const [date] = useState(day)
-    const [pet_image, setPetImage] = useState()
+    const [imgUrl, setPetImage] = useState()
     const navigate = useNavigate()
     
 
@@ -25,14 +26,13 @@ export default function CreateRescueTask() {
     useEffect((e) => {
         axios.get(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`)
         .then((res) => {
-            setReqId(res.data._id)
+            setReqId(res.data.rescue_req_id)
             setUserId(res.data.user_id)
             setPettype(res.data.pet_type)
             setHealStatus(res.data.health_status)
             setRescueTaskpriority(res.data.rescue_task_priority)
-            
             setLocation(res.data.location)
-            setPetImage(res.data.pet_image)
+            setPetImage(res.data.imgUrl)
             console.log(res);
         }).catch(err => console.log(err))
     },[])
@@ -42,7 +42,7 @@ export default function CreateRescueTask() {
     const Submit = (e) => {
 
         const data = {
-            request_id,user_id,pet_type,health_status,rescue_task_status,rescue_task_priority,location,date,pet_image
+            rescue_req_id,user_id,pet_type,health_status,rescue_task_status,rescue_task_priority,location,date,imgUrl,pet_profile_status
         };
         console.log('result')
         axios.post('http://localhost:3000/petManager/rescueTask/createRescueTask',data)
@@ -52,11 +52,29 @@ export default function CreateRescueTask() {
         })
         .catch(err => console.log(err))
     }
+
+    const Cancle = (e) => {
+		
+		const data = {
+			"rescue_request_status":"Pending"
+		}
+		
+		console.log('result')
+        axios.put(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`,data)
+        .then(result => {
+			
+            alert('updated')
+            console.log(result)
+            navigate('/petManager/rescueRequest')
+        })
+        .catch(err => console.log(err))
+	}
         return (
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
                         <div className='text-xl font-bold '>Create A Task</div>
+                        <img className='object-cover h-60 w-60 m-5 rounded-full' src={imgUrl} alt='profile_Image'/>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div className="sm:col-span-3">
                                         <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
@@ -67,7 +85,7 @@ export default function CreateRescueTask() {
                                                 type="text"
                                                 name="request_id"
                                                 id="request-id"
-                                                value={request_id}
+                                                value={rescue_req_id}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
@@ -100,7 +118,7 @@ export default function CreateRescueTask() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="sm:col-span-3">
+                                    {/* <div className="sm:col-span-3">
                                         <label htmlFor="task-priority" className="block text-sm font-medium leading-6 text-gray-900">
                                             Task Priority
                                         </label>
@@ -113,6 +131,21 @@ export default function CreateRescueTask() {
                                                 onChange={(e) => setRescueTaskpriority(e.target.value)}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
+                                        </div>
+                                    </div> */}
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="task-priority" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Task Priority
+                                        </label>
+                                        <div className="mt-2">
+                                            <input type="radio" value="High" name="task_priority" className='m-1' onChange={(e) => setRescueTaskpriority(e.target.value)}/>
+                                            <label htmlFor="task-priority" className="m-1 text-sm font-medium leading-6 text-gray-900">
+                                            High
+                                            </label>
+                                            <input type="radio" value="Low" name="task_priority" className='m-1' onChange={(e) => setRescueTaskpriority(e.target.value)}/>
+                                            <label htmlFor="task-priority" className="m-1 text-sm font-medium leading-6 text-gray-900">
+                                            Low
+                                        </label>
                                         </div>
                                     </div>
                                     <div className="sm:col-span-3">
@@ -150,7 +183,7 @@ export default function CreateRescueTask() {
                                 </div>
                             </div>
                             <div className="mt-6 flex items-center justify-end gap-x-6">
-                        <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+                        <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={Cancle}>
                             Cancel
                         </button>
                         <button
