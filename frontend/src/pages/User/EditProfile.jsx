@@ -8,7 +8,17 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+<<<<<<< HEAD
 import app from "../../firebase";
+=======
+
+
+
+import  app  from "../../firebase";
+
+
+
+>>>>>>> developer
 import { useDispatch } from "react-redux";
 import {
   updateUserStart,
@@ -82,7 +92,7 @@ const EditProfile = () => {
         return;
       }
       dispatch(updateUserSuccess(data));
-      navigate("/profile");
+      navigate(`/profile/${currentUser._id}`);
       console.log(data);
     } catch (error) {
       dispatch(updateUserFailure(error));

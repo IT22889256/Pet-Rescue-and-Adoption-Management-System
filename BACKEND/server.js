@@ -100,6 +100,7 @@ const rescueRequest = require('./routes/rescueRequest.route')
 app.use("/petManager", rescueRequest);
 
 
+
 const employeeRoute = require("./routes/employee.route.js"); // Importing employee route
 const attendanceRoute = require("./routes/daily_attendance.route.js"); // Importing attendance route
 const salaryRoute = require("./routes/salary.route.js"); // Importing salary route
@@ -203,6 +204,7 @@ app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 app.use("/petManager", rescueRequest);
 app.use("/petManager", rescueTask)
 
+app.use("/user", rescueRequest);
 
 
 //induwara routes
@@ -213,6 +215,7 @@ app.use("/EmployeeManager/jobRole", jobRoleRoute); // Job role routes
 app.use("/EmployeeManager/email", emailRoute); // Email routes
 app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // Deactivate employees routes
 app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
+
 
 
 app.listen(PORT, () =>{

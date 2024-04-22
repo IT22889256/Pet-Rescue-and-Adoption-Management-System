@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "../../components/common/Header/Header";
+
 import donationFormImg from "../../image/donationFormImg.png";
 
 const RecurringDonationForm = () => {
   return (
     <div>
-      <Header />
-
       <div className=" min-h-screen flex flex-col md:flex-row ">
         <div className="mx-4 rounded-lg my-7 md:w-1/2 p-4">
           <div
