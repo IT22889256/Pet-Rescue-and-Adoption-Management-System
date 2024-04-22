@@ -65,7 +65,7 @@ import ResetPassword from "./pages/User/ResetPassword";
 //home page
 import FeedbackForm from "./pages/User/FeedbackForm";
 import RecurringDonationForm from "./pages/User/RecurringDonationForm";
-
+import PetAdoption from "./pages/User/PetAdoption"
 //pet managemnt imports
 
 import PetLayout from "./components/petManager/PetLayout";
@@ -247,14 +247,19 @@ import RescueRequestForm from './pages/User/RescueRequestForm'
 import LeaveApply from './pages/employeeManagment/LeaveApply'
 import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
 
+import PetQR from "./pages/User/PetQR";
+
+
 //employee attendance
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
+        <Route path="/employeeProfiles/LeaveApply/:eid" element={<LeaveApply />} />
       </Routes>
 
       <Routes>
@@ -262,12 +267,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/rescuerequestForm" element={<RescueRequestForm/>} />
+          <Route path="/petAdoption" element={<PetAdoption/>} />
+          <Route path="/petQR/:id" element={<PetQR/>} />
           <Route path="/log-in" element={<Login />} />
           <Route path="/recovery-password" element={<ForgotPassword />} />
           <Route path="/resetpassword/:email" element={<ResetPassword />} />
           <Route path="/user/become-adopter" element={<BecomeAdopter />} />
           <Route path="user/:id/feedback" element={<FeedbackForm />} />
           <Route path="user/:id/donation" element={<RecurringDonationForm />} />
+          <Route path="/donation" element={<RecurringDonationForm />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile/:id" element={<Profile />} />
           </Route>

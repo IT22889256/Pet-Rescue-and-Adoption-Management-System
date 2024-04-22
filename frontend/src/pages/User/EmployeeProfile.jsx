@@ -123,7 +123,7 @@ export default function EmployeeProfile() {
         </div>
         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-						            <Link to={`/employeeManager/LeaveApply/${currentUser?.eid}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Apply leave</Link>
+						            <Link to={`/employeeProfiles/LeaveApply/${currentUser?.eid}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Apply leave</Link>
                        
                     </div>
                 </div>
