@@ -237,14 +237,22 @@ import ViewDeactivateEmployees from "./pages/employeeManagment/deactivateEmploye
 import ManageLeaves from "./pages/employeeManagment/ManageLeaves";
 import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveRequest";
 
-//leave apply from employee
+//leave apply for janitor
+import CreateLeave from "./pages/employeeManagment/LeaveApplyforJanitors";
+import ViewOneAttendance from "./pages/employeeManagment/attendanceManagement/ViewOneAttendance";
 
 
 import RescueRequestForm from './pages/User/RescueRequestForm'
 
 import LeaveApply from './pages/employeeManagment/LeaveApply'
 import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
+
 import PetQR from "./pages/User/PetQR";
+
+
+//employee attendance
+import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+
 
 function App() {
   return (
@@ -526,12 +534,25 @@ function App() {
             path="/employeeManager/jobRoles"
             element={<ManageJobRoles />}
           />
+
+          <Route
+          path="/employeeManager/AttendanceMark"
+          element={<ManageEmployeeAttendance />}
+          />
+
           <Route
             path="/employeeManager/ManageDeactivateEmployees"
             element={<ManageDeactivateEmployees />}
           />
-          <Route path="/employeeManager/LeaveApply" element={<LeaveApply />} />
-          '
+
+          <Route
+            path="/employeeManager/CreateLeave"
+            element={<CreateLeave />} 
+          />
+
+
+          <Route path="/employeeManager/LeaveApply/:eid" element={<LeaveApply />} />
+          
           <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
           <Route path="/employeeManager/petProfile" element={<PetProfile />} />
           {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
@@ -599,6 +620,12 @@ function App() {
             path="/employeeManager/leave/:id"
             element={<ViewLeaveRequest />}
           />
+          {/* leave one attendance routes */}
+          <Route
+            path="/employeeManager/attendance/:id"
+            element={<ViewOneAttendance />}
+          />
+
           {/* leave accept routes */}
           {/* deactivate employees route */}
           <Route

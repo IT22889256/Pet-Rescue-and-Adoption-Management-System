@@ -119,7 +119,9 @@ export default function CreateEmployee() {
       maritalStatus,
       employeeimgUrl,
     };
+
     return (<>
+
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
