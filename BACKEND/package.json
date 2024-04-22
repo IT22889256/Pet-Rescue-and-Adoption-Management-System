@@ -30,11 +30,8 @@
     "nodemon": "^3.1.0",
     "openai": "^4.0.0",
     "otp-generator": "^4.0.1",
-
-
- 
+    "qrcode": "^1.5.3",
     "react-redux": "^9.1.0",
     "redux": "^5.0.1"
-
   }
 }

@@ -4,6 +4,8 @@ import { useParams,useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from '../../../firebase';
+// import QRCode from 'qrcode'
+const QRCode = require('qrcode')
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreatePet() {
     
@@ -118,9 +120,16 @@ export default function CreatePet() {
             }
             console.log('result')
             console.log(imgUrl);
+            // let stJson = JSON.stringify(data)
+            //     QRCode.toFile(`${id}.png`,stJson, function(err,code){
+            //         if(err) return console.log("error");
+            //         console.log(code);
+            //     });
+           
             axios.post(`http://localhost:3000/petManager/petProfile/createPet`,{...data})
             axios.put(`http://localhost:3000/petManager/rescueTask/editRescueTask/${id}`,update)
             .then(result => {
+               
                 console.log(result)
                 navigate('/petManager/petProfile')
             })
@@ -130,6 +139,7 @@ export default function CreatePet() {
         return (
 
             <div>
+                <form action="">
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
                         <div className='text-xl font-bold '>Create Pet Profile</div>
@@ -209,6 +219,8 @@ export default function CreatePet() {
                                                 value={pet_age}
                                                 onChange={(e) => setPetAge(e.target.value)}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                required
+                                                pattern='/.*[0-9]./'
                                             />
                                         </div>
                                     </div>
@@ -316,7 +328,7 @@ export default function CreatePet() {
                         >
                             Submit
                         </button>
-                </div>
+                </div></form>
         </div>
     )
 }
