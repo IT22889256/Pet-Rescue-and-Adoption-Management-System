@@ -71,7 +71,7 @@ export default function DriverSidebar() {
  				<span className="text-neutral-200 text-lg">ResQ</span>
  			</div>
  			<div className="flex items-center gap-2 px-1 py-3">
- 				<span className="text-neutral-200 text-lg">Pet Management</span>
+ 				<span className="text-neutral-200 text-lg">Driver Dashboard</span>
  			</div>
  			<div className="py-8 flex flex-1 flex-col gap-0.5">
  				{DASHBOARD_SIDEBAR_LINKS.map((link) => (

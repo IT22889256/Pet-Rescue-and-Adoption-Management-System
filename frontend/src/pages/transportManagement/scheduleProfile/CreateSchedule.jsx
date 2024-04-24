@@ -13,6 +13,7 @@ export default function CreateSchedule() {
     const [Driver, setDriver] = useState()
     const [Vet_nary_Doctor, setVet] = useState()
     const [Staff_Member, setStaffMem] = useState()
+    const [schedule_status, setSchStatus] = useState("Pending")
 
     const navigate = useNavigate()
 
@@ -24,7 +25,8 @@ export default function CreateSchedule() {
             Location,
             Driver,
             Vet_nary_Doctor,
-            Staff_Member
+            Staff_Member,
+            schedule_status,
         };
         console.log('result')
         axios.post('http://localhost:3000/api/schedules',data)

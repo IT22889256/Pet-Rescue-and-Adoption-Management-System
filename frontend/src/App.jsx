@@ -205,6 +205,9 @@ import Apple from "./pages/Apple";
 
 //Driver imports
 import DriverLayout from "./components/driver/DriverLayout";
+import AssignedSheduleProfile from "./pages/driver/AssignedSheduleProfile";
+import ViewAssignedTask from "./pages/driver/assignedShedules/ViewAssignedTask";
+import EditAssignedTask from "./pages/driver/assignedShedules/EditAssignedTask";
 
 //employee management imports
 import EmployeeLayout from "./components/employeeManager/EmployeeLayout";
@@ -434,6 +437,14 @@ function App() {
             path="/transportManager/scheduleProfile/editSchedule/:id"
             element={<EditSchedule />}
           />
+          <Route 
+            path="/transportManager/scheduleProfile/viewSchedule/:id"
+            element={<ViewSchedule />}
+          />
+          <Route
+            path="/transportManager/scheduleProfile/removeSchedule/:id"
+            element={<RemoveSchedule />}
+          />
 
           {/* Vehicle profile routes */}
           <Route
@@ -454,13 +465,22 @@ function App() {
           />
         </Route>
 
-        <Route>
-          {/* Driver main routes */}
-          <Route path="/driver" element={<DriverLayout />}></Route>
-        </Route>
-
         <Route path="/apple" element={<Apple />} />
-      </Routes>
+       </Routes>
+
+
+          {/* Driver main routes */}
+       <Routes> 
+         <Route> 
+            <Route path="/driver" element={<DriverLayout />}>
+            <Route path="/driver/AssignedSheduleProfile" element={<AssignedSheduleProfile />} />
+            <Route path="/driver/assignedShedules/ViewAssignedTask/:id" element={<ViewAssignedTask />} />
+            
+            <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
+          </Route>
+          </Route>
+        </Routes>
+
       <Routes>
         <Route path="/employeeManager" element={<EmployeeLayout />}>
           <Route
@@ -940,35 +960,7 @@ function App() {
                 </Route>
 
 
-                {/* Transport management routes */}
-                <Route path="/transportManager" element={<TransportLayout />}>
-                    <Route index path="/transportManager" element={<TransportManagerDashboard />} />
-                    <Route path="/transportManager/employeeProfile" element={<EmployeeProfile />} />
-                    <Route path="/transportManager/heplAndSupport" element={<HeplAndSupport />} />
-                    {/* main routes */}
-                    <Route path="/transportManager/rescueRequest" element={<RescueRequest />} />
-                    <Route path="/transportManager/rescueTask" element={<RescueTask />} />
-                    <Route path="/transportManager/scheduleProfile" element={<ScheduleProfile />} />
-                    <Route path="/transportManager/vehicleProfile" element={<VehicleProfile />} />
-
-                    {/* Task request routes */}
-                    <Route path="/transportManager/taskRequest" element={<TaskRequest />} />
-                    <Route path="/transportManager/taskRequest/viewTaskRequest/:id" element={<ViewTaskRequest />} />
-                    <Route path="/transportManager/taskRequest/editTaskRequest/:id" element={<EditTaskRequest />} />
-        
-                    
-                    {/* Schedule profile routes */}
-                    <Route path="/transportManager/scheduleProfile/createSchedule" element={<CreateSchedule />} />
-                    <Route path="/transportManager/scheduleProfile/viewSchedule/:id" element={<ViewSchedule />} />
-                    <Route path="/transportManager/scheduleProfile/editSchedule/:id" element={<EditSchedule />} />
-                    <Route path="/transportManager/scheduleProfile/removeSchedule/:id" element={<RemoveSchedule />} />
-
-                    {/* Vehicle profile routes */}
-                    <Route path="/transportManager/vehicleProfile/CreateVehicle" element={<CreateVehicle />} />
-                    <Route path="/transportManager/vehicleProfile/editVehicle/:id" element={<EditVehicle />} />
-                    <Route path="/transportManager/vehicleProfile/ViewVehicle/:id" element={<ViewVehicle />} />
-                    <Route path="/transportManager/vehicleProfile/removeVehicle/:id" element={<RemoveVehicle />} />
-               </Route>
+               
 
                <Route>
                  {/* Driver main routes */}

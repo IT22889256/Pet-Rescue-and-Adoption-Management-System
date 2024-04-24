@@ -26,6 +26,7 @@ export default function ScheduleProfile() {
 							<th>Driver</th>
 							<th>Vet nary Doctor</th>
 							<th>Staff Member</th>
+							<th>schedule status</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -49,7 +50,15 @@ export default function ScheduleProfile() {
 								</td>
 								<td>{schedule.Staff_Member}</td>
 								<td>
-									<Link to={`/transportManager/scheduleProfile/viewSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
+								{schedule.schedule_status=== "Completed" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
+										{schedule.schedule_status}
+									</td>)}
+									{schedule.schedule_status !== "Completed" && (<div>{schedule.schedule_status}</div>)}
+								</td>	
+								<td>
+								
+									<Link to={`/transportManager/scheduleProfile/ViewSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								
 									{/* <Link to={`/transportManager/ScheduleProfile/EditSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link> */}
 								

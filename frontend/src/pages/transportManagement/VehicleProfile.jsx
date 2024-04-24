@@ -18,7 +18,10 @@ export default function VehicleProfile() {
             <div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to='/transportManager/vehicleProfile/createVehicle' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create vehicle Profile</Link></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
                 {vehicles.map((vehicle) => (
-                    <div key={vehicle._id} className="border border-gray-200 rounded-md p-4 bg-blue-100">
+                        <div key={vehicle._id} className="border border-gray-200 rounded-md p-4 bg-blue-100">
+                        <div className="mt-3 flex text-xs justify-center">
+                        <img className='object-cover h-60 w-60 m-5 rounded-full' src={vehicle.Vehicle_image} alt='profile_Image'/>
+				        </div>
                         <p className="text-sm font-medium">Vehicle Serial No: {vehicle.Vehicle_Serial_No}</p>
                         <p className="text-sm font-medium">Vehicle Model: {vehicle.Vehicle_Model}</p>
                         <p className="text-sm font-medium">Plate Number: {vehicle.Plate_Number}</p>
