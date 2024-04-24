@@ -182,13 +182,7 @@ import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundreq
 //Employeee
 
 
-//Doctor
-import DoctorLayout from "./components/doctor/DoctorLayout";
-import DoctorDashboard from "./pages/doctorManagement/DoctorDashboard";
 
-import AllPetHealth from "./pages/doctorManagement/petHealth/AllPetHealth";
-import ViewPetHealth from "./pages/doctorManagement/petHealth/ViewPetHealth";
-import EditPetHealth from "./pages/doctorManagement/petHealth/EditPetHealth";
 
 
 //Suppliers

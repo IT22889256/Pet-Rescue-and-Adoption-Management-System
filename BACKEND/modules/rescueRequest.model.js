@@ -25,19 +25,11 @@ const RescueRequestSchema = mongoose.Schema({
         required: true
     },
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 60841435a11be6c6430cb00c049e1020e9d87af4
     date:{
         type: Date,
         required: true
     },
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 60841435a11be6c6430cb00c049e1020e9d87af4
     rescue_request_status:{
         type: String,
         required: true
