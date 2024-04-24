@@ -183,6 +183,7 @@ import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundreq
 
 
 
+
 //Suppliers
 import Supplierslayout from "./components/Supplier/Supplierslayout";
 
@@ -263,7 +264,7 @@ import PleaseLogin from "./pages/User/PleaseLogin";
 import SpecificNeedDonationForm from "./pages/User/SpecificNeedDonationForm";
 
 import PetQR from "./pages/User/PetQR";
-
+import UserGallery from "./pages/User/Gallery";
 
 //employee attendance
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
@@ -311,6 +312,7 @@ function App() {
 
 
           <Route path="user/:id/donation" element={<RecurringDonationForm />} />
+          <Route path="/gallery" element={<UserGallery/>} />
           <Route path="/donation" element={<RecurringDonationForm />} />
 
           <Route element={<PrivateRoute />}>
