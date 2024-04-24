@@ -29,8 +29,8 @@ export default function ManageLeaves() {
 	const ComponetRef = useRef();
 	const handlePrint = useReactToPrint({
 		content: () => ComponetRef.current,
-		DocumentTItle:"Deleted Employee Report",
-		onafterprint: ()=>("Employee Report Successfully Download")
+		DocumentTItle:" Employee Leave Report",
+		onafterprint: ()=>("Employee Leave Report Successfully Download")
 	})
 
     const [searchQuery, setSearchQuery] = useState("");
