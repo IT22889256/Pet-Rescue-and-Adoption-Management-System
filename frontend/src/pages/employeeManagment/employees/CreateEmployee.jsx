@@ -523,7 +523,6 @@ export default function CreateEmployee() {
         </button>
       </div>
     </div>
-    </>
+  
   );
-}
 }
