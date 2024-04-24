@@ -15,6 +15,7 @@
     "axios": "^1.6.8",
     "body-parser": "^1.20.2",
     "classnames": "^2.5.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "date-fns": "^3.5.0",
     "dotenv": "^16.4.5",

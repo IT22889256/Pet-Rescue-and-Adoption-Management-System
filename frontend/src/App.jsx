@@ -3,6 +3,7 @@ import PetManagerDashboard from "./pages/petManament/PetManagerDashboard";
 import HeplAndSupport from "./pages/HeplAndSupport";
 import EmployeeProfile from "./components/EmployeeProfile";
 
+
 //user management imports//
 import UserManagerLayout from "./components/userManagement/userLayout";
 import UserDashboard from "./pages/userManagement/userManagerDashboard";
@@ -49,6 +50,7 @@ import ViewFeedback1 from "../src/pages/UserAffairsManagement/handleFeedback/vie
 import UserRequest from "./pages/userManagement/UserRequest";
 import UserProfile from "./pages/userManagement/UserProfile";
 
+
 import CreateUser from "./pages/userManagement/userProfile/CreateUser";
 import ViewUser from "./pages/userManagement/userProfile/ViewUser";
 import EditUser from "./pages/userManagement/userProfile/EditUser";
@@ -68,6 +70,7 @@ import RecurringDonationForm from "./pages/User/RecurringDonationForm";
 import PetAdoption from "./pages/User/PetAdoption"
 //pet managemnt imports
 
+
 import PetLayout from "./components/petManager/PetLayout";
 import RescueRequest from "./pages/petManament/RescueRequest";
 import RescueTask from "./pages/petManament/RescueTask";
@@ -82,6 +85,7 @@ import EditRescueTask from "./pages/petManament/rescueTask/EditRescueTask";
 import DeleteRescueTask from "./pages/petManament/rescueTask/DeleteRescueTask";
 import ViewRescueRequest from "./pages/petManament/rescueRequest/ViewRescueRequest";
 import CreateRescueRequest from "./pages/petManament/rescueRequest/CreateRescueRequest";
+
 
 //addoption Manager
 import AdoptionLayout from "./components/adoptionManager/AdoptionLayout";
@@ -173,7 +177,7 @@ import SponsorDonations from "./pages/donationManagement/sponsordonations";
 import CreateSponsorDonations from "./pages/donationManagement/sponsordonations/createsponsordonations";
 // import ViewSponsorDonations from './pages/donationManagement/sponsordonations/viewsponsordonations'
 //fund reuests
-import FundRequest from "./pages/donationManagement/fundrequests/fundrequests";
+import FundRequest from "./pages/donationManagement/fundrequests";
 import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundrequests";
 //Employeee
 
@@ -765,7 +769,7 @@ function App() {
             element={<FundRequest />}
           />
           <Route
-            path="/DonationManager/fundrequets/Viewfundrequests/:id"
+            path="/DonationManager/fundrequests/viewfundrequests/:id"
             element={<ViewFundRequest />}
           />
 

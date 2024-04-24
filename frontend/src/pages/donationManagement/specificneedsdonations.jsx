@@ -3,37 +3,18 @@ import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 import { getTaskStatus } from '../../lib/helpers/petManager/rescueTaskStatus'
 import axios from 'axios'
-// import PopUp from './PopUp'
-// const recentRescueTasksData = [
-// 	{
-// 		task_id: '1',
-// 		request_id: '23143',
-// 		user_id: '456',
-// 		task_date: '2022-05-17T03:24:00',
-// 		current_status: 'Completed',
-// 		task_prority: '1'
-// 	},
-// 	{
-// 		task_id: '1',
-// 		request_id: '23143',
-// 		user_id: '456',
-// 		task_date: '2022-05-17T03:24:00',
-// 		current_status: 'Abandoned',
-// 		task_prority: '2'
-// 	},
-// 	{
-// 		task_id: '1',
-// 		request_id: '23143',
-// 		user_id: '456',
-// 		task_date: '2022-05-17T03:24:00',
-// 		current_status: 'Pending',
-// 		task_prority: '3'
-// 	},
-// ]
+
+
 
 export default function SpecificNeedDonations() {
 
 		const [specificNeedDonations, setSpecificNeedDonations] = useState([]);
+		const formatDate = (dateString) => {
+			// Convert MongoDB date string to JavaScript Date object
+			const date = new Date(dateString);
+			// Format the date into a readable format
+			return format(date, 'dd MMM yyyy hh:mm a');
+	};
 	
 		useEffect(() => {
 			axios.get('http://localhost:3000/donationManager/specificneedsdonations/display').then(res => {
@@ -80,7 +61,7 @@ export default function SpecificNeedDonations() {
 								<td>
 									{SpecificNeedsDonations.amount}
 								</td>
-								<td>{SpecificNeedsDonations.createdAt}</td>
+								<td>{formatDate(SpecificNeedsDonations.createdAt)}</td>
 								{/* <td>
 									<div className="text-xs text-gray-400 pl-1.5 mb-1 "><Link to='/rescueRequest' class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View</Link></div>
 								</td> */}
