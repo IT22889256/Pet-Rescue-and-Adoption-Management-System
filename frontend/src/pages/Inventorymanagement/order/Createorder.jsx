@@ -22,7 +22,7 @@ export default function CreatePet() {
         const data = {
             
        
-            item_id,order_quantity,date,order_status
+            _id,item_id,order_quantity,date,order_status
         };
         console.log('result')
         axios.post('http://localhost:3000/InventoryManager/order/createorder',data)

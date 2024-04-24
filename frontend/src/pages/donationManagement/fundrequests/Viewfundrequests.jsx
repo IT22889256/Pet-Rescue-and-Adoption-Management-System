@@ -1,18 +1,18 @@
 
 import React, { useEffect, useState } from 'react'
 import { Link, useParams,useNavigate } from 'react-router-dom'
-import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
+
 import axios from 'axios'
 
-export default function CommonAR() {
+export default function ViewFundRequest() {
 	
-	const [rescueRequest, setRescueRequest] = useState({})
+	const [fundrequests, setFundrequests] = useState({})
 	const {id} = useParams()
 	const navigate = useNavigate()
 	useEffect(() => {
-		axios.get(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`)
+		axios.get(`http://localhost:3000/donationManager/fundrequests/viewrequests/${id}`)
 		.then((res) => {
-			setRescueRequest(res.data)
+			setFundrequests(res.data)
 			
 		}).catch((err) => {
 			console.log(err);
@@ -21,16 +21,16 @@ export default function CommonAR() {
 	const Accept = (e) => {
 		
 		const data = {
-			"rescue_request_status":"Accept"
+			"status":"accepted"
 		}
 		
 		console.log('result')
-        axios.put(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`,data)
+        axios.put(`http://localhost:3000/donationManager/fundrequests/updaterequests/${id}`,data)
         .then(result => {
 			
             alert('updated')
             console.log(result)
-            navigate(`/petManager/rescueTask/createRescueTask/${id}`)
+            navigate(`/DonationManager/fundrequests/viewfundrequests/${id}`)
         })
         .catch(err => console.log(err))
 	}
@@ -38,36 +38,35 @@ export default function CommonAR() {
 	const Reject = (e) => {
 		
 		const data = {
-			"rescue_request_status":"Reject"
+			"status":"rejected"
 		}
 		
 		console.log('result')
-        axios.put(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`,data)
+        axios.put(`http://localhost:3000/donationManager/fundrequests/updaterequests/${id}`,data)
         .then(result => {
 			
             alert('updated')
             console.log(result)
-            navigate(`/petManager/rescueRequest`)
+            navigate(`/DonationManager/fundrequests/viewfundrequests`)
         })
         .catch(err => console.log(err))
 	}
 
 return (
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-			<strong className="text-gray-700 font-medium">Rescue request</strong>
+			<strong className="text-gray-700 font-medium">Fund request</strong>
 			<div className="border-x border-gray-200 rounded-sm mt-3">
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-full">
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
-							<th>Request ID</th>
-							<th>User ID</th>
-							<th>Pet Type</th>
-							<th>Health Status</th>
-							<th>Location</th>
+						<th>Request ID</th>
+							<th>Management </th>
+							<th>Amount</th>
 							<th>Date</th>
-							<th>Rescue Request Status</th>
+							<th>Status</th>
+							
 
-								{rescueRequest.rescue_request_status==='Pending' &&(
+								{fundrequests.status==='pending' &&(
 								<th>Action</th>
 
 								)}
@@ -75,42 +74,37 @@ return (
 					</thead>
 						<tbody>
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
-								<td>
-									{rescueRequest._id}
+						<td>
+									{fundrequests._id}
 								</td >
 								<td>
-									{rescueRequest.user_id}
-								</td >
+									{fundrequests.request_from}
+								</td>
 								<td>
-									{rescueRequest.pet_type}
-								</td >
+									{fundrequests.amount}
+								</td>
 								<td>
-									{rescueRequest.health_status}
-								</td >
-								<td>
-									{rescueRequest.location}
-								</td >
-								<td>
-									{rescueRequest.date}
-								</td >
-									{rescueRequest.rescue_request_status=== "Pending" && (
+									{fundrequests.request_date}
+								</td>
+							
+									{fundrequests.status=== "pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-centerml">
-										<div>{rescueRequest.rescue_request_status}</div>
+										<div>{fundrequests.status}</div>
 									</td>)}
-									{rescueRequest.rescue_request_status=== "Accept" && (
+									{fundrequests.status=== "accepted" && (
 									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
-										<div>{rescueRequest.rescue_request_status}</div>
+										<div>{fundrequests.status}</div>
 									</td>)}
-									{rescueRequest.rescue_request_status=== "Reject" && (
+									{fundrequests.status=== "rejected" && (
 									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
-										<div>{rescueRequest.rescue_request_status}</div>
+										<div>{fundrequests.status}</div>
 									</td>)}
 								
 								<td>
-								{rescueRequest.rescue_request_status==='Pending' &&(
+								{fundrequests.status==='pending' &&(
 								<>
-									<Link onClick={Accept} to={`/petManager/rescueRequest/viewRescueRequest/${rescueRequest._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept</Link>
-									<Link  onClick={Reject} to={`/petManager/rescueRequest/viewRescueRequest/${rescueRequest._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link>
+									<Link onClick={Accept} to={`/DonationManager/fundrequests/viewfundrequests/${fundrequests._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept</Link>
+									<Link  onClick={Reject} to={`/DonationManager/fundrequests/viewfundrequests/${fundrequests._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link>
 								</>
 
 								)}
