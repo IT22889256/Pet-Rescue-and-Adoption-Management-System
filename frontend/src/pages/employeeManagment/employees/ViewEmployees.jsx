@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+ 
 
 export default function ViewEmployee() {
     const [employee, setEmployee] = useState({});
@@ -19,20 +18,8 @@ export default function ViewEmployee() {
             });
     }, [id]);
 
-    const handleDelete = () => {
-        const confirmDelete = window.confirm('Are you sure you want to delete this employee?');
-        if (confirmDelete) {
-            axios.put(`http://localhost:3000/EmployeeManager/employees/DeleteEmployee/${id}`)
-                .then(() => {
-                    toast.success('Employee deleted successfully!');
-                    setTimeout(() => navigate('/EmployeeManager/ManageEmployees'), 4000); 
-                })
-                .catch((error) => {
-                    console.log(error);
-					toast.error('An error occurred during deletion!');
-                });
-        }
-    };
+
+
 	const formatDate = (dateString) => {
         const date = new Date(dateString);
         const day = date.getDate();
@@ -122,11 +109,12 @@ export default function ViewEmployee() {
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 						<Link to={`/employeeManager/salary/CreateSalary/${employee.eid}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Create salary</Link>
                         <Link to={`/employeeManager/employees/editEmployee/${employee._id}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
-                        <button onClick={handleDelete} className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 text-xs">Remove</button>
+                        <Link to={`/employeeManager/employees/removeEmployee/${employee._id}`} className="bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>	
                     </div>
                 </div>
             </div>
-			<ToastContainer />
+			
         </div>
     );
 }
+

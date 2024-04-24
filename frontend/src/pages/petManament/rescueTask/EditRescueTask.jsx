@@ -260,6 +260,7 @@ export default function EditRescueTask() {
           </div>
         </div>
       </div>
+
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <Link
           type="button"

@@ -65,7 +65,7 @@ import ResetPassword from "./pages/User/ResetPassword";
 //home page
 import FeedbackForm from "./pages/User/FeedbackForm";
 import RecurringDonationForm from "./pages/User/RecurringDonationForm";
-
+import PetAdoption from "./pages/User/PetAdoption"
 //pet managemnt imports
 
 import PetLayout from "./components/petManager/PetLayout";
@@ -237,22 +237,33 @@ import ViewDeactivateEmployees from "./pages/employeeManagment/deactivateEmploye
 import ManageLeaves from "./pages/employeeManagment/ManageLeaves";
 import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveRequest";
 
-//leave apply from employee
+//leave apply for janitor
+import CreateLeave from "./pages/employeeManagment/LeaveApplyforJanitors";
+import ViewOneAttendance from "./pages/employeeManagment/attendanceManagement/ViewOneAttendance";
 
 import RescueRequestForm from "./pages/User/RescueRequestForm";
 
 import LeaveApply from "./pages/employeeManagment/LeaveApply";
 import ViewLeaveApply from "./pages/employeeManagment/LeaveApply/viewLeaveApply";
 
+
 import Donation from "./pages/User/Donation";
 import PleaseLogin from "./pages/User/PleaseLogin";
 import SpecificNeedDonationForm from "./pages/User/SpecificNeedDonationForm";
+
+import PetQR from "./pages/User/PetQR";
+
+
+//employee attendance
+import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
+        <Route path="/employeeProfiles/LeaveApply/:eid" element={<LeaveApply />} />
       </Routes>
 
       <Routes>
@@ -267,18 +278,29 @@ function App() {
             element={<SpecificNeedDonationForm />}
           />
           <Route path="/register" element={<Register />} />
+
           <Route path="/please-login" element={<PleaseLogin />} />
 
           <Route
             path="/user/:id/rescuerequestForm"
             element={<RescueRequestForm />}
           />
+
+          
+          <Route path="/petAdoption" element={<PetAdoption/>} />
+          <Route path="/petQR/:id" element={<PetQR/>} />
+
           <Route path="/log-in" element={<Login />} />
           <Route path="/recovery-password" element={<ForgotPassword />} />
           <Route path="/resetpassword/:email" element={<ResetPassword />} />
           <Route path="/user/become-adopter" element={<BecomeAdopter />} />
           <Route path="user/:id/feedback" element={<FeedbackForm />} />
+
           <Route path="user/:id/donation" element={<Donation />} />
+
+
+          <Route path="user/:id/donation" element={<RecurringDonationForm />} />
+          <Route path="/donation" element={<RecurringDonationForm />} />
 
           <Route element={<PrivateRoute />}>
             <Route path="/profile/:id" element={<Profile />} />
@@ -539,12 +561,25 @@ function App() {
             path="/employeeManager/jobRoles"
             element={<ManageJobRoles />}
           />
+
+          <Route
+          path="/employeeManager/AttendanceMark"
+          element={<ManageEmployeeAttendance />}
+          />
+
           <Route
             path="/employeeManager/ManageDeactivateEmployees"
             element={<ManageDeactivateEmployees />}
           />
-          <Route path="/employeeManager/LeaveApply" element={<LeaveApply />} />
-          '
+
+          <Route
+            path="/employeeManager/CreateLeave"
+            element={<CreateLeave />} 
+          />
+
+
+          <Route path="/employeeManager/LeaveApply/:eid" element={<LeaveApply />} />
+          
           <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
           <Route path="/employeeManager/petProfile" element={<PetProfile />} />
           {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
@@ -612,6 +647,12 @@ function App() {
             path="/employeeManager/leave/:id"
             element={<ViewLeaveRequest />}
           />
+          {/* leave one attendance routes */}
+          <Route
+            path="/employeeManager/attendance/:id"
+            element={<ViewOneAttendance />}
+          />
+
           {/* leave accept routes */}
           {/* deactivate employees route */}
           <Route

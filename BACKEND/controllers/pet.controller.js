@@ -1,5 +1,6 @@
 const Pet = require('../modules/pet.model')
 const Counter = require('../modules/counter.model');
+const QRCode = require('qrcode')
 //display all pet profiles
 
 const displayPets= async(req, res) => {
@@ -39,6 +40,11 @@ const addPet = async (req, res) => {
       const pet = await Pet.create({ ...req.body, pet_id: petId });
 
       res.status(200).json(pet);
+    //   let stringdata = JSON.stringify(data)
+    //         QRCode.toString(stringdata,{type:'terminal'}, function (err, url) {
+    //             if(err) return console.log("error occurred")
+    //             console.log(url)
+    //           })
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
