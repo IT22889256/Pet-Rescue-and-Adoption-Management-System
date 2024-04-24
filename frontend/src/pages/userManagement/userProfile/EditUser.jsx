@@ -66,7 +66,11 @@ export default function EditUser() {
                 Profile picture
               </label>
               <div className="mt-2 flex items-center gap-x-3">
-                <img className="h-20 w-20 text-gray-300" alt="image" />
+                <img
+                  src={photo}
+                  className="h-20 w-20 text-gray-300"
+                  alt="image"
+                />
               </div>
             </div>
 

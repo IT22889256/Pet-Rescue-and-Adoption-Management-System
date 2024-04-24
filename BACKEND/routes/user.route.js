@@ -13,6 +13,9 @@ const {
   forgotPassword,
   resetPassword,
   deleteUserAccount,
+  generateOTP,
+  verifyOTP,
+  resetPasswordSession,
 } = require("../controllers/user.controller");
 const protect = require("../middleWare/authMiddleware");
 
@@ -25,7 +28,9 @@ router.get("/getusers", protect, getUsers);
 router.get("/loggedin", loginStatus);
 router.patch("/updateuser/:id", protect, updateUser);
 router.patch("/changepassword", protect, changePassword);
+router.get("/genarateotp", generateOTP);
+router.post("/verifyotp", verifyOTP);
+router.put("/resetpassword", resetPassword);
 router.post("/forgotpassword", forgotPassword);
-router.put("/resetpassword/:resetToken", resetPassword);
 
 module.exports = router;

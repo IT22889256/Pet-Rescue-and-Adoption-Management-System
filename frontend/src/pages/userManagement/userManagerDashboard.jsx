@@ -1,5 +1,5 @@
 import React from "react";
-import DashboardStatsGrid from "../../components/petManager/DashboardStatsGrid";
+import DashboardStatsGrid from "../../components/userManagement/DashboardStatsGrid";
 import RescueChart from "../../components/petManager/RescueChart";
 import RecentVerificationRequests from "../../components/userManagement/RecentVerificationRequests";
 import RescueRequstsChart from "../../components/petManager/RescueRequestPieChart";

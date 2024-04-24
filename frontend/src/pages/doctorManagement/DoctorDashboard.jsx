@@ -3,7 +3,7 @@ import DashboardStatsGrid from '../../components/adoptionManager/DashboardStatsG
 import RescueChart from '../../components/adoptionManager/RescueRequestPieChart'
 
 import RecentRequests from '../../components/petManager/RecentRequest'
-import RescueRequstsChart from '../../components/adoptionManager/RescueRequestPieChart'
+import RescueRequstsChart from '../../components/adoptionManager/AdoptionRequestPieChart'
 import CreatedTasks from '../../components/petManager/CreateTasks'
 
 

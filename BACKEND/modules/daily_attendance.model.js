@@ -18,6 +18,11 @@ const AttendanceSchema = mongoose.Schema(
       required: false,
     },
     
+    date: {
+      type: Date,
+      required: false,
+    },
+
     status: {
       type: String,
       enum: ['available', 'unavailable'], 
