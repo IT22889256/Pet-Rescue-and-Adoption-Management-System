@@ -191,9 +191,6 @@ import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundreq
 
 
 
-//Doctor
-import DoctorLayout from "./components/doctor/DoctorLayout";
-import DoctorDashboard from "./pages/doctorManagement/DoctorDashboard";
 
 
 
