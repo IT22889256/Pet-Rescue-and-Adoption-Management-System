@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link} from 'react-router-dom'
-// import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
 export default function PetProfile() {
@@ -31,7 +30,7 @@ export default function PetProfile() {
 						{pets.map((pet) => (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={pet._id}>
 								<td>
-									{pet._id}
+									{pet.pet_id}
 								</td>
 								<td>
 									{pet.pet_name}
@@ -54,11 +53,6 @@ export default function PetProfile() {
 									
 								<td>
 									<Link to={`/petManager/petProfile/viewPet/${pet._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
-								
-									
-									{/* {pet.health_status==='Good' &&(
-										<Link to={`/petManager/petProfile/RemovePet/${pet._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Move</Link>
-									)} */}
 								</td>
 							</tr>
 						))}
@@ -69,15 +63,3 @@ export default function PetProfile() {
 		</div>
 	)
 }
-// {pets.map((pets)=>(
-// 	<>
-// 		<tr key={pets.id}>
-// 			<td>{pets.request_id}</td>
-// 			<td>{pets.task_id}</td>
-// 			<td>{pets.pet_name}</td>
-// 			<td>{pets.pet_type}</td>
-// 			<td>{pets.health_status}</td>
-// 		</tr>
-// 	</>
-
-// ))}

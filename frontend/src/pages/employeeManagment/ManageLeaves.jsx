@@ -7,6 +7,8 @@ export default function ManageLeaves() {
     const { id } = useParams();
     const navigate = useNavigate();
 
+
+    //date format fixing
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;

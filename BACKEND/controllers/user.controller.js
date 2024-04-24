@@ -6,6 +6,9 @@ const crypto = require("crypto");
 const Token = require("../modules/token.model");
 const sendEmail = require("../utils/sendEmail");
 const mongoose = require("mongoose");
+const otpGenerator = require("otp-generator");
+const { LocalStorage } = require("node-localstorage");
+const localStorage = new LocalStorage("./scratch");
 // Generate Token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
@@ -104,6 +107,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const token = generateToken(user._id);
   console.log(token);
   if (passwordIsCorrect) {
+    console.log("password is correct");
     // Send HTTP-only cookie
     console.log(token);
     res.cookie("token", token, {
@@ -115,19 +119,34 @@ const loginUser = asyncHandler(async (req, res) => {
   }
   // Modify the part in your loginUser function that sends the response
   if (user && passwordIsCorrect) {
-    const { _id, name, email, role, photo, roletype } = user; // Include role here
+    const {
+      _id,
+      name,
+      email,
+      role,
+      photo,
+      roletype,
+      phone,
+      eid,
+      bio,
+      jobRole,
+    } = user; // Include role here
 
     res.status(200).json({
       _id,
       name,
       email,
+      phone,
       role, // Send role to the frontend
       roletype, // Send roletype to the frontend
       photo,
+      eid,
+      jobRole,
+      bio,
       token,
     });
   } else {
-    res.status(400).json({ message: "Invalid email or password" });
+    res.status(400).json({ message: "Invalid password" });
   }
 });
 
@@ -335,43 +354,17 @@ const forgotPassword = asyncHandler(async (req, res) => {
     throw new Error("User does not exist");
   }
 
-  // Delete token if it exists in DB
-  let token = await Token.findOne({ userId: user._id });
-  if (token) {
-    await token.deleteOne();
-  }
+  // Generate OTP
 
-  // Create Reste Token
-  let resetToken = crypto.randomBytes(32).toString("hex") + user._id;
-  console.log(resetToken);
-  // Hash token before saving to DB
-  const hashedToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-  //console.log(hashedToken);
-
-  // Save Token to DB
-  await new Token({
-    userId: user._id,
-    token: hashedToken,
-    createdAt: Date.now(),
-    expiresAt: Date.now() + 40 * (60 * 1000), // fourty minutes
-  }).save();
-
-  // Construct Reset Url
-  const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
+  const otp = await generateOTP();
+  console.log("otp in the email", otp);
 
   // Reset Email
   const message = `
-          <h2>Hello ${user.name}</h2>
-          <p>Please use the url below to reset your password</p>  
-          <p>This reset link is valid for only 40 minutes.</p>
-    
-          <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
-    
-          <p>Regards...</p>
-          <p>Pinvent Team</p>
+          <h2>Hello ${email}</h2>
+          <p>Please use the OTP below to reset your password</p>
+          <h3>OTP: ${otp}</h3>
+          <p>ResQ Team</p>
         `;
   const subject = "Password Reset Request";
   const send_to = user.email;
@@ -386,35 +379,65 @@ const forgotPassword = asyncHandler(async (req, res) => {
   }
 });
 
-// Reset Password
-const resetPassword = asyncHandler(async (req, res) => {
-  const { password } = req.body;
-  const { resetToken } = req.params;
-
-  // Hash token, then compare to Token in DB
-  const hashedToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-
-  // fIND tOKEN in DB
-  const userToken = await Token.findOne({
-    token: hashedToken,
-    expiresAt: { $gt: Date.now() },
+// Generate OTP
+const generateOTP = asyncHandler(async (req, res) => {
+  const OTP = await otpGenerator.generate(6, {
+    lowerCaseAlphabets: false,
+    upperCaseAlphabets: false,
+    specialChars: false,
   });
+  console.log("generated OTP", OTP);
+  localStorage.setItem("OTP", OTP); // Store OTP in localStorage
+  localStorage.setItem("resetSession", false); // Set a flag for session reset
+  const otp = localStorage.getItem("OTP");
+  console.log("otp in the local storage", otp);
+  return OTP;
+});
 
-  if (!userToken) {
-    res.status(404);
-    throw new Error("Invalid or Expired Token");
+//Verify OTP
+const verifyOTP = asyncHandler(async (req, res) => {
+  const { otp } = req.body;
+  console.log("hello ", otp, localStorage.getItem("OTP"));
+  if (parseInt(otp) === parseInt(localStorage.getItem("OTP"))) {
+    localStorage.setItem("OTP", null); // reset OTP
+    localStorage.setItem("resetSession", true); // reset resetSession
+
+    res.status(200).json({ message: "OTP Verified" });
+  } else {
+    res.status(400).json({ message: "Invalid OTP" });
   }
+});
 
-  // Find user
-  const user = await User.findOne({ _id: userToken.userId });
-  user.password = password;
-  await user.save();
-  res.status(200).json({
-    message: "Password Reset Successful, Please Login",
-  });
+//Reset Password Session
+const resetPasswordSession = asyncHandler(async (req, res) => {
+  if (localStorage.getItem("resetSession")) {
+    localStorage.setItem("resetSession", false); //allow accee to this route only once
+    return res.status(200).json({ message: "Access granted!" });
+  } else {
+    return res.status(440).json({ message: "Session Expired!" });
+  }
+});
+
+//reset password
+const resetPassword = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  console.log(email, password);
+
+  // Hash new password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  const user = await User.findOne({ email }); // Find user by email
+  if (localStorage.getItem("resetSession") === false)
+    return res.status(440).json({ message: "Session Expired!" });
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  await User.updateOne({ email: email }, { password: hashedPassword }); // Corrected the query
+  console.log("Password updated");
+  localStorage.setItem("resetSession", false);
+  res.status(200).json({ message: "Password updated" });
 });
 
 module.exports = {
@@ -432,4 +455,7 @@ module.exports = {
   editOneUser,
   deleteUser,
   deleteUserAccount,
+  generateOTP,
+  verifyOTP,
+  resetPasswordSession,
 };

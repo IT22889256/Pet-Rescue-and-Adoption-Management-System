@@ -1,5 +1,5 @@
 const RescueRequest = require('../modules/rescueRequest.model')
-
+const Counter = require('../modules/counter.model');
 //display all Rescue Request
 
 const displayRescueRequests= async(req, res) => {
@@ -11,19 +11,40 @@ const displayRescueRequests= async(req, res) => {
     }
 }
 //create Rescue Request
-const createRescueRequest = async (req, res) => {
+// const createRescueRequest = async (req, res) => {
 
+//     try {
+//         // await Pet.create(req.body);
+//         // res.json("Add");
+//         // res.status(200).json(pet);
+//         RescueRequest.create(req.body)
+//         .then(rescueRequest => res.json(rescueRequest))
+//         .catch(err => res.json(err))
+//     }catch(error) {
+//         res.status(500).json({message: error.message});
+//     }
+// }
+
+const createRescueRequest = async (req, res) => {
     try {
-        // await Pet.create(req.body);
-        // res.json("Add");
-        // res.status(200).json(pet);
-        RescueRequest.create(req.body)
-        .then(rescueRequest => res.json(rescueRequest))
-        .catch(err => res.json(err))
-    }catch(error) {
-        res.status(500).json({message: error.message});
+      const counter = await Counter.findByIdAndUpdate(
+        { _id: 'resReqId' },
+        { $inc: { seq: 1 } },
+        { new: true, upsert: true }
+      );
+    
+      const resReqId = 'RES' + String(counter.seq).padStart(3, '0');
+      // Create new employee using employeeId and request body
+      
+      const rescueRequest = await RescueRequest.create({ ...req.body, rescue_req_id: resReqId });
+
+      res.status(200).json(rescueRequest);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
-}
+    
+    };
+    
 
 //Edit a Rescue Request
 const editRescueRequest = async(req, res) => {

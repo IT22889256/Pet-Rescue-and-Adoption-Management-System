@@ -202,6 +202,7 @@ app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 app.use("/petManager", rescueRequest);
 app.use("/petManager", rescueTask)
 
+app.use("/user", rescueRequest);
 
 
 //induwara routes

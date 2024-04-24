@@ -17,12 +17,7 @@ const adopterRequestsSchema = mongoose.Schema(
         "Please enter a valid email",
       ],
     },
-    password: {
-      type: String,
-      required: [true, "Please add a password"],
-      minLength: [6, "Password must be up to 6 characters"],
-      //   maxLength: [23, "Password must not be more than 23 characters"],
-    },
+
     // In your user model definition, add a role field
     role: {
       type: String,
@@ -58,12 +53,13 @@ const adopterRequestsSchema = mongoose.Schema(
       unique: true,
       trim: true,
     },
-    drivngLicense: {
+    dob: {
       type: String,
-      unique: true,
-      trim: true,
     },
     image: {
+      type: String,
+    },
+    nicback: {
       type: String,
     },
     petOwnerShip: {
