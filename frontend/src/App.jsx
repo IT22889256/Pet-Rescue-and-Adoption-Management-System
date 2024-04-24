@@ -248,7 +248,7 @@ import LeaveApply from './pages/employeeManagment/LeaveApply'
 import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
 
 import PetQR from "./pages/User/PetQR";
-
+import UserGallery from "./pages/User/Gallery";
 
 //employee attendance
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
@@ -275,6 +275,7 @@ function App() {
           <Route path="/user/become-adopter" element={<BecomeAdopter />} />
           <Route path="user/:id/feedback" element={<FeedbackForm />} />
           <Route path="user/:id/donation" element={<RecurringDonationForm />} />
+          <Route path="/gallery" element={<UserGallery/>} />
           <Route path="/donation" element={<RecurringDonationForm />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile/:id" element={<Profile />} />
