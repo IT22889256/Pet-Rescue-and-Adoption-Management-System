@@ -31,6 +31,15 @@ export default function ViewEmployee() {
         }
     };
 
+
+	const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const month = date.getMonth() + 1; // Month is zero-based
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
+
     return (
         <div className="max-w-4xl mx-auto px-1 py-1 bg-neutral-200 sm:rounded-lg">
             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -38,7 +47,8 @@ export default function ViewEmployee() {
                     <h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Employee Profile</h3>
                 </div>
                 <div className="mt-3 flex text-xs justify-center">
-                    <img className='object-cover h-60 w-60 m-5 rounded-full' src="https://i.ibb.co/713YjHp/pexels-emrah-ayvali-1981111.jpg" alt='profile_Image'/>
+                <img className='object-cover h-60 w-60 m-5 rounded-full' src={employee.employeeimgUrl} alt='profile_Image'/>
+                    
                 </div>
                 <div className="border-t border-gray-200">
                     <dl>
@@ -69,12 +79,12 @@ export default function ViewEmployee() {
 
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-sm font-medium text-gray-500">Recruited Date</dt>
-					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{employee.recruitedDate}</dd>
+					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{formatDate(employee.recruitedDate)}</dd>
 				</div>
 
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-sm font-medium text-gray-500">birth Day</dt>
-					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{employee.birthday}</dd>
+					<dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{formatDate(employee.birthday)}</dd>
 				</div>
 
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

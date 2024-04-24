@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, "Please add a email"],
+      required: [true, "Please add an email"],
       unique: true,
       trim: true,
       match: [
@@ -20,22 +20,37 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
       required: [true, "Please add a password"],
-      minLength: [6, "Password must be up to 6 characters"],
-      //   maxLength: [23, "Password must not be more than 23 characters"],
+      minLength: [6, "Password must be at least 6 characters long"],
     },
-    // In your user model definition, add a role field
     role: {
       type: String,
       required: true,
-      enum: ["admin", "user", "adopter", "employee"], // This restricts the values to either 'admin' or 'user'
-      default: "user", // Default to 'user' if not specified
+      enum: ["admin", "user", "adopter", "employee"],
+      default: "user",
     },
     roletype: {
       type: String,
-      enum: ["user", "userManager", "petManager"],
-      default: "user", // Default to 'user' if not specified
+      enum: [
+        "user",
+        "employee",
+        "doctor",
+        "supplier",
+        "driver",
+        "userManager",
+        "petManager",
+        "transportManager",
+        "employeeManager",
+        "donationManager",
+        "adoptionManager",
+        "inventoryManager",
+        "userAffairsManager",
+      ],
+      default: "user",
     },
-
+    eid: {
+      type: String,
+      default: "Null",
+    },
     photo: {
       type: String,
       required: [true, "Please add a photo"],
@@ -50,13 +65,45 @@ const userSchema = mongoose.Schema(
       maxLength: [250, "Bio must not be more than 250 characters"],
       default: "",
     },
+    jobRole: {
+      type: String,
+      default: "Null",
+    },
+    location: {
+      type: String,
+    },
+    nic: {
+      type: String,
+      unique: true,
+      trim: true,
+    },
+    drivngLicense: {
+      type: String,
+      unique: true,
+      trim: true,
+    },
+    image: {
+      type: String,
+    },
+    nicback: {
+      type: String,
+    },
+    petOwnerShip: {
+      type: String,
+    },
+    reason: {
+      type: String,
+    },
+    empStatus: {
+      type: String,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-//   Encrypt password before saving to DB
+// Encrypt password before saving to DB
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();

@@ -6,7 +6,8 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function ApplyLeave() {
 
-    const { eid } = useParams()
+   const { eid } = useParams()
+   console.log(eid)
     //const [eid, setEid] = useState('');
     const [reason, setReason] = useState('');
     const [note, setNote] = useState('');
@@ -30,17 +31,21 @@ export default function ApplyLeave() {
         axios.post('http://localhost:3000/EmployeeManager/leave/requestLeave/',data)
         .then(result => {
             console.log(result)
-            navigate('/EmployeeManager/ManageEmployees')
+            alert('Leave Requested Successfully')
         })
         .catch(err => console.log(err))
     }
         return (
-
+            <div className="mx-20 ">
+            <div className="mx-4 rounded-lg my-7 mx-32  p-4 bg-gray-200 ">
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
                         <div className='text-xl font-bold '>Employee Leave Request Form</div>
+			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to='employeeManager/applyLeave/${salary._id}' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >View my Leave</Link></div>
+
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
+                            
                                
                                 <div className="sm:col-span-3">
                                     <label htmlFor="eid" className="block text-sm font-medium leading-6 text-gray-900">
@@ -140,6 +145,8 @@ export default function ApplyLeave() {
                             Submit
                         </button>
                 </div>
+        </div>
+        </div>
         </div>
     )
 }

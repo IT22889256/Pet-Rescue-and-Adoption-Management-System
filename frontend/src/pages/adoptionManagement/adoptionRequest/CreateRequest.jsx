@@ -6,7 +6,7 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateRequest() {
 
-    const [request_id, setReqId] = useState()
+    
     const [adopter_nic, setNIC] = useState()
     const [adopter_name, setName] = useState()
     const [adopter_phone, setPhoneNumber] = useState()
@@ -21,7 +21,7 @@ export default function CreateRequest() {
     const Submit = (e) => {
 
         const data = {
-            request_id,adopter_nic,adopter_name,adopter_phone,adopter_email,adopter_pettype,adopter_petname,adopter_message,adopter_status,
+            adopter_nic,adopter_name,adopter_phone,adopter_email,adopter_pettype,adopter_petname,adopter_message,adopter_status,
         };
         console.log('result')
         axios.post('http://localhost:3000/adoptionManager/adoptionProfile/createRequest',data)

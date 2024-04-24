@@ -145,6 +145,9 @@ const requestFunds = require('./routes/requestFunds.route');
 
 const rescueTask = require("./routes/task.route");
 
+
+
+
 //import adoption routes
 
 const adoptionRouter = require("./routes/pet_adoption.route");
@@ -212,6 +215,7 @@ app.use("/donationManager/fundrequests", requestFunds);
 app.use("/petManager", rescueRequest);
 app.use("/petManager", rescueTask)
 
+app.use("/user", rescueRequest);
 
 
 //induwara routes
