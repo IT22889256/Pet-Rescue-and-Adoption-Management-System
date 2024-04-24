@@ -48,9 +48,22 @@ function Header() {
           >
             Home
           </Link>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Rescues
-          </a>
+          {isLogedin ? (
+            <Link
+              to={`/user/${currentUser._id}/rescuerequestForm`}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Rescues
+            </Link>
+          ) : (
+            <a
+              href="#"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Rescues
+            </a>
+          )}
+
           {isLogedin ? (
             <Link
               to={`/user/${currentUser._id}/donation`}
@@ -59,12 +72,12 @@ function Header() {
               Donation
             </Link>
           ) : (
-            <a
-              href="#"
+            <Link
+              to="/please-login"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Donation
-            </a>
+            </Link>
           )}
 
           {isLogedin && currentUser.role !== "adopter" ? (
