@@ -25,6 +25,13 @@ const RescueRequestSchema = mongoose.Schema({
         required: true
     },
 
+    date:{
+        type: Date,
+        required: true
+    },
+
+
+
 
     date:{
         type: Date,
@@ -39,13 +46,13 @@ const RescueRequestSchema = mongoose.Schema({
     imgUrl:{
         type: String,
         required: true
-
     },
 
     // date: {
     //   type: Date,
     //   required: true,
     // },
+
 
     rescue_request_status: {
       type: String,
@@ -61,6 +68,7 @@ const RescueRequestSchema = mongoose.Schema({
     timestamps: true,
   }
 );
+
 
 const RescueRequest = mongoose.model("RescueRequest", RescueRequestSchema);
 
