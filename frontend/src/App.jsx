@@ -128,6 +128,7 @@ import Editorder from '../src/pages/Inventorymanagement/order/Editorder'
 import Vieworder from '../src/pages/Inventorymanagement/order/Vieworder'
 import Removeorder from '../src/pages/Inventorymanagement/order/Removeorder'
 //messages
+import messsages from '../src/pages/Inventorymanagement/message'
 import Createmessages from './pages/Inventorymanagement/messages/Createmessages'
 import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
 import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
@@ -714,7 +715,7 @@ function App() {
           />
           <Route
             path="/adoptionManager/adoptionRequest/viewRequest/:id"
-            element={<ViewRequest />}
+            element={<Viewrequest />}
           />
           <Route
             path="/adoptionManager/adoptionRequest/editRequest/:id"
@@ -788,6 +789,8 @@ function App() {
           />
         </Route>
       </Routes>
+               {/* Inventroy manager */}
+     
       <Routes>
         <Route path="/InventoryManager" element={<Inventorylayout />}>
           <Route
@@ -803,6 +806,7 @@ function App() {
             path="/InventoryManager/heplAndSupport"
             element={<HeplAndSupport />}
           />
+              {/* Inventroymanager/items */}
           {/* main routes */}
           <Route path="/InventoryManager/Items" element={<Items />} />
           {/* item routes*/}
@@ -819,7 +823,7 @@ function App() {
             path="/InventoryManager/Items/removeitem/:id"
             element={<Removeitem />}
           />
-
+                   {/* Inventroymanger/supplier */}
           {/* main routes */}
           <Route path="/InventoryManager/supplier" element={<Supplier />} />
           {/* supplier routes*/}
@@ -839,7 +843,7 @@ function App() {
             path="/InventoryManager/supplier/removesupplier/:id"
             element={<Removesupplier />}
           />
-
+                   {/* Inventroy manager/order */}
           {/* main routes */}
           <Route path="/InventoryManager/order" element={<Order />} />
           {/* order routes*/}
@@ -863,7 +867,7 @@ function App() {
             path="/InventoryManager/order/vieworder/:id"
             element={<Vieworder />}
           />
-
+                   {/* inventroymanager/request */}
           {/* main routes */}
           <Route path="/InventoryManager/request" element={<Request />} />
           {/* supplier routes*/}
@@ -873,7 +877,7 @@ function App() {
           />
           <Route
             path="/InventoryManager/request/viewrequest/:id"
-            element={<ViewRequest />}
+            element={<Viewrequest />}
           />
           <Route
             path="/InventoryManager/request/Updaterequest/:id"
@@ -883,9 +887,59 @@ function App() {
             path="/InventoryManager/request/deleterequest/:id"
             element={<Deleterequest />}
           />
-        </Route>
+                {/* inventroymanager/messages */}
+                {/* import Createmessages from './pages/Inventorymanagement/messages/Createmessages'
+import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
+import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
+import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
+        </Route> */}
+        <Route path="/InventoryManager/messages" element={<messsages />} />
+          {/* order routes*/}
+          <Route
+            path="/InventoryManager/messages/Viewmessages/:id"
+            element={<Viewmessages />}
+          />
+          <Route
+            path="/InventoryManager/messages/Createmessages/"
+            element={<Createmessages />}
+          />
+          <Route
+            path="/InventoryManager/messages/Editmessages/:id"
+            element={<Editmessages />}
+          />
+          <Route
+            path="/InventoryManager/messages/Deletemessages/:id"
+            element={<Deletemessages />}
+          />
+          
+          
+                   {/* inventroymanager/request */}
+          {/* main routes */}
+          <Route path="/InventoryManager/request" element={<Request />} />
+          {/* supplier routes*/}
+          <Route
+            path="/InventoryManager/request/createrequest/"
+            element={<Createrequest />}
+          />
+          <Route
+            path="/InventoryManager/request/viewrequest/:id"
+            element={<Viewrequest />}
+          />
+          <Route
+            path="/InventoryManager/request/Updaterequest/:id"
+            element={<Updaterequest />}
+          />
+          <Route
+            path="/InventoryManager/request/deleterequest/:id"
+            element={<Deleterequest />}
+          />  
+            
+     
+            </Route>
       </Routes>
-
+      
+            
+              {/* suppliers */}
       <Routes>
         <Route path="/Suppliers" element={<Supplierslayout />}>
           <Route index path="/Suppliers/order" element={<Requests />} />
@@ -897,6 +951,7 @@ function App() {
             path="/Suppliers/heplAndSupport"
             element={<HeplAndSupport />}
           />
+                  {/* supplier/requests */}
 
           <Route path="/Suppliers/requests" element={<Requests />} />
 
@@ -910,6 +965,8 @@ function App() {
           />
         </Route>
       </Routes> 
+
+
             <Routes>
                 <Route path="/UserAffairsManager" element={<UserAffairsLayout />}>
                     <Route index path="/UserAffairsManager" element={<UserAffairsManagerDashboard />} />
@@ -941,10 +998,16 @@ function App() {
                     <Route path="/UserAffairsManager/handleFeedback" element={<AllFeedback />} />
                     <Route path="/UserAffairsManager/handleFeedback/viewFeedback/:id" element={<ViewFeedback1 />} />
 
-                </Route>
-            </Routes>
+                    </Route>
+
+                 </Routes>    
+                 </Router>
+               
+                
   
-    </Router>
+           
+            
+           
   );
 }
 

@@ -36,7 +36,7 @@ export default function Createrequest() {
 
         const data = {
             
-            request_no,request_to,request_date//request_status
+            request_no,request_to,request_date
          
         };
         console.log('result')

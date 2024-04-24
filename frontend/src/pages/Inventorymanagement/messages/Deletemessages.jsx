@@ -8,7 +8,7 @@ export default function DeleteSupplyRequest() {
   const handleDeleteBook = () => {
     
     axios
-      .delete(`http://localhost:3000/InventoryManager/messages/deletemessages/${id}`)
+      .delete(`http://localhost:3000/InventoryManager/messages/Deletemessages/${id}`)
       .then(() => {
         alert('deleted')
         navigate('/InventoryManager/messages');
