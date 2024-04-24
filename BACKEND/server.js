@@ -181,6 +181,7 @@ app.use("/petManager", petRouter);
 
 
 //import inventory routes
+
 const itemRouter = require("./routes/product.route");
 const supplierRouter = require("./routes/supplier.routes");
 const requestRouter = require("./routes/request.route");
@@ -190,6 +191,7 @@ app.use("/inventoryManager", itemRouter);
 app.use("/inventoryManager", supplierRouter);
 app.use("/inventoryManager", requestRouter);
 app.use("/inventoryManager", orderRouter);
+
 app.use("/suppliers", orderRouter);
 
 app.use("/adoptionManager", adoptionRouter);
@@ -237,6 +239,5 @@ app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
 app.listen(PORT, () =>{
 
     console.log(`Server is up and running on ${PORT}`);
-
 
 });

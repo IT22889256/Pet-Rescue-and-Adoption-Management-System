@@ -59,6 +59,7 @@ export default function DashboardStatsGrid() {
 					</div>
 				</div>
 			</BoxWrapper>
+
       </div>
     </div>
   );
@@ -71,4 +72,5 @@ function BoxWrapper({ children }) {
     </div>
   );
 }
+
 

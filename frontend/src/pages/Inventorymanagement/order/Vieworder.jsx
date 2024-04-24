@@ -25,12 +25,12 @@ export default function Vieworder() {
 		}
 		
 		console.log('result')
-        axios.put(`http://localhost:3000/inventoryManager/order/vieworder/${id}`,data)
+        axios.put(`http://localhost:3000/InventoryManager/order/vieworder/${id}`,data)
         .then(result => {
 			
             alert('updated')
             console.log(result)
-            navigate(`/inventoryManager/order/createorder/${id}`)
+            navigate(`/InventoryManager/order/createorder/${id}`)
         })
         .catch(err => console.log(err))
 	}
@@ -42,12 +42,12 @@ export default function Vieworder() {
 		}
 		
 		console.log('result')
-        axios.put(`http://localhost:3000/inventoryManager/order/vieworder/${id}`,data)
+        axios.put(`http://localhost:3000/InventoryManager/order/vieworder/${id}`,data)
         .then(result => {
 			
             alert('updated')
             console.log(result)
-            navigate(`/inventoryManager/order`)
+            navigate(`/InventoryManager/order`)
         })
         .catch(err => console.log(err))
 	}
@@ -64,7 +64,7 @@ return (
 							<th>Quantity</th>
 							<th>Order date</th>
 							<th>Status</th>
-							<th>Action</th>
+							
 						
 
 								{order.order_status==='Pending' &&(
@@ -87,6 +87,10 @@ return (
 								<td>
 									{order.date}
 								</td >
+								{/* <td>
+									{order.order_status}
+								</td > */}
+								
 								
 							
 									{order.order_status=== "Pending" && (
@@ -102,15 +106,15 @@ return (
 										<div>{order.order_status}</div>
 									</td>)}
 								
-								<td>
+								 <td>
 								{order.order_status==='Pending' &&(
 								<>
-									<Link onClick={Accept} to={`/inventoryManager/order/vieworder/${order._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
-									<Link  onClick={Reject} to={`/inventoryManager/order/vieworder/${order._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>
+									<Link onClick={Accept} to={`/InventoryManager/order/editorder/${order._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
+									<Link  onClick={Reject} to={`/InventoryManager/order/removeorder/${order._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>
 								</>
 
 								)}
-								</td> 
+								</td>  
 								
 							</tr>
 					</tbody>

@@ -35,6 +35,7 @@ const [order_id, setorderid] = useState()
 const [item_id, setitemid] = useState()
 const [order_quantity, setorderquantity] = useState()
 const [date,setdate] = useState()
+const [item_image,setitemimage ]=useState()
 
 
     const navigate = useNavigate()
@@ -59,7 +60,7 @@ const [date,setdate] = useState()
     },[])
     const Edit = (e) => {
         const data = {
-            order_id,item_id,order_quantity,date
+            order_id,item_id,order_quantity,date,item_image
         };
     
         console.log('result')
@@ -218,8 +219,10 @@ const [date,setdate] = useState()
                                     >
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            // value={item_image}
-                                            // onChange={(e) => item_image(e.target.value)}
+
+                                            value={item_image}
+                                            onChange={(e) => setitemimage(e.target.value)}
+
                                         />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>
