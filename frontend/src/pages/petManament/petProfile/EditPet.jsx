@@ -17,38 +17,7 @@ export default function EditPet() {
     const [imgUrl, setPetImage] = useState()
     const [preImg, setPre] = useState()
     const navigate = useNavigate()
-<<<<<<< HEAD
 
-    const {id} = useParams()
-    useEffect((e) => {
-=======
-
-<<<<<<< HEAD
-
-    const {id} = useParams()
-    useEffect((e) => {
-
-
-
->>>>>>> developer
-        axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
-        .then((res) => {
-            setReqId(res.data.request_id)
-            setTaskId(res.data.task_id)
-            setPetName(res.data.pet_name)
-            setPettype(res.data.pet_type)
-            setHealStatus(res.data.health_status)
-            setPetGender(res.data.pet_gender)
-            setPetAge(res.data.pet_age)
-            setPetappearance(res.data.pet_appearance)
-            setLocation(res.data.location)
-            setPetImage(res.data.pet_image)
-
-            console.log(res);
-
-        }).catch(err => console.log(err))
-    },[])
-=======
     const [Pet, setPet] = useState({})
 	const {id} = useParams()
  //get pet details
@@ -62,7 +31,6 @@ export default function EditPet() {
 		})
 	},[])
 
->>>>>>> 1cc8a8ce45b96d6facaca7e15fda26d0c402de4f
     const Edit = (e) => {
         const data = {
             pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,imgUrl,

@@ -164,10 +164,7 @@ import FundRequest from "./pages/donationManagement/fundrequests/fundrequests";
 import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundrequests";
 //Employeee
 
-<<<<<<< HEAD
 
-=======
->>>>>>> developer
 //Doctor
 import DoctorLayout from "./components/doctor/DoctorLayout";
 import DoctorDashboard from "./pages/doctorManagement/DoctorDashboard";
@@ -967,7 +964,7 @@ function App() {
             element={<UpdateRequests />}
           />
         </Route>
-<<<<<<< HEAD
+
       </Routes> 
             <Routes>
 
@@ -1002,103 +999,7 @@ function App() {
                     <Route path="/UserAffairsManager/handleFeedback/viewFeedback/:id" element={<ViewFeedback1 />} />
                 </Route>
             </Routes>
-  
-=======
-      </Routes>
-      <Routes>
-        <Route path="/UserAffairsManager" element={<UserAffairsLayout />}>
-          <Route
-            index
-            path="/UserAffairsManager"
-            element={<UserAffairsManagerDashboard />}
-          />
-          <Route
-            path="/UserAffairsManager/employeeProfile"
-            element={<EmployeeProfile />}
-          />
-          <Route
-            path="/UserAffairsManager/heplAndSupport"
-            element={<HeplAndSupport />}
-          />
-          {/* main routes */}
-          <Route path="/UserAffairsManager/feedback" element={<Feedback />} />
-          <Route
-            path="/UserAffairsManager/issuesandconcerns"
-            element={<IssuesAndConcerns />}
-          />
-          <Route path="/UserAffairsManager/gallery" element={<Gallery />} />
-          {/* Issues & Concerns routes */}
-          <Route
-            path="/UserAffairsManager/IssuesAndConcerns/ViewIssuesAndConcerns/:id"
-            element={<ViewIssuesAndConcerns />}
-          />
-          <Route
-            path="/UserAffairsManager/IssuesAndConcerns/CreateIssuesAndConcerns"
-            element={<CreateIssuesAndConcerns />}
-          />
-          <Route
-            path="/UserAffairsManager/IssuesAndConcerns/EditIssuesAndConcerns/:id"
-            element={<EditIssuesAndConcerns />}
-          />
-          <Route
-            path="/UserAffairsManager/IssuesAndConcerns/RemoveIssuesAndConcerns/:id"
-            element={<RemoveIssuesAndConcerns />}
-          />
-          {/* feedback routes */}
-          <Route
-            path="/UserAffairsManager/Feedback/ViewFeedback/:id"
-            element={<ViewFeedback />}
-          />
-          <Route
-            path="/UserAffairsManager/Feedback/CreateFeedback"
-            element={<CreateFeedback />}
-          />
-          <Route
-            path="/UserAffairsManager/Feedback/EditFeedback/:id"
-            element={<EditFeedback />}
-          />
-          <Route
-            path="/UserAffairsManager/Feedback/RemoveFeedback/:id"
-            element={<RemoveFeedback />}
-          />
-          {/* gallery routes */}
-          <Route
-            path="/UserAffairsManager/Gallery/ViewGallery/:id"
-            element={<ViewGallery />}
-          />
-          <Route
-            path="/UserAffairsManager/Gallery/CreateGallery"
-            element={<CreateGallery />}
-          />
-          <Route
-            path="/UserAffairsManager/Gallery/EditGallery/:id"
-            element={<EditGallery />}
-          />
-          <Route
-            path="/UserAffairsManager/Gallery/RemoveGallery/:id"
-            element={<RemoveGallery />}
-          />
-          {/* handle IC routes */}
-          <Route
-            path="/UserAffairsManager/handleIssuesConcerns"
-            element={<IssuesConcerns />}
-          />
-          <Route
-            path="/UserAffairsManager/handleIssuesConcerns/ViewIssuesConcerns/:id"
-            element={<ViewIssuesConcerns />}
-          />
-          {/* handle F routes */}
-          <Route
-            path="/UserAffairsManager/handleFeedback"
-            element={<AllFeedback />}
-          />
-          <Route
-            path="/UserAffairsManager/handleFeedback/viewFeedback/:id"
-            element={<ViewFeedback1 />}
-          />
-        </Route>
-      </Routes>
->>>>>>> developer
+
     </Router>
   );
 }

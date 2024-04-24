@@ -16,7 +16,12 @@ const GallerySchema = mongoose.Schema(
     pet_name:{
       type: String,
       required: true 
-    }
+    },
+
+    date:{
+      type: Date,
+      
+  }
   },
   
   {

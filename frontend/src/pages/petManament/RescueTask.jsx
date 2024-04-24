@@ -17,10 +17,7 @@ export default function RescueTask() {
 			<strong className="text-gray-700 font-medium">Task</strong>
 			{/* <div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to='/petManager/rescueTask/createRescueTask' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Create A Task</Link></div> */}
 			<div className="border-x border-gray-200 rounded-sm mt-3">
-<<<<<<< HEAD
 
-=======
->>>>>>> developer
 
 			<table className="bg-[#f3f3f3] w-full text-gray-700">
 					<thead className="bg-[#c1c3c558]" >
@@ -95,24 +92,7 @@ export default function RescueTask() {
 					<td>
 						{rescueTask.rescue_task_id}
 					</td >
-<<<<<<< HEAD
 
-
-					{/* <td>
-
-
-						{rescueTask.request_id}
-					</td>
-					<td>
-						{rescueTask.user_id}
-
-
-
-					</td> */}
-					
-					
-=======
->>>>>>> developer
 					{rescueTask.rescue_task_priority === "Low" && (
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
 							<div>{rescueTask.rescue_task_priority}</div>
@@ -127,10 +107,7 @@ export default function RescueTask() {
 						</td>
 
 						{rescueTask.rescue_task_status === "Completed" && (
-<<<<<<< HEAD
 
-=======
->>>>>>> developer
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
 							<div>{rescueTask.rescue_task_status}</div>
 						</td>)}
@@ -138,18 +115,12 @@ export default function RescueTask() {
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
 							<div >{rescueTask.rescue_task_status}</div>
 						</td>)}
-<<<<<<< HEAD
 
-=======
->>>>>>> developer
 						{rescueTask.rescue_task_status === "In Progress" && (
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
 							<div >{rescueTask.rescue_task_status}</div>
 						</td>)}
-<<<<<<< HEAD
 
-=======
->>>>>>> developer
 					<td>
 						<Link to={`/petManager/rescueTask/viewRescueTask/${rescueTask._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 					</td>

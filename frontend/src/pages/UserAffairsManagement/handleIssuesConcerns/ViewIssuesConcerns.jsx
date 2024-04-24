@@ -65,7 +65,7 @@ return (<>
 				<div className="border-t border-gray-200">
 					<dl>
 					<div className="mt-3 flex text-xs justify-center">
- 						<img className='object-cover h-60 w-60 m-5 rounded-full' src={issueandconcern.ic_image} alt='profile_Image'/>
+ 						<img className='object-cover h-60 w-60 m-5 rounded-full' src={issueandconcern.imgUrl} alt='profile_Image'/>
 					</div>
 					<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 							<dt className="text-lg text-black-500 font-medium">User ID</dt>

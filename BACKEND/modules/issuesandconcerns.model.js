@@ -21,7 +21,8 @@ const IssuesAndConcernsSchema = mongoose.Schema(
       type: String,
       required: true 
     },
-    ic_image:{
+    
+    imgUrl:{
       type: String, 
     }
 
