@@ -297,6 +297,10 @@ function App() {
             path="/user/:id/rescuerequestForm"
             element={<RescueRequestForm />}
           />
+           <Route
+            path="/rescuerequestForm"
+            element={<RescueRequestForm />}
+          />
 
           
           <Route path="/petAdoption" element={<PetAdoption/>} />

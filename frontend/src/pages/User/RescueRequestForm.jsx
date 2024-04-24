@@ -81,7 +81,7 @@ const RescueRequestForm = () => {
     const Submit = (e) => {
 
         const data = {
-            user_id,pet_type,health_status,location,rescue_request_status,imgUrl,date
+            user_id,pet_type,health_status,location,rescue_request_status,imgUrl
         };
         console.log('result')
         axios.post('http://localhost:3000/user/rescueRequest/createRescueRequest',data)
@@ -148,9 +148,9 @@ return (
                                         </label>
                                             <div className="mt-2">
                                             <div className="mt-2">
-                                            <input required type="radio" id="pet-types" name="pet_type" value={"Dog"} onChange={(e) => setPettype(e.target.value)}/>
+                                            <input required type="radio" id="pet-types" name="pet_type" value={"Cat"} onChange={(e) => setPettype(e.target.value)}/>
                                             <label className="p-1"  for="pet-type">Cat</label>
-                                            <input required type="radio" id="pet-type" name="pet_type" value={"Cat"} onChange={(e) => setPettype(e.target.value)}/>
+                                            <input required type="radio" id="pet-type" name="pet_type" value={"Dog"} onChange={(e) => setPettype(e.target.value)}/>
                                             <label className="p-1" for="pet-type" >Dog</label>
 
                                         </div>
@@ -262,8 +262,6 @@ return (
                                     </div>
                                     </form>
                                 </div>
-                                
-                               
                         </div>
           
   )
