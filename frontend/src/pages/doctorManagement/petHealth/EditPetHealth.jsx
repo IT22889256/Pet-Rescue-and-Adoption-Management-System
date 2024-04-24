@@ -21,7 +21,7 @@ export default function EditPetHealth() {
     const {id} = useParams()
     useEffect((e) => {
         
-        axios.get(`http://localhost:3000/doctor/petHealth/viewPetHealth/${id}`)
+        axios.get(`http://localhost:3000/doctor/petHealth/viewPet/${id}`)
         .then((res) => {
             setReqId(res.data.request_id)
             setTaskId(res.data.task_id)
@@ -44,7 +44,7 @@ export default function EditPetHealth() {
         };
         
         console.log('result')
-        axios.put(`http://localhost:3000/doctor/petHealth/editPetHealth/${id}`,data)
+        axios.put(`http://localhost:3000/doctor/petHealth/editPet/${id}`,data)
         .then(result => {
             alert('updated')
             console.log(result)

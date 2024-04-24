@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react'
-// import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
-// import { getTaskStatus } from '../../lib/helpers/petManager/rescueTaskStatus'
-// import PopUp from './PopUp'
-// import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
 export default function RescueTask() {
@@ -21,6 +17,7 @@ export default function RescueTask() {
 			<strong className="text-gray-700 font-medium">Task</strong>
 			{/* <div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to='/petManager/rescueTask/createRescueTask' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Create A Task</Link></div> */}
 			<div className="border-x border-gray-200 rounded-sm mt-3">
+
 
 			<table className="bg-[#f3f3f3] w-full text-gray-700">
 					<thead className="bg-[#c1c3c558]" >
@@ -40,15 +37,10 @@ export default function RescueTask() {
 							rescueTask.rescue_task_status === 'Pending' &&(
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={rescueTask._id}>
 								<td>
-								{rescueTask._id}
+								{rescueTask.rescue_task_id}
 								</td >
 
-								{/* <td>
-									{rescueTask.request_id}
-								</td>
-								<td>
-									{rescueTask.user_id}
-								</td> */}
+								
 								{rescueTask.rescue_task_priority === "Low" && (
 								<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
 									<div>{rescueTask.rescue_task_priority}</div>
@@ -64,10 +56,6 @@ export default function RescueTask() {
 									</td>)}
 								<td>
 									<Link to={`/petManager/rescueTask/viewRescueTask/${rescueTask._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
-								{/* 								
-									<Link to={`/petManager/rescueTask/editRescueTask/${task._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
-								
-									<Link to={`/petManager/rescueTask/deleteRescueTask/${task._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link> */}
 								</td>
 
 								</tr>)
@@ -102,22 +90,9 @@ export default function RescueTask() {
 					rescueTask.rescue_task_status !== 'Pending' &&(
 						<tr className='border-b-2 border-[#c1c3c558] text-center' key={rescueTask._id}>
 					<td>
-						{rescueTask._id}
+						{rescueTask.rescue_task_id}
 					</td >
 
-
-					{/* <td>
-
-
-						{rescueTask.request_id}
-					</td>
-					<td>
-						{rescueTask.user_id}
-
-
-					</td> */}
-					
-					
 					{rescueTask.rescue_task_priority === "Low" && (
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
 							<div>{rescueTask.rescue_task_priority}</div>
@@ -132,6 +107,7 @@ export default function RescueTask() {
 						</td>
 
 						{rescueTask.rescue_task_status === "Completed" && (
+
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
 							<div>{rescueTask.rescue_task_status}</div>
 						</td>)}
@@ -139,10 +115,12 @@ export default function RescueTask() {
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
 							<div >{rescueTask.rescue_task_status}</div>
 						</td>)}
+
 						{rescueTask.rescue_task_status === "In Progress" && (
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
 							<div >{rescueTask.rescue_task_status}</div>
 						</td>)}
+
 					<td>
 						<Link to={`/petManager/rescueTask/viewRescueTask/${rescueTask._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 					</td>

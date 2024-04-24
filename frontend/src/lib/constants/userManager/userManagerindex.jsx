@@ -1,7 +1,8 @@
 import { HiOutlineViewGrid, HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import { MdOutlinePets } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
-import { IoPeople } from "react-icons/io5";
+import { IoPeopleSharp } from "react-icons/io5";
+import { MdCardMembership } from "react-icons/md";
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: "dashboard",
@@ -13,7 +14,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     key: "Adopters",
     label: "Adopters",
     path: "/userManager/adopters",
-    icon: <IoPeople />,
+    icon: <MdCardMembership />,
   },
   {
     key: "Verification Requests",
@@ -27,13 +28,19 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     path: "/userManager/userProfile",
     icon: <MdOutlinePets />,
   },
+  {
+    key: "Employees Requests",
+    label: "Employees Requests",
+    path: "/userManager/employeeRequests",
+    icon: <IoPeopleSharp />,
+  },
 ];
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
   {
     key: "support",
     label: "Help & Support",
-    path: "/userManagement/heplAndSupport",
+    path: "/userManager/heplAndSupport",
     icon: <HiOutlineQuestionMarkCircle />,
   },
 ];

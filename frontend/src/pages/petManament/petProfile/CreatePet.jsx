@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from '../../../firebase';
+// import QRCode from 'qrcode'
+// const QRCode = require('qrcode')
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreatePet() {
     
-    const [request_id, setReqId] = useState()
-    const [task_id, setTaskId] = useState()
+    const [rescue_req_id, setReqId] = useState()
+    const [rescue_task_id, setTaskId] = useState()
     const [pet_name, setPetName] = useState()
     const [pet_type, setPettype] = useState()
     const [health_status, setHealStatus] = useState()
@@ -17,8 +19,28 @@ export default function CreatePet() {
     const [pet_appearance, setPetappearance] = useState()
     const [location, setLocation] = useState()
     const [imgUrl, setPetImage] = useState()
+    const [pet_profile_status] = useState(true)
     
     const navigate = useNavigate()
+
+
+    const [rescueTasks, setRescueTasks] = useState({})
+	const {id} = useParams()
+
+
+	useEffect(() => {
+		axios.get(`http://localhost:3000/petManager/rescueTask/viewRescueTask/${id}`)
+		.then((res) => {
+			setReqId(res.data.rescue_req_id)
+            setTaskId(res.data.rescue_task_id)
+            setLocation(res.data.location)
+            setPettype(res.data.pet_type)
+            setHealStatus(res.data.health_status)
+            setPetImage(res.data.imgUrl)
+		}).catch((err) => {
+			console.log(err);
+		})
+	},[])
 
     const [img, setImg] = useState(null);
     const [imgPerc, setImgPerc] = useState();
@@ -91,13 +113,23 @@ export default function CreatePet() {
     }
         const Submit = (e) => {
             const data = {
-                request_id,task_id,pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,imgUrl,
+                rescue_req_id,rescue_task_id,pet_name,pet_type,pet_gender,health_status,pet_age,pet_appearance,location,imgUrl,
             };
+            const update = {
+                "pet_profile_status":true
+            }
             console.log('result')
             console.log(imgUrl);
-            axios.post(`http://localhost:3000/petManager/petProfile/createPet`,{...data})
+            // let stJson = JSON.stringify(data)
+            //     QRCode.toFile(`${id}.png`,stJson, function(err,code){
+            //         if(err) return console.log("error");
+            //         console.log(code);
+            //     });
            
+            axios.post(`http://localhost:3000/petManager/petProfile/createPet`,{...data})
+            axios.put(`http://localhost:3000/petManager/rescueTask/editRescueTask/${id}`,update)
             .then(result => {
+               
                 console.log(result)
                 navigate('/petManager/petProfile')
             })
@@ -107,9 +139,13 @@ export default function CreatePet() {
         return (
 
             <div>
+                <form action="">
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
                         <div className='text-xl font-bold '>Create Pet Profile</div>
+                        <div className="mt-3 flex text-xs justify-center">
+                <img className='object-cover h-60 w-60 m-5 rounded-full' src={imgUrl} alt='profile_Image'/>
+				</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                                 <div className="sm:col-span-3">
                                     <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
@@ -120,7 +156,7 @@ export default function CreatePet() {
                                             type="text"
                                             name="request_id"
                                             id="request-id"
-                                            value={request_id}
+                                            value={rescue_req_id}
                                             onChange={(e) => setReqId(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
@@ -135,7 +171,7 @@ export default function CreatePet() {
                                                 type="text"
                                                 name="task_id"
                                                 id="task-id"
-                                                value={task_id}
+                                                value={rescue_task_id}
                                                 onChange={(e) => setTaskId(e.target.value)}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
@@ -183,6 +219,8 @@ export default function CreatePet() {
                                                 value={pet_age}
                                                 onChange={(e) => setPetAge(e.target.value)}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                required
+                                                pattern='/.*[0-9]./'
                                             />
                                         </div>
                                     </div>
@@ -211,7 +249,7 @@ export default function CreatePet() {
                                                     name="pet_type"
                                                     value={pet_type}
                                                     
-                                                    onChange={(e) => setPettype(e.target.value)}
+                                                    // onChange={(e) => setPettype(e.target.value)}
                                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                                     ><option></option>
                                                     <option>Cat</option>
@@ -228,7 +266,7 @@ export default function CreatePet() {
                                                     id="health-status"
                                                     name="health_status"
                                                     value={health_status}
-                                                    onChange={(e) => setHealStatus(e.target.value)}
+                                                    // onChange={(e) => setHealStatus(e.target.value)}
                                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                                     ><option></option>
                                                     <option className='bg-[#15803d]'>Good</option>
@@ -248,7 +286,6 @@ export default function CreatePet() {
                                                 name="location"
                                                 id="locations"
                                                 value={location}
-                                                onChange={(e) => setLocation(e.target.value)}
                                                 autoComplete="street-address"
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
@@ -269,7 +306,7 @@ export default function CreatePet() {
                                                 <span>Upload a file</span>
                                                 <input id="file-upload" name="file_upload"  type="file" className="sr-only"  accept='image/'
                                                     
-                                                    onChange={(e) => setImg((prev) => e.target.files[0])}
+                                                    onChange={(e) => setImg(() => e.target.files[0])}
                                                 />
                                             </label>
                                             <p className="pl-1">or drag and drop</p>
@@ -291,7 +328,7 @@ export default function CreatePet() {
                         >
                             Submit
                         </button>
-                </div>
+                </div></form>
         </div>
     )
 }

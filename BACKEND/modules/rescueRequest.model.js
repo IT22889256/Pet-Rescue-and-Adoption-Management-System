@@ -1,22 +1,36 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+
 
 const RescueRequestSchema = mongoose.Schema({
+    rescue_req_id:{
+        type: String,
+        unique:true
+    },
     user_id:{
         type: String,
         required: true
+
     },
-    pet_type:{
-        type: String,
-        required: true
+    pet_type: {
+      type: String,
+      required: true,
     },
-    health_status:{
-        type: String,
-        required: true
+    health_status: {
+      type: String,
+      required: true,
     },
+
     location:{
         type: String,
         required: true
     },
+
+    date:{
+        type: Date,
+        required: true
+    },
+
+
 
     date:{
         type: Date,
@@ -32,13 +46,26 @@ const RescueRequestSchema = mongoose.Schema({
         required: true
     },
 
-    },
+    // date: {
+    //   type: Date,
+    //   required: true,
+    // },
 
-    {
-        timestamps:true
-    }
-    
-    )
+
+    rescue_request_status: {
+      type: String,
+      required: true,
+    },
+    imgUrl: {
+      type: String,
+      required: true,
+    },
+  },
+
+  {
+    timestamps: true,
+  }
+);
 
 
 const RescueRequest = mongoose.model("RescueRequest", RescueRequestSchema);

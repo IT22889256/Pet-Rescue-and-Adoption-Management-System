@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import app from '../../../firebase';
+
+
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditEmployee() {
@@ -20,7 +24,10 @@ export default function EditEmployee() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [maritalStatus, setMaritalStatus] = useState('');
-    const [employeeimage, setEmployeeImage] = useState();
+    const [employeeimgUrl, setEmployeeimgUrl] = useState(); 
+    const [preImg, setPre] = useState()
+
+    
 
 
     const navigate = useNavigate()
@@ -42,7 +49,7 @@ export default function EditEmployee() {
             setPhoneNumber(res.data.phoneNumber);
             setEmail(res.data.email);
             setMaritalStatus(res.data.maritalStatus);
-            setEmployeeImage(res.data.employeeimage)
+            setEmployeeimgUrl(res.data.employeeimgUrl)
             
 
             console.log(res);
@@ -64,17 +71,90 @@ export default function EditEmployee() {
             phoneNumber,
             email,
             maritalStatus,
-            employeeimage,
+            employeeimgUrl,
         };
         
         console.log('result')
         axios.put(`http://localhost:3000/EmployeeManager/employees/${id}`,data)
         .then(result => {
-            alert('updated')
+          
+            alert(result.data.message)
+
             console.log(result)
             navigate('/EmployeeManager/ManageEmployees')
         })
         .catch(err => console.log(err))
+    }
+
+    const [img, setImg] = useState(null);
+    const [imgPerc, setImgPerc] = useState();
+    const [videoPerc, setVideoPerc] = useState();
+  
+  
+    useEffect((e) => {
+        if (img) {
+          uploadFile(img, "imgUrl");
+        }
+      }, [img]);
+  
+    const uploadFile = (file, fileType) => {
+      const storage = getStorage(app);
+      const folder = fileType === "imgUrl" ? "images/" : "videos/";
+      const fileName = new Date().getTime() + file.name;
+      const storageRef = ref(storage, folder + fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+  
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          fileType === "imgUrl"
+            ? setImgPerc(Math.round(progress))
+            : setVideoPerc(Math.round(progress));
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              console.log(error);
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+            default:
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            
+            console.log('DownloadURL - ', downloadURL);
+            
+            setEmployeeimgUrl(() => {
+                // console.log("45"+JSON.parse(downloadURL));
+                setPre(downloadURL)
+              return downloadURL
+            });
+          });
+        }
+      );
     }
         return (
 
@@ -84,14 +164,15 @@ export default function EditEmployee() {
                 <div className="border-b border-gray-900/10 pb-12">
                 <div className='text-xl font-bold '>Edit Employe Profile</div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
-                    <div className="col-span-full">
+                    {/* <div className="col-span-full">
           <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
             Profile picture
           </label>
           <div className="mt-2 flex items-center gap-x-3">
-            <img className="h-20 w-20 text-gray-300" alt='image' />
+          <img className="h-20 w-20 text-gray-300" src={preImg} alt='image' />
+
           </div>
-        </div>
+        </div> */}
 
 
 
@@ -103,6 +184,7 @@ export default function EditEmployee() {
                                 <input
                                     type="text"
                                     name="eid"
+                                    readOnly
                                     id="eid"
                                     value={eid}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -199,15 +281,13 @@ export default function EditEmployee() {
                 </div>
             </div>
 
-                            
-
                                     <div className="sm:col-span-3">
                                         <label htmlFor="recruitedDate" className="block text-sm font-medium leading-6 text-gray-900">
                                         RecruitedDate
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                                type="text"
+                                                type="date"
                                                 name="recruitedDate"
                                                 id="recruitedDate"
                                                 value={recruitedDate}
@@ -223,7 +303,7 @@ export default function EditEmployee() {
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                                type="text"
+                                                type="date"
                                                 name="birthday"
                                                 id="birthday"
                                                 value={birthday}
@@ -336,9 +416,9 @@ export default function EditEmployee() {
                 </div>
             </div>
 
-                            { <div className="col-span-full">
+            { <div className="col-span-full">
                             <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
-                            Employee Image
+                            Pet Image
                             </label>
                             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                             <div className="text-center">
@@ -349,9 +429,8 @@ export default function EditEmployee() {
                                         className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                     >
                                         <span>Upload a file</span>
-                                        <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            value={employeeimage}
-                                            onChange={(e) => setEmployeeImage(e.target.value)}
+                                        <input id="file-upload" name="file_upload"  type="file" className="sr-only" accept='image/'
+                                            onChange={(e) => setImg(() => e.target.files[0])}
                                         />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>

@@ -205,7 +205,7 @@ const [item_image,setitemimage ]=useState()
                                     />
                                 </div>
                             </div> */}
-                            { <div className="col-span-full">
+                            {/* <div className="col-span-full">
                             <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
                             Item image
                             </label>
@@ -230,7 +230,7 @@ const [item_image,setitemimage ]=useState()
                                     <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                             </div>
                             </div>
-                            </div> }
+                            </div> */}
                             </div>
                         </div>
                     </div>

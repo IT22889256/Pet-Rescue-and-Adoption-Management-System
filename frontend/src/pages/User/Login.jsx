@@ -4,9 +4,12 @@ import {
   logInStart,
   logInSuccess,
   logInFailure,
+  reLogin,
 } from "../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const [formData, setFormData] = useState({});
@@ -35,26 +38,50 @@ function Login() {
       const data = await response.json();
       console.log(data);
 
-      if (data.success === false) {
+      if (
+        data.message === "Invalid password" ||
+        data.message === "User not found, please signup"
+      ) {
         dispatch(logInFailure(data));
         return;
       }
+
       console.log("login Data", data);
       dispatch(logInSuccess(data));
+      alert("Login Success");
       if (data.role === "admin") {
         if (data.roletype === "userManager") {
           navigate("/userManager");
         } else if (data.roletype === "petManager") {
           navigate("/petManager");
+        } else if (data.roletype === "transportManager") {
+          navigate("/transportManager");
+        } else if (data.roletype === "employeeManager") {
+          navigate("/employeeManager");
+        } else if (data.roletype === "donationManager") {
+          navigate("/DonationManager");
+        } else if (data.roletype === "adoptionManager") {
+          navigate("/adoptionManager");
+        } else if (data.roletype === "inventoryManager") {
+          navigate("/InventoryManager");
+        } else if (data.roletype === "userAffairsManager") {
+          navigate("/userAffairsManager");
         } else {
           navigate("/");
         }
+      } else {
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
       dispatch(logInFailure(error));
     }
   };
+
+  useEffect(() => {
+    // Dispatch reLogin action when the component mounts
+    dispatch(reLogin());
+  }, []);
 
   return (
     <div>
@@ -100,14 +127,17 @@ function Login() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="flex items-center justify-between">
+                <Link
+                  to="/recovery-password"
+                  className="flex items-center justify-between"
+                >
                   <a
                     href="#"
                     className="text-sm font-medium text-primary-600 hover:underline "
                   >
                     Forgot password?
                   </a>
-                </div>
+                </Link>
                 <button
                   type="submit"
                   className="w-full text-white bg-gray-950 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"

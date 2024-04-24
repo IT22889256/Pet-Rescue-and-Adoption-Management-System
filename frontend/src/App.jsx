@@ -3,6 +3,7 @@ import PetManagerDashboard from "./pages/petManament/PetManagerDashboard";
 import HeplAndSupport from "./pages/HeplAndSupport";
 import EmployeeProfile from "./components/EmployeeProfile";
 
+
 //user management imports//
 import UserManagerLayout from "./components/userManagement/userLayout";
 import UserDashboard from "./pages/userManagement/userManagerDashboard";
@@ -12,35 +13,39 @@ import ViewVerificationRequest from "./pages/userManagement/adopterRequests/View
 import AcceptRequest from "./pages/userManagement/adopterRequests/AcceptRequest";
 import RejectRequest from "./pages/userManagement/adopterRequests/RejectRequest";
 import Adopters from "./pages/userManagement/Adopters";
+import EmployeesRequests from "./pages/userManagement/employeeRequests/EmployeeRequests";
+import ViewEmployeeRequest from "./pages/userManagement/employeeRequests/ViewEmployeeRequest";
+import EmployeeProfiles from "./pages/User/EmployeeProfile";
 
-import UserAffairsLayout from './components/UserAffairsManager/UserAffairsLayout'
-import UserAffairsManagerDashboard from './pages/UserAffairsManagement/UserAffairsManagerDashboard'
+import UserAffairsLayout from "./components/UserAffairsManager/UserAffairsLayout";
+import UserAffairsManagerDashboard from "./pages/UserAffairsManagement/UserAffairsManagerDashboard";
 
-import Feedback from '../src/pages/UserAffairsManagement/Feedback'
-import CreateFeedback from '../src/pages/UserAffairsManagement/Feedback/CreateFeedback'
-import EditFeedback from '../src/pages/UserAffairsManagement/Feedback/EditFeedback'
-import RemoveFeedback from '../src/pages/UserAffairsManagement/Feedback/RemoveFeedback'
-import ViewFeedback from '../src/pages/UserAffairsManagement/Feedback/ViewFeedback'
+import Feedback from "../src/pages/UserAffairsManagement/Feedback";
+import CreateFeedback from "../src/pages/UserAffairsManagement/Feedback/CreateFeedback";
+import EditFeedback from "../src/pages/UserAffairsManagement/Feedback/EditFeedback";
+import RemoveFeedback from "../src/pages/UserAffairsManagement/Feedback/RemoveFeedback";
+import ViewFeedback from "../src/pages/UserAffairsManagement/Feedback/ViewFeedback";
+import BecomeAdopter from "../src/pages/User/BecomeAdopter";
 
-import IssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns'
-import CreateIssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns/CreateIssuesAndConcerns'
-import EditIssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns/EditIssuesAndConcerns'
-import RemoveIssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns/RemoveIssuesAndConcerns'
-import ViewIssuesAndConcerns from '../src/pages/UserAffairsManagement/IssuesAndConcerns/ViewIssuesAndConcerns'
+import IssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns";
+import CreateIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/CreateIssuesAndConcerns";
+import EditIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/EditIssuesAndConcerns";
+import RemoveIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/RemoveIssuesAndConcerns";
+import ViewIssuesAndConcerns from "../src/pages/UserAffairsManagement/IssuesAndConcerns/ViewIssuesAndConcerns";
 
-import Gallery from '../src/pages/UserAffairsManagement/Gallery'
-import CreateGallery from '../src/pages/UserAffairsManagement/Gallery/CreateGallery'
-import EditGallery from '../src/pages/UserAffairsManagement/Gallery/EditGallery'
-import RemoveGallery from '../src/pages/UserAffairsManagement/Gallery/RemoveGallery'
-import ViewGallery from '../src/pages/UserAffairsManagement/Gallery/ViewGallery'
+import Gallery from "../src/pages/UserAffairsManagement/Gallery";
+import CreateGallery from "../src/pages/UserAffairsManagement/Gallery/CreateGallery";
+import EditGallery from "../src/pages/UserAffairsManagement/Gallery/EditGallery";
+import RemoveGallery from "../src/pages/UserAffairsManagement/Gallery/RemoveGallery";
+import ViewGallery from "../src/pages/UserAffairsManagement/Gallery/ViewGallery";
 
 //handle issues concerns
-import IssuesConcerns from '../src/pages/UserAffairsManagement/handleIssuesConcerns/IssuesConcerns'
-import ViewIssuesConcerns from '../src/pages/UserAffairsManagement/handleIssuesConcerns/ViewIssuesConcerns'
+import IssuesConcerns from "../src/pages/UserAffairsManagement/handleIssuesConcerns/IssuesConcerns";
+import ViewIssuesConcerns from "../src/pages/UserAffairsManagement/handleIssuesConcerns/ViewIssuesConcerns";
 
 //handle feedback
-import AllFeedback from '../src/pages/UserAffairsManagement/handleFeedback/AllFeedback'
-import ViewFeedback1 from '../src/pages/UserAffairsManagement/handleFeedback/viewFeedback'
+import AllFeedback from "../src/pages/UserAffairsManagement/handleFeedback/AllFeedback";
+import ViewFeedback1 from "../src/pages/UserAffairsManagement/handleFeedback/viewFeedback";
 
 import UserRequest from "./pages/userManagement/UserRequest";
 import UserProfile from "./pages/userManagement/UserProfile";
@@ -56,11 +61,13 @@ import Login from "./pages/User/Login";
 import Profile from "./pages/User/Profile";
 import EditProfile from "./pages/User/EditProfile";
 import PrivateRoute from "./components/common/Header/PrivateRoute";
+import ForgotPassword from "./pages/User/ForgotPassword";
+import ResetPassword from "./pages/User/ResetPassword";
 
 //home page
 import FeedbackForm from "./pages/User/FeedbackForm";
 import RecurringDonationForm from "./pages/User/RecurringDonationForm";
-
+import PetAdoption from "./pages/User/PetAdoption"
 //pet managemnt imports
 
 
@@ -88,8 +95,13 @@ import PetSupply from "./pages/adoptionManagement/Supply";
 import Appoinment from "./pages/adoptionManagement/Appoinment";
 import AdoptionProcess from "./pages/adoptionManagement/AdoptionProcess";
 
+//adoption pet health
+import PetHealthProfile from "./pages/adoptionManagement/PetHealthProfile";
+import ViewPetHealthProfile from "./pages/adoptionManagement/petHealthProfile/ViewPetHealthProfile";
+
 //adoption request
 import CreateRequest from "./pages/adoptionManagement/adoptionRequest/CreateRequest";
+import ViewAdoptionRequest from "./pages/adoptionManagement/adoptionRequest/ViewRequest"
 import EditRequest from "./pages/adoptionManagement/adoptionRequest/EditRequest";
 import DeleteRequest from "./pages/adoptionManagement/adoptionRequest/DeleteRequest";
 
@@ -102,7 +114,21 @@ import DeleteSupplyRequest from "./pages/adoptionManagement/supplyRequest/Delete
 
 //adoption process
 import AllAdoptionRequest from "./pages/adoptionManagement/adoptionProcess/AllAdoptionRequest";
-import ViewAdoptionRequest from "./pages/adoptionManagement/adoptionProcess/ViewAdoptionRequest";
+import ViewAdoptionPRequest from "./pages/adoptionManagement/adoptionProcess/ViewAdoptionRequest"
+
+//appoinment
+import CreateAppoinment from "./pages/adoptionManagement/AppoinmentSchedule/CreateAppoinment";
+import ViewAppoinment from "./pages/adoptionManagement/AppoinmentSchedule/ViewAppoinment";
+import EditAppoinment from "./pages/adoptionManagement/AppoinmentSchedule/EditAppoinment";
+import DeleteAppoinment from "./pages/adoptionManagement/AppoinmentSchedule/DeleteAppoinment";
+
+//Doctor
+import DoctorLayout from "./components/doctor/DoctorLayout";
+import DoctorDashboard from "./pages/doctorManagement/DoctorDashboard";
+
+import AllPetHealth from "./pages/doctorManagement/petHealth/AllPetHealth";
+import ViewPetHealth from "./pages/doctorManagement/petHealth/ViewPetHealth";
+import EditPetHealth from "./pages/doctorManagement/petHealth/EditPetHealth";
 
 //Inventory manager
 import Inventorylayout from './components/InventoryManager/Inventorylayout'
@@ -135,12 +161,6 @@ import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
 import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
 
 
-//appoinment
-import CreateAppoinment from "./pages/adoptionManagement/AppoinmentSchedule/CreateAppoinment";
-import ViewAppoinment from "./pages/adoptionManagement/AppoinmentSchedule/ViewAppoinment";
-import EditAppoinment from "./pages/adoptionManagement/AppoinmentSchedule/EditAppoinment";
-import DeleteAppoinment from "./pages/adoptionManagement/AppoinmentSchedule/DeleteAppoinment";
-
 //donation management imports
 import DonationLayout from "./components/DonationManager/DonationLayout";
 import DonationDashboard from "./pages/donationManagement/DonationManagerDashboard";
@@ -165,18 +185,18 @@ import SponsorDonations from "./pages/donationManagement/sponsordonations";
 import CreateSponsorDonations from "./pages/donationManagement/sponsordonations/createsponsordonations";
 // import ViewSponsorDonations from './pages/donationManagement/sponsordonations/viewsponsordonations'
 //fund reuests
-import FundRequest from "./pages/donationManagement/fundrequests/fundrequests";
+import FundRequest from "./pages/donationManagement/fundrequests";
 import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundrequests";
 //Employeee
+
+
 
 //Doctor
 import DoctorLayout from "./components/doctor/DoctorLayout";
 import DoctorDashboard from "./pages/doctorManagement/DoctorDashboard";
 
 
-import AllPetHealth from "./pages/doctorManagement/petHealth/AllPetHealth";
-import ViewPetHealth from "./pages/doctorManagement/petHealth/ViewPetHealth";
-import EditPetHealth from "./pages/doctorManagement/petHealth/EditPetHealth";
+
 
 //Suppliers
 import Supplierslayout from "./components/Supplier/Supplierslayout";
@@ -243,24 +263,74 @@ import ViewDeactivateEmployees from "./pages/employeeManagment/deactivateEmploye
 import ManageLeaves from "./pages/employeeManagment/ManageLeaves";
 import ViewLeaveRequest from "./pages/employeeManagment/LeaveRequests/ViewLeaveRequest";
 
-//leave apply from employee
+//leave apply for janitor
+import CreateLeave from "./pages/employeeManagment/LeaveApplyforJanitors";
+import ViewOneAttendance from "./pages/employeeManagment/attendanceManagement/ViewOneAttendance";
+
+import RescueRequestForm from "./pages/User/RescueRequestForm";
+
 import LeaveApply from "./pages/employeeManagment/LeaveApply";
+import ViewLeaveApply from "./pages/employeeManagment/LeaveApply/viewLeaveApply";
+
+
+import Donation from "./pages/User/Donation";
+import PleaseLogin from "./pages/User/PleaseLogin";
+import SpecificNeedDonationForm from "./pages/User/SpecificNeedDonationForm";
+
+import PetQR from "./pages/User/PetQR";
+import UserGallery from "./pages/User/Gallery";
+
+//employee attendance
+import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/feedback" element={<FeedbackForm />} />
-        <Route path="/donation" element={<RecurringDonationForm />} />
+        <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
+        <Route path="/employeeProfiles/LeaveApply/:eid" element={<LeaveApply />} />
       </Routes>
 
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route path="/" element={<Home />} />
+          <Route
+            path="user/:id/recurring-donation"
+            element={<RecurringDonationForm />}
+          />
+          <Route
+            path="user/:id/specific-need-donation"
+            element={<SpecificNeedDonationForm />}
+          />
           <Route path="/register" element={<Register />} />
+
+          <Route path="/please-login" element={<PleaseLogin />} />
+
+          <Route
+            path="/user/:id/rescuerequestForm"
+            element={<RescueRequestForm />}
+          />
+
+          
+          <Route path="/petAdoption" element={<PetAdoption/>} />
+          <Route path="/petQR/:id" element={<PetQR/>} />
+
           <Route path="/log-in" element={<Login />} />
+          <Route path="/recovery-password" element={<ForgotPassword />} />
+          <Route path="/resetpassword/:email" element={<ResetPassword />} />
+          <Route path="/user/become-adopter" element={<BecomeAdopter />} />
+          <Route path="user/:id/feedback" element={<FeedbackForm />} />
+
+          <Route path="user/:id/donation" element={<Donation />} />
+
+
+          <Route path="user/:id/donation" element={<RecurringDonationForm />} />
+          <Route path="/gallery" element={<UserGallery/>} />
+          <Route path="/donation" element={<RecurringDonationForm />} />
+
           <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
           </Route>
         </Route>
         <Route path="/edit-profile" element={<EditProfile />} />
@@ -270,11 +340,24 @@ function App() {
       <Routes>
         <Route path="/userManager" element={<UserManagerLayout />}>
           <Route index path="/userManager" element={<UserDashboard />} />
+          <Route
+            path="/userManager/heplAndSupport"
+            element={<HeplAndSupport />}
+          />
           {/* main routes */}
           <Route path="/userManager/adopters" element={<Adopters />} />
           <Route
             path="/userManager/account-vericifacton-requests"
             element={<VerificationRequests />}
+          />
+          <Route
+            path="/userManager/employeeRequests"
+            element={<EmployeesRequests />}
+          />
+
+          <Route
+            path="/userManager/employees/viewEmployee/:id"
+            element={<ViewEmployeeRequest />}
           />
           <Route path="/userManager/userProfile" element={<UserProfile />} />
           <Route
@@ -333,6 +416,10 @@ function App() {
           />
           <Route
             path="/petManager/petProfile/createPet"
+            element={<CreatePet />}
+          />
+          <Route
+            path="/petManager/petProfile/createPet/:id"
             element={<CreatePet />}
           />
           <Route
@@ -501,12 +588,25 @@ function App() {
             path="/employeeManager/jobRoles"
             element={<ManageJobRoles />}
           />
+
+          <Route
+          path="/employeeManager/AttendanceMark"
+          element={<ManageEmployeeAttendance />}
+          />
+
           <Route
             path="/employeeManager/ManageDeactivateEmployees"
             element={<ManageDeactivateEmployees />}
           />
-          <Route path="/employeeManager/LeaveApply" element={<LeaveApply />} />
-          '
+
+          <Route
+            path="/employeeManager/CreateLeave"
+            element={<CreateLeave />} 
+          />
+
+
+          <Route path="/employeeManager/LeaveApply/:eid" element={<LeaveApply />} />
+          
           <Route path="/employeeManager/rescueTask" element={<RescueTask />} />
           <Route path="/employeeManager/petProfile" element={<PetProfile />} />
           {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
@@ -574,6 +674,12 @@ function App() {
             path="/employeeManager/leave/:id"
             element={<ViewLeaveRequest />}
           />
+          {/* leave one attendance routes */}
+          <Route
+            path="/employeeManager/attendance/:id"
+            element={<ViewOneAttendance />}
+          />
+
           {/* leave accept routes */}
           {/* deactivate employees route */}
           <Route
@@ -671,7 +777,7 @@ function App() {
             element={<FundRequest />}
           />
           <Route
-            path="/DonationManager/fundrequets/Viewfundrequests/:id"
+            path="/DonationManager/fundrequests/viewfundrequests/:id"
             element={<ViewFundRequest />}
           />
 
@@ -683,147 +789,73 @@ function App() {
           {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
         </Route>
 
-        <Route path="/adoptionManager" element={<AdoptionLayout />}>
-          <Route
-            index
-            path="/adoptionManager"
-            element={<AdoptionManagerDashboard />}
-          />
-          <Route
-            path="/adoptionManager/employeeProfile"
-            element={<EmployeeProfile />}
-          />
-          <Route
-            path="/adoptionManager/heplAndSupport"
-            element={<HeplAndSupport />}
-          />
-          {/* main routes */}
-          <Route path="/adoptionManager/adoption" element={<Adoption />} />
-          <Route path="/adoptionManager/rescueTask" element={<RescueTask />} />
-          <Route path="/adoptionManager/petProfile" element={<PetProfile />} />
-          <Route path="/adoptionManager/petSupply" element={<PetSupply />} />
-          <Route
-            path="/adoptionManager/AppoinmentSchedule"
-            element={<Appoinment />}
-          />
-          {/* <Route path="/adoptionManager/AdoptionProcess" element={<AdoptionProcess />} /> */}
-          {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}
-          {/*adoption profile routes*/}
-          <Route
-            path="/adoptionManager/adoptionRequest/CreateRequest"
-            element={<CreateRequest />}
-          />
-          <Route
-            path="/adoptionManager/adoptionRequest/viewRequest/:id"
-            element={<Viewrequest />}
-          />
-          <Route
-            path="/adoptionManager/adoptionRequest/editRequest/:id"
-            element={<EditRequest />}
-          />
-          <Route
-            path="/adoptionManager/adoptionRequest/deleteRequest/:id"
-            element={<DeleteRequest />}
-          />
-          {/*pet suppliment routes */}
-          <Route
-            path="/adoptionManager/supplyRequest/CreateSupplyRequest"
-            element={<CreateSupplyRequest />}
-          />
-          <Route
-            path="/adoptionManager/supplyRequest/viewSupplyRequest/:id"
-            element={<ViewSupplyRequest />}
-          />
-          <Route
-            path="/adoptionManager/supplyRequest/editSupplyRequest/:id"
-            element={<EditSupplyRequest />}
-          />
-          <Route
-            path="/adoptionManager/supplyRequest/deleteSupplyRequest/:id"
-            element={<DeleteSupplyRequest />}
-          />
-          {/*adoption process routes*/}
-          <Route
-            path="/adoptionManager/adoptionProcess"
-            element={<AllAdoptionRequest />}
-          />
-          <Route
-            path="/adoptionManager/adoptionProcess/ViewAdoptionRequest/:id"
-            element={<ViewAdoptionRequest />}
-          />
-          {/*appoinment scchedule routes*/}
-          <Route
-            path="/adoptionManager/AppoinmentSchedule/CreateAppoinment"
-            element={<CreateAppoinment />}
-          />
-          <Route
-            path="/adoptionManager/AppoinmentSchedule/ViewAppoinment/:id"
-            element={<ViewAppoinment />}
-          />
-          <Route
-            path="/adoptionManager/AppoinmentSchedule/EditAppoinment/:id"
-            element={<EditAppoinment />}
-          />
-          <Route
-            path="/adoptionManager/AppoinmentSchedule/DeleteAppoinment/:id"
-            element={<DeleteAppoinment />}
-          />
-          /adoptionManager/adoptionProfile/viewRequest
-        </Route>
-      </Routes>
-      <Routes>
-        <Route path="/doctor" element={<DoctorLayout />}>
-          <Route index path="/doctor" element={<DoctorDashboard />} />
-          <Route path="/doctor/employeeProfile" element={<EmployeeProfile />} />
-          <Route path="/doctor/heplAndSupport" element={<HeplAndSupport />} />
 
-          {/*doctor routes*/}
-          <Route path="/doctor/petHealth" element={<AllPetHealth />} />
-          <Route
-            path="/doctor/petHeaalth/ViewPetHealth/:id"
-            element={<ViewPetHealth />}
-          />
-          <Route
-            path="/doctor/petHeaalth/EditPetHealth/:id"
-            element={<EditPetHealth />}
-          />
-        </Route>
-      </Routes>
-               {/* Inventroy manager */}
-     
-      <Routes>
-        <Route path="/InventoryManager" element={<Inventorylayout />}>
-          <Route
-            index
-            path="/InventoryManager"
-            element={<InventoryManagerdashboard />}
-          />
-          <Route
-            path="/InventoryManager/employeeProfile"
-            element={<EmployeeProfile />}
-          />
-          <Route
-            path="/InventoryManager/heplAndSupport"
-            element={<HeplAndSupport />}
-          />
-              {/* Inventroymanager/items */}
-          {/* main routes */}
-          <Route path="/InventoryManager/Items" element={<Items />} />
-          {/* item routes*/}
-          <Route
-            path="/InventoryManager/Items/veiwitem/:id"
-            element={<Viewitem />}
-          />
-          <Route path="/InventoryManager/Items/additem" element={<Additem />} />
-          <Route
-            path="/InventoryManager/Items/edititem/:id"
-            element={<Edititem />}
-          />
-          <Route
-            path="/InventoryManager/Items/removeitem/:id"
-            element={<Removeitem />}
-          />
-                   {/* Inventroymanger/supplier */}
+<Route path="/adoptionManager" element={<AdoptionLayout />}>
+                    <Route index path="/adoptionManager" element={<AdoptionManagerDashboard />} />
+                    <Route path="/adoptionManager/employeeProfile" element={<EmployeeProfile />} />
+                    <Route path="/adoptionManager/heplAndSupport" element={<HeplAndSupport />} />
+
+                    {/* main routes */}
+                    <Route path="/adoptionManager/adoption" element={<Adoption />} /> 
+                    <Route path="/adoptionManager/rescueTask" element={<RescueTask />} />
+                    <Route path="/adoptionManager/PetHealthProfile" element={<PetHealthProfile />} />
+                    <Route path="/adoptionManager/petSupply" element={<PetSupply />} />
+                    <Route path="/adoptionManager/AppoinmentSchedule" element={<Appoinment />} />
+                    {/* <Route path="/adoptionManager/AdoptionProcess" element={<AdoptionProcess />} /> */}
+
+                    {/* <Route path="/employeeProfile" element={<EmployeeProfile />} /> */}  
+
+                    {/*adoption profile routes*/}
+                    <Route path="/adoptionManager/adoptionRequest/CreateRequest" element={<CreateRequest />} />
+                    <Route path="/adoptionManager/adoptionRequest/viewRequest/:id" element={<ViewAdoptionRequest />} />
+                    <Route path="/adoptionManager/adoptionRequest/editRequest/:id" element={<EditRequest />} />
+                    <Route path="/adoptionManager/adoptionRequest/deleteRequest/:id" element={<DeleteRequest />} />
+
+                    {/*pet suppliment routes */}
+                    <Route path="/adoptionManager/supplyRequest/CreateSupplyRequest" element={<CreateSupplyRequest />} />
+                    <Route path="/adoptionManager/supplyRequest/viewSupplyRequest/:id" element={<ViewSupplyRequest />} />
+                    <Route path="/adoptionManager/supplyRequest/editSupplyRequest/:id" element={<EditSupplyRequest />} />
+                    <Route path="/adoptionManager/supplyRequest/deleteSupplyRequest/:id" element={<DeleteSupplyRequest />} />
+
+                    {/*adoption process routes*/}
+                    <Route path="/adoptionManager/adoptionProcess" element={<AllAdoptionRequest />} />
+                    <Route path="/adoptionManager/adoptionProcess/ViewAdoptionRequest/:id" element={<ViewAdoptionPRequest />} />
+
+                    {/*appoinment schedule routes*/}
+                    <Route path="/adoptionManager/AppoinmentSchedule/CreateAppoinment" element={<CreateAppoinment />} />
+                    <Route path="/adoptionManager/AppoinmentSchedule/ViewAppoinment/:id" element={<ViewAppoinment />} />
+                    <Route path="/adoptionManager/AppoinmentSchedule/EditAppoinment/:id" element={<EditAppoinment />} />
+                    <Route path="/adoptionManager/AppoinmentSchedule/DeleteAppoinment/:id" element={<DeleteAppoinment />} />
+                    <Route path="/adoptionManager/PetHealthProfile/viewPet/:id" element = {<ViewPetHealthProfile/>}></Route>
+                </Route>
+
+            </Routes>
+            <Routes>
+                    <Route path="/doctor" element={<DoctorLayout />}>
+                    <Route index path="/doctor" element={<AllPetHealth />} />
+                    <Route path="/doctor/employeeProfile" element={<EmployeeProfile />} />
+                    <Route path="/doctor/heplAndSupport" element={<HeplAndSupport />} />
+
+                    {/*doctor routes*/}
+                    {/* <Route path="/doctor/petHealth" element={<AllPetHealth />} /> */}
+                    <Route path="/doctor/petHealth/ViewPetHealth/:id" element={<ViewPetHealth />} />
+                    <Route path="/doctor/petHealth/EditPetHealth/:id" element={<EditPetHealth />} />
+            </Route>
+            </Routes>
+            
+ <Routes>
+                <Route path="/InventoryManager" element={<Inventorylayout />}>
+                    <Route index path="/InventoryManager" element={<InventoryManagerdashboard />} />
+                    <Route path="/InventoryManager/employeeProfile" element={<EmployeeProfile />} />
+                    <Route path="/InventoryManager/heplAndSupport" element={<HeplAndSupport />} />
+                     {/* main routes */}
+                     <Route path="/InventoryManager/Items" element={<Items />} />
+                     {/* item routes*/}
+                     <Route path="/InventoryManager/Items/veiwitem/:id" element={<Viewitem />} />
+                    <Route path="/InventoryManager/Items/additem" element={<Additem />} />
+                    <Route path="/InventoryManager/Items/edititem/:id" element={<Edititem />} />
+                    <Route path="/InventoryManager/Items/removeitem/:id" element={<Removeitem />} />
+
           {/* main routes */}
           <Route path="/InventoryManager/supplier" element={<Supplier />} />
           {/* supplier routes*/}
@@ -964,10 +996,12 @@ import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
             element={<UpdateRequests />}
           />
         </Route>
+
       </Routes> 
 
 
             <Routes>
+
                 <Route path="/UserAffairsManager" element={<UserAffairsLayout />}>
                     <Route index path="/UserAffairsManager" element={<UserAffairsManagerDashboard />} />
                     <Route path="/UserAffairsManager/employeeProfile" element={<EmployeeProfile />} />
@@ -998,6 +1032,7 @@ import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
                     <Route path="/UserAffairsManager/handleFeedback" element={<AllFeedback />} />
                     <Route path="/UserAffairsManager/handleFeedback/viewFeedback/:id" element={<ViewFeedback1 />} />
 
+
                     </Route>
 
                  </Routes>    
@@ -1008,6 +1043,7 @@ import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
            
             
            
+
   );
 }
 
