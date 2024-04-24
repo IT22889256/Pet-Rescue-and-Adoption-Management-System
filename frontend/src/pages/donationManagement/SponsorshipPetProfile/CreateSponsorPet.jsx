@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
+import app from '../../../firebase';
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateSponsorPet() {
@@ -14,10 +16,78 @@ export default function CreateSponsorPet() {
     const [added_date, setAddedDate] = useState()
     const [sponsorship_status, setSponsorshipStatus] = useState()
     const [pet_image, setPetImage] = useState()
-    const [health_status, setHealStatus] = useState()
+    const [health_status, setHealthStatus] = useState()
     const navigate = useNavigate()
 
-   
+    const [img, setImg] = useState(null);
+    const [imgPerc, setImgPerc] = useState();
+    const [videoPerc, setVideoPerc] = useState();
+  
+  
+    useEffect((e) => {
+        if (img) {
+          uploadFile(img, "imgUrl");
+        }
+      }, [img]);
+  
+    const uploadFile = (file, fileType) => {
+      const storage = getStorage(app);
+      const folder = fileType === "imgUrl" ? "images/" : "videos/";
+      const fileName = new Date().getTime() + file.name;
+      const storageRef = ref(storage, folder + fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+  
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          fileType === "imgUrl"
+            ? setImgPerc(Math.round(progress))
+            : setVideoPerc(Math.round(progress));
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              console.log(error);
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+            default:
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            
+            console.log('DownloadURL - ', downloadURL);
+            
+            setPetImage(() => {
+                // console.log("45"+JSON.parse(downloadURL));
+              return downloadURL
+            });
+          });
+        }
+      );
+    }
 
     const Submit = (e) => {
 
@@ -30,6 +100,8 @@ export default function CreateSponsorPet() {
             navigate('/donationManager/SponsorshipPets')
         })
         .catch(err => console.log(err))
+
+        
     }
 
         return (
@@ -60,7 +132,7 @@ export default function CreateSponsorPet() {
                                         </label>
                                         <div className="mt-2">
                                             <input
-                                                type="text"
+                                                type="date"
                                                 name="task_id"
                                                 id="task-id"
                                                 value={added_date}
@@ -114,57 +186,94 @@ export default function CreateSponsorPet() {
                                             />
                                         </div>
                                     </div> */}
+                                   
                                     <div className="sm:col-span-3">
-                                        <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Added Date
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="pet_appearance"
-                                                id="pet-appearance"
-                                                value={added_date}
-                                                onChange={(e) => setAddedDate(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="sm:col-span-3">
-                                        <label htmlFor="pet-type" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet type
-                                        </label>
-                                            <div className="mt-2">
-                                                <select
-                                                    id="pet-type"
-                                                    name="pet_type"
-                                                    value={pet_type}
-                                                    
-                                                    onChange={(e) => setPettype(e.target.value)}
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                                    ><option></option>
-                                                    <option>Cat</option>
-                                                    <option>Dog</option>
-                                                </select>
-                                        </div>
-                                    </div>
-                                    { <div className="sm:col-span-3">
-                                        <label htmlFor="health-status" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Health Status
-                                        </label>
-                                            <div className="mt-2">
-                                                <select
-                                                    id="health-status"
-                                                    name="health_status"
-                                                    value={health_status}
-                                                    onChange={(e) => setHealStatus(e.target.value)}
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                                    ><option></option>
-                                                    <option className='bg-[#15803d]'>Good</option>
-                                                    <option className='bg-[#be123c]'>Need Treament</option>
-                                                    <option className='bg-[#ca8a04]'>Treating</option>
-                                                </select>
-                                        </div>
-                                    </div> }
+  <fieldset>
+    <legend className="block text-sm font-medium leading-6 text-gray-900">
+      Pet Type
+    </legend>
+    <div className="mt-2">
+      <div className="flex items-center space-x-4">
+        <input
+          type="radio"
+          id="cat"
+          name="pet_type"
+          value="Cat"
+          checked={pet_type === 'Cat'}
+          onChange={() => setPettype('Cat')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="cat" className="text-sm text-gray-900">
+          Cat
+        </label>
+
+        <input
+          type="radio"
+          id="dog"
+          name="pet_type"
+          value="Dog"
+          checked={pet_type === 'Dog'}
+          onChange={() => setPettype('Dog')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="dog" className="text-sm text-gray-900">
+          Dog
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<div className="sm:col-span-3">
+  <fieldset>
+    <legend className="block text-sm font-medium leading-6 text-gray-900">
+      Health Status
+    </legend>
+    <div className="mt-2">
+      <div className="flex items-center space-x-4">
+        <input
+          type="radio"
+          id="good"
+          name="health_status"
+          value="Good"
+          checked={health_status === 'Good'}
+          onChange={() => setHealthStatus('Good')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="good" className="text-sm text-gray-900">
+          Good
+        </label>
+
+        <input
+          type="radio"
+          id="need-treatment"
+          name="health_status"
+          value="Need Treatment"
+          checked={health_status === 'Need Treatment'}
+          onChange={() => setHealthStatus('Need Treatment')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="need-treatment" className="text-sm text-gray-900">
+          Need Treatment
+        </label>
+
+        <input
+          type="radio"
+          id="treating"
+          name="health_status"
+          value="Treating"
+          checked={health_status === 'Treating'}
+          onChange={() => setHealthStatus('Treating')}
+          className="focus:ring-indigo-600 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="treating" className="text-sm text-gray-900">
+          Treating
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
 
                                     <div className="col-span-full">
                                         <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
@@ -196,8 +305,8 @@ export default function CreateSponsorPet() {
                                             >
                                                 <span>Upload a file</span>
                                                 <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                                    value={pet_image}
-                                                    onChange={(e) => setPetImage(e.target.value)}
+                                                    //  value={pet_image}
+                                                    onChange={(e) => setImg(() => e.target.files[0])}
                                                 />
                                             </label>
                                             <p className="pl-1">or drag and drop</p>

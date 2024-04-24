@@ -4,37 +4,37 @@ const AdoptionProcessSchema = mongoose.Schema(
   {
     adopter_nic: {
       type: String,
-      required: false,
+      required: true,
     },
     adopter_name: {
       type: String,
-      required: false,
+      required: true,
     },
     adopter_phone: {
       type: String,
-      required: false,
+      required: true,
     },
     adopter_email: {
       type: String,
-      required: false,
+      required: true,
     },
     adopter_pettype: {
       type: String,
-      required: false,
+      required: true,
     },
     adopter_petname: {
       type: String,
-      required: false,
+      required: true,
     },
     adopter_message: {
       type: String,
-      required: false,
+      required: true,
     },
     adopter_status: {
        type: String,
        //enum: ["pending", "approved", "rejected"],
        //default: "pending",
-       required: false,
+       required: true,
     },
 
   },
