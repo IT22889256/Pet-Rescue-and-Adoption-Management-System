@@ -22,15 +22,15 @@ function CreateTasks() {
   }, []);
 
   return (
-    <div className="w-[20rem] bg-white p-4 rounded-sm border border-gray-200">
-      <strong className="text-gray-700 font-medium">Budget</strong>
-      <div className="mt-4">
+    <div className="w-64 bg-white p-4 rounded-md shadow-md border border-gray-200">
+      <strong className="text-gray-700 font-medium text-lg mb-2">Budget</strong>
+      <div className="mt-2">
         {loading ? (
-          <p className="text-sm text-gray-500">Loading...</p>
+          <p className="text-base text-gray-500">Loading...</p>
         ) : error ? (
-          <p className="text-sm text-red-500">{error}</p>
+          <p className="text-base text-red-500">{error}</p>
         ) : (
-          <p className="text-sm text-green-500">The current budget is ${budget}</p>
+          <p className="text-2xl text-green-500">The current budget is ${budget}</p>
         )}
       </div>
     </div>

@@ -159,7 +159,7 @@ import SponsorDonations from "./pages/donationManagement/sponsordonations";
 import CreateSponsorDonations from "./pages/donationManagement/sponsordonations/createsponsordonations";
 // import ViewSponsorDonations from './pages/donationManagement/sponsordonations/viewsponsordonations'
 //fund reuests
-import FundRequest from "./pages/donationManagement/fundrequests/fundrequests";
+import FundRequest from "./pages/donationManagement/fundrequests";
 import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundrequests";
 //Employeee
 
@@ -665,7 +665,7 @@ function App() {
             element={<FundRequest />}
           />
           <Route
-            path="/DonationManager/fundrequets/Viewfundrequests/:id"
+            path="/DonationManager/fundrequests/viewfundrequests/:id"
             element={<ViewFundRequest />}
           />
 

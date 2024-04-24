@@ -78,9 +78,7 @@ cron.schedule("0 0 28-31 * *", async () => {
   }
 });
 
-//import routes
 
-const sponserpetRouter = require('./routes/sponserpet.route');
 
 
 
@@ -121,7 +119,8 @@ app.get("/", (req, res) => {
 });
 
 //import routes
-const sponserpetRouter = require("./routes/sponserpet.route");
+
+const sponserpetRouter = require('./routes/sponserpet.route');
 
 //donations
 
@@ -131,13 +130,15 @@ const specificneeddonationRouter =require('./routes/specificneeddonation.route')
 const sponsorDonationRouter = require('./routes/sponsordonation.route');
 const financialRoutes = require('./routes/financial.route');
 
+const requestFunds = require('./routes/requestFunds.route');
 
 
 
-const donationRouter = require("./routes/donation.route");
-const reccuringdonationsRouter = require("./routes/reccuringdonation.route");
-const specificneeddonationRouter = require("./routes/specificneeddonation.route");
-const sponsorDonationRouter = require("./routes/sponsordonation.route");
+
+// const donationRouter = require("./routes/donation.route");
+// const reccuringdonationsRouter = require("./routes/reccuringdonation.route");
+// const specificneeddonationRouter = require("./routes/specificneeddonation.route");
+// const sponsorDonationRouter = require("./routes/sponsordonation.route");
 
 
 //import pet routes
@@ -200,7 +201,7 @@ app.use("/donationManager/reccuringdonation", reccuringdonationsRouter);
 app.use("/donationManager/specificneedsdonations", specificneeddonationRouter);
 app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 app.use("/donationManager/financial", financialRoutes);
-
+app.use("/donationManager/fundrequests", requestFunds);
 // app.use('/donationManager',require('./routes/reccuringdonation.route'));
 
 // const rescueTask = require('./routes/task.route');

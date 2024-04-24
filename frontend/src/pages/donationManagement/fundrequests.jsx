@@ -4,14 +4,14 @@ import { format } from 'date-fns'
 // import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
-export default function CommonAR() {
+export default function FundRequest() {
 
 	const [fundrequests, setfundrequests] = useState([]);
 	const formatDate = (dateString) => {
 		// Convert MongoDB date string to JavaScript Date object
 		const date = new Date(dateString);
 		// Format the date into a readable format
-		return format(date, 'dd MMM yyyy hh:mm a');
+		return format(date, 'dd MMM yyyy ');
 };
 
 
@@ -61,7 +61,7 @@ export default function CommonAR() {
 										<div>{fundrequest.status}</div>
 									</td>)}
 								<td>
-									<Link to={`/DonationManager/fundrequets/viewfundrequests/${fundrequest._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
+									<Link to={`/DonationManager/fundrequests/viewfundrequests/${fundrequest._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								</td>
 							</tr>)
 						))}
@@ -81,13 +81,13 @@ export default function CommonAR() {
 							<th>Amount</th>
 							<th>Date</th>
 							<th>Status</th>
-							<th>Action</th>
+							{/* <th>Action</th> */}
 						</tr>
 					</thead>
 					
 					{<tbody>
 						{fundrequests.map((fundrequest) => (
-								fundrequest.status === 'accepted' &&(
+								fundrequest.status !== 'pending' &&(
 									<tr className='border-b-2 border-[#c1c3c558] text-center' key={fundrequest._id}>
 								<td>
 									{fundrequest._id}
@@ -115,9 +115,9 @@ export default function CommonAR() {
 										<div>{fundrequest.status}</div>
 									</td>)}</td>
 									
-								<td>
+								{/* <td>
 									<Link to={`/DonationManager/fundrequests/viewrequests/${fundrequest._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
-								</td>
+								</td> */}
 							</tr>
 								)
 						))}
