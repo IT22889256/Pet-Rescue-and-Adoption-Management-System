@@ -43,7 +43,7 @@ export default function TaskRequest() {
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-20">
 					<thead className="bg-[#c1c3c558]">
 						<tr>
-							<td className='text-center'>Task Type</td>
+							<td className='text-center'>Task Priority</td>
 							<th>Pet type</th>
 							<th>Location</th>
 							<th>Date</th>		
@@ -93,10 +93,10 @@ export default function TaskRequest() {
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48 ">
 					<thead className="bg-[#c1c3c558]">
 						<tr>
-							<td className='text-center'>Task ID</td>
-							<th>Request ID</th>
-							<th>User ID</th>
-							<th>Task Priority</th>
+							<td className='text-center'>Task Priority</td>
+							<th>Pet type</th>
+							<th>Location</th>
+							<th>Date</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
@@ -107,26 +107,32 @@ export default function TaskRequest() {
 								taskRequest.rescue_task_status !== 'Pending' &&(
 									<tr className='border-b-2 border-[#c1c3c558] text-center' key={taskRequest._id}>
 								<td>
-									{taskRequest._id}
+									{taskRequest.rescue_task_priority}
 								</td >
 								<td>
-									{taskRequest.request_id}
+									{taskRequest.pet_type}
 								</td>
 								<td>
-									{taskRequest.user_id}
+									{taskRequest.location}
 								</td>
 								<td>
-									{taskRequest.rescue_task_priority}
+									{taskRequest.date}
 								</td>
-									{/* {taskRequest.rescue_task_status=== "Accept" && (
+									
+									{/* {taskRequest.rescue_task_status} */}
+
+									{taskRequest.rescue_task_status === "Completed" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
-										<div>{taskRequest.rescue_task_status}</div>
+									<div>{taskRequest.rescue_task_status}</div>
 									</td>)}
-									{taskRequest.rescue_request_status=== "Reject" && (
+									{taskRequest.rescue_task_status === "Failed" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
-										<div>{taskRequest.rescue_task_status}</div>
-									</td>)} */}
-									{taskRequest.rescue_task_status}
+									<div >{taskRequest.rescue_task_status}</div>
+									</td>)}
+									{taskRequest.rescue_task_status === "In Progress" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
+									<div>{taskRequest.rescue_task_status}</div>
+								</td>)}
 										
 								<td>
 								<Link to={`/transportManager/taskRequest/viewTaskRequest/${taskRequest._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>

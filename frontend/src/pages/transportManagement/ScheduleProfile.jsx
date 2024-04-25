@@ -26,7 +26,7 @@ export default function ScheduleProfile() {
 							<th>Driver</th>
 							<th>Vet nary Doctor</th>
 							<th>Staff Member</th>
-							<th>schedule status</th>
+							<th>Schedule Status</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -51,10 +51,18 @@ export default function ScheduleProfile() {
 								<td>{schedule.Staff_Member}</td>
 								<td>
 								{schedule.schedule_status=== "Completed" && (
-									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
-										{schedule.schedule_status}
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
+										<div>{schedule.schedule_status}</div>
 									</td>)}
-									{schedule.schedule_status !== "Completed" && (<div>{schedule.schedule_status}</div>)}
+									{schedule.schedule_status=== "In Progress" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
+										<div>{schedule.schedule_status}</div>
+									</td>)}
+									{schedule.schedule_status=== "Pending" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+										<div>{schedule.schedule_status}</div>
+									</td>)}
+									{/* {schedule.schedule_status !== "Completed" && (<div>{schedule.schedule_status}</div>)} */}
 								</td>	
 								<td>
 								

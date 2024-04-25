@@ -216,9 +216,14 @@ import EditTaskRequest from './pages/transportManagement/taskRequest/EditTaskReq
 
 
 
+//Driver Availability 
+import DriverAvailability from "./pages/DriverAvailability";
 
-//apple import
-import Apple from "./pages/Apple";
+//Doctor Availability
+import DoctorAvailability from "./pages/DoctorAvailability";
+
+//Helper Availabilty
+import HelperAvailability from "./pages/HelperAvailability";
 
 //Driver imports
 import DriverLayout from "./components/driver/DriverLayout";
@@ -549,8 +554,13 @@ function App() {
           />
         </Route>
 
-        <Route path="/apple" element={<Apple />} />
+      
+        <Route path="/DriverAvailability" element={<DriverAvailability />} />
+        <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
+        <Route path="/HelperAvailability" element={<HelperAvailability />} />
        </Routes>
+
+       
 
 
           {/* Driver main routes */}

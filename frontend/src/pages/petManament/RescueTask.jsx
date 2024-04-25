@@ -114,7 +114,7 @@ export default function RescueTask() {
 						</td>)}
 						{rescueTask.rescue_task_status === "In Progress" && (
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
-							<div >{rescueTask.rescue_task_status}</div>
+							<div>{rescueTask.rescue_task_status}</div>
 						</td>)}
 					<td>
 						<Link to={`/petManager/rescueTask/viewRescueTask/${rescueTask._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
