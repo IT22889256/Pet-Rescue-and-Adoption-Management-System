@@ -126,7 +126,6 @@ export default function CreateEmployee() {
         <div className="border-b border-gray-900/10 pb-12">
           <div className="text-xl font-bold ">Create Employee Profile</div>
 
-
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label
@@ -201,14 +200,12 @@ export default function CreateEmployee() {
               </div>
             </div>
 
-
             <div className="sm:col-span-3">
               <label
                 htmlFor="jobRole"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 jobRole
-
               </label>
               <div className="mt-2">
                 <select
@@ -226,7 +223,6 @@ export default function CreateEmployee() {
                   <option>supportive staff member</option>
                 </select>
               </div>
-
             </div>
             <div className="sm:col-span-3">
               <label
@@ -523,7 +519,5 @@ export default function CreateEmployee() {
         </button>
       </div>
     </div>
-    </>
   );
-}
 }
