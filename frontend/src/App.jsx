@@ -269,9 +269,12 @@ import ViewOneAttendance from "./pages/employeeManagment/attendanceManagement/Vi
 
 import RescueRequestForm from "./pages/User/RescueRequestForm";
 
-import LeaveApply from "./pages/employeeManagment/LeaveApply";
-import ViewLeaveApply from "./pages/employeeManagment/LeaveApply/viewLeaveApply";
 
+
+import LeaveApply from './pages/employeeManagment/LeaveApply'
+import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
+import ViewTodayattendance from './pages/employeeManagment/attendanceManagement/ViewTodayattendance'
+import DeleteTodayOneAttendance from './pages/employeeManagment/attendanceManagement/DeleteTodayOneAttendance'
 
 import Donation from "./pages/User/Donation";
 import PleaseLogin from "./pages/User/PleaseLogin";
@@ -680,7 +683,16 @@ function App() {
             element={<ViewOneAttendance />}
           />
 
-          {/* leave accept routes */}
+          {/* attendance today view routes */}
+          <Route
+            path="/employeeManager/attendance/viewTodayAttendance"
+            element={<ViewTodayattendance />} />
+
+          {/* delete today one attendance routes */}
+          <Route
+            path="/employeeManager/attendance/deleteTodayOneAttendance/:id"
+            element={<DeleteTodayOneAttendance />} />
+
           {/* deactivate employees route */}
           <Route
             path="/employeeManager/deactivateEmployees/ViewDeactivateEmployees/:id"
