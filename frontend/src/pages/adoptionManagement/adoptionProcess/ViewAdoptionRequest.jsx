@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate} from 'react-router-dom'
 import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
-export default function ViewAdoptionRequest() {
+export default function ViewAdoptionPRequest() {
 
 	const navigate = useNavigate()
 	const Accept = (e) => {
