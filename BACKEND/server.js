@@ -82,6 +82,7 @@ cron.schedule("0 0 28-31 * *", async () => {
 
 
 
+
 //const petRouter = require('./routes/pet.route')
 const feedbackRouter = require('./routes/feedback.route');
 const issuesandconcernsRouter = require('./routes/issuesandconcerns.route');
@@ -94,8 +95,10 @@ app.use("/userAffairsManager", feedbackRouter);
 app.use("/userAffairsManager", issuesandconcernsRouter);
 app.use("/userAffairsManager", galleryRouter);
 
+
 const rescueRequest = require('./routes/rescueRequest.route')
 app.use("/petManager", rescueRequest);
+
 
 
 const employeeRoute = require("./routes/employee.route.js"); // Importing employee route
@@ -108,6 +111,7 @@ const employeeLeave = require("./routes/leave.route.js"); // Importing leave rou
 
 // Routes
 //danuka routes
+
 
 //import routes
 
@@ -177,6 +181,7 @@ app.use("/petManager", petRouter);
 
 
 //import inventory routes
+
 const itemRouter = require("./routes/product.route");
 const supplierRouter = require("./routes/supplier.routes");
 const requestRouter = require("./routes/request.route");
@@ -186,6 +191,7 @@ app.use("/inventoryManager", itemRouter);
 app.use("/inventoryManager", supplierRouter);
 app.use("/inventoryManager", requestRouter);
 app.use("/inventoryManager", orderRouter);
+
 app.use("/suppliers", orderRouter);
 
 app.use("/adoptionManager", adoptionRouter);
@@ -212,6 +218,7 @@ app.use("/donationManager/fundrequests", requestFunds);
 
 
 
+
 app.use("/petManager", rescueRequest);
 app.use("/petManager", rescueTask)
 
@@ -228,9 +235,9 @@ app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // De
 app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
 
 
+
 app.listen(PORT, () =>{
 
     console.log(`Server is up and running on ${PORT}`);
-
 
 });

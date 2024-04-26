@@ -31,7 +31,9 @@ const getorder = async (req, res) => {
 
 const createorder = async (req, res) => {
   try {
+    
     const order = await Order.create(req.body);
+    console.log(order)
     res.status(200).json(order);
   } catch (error) {
     res.status(500).json({ message: error.message });

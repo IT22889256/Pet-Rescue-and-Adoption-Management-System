@@ -50,6 +50,21 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <MdOutlinePets />
 	},
 
+	{
+		key: 'messages',
+		label: 'messages',
+		path: "/InventoryManager/messages" ,
+		icon: <MdOutlinePets />
+	},
+
+	{
+		key: 'itemcount',
+		label: 'itemcount',
+		path: "/InventoryManager/itemcount" ,
+		icon: <MdOutlinePets />
+	},
+
+
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
