@@ -22,12 +22,12 @@ export default function Supplier () {
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
 							<th>supplier id</th>
-							<th>supplier name</th>
-							<th>supplier address</th>
-							<th>supplier email</th>
-							<th>supplier age</th>
-							<th>supplier phonenumber</th>
-							<th>supplier image</th>
+							<th> name</th>
+							<th> address</th>
+							<th> email</th>
+							<th> age</th>
+							<th> phonenumber</th>
+						
 							
 							
 
@@ -55,10 +55,7 @@ export default function Supplier () {
 								<td>
 									{supplier.supplier_phonenumber}
 								</td>
-								<td>
-									{supplier.supplier_image}
-								</td>
-								
+							
 								<td>
 									<Link to={`/InventoryManager/supplier/veiwsupplier/${supplier._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 									

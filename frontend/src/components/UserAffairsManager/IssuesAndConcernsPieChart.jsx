@@ -2,8 +2,8 @@ import React from 'react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'
 
 const data = [
-	{ name: 'Completed', value: 540 },
-	{ name: 'Progressing ', value: 620 },
+	{ name: 'Accepted', value: 540 },
+	{ name: 'Pending ', value: 620 },
 	{ name: 'Rejected', value: 210 }
 ]
 
@@ -22,29 +22,13 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 	)
 }
 
-export default function RescueRequstsChart() {
+export default function IssuesAndConcernsChart() {
 	return (
 		<div className="w-[20rem] h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
-			<strong className="text-gray-700 font-medium">Rescue Requests Status</strong>
+			<strong className="text-gray-700 font-medium">Issues And Concerns Status</strong>
 			<div className="mt-3 w-full flex-1 text-xs">
 				<ResponsiveContainer width="100%" height="100%">
-					<PieChart width={400} height={300}>
-						<Pie
-							data={data}
-							cx="50%"
-							cy="45%"
-							labelLine={false}
-							label={renderCustomizedLabel}
-							outerRadius={105}
-							fill="#8884d8"
-							dataKey="value"
-						>
-							{data.map((_, index) => (
-								<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-							))}
-						</Pie>
-						<Legend />
-					</PieChart>
+				<iframe  src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660cffe7-c1c8-4654-819c-0b09fff76bb8&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
 				</ResponsiveContainer>
 			</div>
 		</div>

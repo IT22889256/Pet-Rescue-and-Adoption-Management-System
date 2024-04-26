@@ -28,8 +28,8 @@ export default function PetProfile() {
 							<th>Category</th>
 							<th>Quantity</th>
 							<th>price</th>
-							<th>Image</th>
-							<th>Date</th>
+							<th>MFO Date</th>
+							<th>EXP Date</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -52,17 +52,21 @@ export default function PetProfile() {
 									{item.item_price}
 								</td>
 								<td>
-									{item.item_image}
+									{item.item_mfodate}
 								</td>
 								<td>
-									{item.item_date}
+									{item.item_expdate}
 								</td>
-								
 								<td>
 									<Link to={`/InventoryManager/Items/veiwitem/${item._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 									
 									
 								</td>
+
+
+
+
+								
 							</tr>
 						))}
 					</tbody> }

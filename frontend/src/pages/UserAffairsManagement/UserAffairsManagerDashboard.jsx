@@ -1,21 +1,15 @@
 import React from 'react'
 import DashboardStatsGrid from '../../components/UserAffairsManager/DashboardStatsGrid'
-import RescueChart from '../../components/petManager/RescueRequestChart'
-import RecentRequests from '../../components/petManager/RecentRequest'
-import RescueRequstsChart from '../../components/petManager/RescueRequestPieChart'
-import CreatedTasks from '../../components/petManager/CreateTasks'
+import FeedbackChart from '../../components/UserAffairsManager/FeedbackChart'
+import IssuesAndConcernsPieChart from '../../components/UserAffairsManager/IssuesAndConcernsPieChart'
 
 export default function Dashboard() {
 	return (
 		<div className="flex flex-col gap-4">
 			<DashboardStatsGrid />
 			<div className="flex flex-row gap-4 w-full">
-				<RescueChart />
-				<RescueRequstsChart />
-			</div>
-			<div className="flex flex-row gap-4 w-full">
-				<RecentRequests />
-				<CreatedTasks />
+				<FeedbackChart />
+				<IssuesAndConcernsPieChart />
 			</div>
 		</div>
 	)
