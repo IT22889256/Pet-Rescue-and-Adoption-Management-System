@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {IoPeople} from 'react-icons/io5'
 import { MdOutlinePets  } from "react-icons/md";
 import { FaTasks,FaHome  } from "react-icons/fa";
-
-import axios from 'axios'
-
+import { PiVanFill } from "react-icons/pi";
 export default function DashboardStatsGrid() {
-
-	const [pets, setPets] = useState([]);
-
-	useEffect(() => {
-		axios.get('http://localhost:3000/petManager/petProfile').then(res => {
-			console.log(res);
-			setPets(res.data.count)
-		})
-	},[])
 
 	return (
 		<div>
@@ -25,10 +14,9 @@ export default function DashboardStatsGrid() {
 					<IoPeople className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Transportation Schedule</span>
+					
 					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">75</strong>
-						
+					<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=6612b447-afc8-4109-8929-4cee94b8a065&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
 					</div>
 				</div>
 			</BoxWrapper>
@@ -37,15 +25,14 @@ export default function DashboardStatsGrid() {
 					<FaTasks className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Tasks</span>
-					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">50</strong>
-					</div>
+					<div className='flex items-center'>
+					<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=6612cf0f-529b-4c85-8c3f-4901f5f733ef&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
+						</div>
 				</div>
 			</BoxWrapper>
 			<BoxWrapper>
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-600">
-					{/* <PiVanFill className="text-2xl text-white" /> */}
+					<PiVanFill className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
 					<div className='flex items-center'>
@@ -53,6 +40,7 @@ export default function DashboardStatsGrid() {
 						</div>
 				</div>
 			</BoxWrapper>
+			
 		</div>
 		</div>
 		
