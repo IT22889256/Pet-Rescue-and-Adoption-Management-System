@@ -290,6 +290,8 @@ import DeleteTodayOneAttendance from './pages/employeeManagment/attendanceManage
 import Donation from "./pages/User/Donation";
 import PleaseLogin from "./pages/User/PleaseLogin";
 import SpecificNeedDonationForm from "./pages/User/SpecificNeedDonationForm";
+import AvailablePets from "./pages/User/AvailablePets";
+import PetsProfile from "./pages/User/PetsProfile";
 
 import PetQR from "./pages/User/PetQR";
 import UserGallery from "./pages/User/Gallery";
@@ -309,6 +311,9 @@ function App() {
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="user/:id/available-pets" element={<AvailablePets />} />
+          <Route path="/pet-profile/:id" element={<PetsProfile />} />
+
           <Route
             path="user/:id/recurring-donation"
             element={<RecurringDonationForm />}

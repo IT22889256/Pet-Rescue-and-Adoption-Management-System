@@ -212,14 +212,12 @@ export default function CreateEmployee() {
               </div>
             </div>
 
-
             <div className="sm:col-span-3">
               <label
                 htmlFor="jobRole"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 jobRole
-
               </label>
               <div className="mt-2">
                 <select
@@ -237,7 +235,6 @@ export default function CreateEmployee() {
                   <option>supportive staff member</option>
                 </select>
               </div>
-
             </div>
             <div className="sm:col-span-3">
               <label
@@ -534,7 +531,9 @@ export default function CreateEmployee() {
         </button>
       </div>
     </div>
+
       
       );
 } 
+
 
