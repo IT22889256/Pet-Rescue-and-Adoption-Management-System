@@ -2,17 +2,21 @@ import React ,{useState,useEffect}from 'react'
 import axios from 'axios';
 import { useNavigate, useParams,Link } from 'react-router-dom';
 
-export default function DeleteRequest() {
+export default function RemovePet() {
   const navigate = useNavigate();
-  const [adopter, setAdopters] =  useState({})
-  const { id } = useParams();
-  const handleDeleteBook = () => {
+
+	const {id} = useParams()
+
+
+
+  const handleDeleteEmployee = () => {
     
     axios
-      .delete(`http://localhost:3000/adoptionManager/adoptionProfile/deleteRequest/${id}`)
+    .delete(`http://localhost:3000/EmployeeManager/attendance/deleteAttendance/${id}`)
+
       .then(() => {
-        alert('deleted')
-        navigate('/adoptionManager/Adoption');
+        navigate('/employeeManager/attendance/viewTodayAttendance/'); 
+
       })
       .catch((error) => {
         
@@ -32,19 +36,17 @@ export default function DeleteRequest() {
                 data-original="#000000" />
             </svg>
             <h4 className="text-xl font-semibold mt-6">Are you sure you want to delete it?</h4>
-            <p className="text-sm text-gray-500 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor auctor
-              arcu,
-              at fermentum dui. Maecenas</p>
+            <p className="text-sm text-gray-500 mt-4">if you delete it, you cannot undo it</p>
           </div>
           <div className="flex flex-col space-y-2">
            
             <button
          className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded'
-       onClick={handleDeleteBook}
+       onClick={handleDeleteEmployee}
          >
            Yes, Delete it
         </button>
-              <Link to={`/adoptionManager/adoptionRequest/viewRequest/${adopter._id}`} className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200 text-center">Cancel</Link>
+              <Link to={`/employeeManager/attendance/viewTodayAttendance/`} className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200 text-center">Cancel</Link>
             
           </div>
         </div>

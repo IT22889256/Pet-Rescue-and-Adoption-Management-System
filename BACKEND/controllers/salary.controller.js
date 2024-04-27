@@ -167,22 +167,21 @@ const deleteSalary = async (req, res) => {
 //it will update the request fund document
 
 const calculateTotalSalary = async (req, res) => {
-  
   try {
-    const salaries = await Salary.find();
-    const totalfund = salaries.reduce((acc, emp) => acc + emp.totalSalary, 0);
+    const salaries = await Salary.find(); // Fetch all salary records
+    console.log(salaries)
+    const totalSalary = salaries.reduce((acc, emp) => acc + emp.totalSalary, 0); // Calculate total
 
-    // Create or update the 'reqFund' document
-    const reqFund = await RequestFunds.findOneAndUpdate(
-      {},
-      { amount: totalfund },
-      { upsert: true, new: true }
-    );
+    // Create a new document for total salary
+    const totalSalaryRecord = new RequestFunds({ amount:totalSalary });
+console.log(totalSalaryRecord)
+    // Save the document in the database
+    await totalSalaryRecord.save();
 
-    res.json({ totalfund, reqFund });
+    res.json({ message: 'Total salary calculated and saved successfully' });
   } catch (error) {
-    console.error('Error fetching total salary:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Error calculating total salary:', error);
+    res.status(500).json({ message: 'Failed to calculate total salary' });
   }
 };
 

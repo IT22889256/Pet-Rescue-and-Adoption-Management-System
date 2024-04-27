@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import {
   getStorage,
   ref,
@@ -119,13 +123,20 @@ export default function CreateEmployee() {
       maritalStatus,
       employeeimgUrl,
     };
-  };
+    console.log('result')
+    axios.post('http://localhost:3000/EmployeeManager/employees',data)
+    .then(result => {
+        console.log(result)
+        navigate('/EmployeeManager/ManageEmployees')
+    })
+    .catch(err => console.log(err))
+  }
+  
   return (
     <div>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <div className="text-xl font-bold ">Create Employee Profile</div>
-
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
@@ -523,6 +534,9 @@ export default function CreateEmployee() {
         </button>
       </div>
     </div>
-   
-  );
-}
+
+      
+      );
+} 
+
+
