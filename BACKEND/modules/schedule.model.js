@@ -33,6 +33,10 @@ const ScheduleSchema = new mongoose.Schema(
             type: String,
             required: [true],
         },
+        schedule_status: {
+            type: String,
+            default:'Pending' ,
+          },
     },
         {
             timestamps: true

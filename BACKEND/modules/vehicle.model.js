@@ -42,6 +42,10 @@ const VehicleSchema = new mongoose.Schema(
             type: String,
             required: [true],
         },
+        Vehicle_image:{
+            type: String,
+            required: [true],
+        }
 
     
     },
