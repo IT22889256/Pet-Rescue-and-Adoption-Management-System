@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { Link, useParams, useNavigate} from 'react-router-dom'
-import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
 export default function ViewAdoptionPRequest() {
@@ -53,6 +52,7 @@ export default function ViewAdoptionPRequest() {
 			console.log(err);
 		})
 	},[])
+
 return (
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Adoption Req</strong>
