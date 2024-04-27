@@ -23,8 +23,8 @@ export default function IssuesConcerns() {
 					<thead className="bg-[#c1c3c558]">
 						<tr>
 						<th>Issue or Concern ID</th>
-							<th>User ID</th>
-							<th>Email</th>
+							{/* <th>User ID</th>*/
+							<th>Email</th> }
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
@@ -37,12 +37,12 @@ export default function IssuesConcerns() {
 								<td>
 									{issuesandconcerns._id}
 								</td >
-								<td>
+								{/* <td>
 									{issuesandconcerns.user_id}
-								</td>
+								</td>*/
 								<td>
 									{issuesandconcerns.email}
-								</td>
+								</td> }
 								
 									{issuesandconcerns.issuesandconcerns_status === "Waiting" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
@@ -66,8 +66,8 @@ export default function IssuesConcerns() {
 					<thead className="bg-[#c1c3c558]">
 						<tr>
 						<th>Issue or Concern ID</th>
-							<th>User ID</th>
-							<th>Email</th>
+							{/* <th>User ID</th>*/
+							<th>Email</th> }
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
@@ -80,12 +80,12 @@ export default function IssuesConcerns() {
 								<td>
 									{issuesandconcerns._id}
 								</td >
-								<td>
+								{/* <td>
 									{issuesandconcerns.user_id}
-								</td>
+								</td>*/
 								<td>
 									{issuesandconcerns.email}
-								</td>
+								</td> }
 									{issuesandconcerns.issuesandconcerns_status=== "Accept" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
 										<div>{issuesandconcerns.issuesandconcerns_status}</div>

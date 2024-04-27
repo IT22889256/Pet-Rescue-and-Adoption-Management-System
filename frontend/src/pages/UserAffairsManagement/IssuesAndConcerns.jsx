@@ -21,7 +21,6 @@ export default function IssuesAndConcerns() {
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
-						    {/* <th>User ID</th> */}
 							<th>Issue or Concern ID</th>
 							<th>Name</th>
 							<th>Email</th>
@@ -40,13 +39,7 @@ export default function IssuesAndConcerns() {
 								 <td>
 									{issueandconcern.email}
 								</td>
-								{/* <td>
-									{pet.pet_age}
-								</td>
-								<td>
-									{pet.pet_appearance}
-								</td>
-								<td>{pet.health_status}</td>  */}
+								
 								<td>
 									<Link to={`/UserAffairsManager/IssuesAndConcerns/ViewIssuesAndConcerns/${issueandconcern._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								
@@ -63,15 +56,3 @@ export default function IssuesAndConcerns() {
 		</div>
 	)
 }
-// {pets.map((pets)=>(
-// 	<>
-// 		<tr key={pets.id}>
-// 			<td>{pets.request_id}</td>
-// 			<td>{pets.task_id}</td>
-// 			<td>{pets.pet_name}</td>
-// 			<td>{pets.pet_type}</td>
-// 			<td>{pets.health_status}</td>
-// 		</tr>
-// 	</>
-
-// ))}

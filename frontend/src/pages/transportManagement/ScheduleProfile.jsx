@@ -26,6 +26,7 @@ export default function ScheduleProfile() {
 							<th>Driver</th>
 							<th>Vet nary Doctor</th>
 							<th>Staff Member</th>
+							<th>Schedule Status</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -49,11 +50,27 @@ export default function ScheduleProfile() {
 								</td>
 								<td>{schedule.Staff_Member}</td>
 								<td>
-									<Link to={`/transportManager/scheduleProfile/viewSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
+								{schedule.schedule_status=== "Completed" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
+										<div>{schedule.schedule_status}</div>
+									</td>)}
+									{schedule.schedule_status=== "In Progress" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
+										<div>{schedule.schedule_status}</div>
+									</td>)}
+									{schedule.schedule_status=== "Pending" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+										<div>{schedule.schedule_status}</div>
+									</td>)}
+									{/* {schedule.schedule_status !== "Completed" && (<div>{schedule.schedule_status}</div>)} */}
+								</td>	
+								<td>
 								
-									<Link to={`/transportManager/ScheduleProfile/EditSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
+									<Link to={`/transportManager/scheduleProfile/ViewSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								
-									<Link to={`/petManager/petProfile/RemovePet/${schedule._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>
+									{/* <Link to={`/transportManager/ScheduleProfile/EditSchedule/${schedule._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link> */}
+								
+									{/* <Link to={`/transportManager/ScheduleProfile/RemoveSchedule/${schedule._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link> */}
 								</td>
 							</tr>
 						))}
@@ -64,15 +81,3 @@ export default function ScheduleProfile() {
 		</div>
 	)
 }
-// {pets.map((pets)=>(
-// 	<>
-// 		<tr key={pets.id}>
-// 			<td>{pets.request_id}</td>
-// 			<td>{pets.task_id}</td>
-// 			<td>{pets.pet_name}</td>
-// 			<td>{pets.pet_type}</td>
-// 			<td>{pets.health_status}</td>
-// 		</tr>
-// 	</>
-
-// ))}

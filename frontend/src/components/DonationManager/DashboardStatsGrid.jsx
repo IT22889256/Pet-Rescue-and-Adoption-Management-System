@@ -1,44 +1,35 @@
 import React from 'react'
-import {IoPeople} from 'react-icons/io5'
-import { MdOutlinePets  } from "react-icons/md";
+import { TbPigMoney } from "react-icons/tb";
+import { PiDogFill } from "react-icons/pi";
+import { GiReceiveMoney } from "react-icons/gi";
+
 import { FaTasks,FaHome  } from "react-icons/fa";
 export default function DashboardStatsGrid() {
 	return (
 		<div>
 			<div className="text-2xl p-1">Overview</div>
-		<div className="flex gap-4">
-			<BoxWrapper>
-				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
-					<IoPeople className="text-2xl text-white" />
-					
-			
-			</div>
-			<iframe  src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660cf599-cd05-4408-8365-959223b483ef&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
-			</BoxWrapper>
-
-			<BoxWrapper>
-				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-orange-600">
-					<FaTasks className="text-2xl text-white" />
-				</div>
-			
-				<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660cf96e-cd05-4880-8df2-9592230d5617&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
-			</BoxWrapper>
-
-			
-			<BoxWrapper>
-				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-yellow-400">
-					<MdOutlinePets className="text-2xl text-white" />
-				</div>
-				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Pets</span>
-					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">13</strong>
-						{/* <span className="text-sm text-red-500 pl-2">Adopted - 40</span> */}
+			<div className="flex gap-4">
+				<BoxWrapper>
+					<div className="rounded-full h-12 w-12 flex items-center justify-center bg-pink-500">
+						<PiDogFill className="text-2xl text-white" />
 					</div>
-				</div>
-			</BoxWrapper>
-			
-		</div>
+					<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660cf599-cd05-4408-8365-959223b483ef&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
+				</BoxWrapper>
+
+				<BoxWrapper>
+					<div className="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-500">
+						<GiReceiveMoney  className="text-2xl text-white" />
+					</div>
+					<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660cf96e-cd05-4880-8df2-9592230d5617&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
+				</BoxWrapper>
+
+				<BoxWrapper>
+					<div className="rounded-full h-12 w-12 flex items-center justify-center bg-teal-500">
+						<TbPigMoney className="text-2xl text-white" />
+					</div>
+					<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=66194ccb-92d7-4176-89bf-a29140a05ea4&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
+				</BoxWrapper>
+			</div>
 		</div>
 	)
 }

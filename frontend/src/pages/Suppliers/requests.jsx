@@ -23,7 +23,7 @@ export default function Order() {
 					<thead className="bg-[#c1c3c558]">
 						<tr>
 
-						<th>order Id</th>
+							<th>order Id</th>
 							<th>order from</th>
 							<th>order Description</th>
 							<th>order Date</th>

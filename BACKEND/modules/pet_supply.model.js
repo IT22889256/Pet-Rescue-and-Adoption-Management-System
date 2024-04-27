@@ -2,21 +2,33 @@ const mongoose = require("mongoose");
 
 const SupplySchema = mongoose.Schema(
   {
+  //   supply_id:{
+  //     type:String,
+  //     unique:true
+  // },
     supply_item: {
       type: String,
-      required: false,
+      required: true,
     },
     supply_pettype: {
       type: String,
-      required: false,
+      required: true,
     },
     supply_brand: {
       type: String,
-      required: false,
+      required: true,
     },
+    supply_image: {
+        type: String,
+        required: true,
+    },
+    supply_quantity: {
+      type: String,
+      required: true,
+  },
     supply_message: {
         type: String,
-        required: false,
+        required: true,
     }
     // status: {
     //   type: String,

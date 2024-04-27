@@ -3,7 +3,7 @@ import { Link, useParams} from 'react-router-dom'
 import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
-export default function ViewRequest() {
+export default function ViewAdoptionPRequest() {
 	
 	const [adopter, setRequest] = useState()
 	const {id} = useParams()
@@ -68,6 +68,10 @@ return (
 									</td>)}
 									{adopter.adopter_status=== "Reject" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+										<div>{adopter.adopter_status}</div>
+									</td>)}
+									{adopter.adopter_status=== "Pending" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-amber-500 text-center">
 										<div>{adopter.adopter_status}</div>
 									</td>)}
 								</td>

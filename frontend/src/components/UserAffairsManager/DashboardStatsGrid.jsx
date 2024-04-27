@@ -13,7 +13,6 @@ export default function DashboardStatsGrid() {
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
 					<MdErrorOutline className="text-2xl text-white" />
 				</div>
-				
 				<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660a8243-8342-4ebd-8e12-d8f85624d6ef&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
 				
 			</BoxWrapper>

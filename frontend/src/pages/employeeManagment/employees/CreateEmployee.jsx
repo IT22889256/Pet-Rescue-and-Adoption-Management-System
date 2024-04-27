@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import {
   getStorage,
   ref,
@@ -119,7 +123,15 @@ export default function CreateEmployee() {
       maritalStatus,
       employeeimgUrl,
     };
-  };
+    console.log('result')
+    axios.post('http://localhost:3000/EmployeeManager/employees',data)
+    .then(result => {
+        console.log(result)
+        navigate('/EmployeeManager/ManageEmployees')
+    })
+    .catch(err => console.log(err))
+  }
+  
   return (
     <div>
       <div className="space-y-12">
@@ -519,5 +531,9 @@ export default function CreateEmployee() {
         </button>
       </div>
     </div>
-  );
-}
+
+      
+      );
+} 
+
+

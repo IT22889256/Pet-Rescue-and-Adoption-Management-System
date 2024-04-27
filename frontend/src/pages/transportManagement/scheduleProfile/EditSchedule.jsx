@@ -59,31 +59,28 @@ export default function EditSchedule() {
                 <div className='text-xl font-bold '>Edit transportation Schedule</div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                     <div className="col-span-full">
-          <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
-            Profile picture
-          </label>
-          <div className="mt-2 flex items-center gap-x-3">
-            <img className="h-20 w-20 text-gray-300" alt='image' />
-          </div>
+       
+         
         </div>
 
 
 
-                        <div className="sm:col-span-3">
-                            <label htmlFor="Transport_Type" className="block text-sm font-medium leading-6 text-gray-900">
-                            Transport Type
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    type="text"
-                                    name="Transport_Type"
-                                    id="Transport_Type"
-                                    value={Transport_Type}
-                                    onChange={(e) => setTransTyp(e.target.value)}
-                                    className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                         <div className="sm:col-span-3">
+                                        <label htmlFor="Transport_Type" className="block text-sm font-medium leading-6 text-gray-900">
+                                        Transport Type - <value>{Transport_Type}</value>
+                                        </label>
+                                        <div className="mt-2">
+                                            
+                                            <input type="radio" value="Emergency" name="Transport_Type" className='m-1' onChange={(e) => setTransTyp(e.target.value)}/>
+                                            <label htmlFor="Transport_Type" className="m-1 text-sm font-medium leading-6 text-gray-900">
+                                            Emergency
+                                            </label>
+                                            <input type="radio" value="Normal" name="Transport_Type" className='m-1' onChange={(e) => setTransTyp(e.target.value)}/>
+                                            <label htmlFor="Transport_Type" className="m-1 text-sm font-medium leading-6 text-gray-900">
+                                            Normal
+                                        </label>
+                                        </div>
+                                    </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="Number_of_Pets" className="block text-sm font-medium leading-6 text-gray-900">
                                 Number of Pets
