@@ -268,6 +268,7 @@ import UserGallery from "./pages/User/Gallery";
 
 //employee attendance
 import ManageEmployeeAttendance from "./pages/employeeManagment/ManageEmployeeAttendance";
+import PetInNeed from "./pages/User/PetInNeed";
 
 function App() {
   return (
@@ -285,6 +286,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="user/:id/available-pets" element={<AvailablePets />} />
           <Route path="/pet-profile/:id" element={<PetsProfile />} />
+          <Route path="/user/:id/pet-in-need" element={<PetInNeed />} />
 
           <Route
             path="user/:id/recurring-donation"
