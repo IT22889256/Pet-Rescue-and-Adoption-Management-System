@@ -1,5 +1,6 @@
+const SponserPet = require('../modules/sponserpet.model');
 const SponserDonation = require('../modules/sponsordonation.model');
-
+const Counter = require('../modules/counter.model');
 //display all sponsor donations
 const displaySponsorDonations=async(req,res)=>{
     try{
@@ -12,10 +13,20 @@ const displaySponsorDonations=async(req,res)=>{
 
 //create sponsor donation
 const addSponsorDonation=async(req,res)=>{
-    try{
-      SponserDonation.create(req.body)
-        .then(sponsorDonation=>res.json(sponsorDonation))
-        .catch(err=>res.json(err))
+
+    try {
+        const counter = await Counter.findByIdAndUpdate(
+          { _id: 'spid' },
+          { $inc: { seq: 1 } },
+          { new: true, upsert: true }
+        );
+      
+        const spid = 'SPID' + String(counter.seq).padStart(3, '0');
+        // Create new employee using employeeId and request body
+        
+        const sponseredPet = await SponserDonation.create({ ...req.body, spid: spid });
+  
+        res.status(200).json(sponseredPet);
     }catch(error){
         res.status(500).json({message:error.message});
     }

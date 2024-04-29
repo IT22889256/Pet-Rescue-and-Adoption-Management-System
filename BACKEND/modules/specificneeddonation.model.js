@@ -10,6 +10,9 @@ const SpecificNeedDonationSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    snid:{
+        type: String,
+    },
     amount: {
         type: Number,
         required: true

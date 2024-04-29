@@ -37,9 +37,7 @@ const SponserPetSchema = mongoose.Schema({
     },
 
     
-    
-
-
+  
 })
 const SponserPet = mongoose.model('SponserPet', SponserPetSchema);
 
