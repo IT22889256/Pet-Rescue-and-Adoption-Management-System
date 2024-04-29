@@ -26,13 +26,18 @@ const ProductSchema = mongoose.Schema(
     },
   
     item_image:{
-      type: String
+      type: String,
+        required: true,
+    
       
   },
-  item_date:{
+  item_expdate:{
+    type:String,
+  },
+
+  item_mfodate:{
     type:String
   }
-
 
     
   // },

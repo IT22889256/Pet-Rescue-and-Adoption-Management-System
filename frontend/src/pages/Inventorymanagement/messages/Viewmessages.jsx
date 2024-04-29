@@ -3,15 +3,16 @@ import { Link, useParams } from 'react-router-dom'
 import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
-export default function ViewPet() {
+
+export default function ViewSupplyRequest() {
 	
-	const [pet, setPet] = useState({})
+	const [supply, setRequest] = useState({})
 	const {id} = useParams()
 
 	useEffect(() => {
-		axios.get(`http://localhost:3000/petManager/petProfile/viewPet/${id}`)
+		axios.get(`http://localhost:3000/InventoryManager/messages/viewmessages/${id}`)
 		.then((res) => {
-			setPet(res.data)
+			setRequest(res.data)
 			
 		}).catch((err) => {
 			console.log(err);
@@ -19,39 +20,35 @@ export default function ViewPet() {
 	},[])
 return (
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-			<strong className="text-gray-700 font-medium">Pet Profiles</strong>
+			<strong className="text-gray-700 font-medium">Supply Request</strong>
 			<div className="border-x border-gray-200 rounded-sm mt-3">
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
-							<th>Pet ID</th>
 							<th>Request ID</th>
-							<th>Task ID</th>
-							<th>Pet Name</th>
-							<th>Type</th>
-							<th>Health Status</th>
+							<th>Item Type</th>
+							<th>Pet Type</th>
+							<th>Brand</th>
+							<th>Message</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 						<tbody>
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
 								<td>
-									{pet._id}
+									{supply._id}
 								</td >
 								<td>
-									{pet.request_id}
+									{supply.supply_item}
 								</td >
 								<td>
-									{pet.task_id}
+									{supply.supply_pettype}
 								</td >
 								<td>
-									{pet.pet_name}
+									{supply.supply_brand}
 								</td >
 								<td>
-									{pet.pet_type}
-								</td >
-								<td>
-									{pet.health_status}
+									{supply.supply_message}
 								</td >
 							</tr>
 						

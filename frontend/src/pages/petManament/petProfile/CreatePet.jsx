@@ -10,7 +10,11 @@ import {
 } from "firebase/storage";
 import app from "../../../firebase";
 // import QRCode from 'qrcode'
+
 const QRCode = require("qrcode");
+
+// const QRCode = require('qrcode')
+
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreatePet() {
   const [rescue_req_id, setReqId] = useState();

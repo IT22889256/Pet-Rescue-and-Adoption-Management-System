@@ -13,10 +13,10 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <HiOutlineViewGrid />
 	},
 	{
-		key: 'Pet Profile',
-		label: 'Pet Profile',
-		path: '/adoptionManager/petProfile',
-		icon: <IoPeople />
+	key: 'Adoption Process',
+	label: 'Adoption Process',
+	path: '/adoptionManager/adoptionProcess',
+	icon: <MdOutlinePets />
 	},
 	{
 		key: 'Adoption',
@@ -31,10 +31,10 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <FaTasks />
 	},
 	{
-	key: 'Adoption Process',
-	label: 'Adoption Process',
-	path: '/adoptionManager/adoptionProcess',
-	icon: <MdOutlinePets />
+		key: 'Pet Health Profile',
+		label: 'Pet Health Profile',
+		path: '/adoptionManager/petHealthProfile',
+		icon: <IoPeople />
 	},
 	{
 		key: 'Appoinment Schedule',
