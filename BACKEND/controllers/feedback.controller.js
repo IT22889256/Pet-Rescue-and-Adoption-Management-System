@@ -1,4 +1,5 @@
 const Feedback = require("../modules/feedback.model");
+const Counter = require("../modules/counter.model");
 
 const getFeedbacks = async (req, res) => {
   try {
@@ -21,7 +22,18 @@ const getFeedback = async (req, res) => {
 
 const createFeedback = async (req, res) => {
   try {
-    const feedback = await Feedback.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: "feedbackId" },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+
+    const feedbackId = "FB" + String(counter.seq).padStart(3, "0");
+
+    const feedback = await Feedback.create({
+      ...req.body,
+      feedbackId: feedbackId,
+    });
     res.status(200).json(feedback);
   } catch (error) {
     res.status(500).json({ message: error.message });

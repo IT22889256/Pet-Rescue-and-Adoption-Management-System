@@ -29,6 +29,7 @@ const Profile = () => {
       }
 
       dispatch(deleteUserSuccess());
+      handleLogout();
       alert("Account deleted successfully");
     } catch (error) {
       dispatch(deleteUserFailure(error));
