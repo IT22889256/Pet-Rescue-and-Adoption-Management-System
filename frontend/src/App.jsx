@@ -154,7 +154,7 @@ import Editorder from '../src/pages/Inventorymanagement/order/Editorder'
 import Vieworder from '../src/pages/Inventorymanagement/order/Vieworder'
 import Removeorder from '../src/pages/Inventorymanagement/order/Removeorder'
 //messages
-import messsages from '../src/pages/Inventorymanagement/message'
+import Messsages from './pages/Inventorymanagement/message'
 import Createmessages from './pages/Inventorymanagement/messages/Createmessages'
 import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
 import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
@@ -190,10 +190,6 @@ import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundreq
 //Employeee
 
 
-
-//Doctor
-import DoctorLayout from "./components/doctor/DoctorLayout";
-import DoctorDashboard from "./pages/doctorManagement/DoctorDashboard";
 
 
 
@@ -925,7 +921,8 @@ import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
 import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
 import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
         </Route> */}
-        <Route path="/InventoryManager/messages" element={<messsages />} />
+        <Route path="/InventoryManager/messages" element={<Messsages />} />
+        
           {/* order routes*/}
           <Route
             path="/InventoryManager/messages/Viewmessages/:id"

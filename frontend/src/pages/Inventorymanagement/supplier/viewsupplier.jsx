@@ -6,26 +6,47 @@ import Supplier from '../supplier'
 
 export default function ViewPet() {
 	
-	const [supplier, setsupplier] = useState({})
+	const [supplier, setitem] = useState({})
 	const {id} = useParams()
 
 	useEffect(() => {
-		axios.get(`http://localhost:3000/Inventorymanagement/supplier/viewsupplier/${id}`)
+		axios.get(`http://localhost:3000/InventoryManager/supplier/viewsupplier/${id}`)
 		.then((res) => {
-			setsupplier(res.data)
+			setitem(res.data)
 			
 		}).catch((err) => {
 			console.log(err);
 		})
 	},[])
 	
-	// const [supplier_name, setsuppliername] = useState()
-    // const [supplier_address, setsupplieraddress] = useState()
-    // const [supplier_email, setsupplieremail] = useState()
-    // const [supplier_age,setsupplierage] = useState()
-    // const [supplier_phonenumber,setsupplierphonenumber] = useState()
-    // const [supplier_image,setimage] = useState()
-
+    // supplier_name: {
+	// 	type: String,
+	// 	 required: true,
+	   
+	// },
+	// supplier_address: {
+	// 	type: String,
+	// 	required: true,
+	//   },
+  
+	//   supplier_email:{
+	// 	type:String,
+	// 	required: true,
+	//   },
+	
+	//   supplier_age:{
+	// 	type: String,
+	// 	required: true,
+	// },
+	// supplier_phonenumber:{
+	//   type:String,
+	//   required: true,
+	// },
+	// supplier_image:{
+	//   type:String,
+	//   required: true,
+	// }
+	
   
 return (
 	<div className="max-w-4xl mx-auto px-1 py-1 bg-neutral-200 sm:rounded-lg">
@@ -38,27 +59,27 @@ return (
 		</div>
 		<div className="border-t border-gray-200">
 			<dl>
-			<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-					<dt className="text-lg text-black-500 font-medium">Supplier Name</dt>
+				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt className="text-lg font-medium text-black-500">Supplier Name</dt>
 					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_name}</dd>
 				</div>
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-					<dt className="text-lg font-medium text-black-500">Supplier address</dt>
+					<dt className="text-lg font-medium text-black-500">supplier Address</dt>
 					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_address}</dd>
 				</div>
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-					<dt className="text-lg font-medium text-black-500">Supplier email</dt>
+					<dt className="text-lg font-medium text-black-500">Supplier Email</dt>
 					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_email}</dd>
 				</div>
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-					<dt className="text-lg font-medium text-black-500">Supplier age</dt>
+					<dt className="text-lg font-medium text-black-500">Supplier Age</dt>
 					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_age}</dd>
 				</div>
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-					<dt className="text-lg font-medium text-black-500">Supplier phonenumber</dt>
+					<dt className="text-lg font-medium text-black-500"> Supplier pno</dt>
 					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_phonenumber}</dd>
 				</div>
-				
+
 				{/* <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-lg font-medium text-black-500">Pet Age</dt>
 					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{items.pet_age}</dd>
@@ -72,9 +93,9 @@ return (
 					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{items.location}</dd>
 				</div> */}
 				<div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 justify-center">
-				<Link to={`/Inventorymanagement/supplier/editsupplier/${supplier._id}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-lg text-gray-400 text-center ml-1">Edit</Link>
+				<Link to={`/InventoryManager/supplier/editsupplier/${supplier._id}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-lg text-gray-400 text-center ml-1">Edit</Link>
 						
-				<Link to={`/Inventorymanagement/supplier/removesupplier/${supplier._id}`} className="bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-lg text-gray-400  text-center ml-1">Remove</Link>
+				<Link to={`/InventoryManager/supplier/removesupplier/${supplier._id}`} className="bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-lg text-gray-400  text-center ml-1">Remove</Link>
 							
 				</div>
 				
