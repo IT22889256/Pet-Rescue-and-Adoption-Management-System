@@ -191,9 +191,6 @@ import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundreq
 
 
 
-
-
-
 //Suppliers
 import Supplierslayout from "./components/Supplier/Supplierslayout";
 
@@ -206,25 +203,39 @@ import ViewCommonAR from "./pages/petManament/commonAR/ViewCommonAR";
 import CommonAR from "./pages/petManament/commonAR/CommonAR";
 
 //Transport management imports
-import TransportLayout from "./components/transportManager/TransportLayout";
-import TransportManagerDashboard from "./pages/transportManagement/TransportManagerDashboard";
-import ScheduleProfile from "./pages/transportManagement/ScheduleProfile";
-import CreateSchedule from "./pages/transportManagement/scheduleProfile/CreateSchedule";
-import EditSchedule from "./pages/transportManagement/scheduleProfile/EditSchedule";
-import CreateVehicle from "./pages/transportManagement/VehicleProfile/CreateVehicle";
-import VehicleProfile from "./pages/transportManagement/VehicleProfile";
-import EditVehicle from "./pages/transportManagement/VehicleProfile/EditVehicle";
-import ViewVehicle from "./pages/transportManagement/VehicleProfile/ViewVehicle";
-import RemoveVehicle from "./pages/transportManagement/VehicleProfile/RemoveVehicle";
-import TaskRequest from "./pages/transportManagement/TaskRequest";
-import ViewTaskRequest from "./pages/transportManagement/taskRequest/ViewTaskRequest";
-import EditTaskRequest from "./pages/transportManagement/taskRequest/EditTaskRequest";
 
-//apple import
-import Apple from "./pages/Apple";
+import TransportLayout from './components/transportManager/TransportLayout'
+import TransportManagerDashboard from './pages/transportManagement/TransportManagerDashboard'
+import ScheduleProfile from './pages/transportManagement/ScheduleProfile'
+import CreateSchedule from './pages/transportManagement/scheduleProfile/CreateSchedule'
+import EditSchedule from './pages/transportManagement/scheduleProfile/EditSchedule'
+import ViewSchedule from './pages/transportManagement/scheduleProfile/ViewSchedule'
+import RemoveSchedule from './pages/transportManagement/scheduleProfile/RemoveSchedule' 
+import CreateVehicle from './pages/transportManagement/vehicleProfile/CreateVehicle'
+import VehicleProfile from './pages/transportManagement/VehicleProfile'
+import EditVehicle from './pages/transportManagement/vehicleProfile/EditVehicle'
+import ViewVehicle from './pages/transportManagement/vehicleProfile/ViewVehicle'
+import RemoveVehicle from './pages/transportManagement/vehicleProfile/RemoveVehicle'
+import TaskRequest from './pages/transportManagement/TaskRequest'
+import ViewTaskRequest from './pages/transportManagement/taskRequest/ViewTaskRequest'
+import EditTaskRequest from './pages/transportManagement/taskRequest/EditTaskRequest'
+
+
+
+//Driver Availability 
+import DriverAvailability from "./pages/DriverAvailability";
+
+//Doctor Availability
+import DoctorAvailability from "./pages/DoctorAvailability";
+
+//Helper Availabilty
+import HelperAvailability from "./pages/HelperAvailability";
 
 //Driver imports
 import DriverLayout from "./components/driver/DriverLayout";
+import AssignedSheduleProfile from "./pages/driver/AssignedSheduleProfile";
+import ViewAssignedTask from "./pages/driver/assignedShedules/ViewAssignedTask";
+import EditAssignedTask from "./pages/driver/assignedShedules/EditAssignedTask";
 
 //employee management imports
 import EmployeeLayout from "./components/employeeManager/EmployeeLayout";
@@ -265,13 +276,18 @@ import ViewOneAttendance from "./pages/employeeManagment/attendanceManagement/Vi
 
 import RescueRequestForm from "./pages/User/RescueRequestForm";
 
-import LeaveApply from "./pages/employeeManagment/LeaveApply";
-import ViewLeaveApply from "./pages/employeeManagment/LeaveApply/viewLeaveApply";
 
+
+import LeaveApply from './pages/employeeManagment/LeaveApply'
+import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
+import ViewTodayattendance from './pages/employeeManagment/attendanceManagement/ViewTodayattendance'
+import DeleteTodayOneAttendance from './pages/employeeManagment/attendanceManagement/DeleteTodayOneAttendance'
 
 import Donation from "./pages/User/Donation";
 import PleaseLogin from "./pages/User/PleaseLogin";
 import SpecificNeedDonationForm from "./pages/User/SpecificNeedDonationForm";
+import AvailablePets from "./pages/User/AvailablePets";
+import PetsProfile from "./pages/User/PetsProfile";
 
 import PetQR from "./pages/User/PetQR";
 import UserGallery from "./pages/User/Gallery";
@@ -291,6 +307,9 @@ function App() {
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="user/:id/available-pets" element={<AvailablePets />} />
+          <Route path="/pet-profile/:id" element={<PetsProfile />} />
+
           <Route
             path="user/:id/recurring-donation"
             element={<RecurringDonationForm />}
@@ -521,6 +540,14 @@ function App() {
             path="/transportManager/scheduleProfile/editSchedule/:id"
             element={<EditSchedule />}
           />
+          <Route 
+            path="/transportManager/scheduleProfile/viewSchedule/:id"
+            element={<ViewSchedule />}
+          />
+          <Route
+            path="/transportManager/scheduleProfile/removeSchedule/:id"
+            element={<RemoveSchedule />}
+          />
 
           {/* Vehicle profile routes */}
           <Route
@@ -541,13 +568,27 @@ function App() {
           />
         </Route>
 
-        <Route>
-          {/* Driver main routes */}
-          <Route path="/driver" element={<DriverLayout />}></Route>
-        </Route>
+      
+        <Route path="/DriverAvailability" element={<DriverAvailability />} />
+        <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
+        <Route path="/HelperAvailability" element={<HelperAvailability />} />
+       </Routes>
 
-        <Route path="/apple" element={<Apple />} />
-      </Routes>
+       
+
+
+          {/* Driver main routes */}
+       <Routes> 
+         <Route> 
+            <Route path="/driver" element={<DriverLayout />}>
+            <Route path="/driver/AssignedSheduleProfile" element={<AssignedSheduleProfile />} />
+            <Route path="/driver/assignedShedules/ViewAssignedTask/:id" element={<ViewAssignedTask />} />
+            
+            <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
+          </Route>
+          </Route>
+        </Routes>
+
       <Routes>
         <Route path="/employeeManager" element={<EmployeeLayout />}>
           <Route
@@ -676,7 +717,16 @@ function App() {
             element={<ViewOneAttendance />}
           />
 
-          {/* leave accept routes */}
+          {/* attendance today view routes */}
+          <Route
+            path="/employeeManager/attendance/viewTodayAttendance"
+            element={<ViewTodayattendance />} />
+
+          {/* delete today one attendance routes */}
+          <Route
+            path="/employeeManager/attendance/deleteTodayOneAttendance/:id"
+            element={<DeleteTodayOneAttendance />} />
+
           {/* deactivate employees route */}
           <Route
             path="/employeeManager/deactivateEmployees/ViewDeactivateEmployees/:id"

@@ -31,6 +31,7 @@ export default function ViewAttendance() {
 			axios.get(`http://localhost:3000/EmployeeManager/attendance/getEmployeeAttendanceDays/${id}`)
 			.then((res) => {
 				setLeavecount(res.data);
+				console.log(res.data)
 			})
 			.catch((err) => {
 				console.log(err);
@@ -117,8 +118,8 @@ export default function ViewAttendance() {
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 						
-                        <Link to={`/employeeManager/employees/editEmployee/${employee._id}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
-                        <Link to={`/employeeManager/employees/removeEmployee/${employee._id}`} className="bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>	
+                        <Link to={`/EmployeeManager/AttendanceMark`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">go back</Link>
+                        
                     </div>
                 </div>
             </div>

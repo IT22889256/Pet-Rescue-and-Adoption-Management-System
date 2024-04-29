@@ -1,10 +1,16 @@
 import React from 'react'
 import DashboardStatsGrid from '../../components/adoptionManager/DashboardStatsGrid'
+//import AdoptionRequestChart from '../../components/adoptionManager/AdoptionRequestChart'
+//import RecentRequests from '../../components/adoptionManager/RecentRequest'
+
+//import RescueRequstsChart from '../../components/adoptionManager/AdoptionRequestChart'
+//import CreatedTasks from '../../components/adoptionManager/CreateTasks'
 import SupplyRequestChart from '../../components/adoptionManager/SupplyRequestChart'
 //import RecentRequests from '../../components/adoptionManager/RecentRequest'
 //import RescueRequstsChart from '../../components/adoptionManager/AdoptionRequestChart'
 //import CreatedTasks from '../../components/adoptionManager/CreateTasks'
 import AdoptionRequestPieChart from '../../components/adoptionManager/AdoptionRequestPieChart' 
+
 
 export default function Dashboard() {
 	return (
