@@ -33,6 +33,7 @@ export default function Donations() {
 							<th>Donaiton ID</th>
 				      <th>User ID</th>
 								<th> Pet ID</th>
+								<th>Amount</th>
               <th>Date</th>
 							
 						</tr>
@@ -41,7 +42,7 @@ export default function Donations() {
 						{SponsorDonations.map((SponsorDonations) => (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={SponsorDonations.id}>
 								<td>
-									{SponsorDonations._id}
+									{SponsorDonations.spid}
 								</td>
 								
 								<td>
@@ -52,6 +53,7 @@ export default function Donations() {
 								<td>
 									{SponsorDonations.pet_id}
 								</td>
+								<td>{SponsorDonations.amount}</td>
                 <td>{formatDate(SponsorDonations.createdAt)}</td>
 								
                                 <td>

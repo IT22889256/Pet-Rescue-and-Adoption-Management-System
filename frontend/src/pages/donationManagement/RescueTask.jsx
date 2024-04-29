@@ -38,15 +38,18 @@ export default function Donations() {
                         <tr>
                             <th>Donation ID</th>
                             <th>User ID</th>
+                            <th>Amount</th>
                             <th>Date</th>
+                            
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {Donations.map((Donation) => (
                             <tr className='border-b-2 border-[#c1c3c558] text-center' key={Donation.id}>
-                                <td>{Donation._id}</td>
+                                <td>{Donation.rid}</td>
                                 <td>{Donation.user_id}</td>
+                                <td>{Donation.amount}</td>
                                 {/* Call formatDate function to format the date */}
                                 <td>{formatDate(Donation.createdAt)}</td>
                                 <td>

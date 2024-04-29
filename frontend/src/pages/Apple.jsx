@@ -5,7 +5,7 @@ function Apple() {
         const [values, setValues] = useState([])
 
 useEffect(() => {
-    fetch('http://localhost:3000/api/vehicles').then((data)=>data.json()).then((val)=>setValues(val))
+    fetch('http://localhost:3000/petManager/petProfile').then((data)=>data.json()).then((val)=>setValues(val))
 },[])
 
 console.log(values, "values")
@@ -15,7 +15,7 @@ console.log(values, "values")
             <select>
                 {
                     
-                    values.map((opts,i)=><option>{opts.Vehicle_Model}</option>)
+                    values.map((opts,i)=><option>{opts.pet_id}</option>)
                 }
             </select>
         </div>

@@ -21,7 +21,7 @@ export default function PetProfile() {
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
-							<th>Sponsorship ID</th>
+							{/* <th>Sponsorship ID</th> */}
 							<th>Pet ID</th>
 							<th>Pet Name</th>
 							<th>Added Date</th>
@@ -32,9 +32,9 @@ export default function PetProfile() {
 					{<tbody>
 						{SponsorshipPets.map((SponsorshipPet) => (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={SponsorshipPet._id}>
-								<td>
+								{/* <td>
 									{SponsorshipPet._id}
-								</td >
+								</td > */}
 								
 								<td>
 									{SponsorshipPet.pet_id}
