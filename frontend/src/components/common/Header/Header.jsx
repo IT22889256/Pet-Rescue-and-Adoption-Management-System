@@ -87,13 +87,20 @@ function Header() {
             >
               Adoption
             </Link>
-          ) : (
-            <a
-              href="#"
+          ) : isLogedin && currentUser.role === "adopter" ? (
+            <Link
+              to={`/user/${currentUser._id}/available-pets`}
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Adoption
-            </a>
+            </Link>
+          ) : (
+            <Link
+              to="#"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Adoption
+            </Link>
           )}
 
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
