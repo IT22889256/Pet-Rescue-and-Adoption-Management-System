@@ -4,25 +4,26 @@ const IssuesAndConcernsSchema = mongoose.Schema(
   {
     user_id: {
       type: String,
-      //required: [true, "Please enter name"],
+      required: true 
     },
 
     email: {
       type: String,
-     // required: [true, "Please enter email"],
-     
+      required: true      
     },
 
     message: {
       type: String,
-     // required: [true, "Please enter adoption related concerns or technical issues"],
-    
+      required: true     
     },
 
     issuesandconcerns_status: {
       type: String,
-    // required: [true, ""],
-
+      required: true 
+    },
+    
+    imgUrl:{
+      type: String, 
     }
 
   },

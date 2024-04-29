@@ -31,7 +31,9 @@ const getorder = async (req, res) => {
 
 const createorder = async (req, res) => {
   try {
+    
     const order = await Order.create(req.body);
+    console.log(order)
     res.status(200).json(order);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -77,7 +79,7 @@ const updateorder = async (req, res) => {
       return res.status(404).json({ message: "order not found" });
     }
 
-    const updatedorder = await order.findById(id);
+    const updatedorder = await Order.findById(id);
     res.status(200).json(updatedorder);
   } catch (error) {
     res.status(500).json({ message: error.message });
