@@ -6,6 +6,8 @@ import DoctorAvailability from '../../DoctorAvailability'
 import HelperAvailability from '../../HelperAvailability'
 
 
+
+
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateSchedule() {
 
@@ -46,6 +48,7 @@ export default function CreateSchedule() {
           });
       };
 
+
         return (
 
             <div>
@@ -81,6 +84,7 @@ export default function CreateSchedule() {
                         <div className='text-xl font-bold text-center'>Create Transportation Schedule</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                                 
+       
                                   
 
                                     <div className="sm:col-span-3">
