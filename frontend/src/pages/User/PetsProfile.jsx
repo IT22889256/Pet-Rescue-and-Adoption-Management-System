@@ -7,9 +7,11 @@ import { useNavigate } from "react-router-dom";
 const PetsProfile = () => {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.user.currentUser);
+  console.log(currentUser);
   const id = window.location.pathname.split("/")[2];
 
   const [pet, setPet] = useState([]);
+  const [user, setUser] = useState([]);
   const [adopter_message, setMessage] = useState("");
 
   useEffect(() => {
@@ -21,9 +23,20 @@ const PetsProfile = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3000/userManager/userProfile/viewUser/${currentUser._id}`
+      )
+      .then((res) => {
+        console.log(res);
+        setUser(res.data);
+      });
+  }, []);
+
   const Submit = (e) => {
     const data = {
-      adopter_nic: currentUser._id,
+      adopter_nic: user.nic,
       adopter_name: currentUser.name,
       adopter_phone: currentUser.phone,
       adopter_email: currentUser.email,
@@ -40,6 +53,7 @@ const PetsProfile = () => {
       )
       .then((result) => {
         console.log(result);
+        alert("Request Submitted Successfully");
         navigate(`/`);
       })
       .catch((err) => console.log(err));

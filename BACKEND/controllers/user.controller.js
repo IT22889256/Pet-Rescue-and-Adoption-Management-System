@@ -190,7 +190,23 @@ const getOneUser = asyncHandler(async (req, res) => {
   const user = await User.findById(id);
 
   if (user) {
-    const { _id, name, email, photo, phone, bio, role } = user;
+    const {
+      _id,
+      name,
+      email,
+      photo,
+      phone,
+      bio,
+      role,
+      nic,
+      roletype,
+      eid,
+      image,
+      location,
+      nicback,
+      petOwnerShip,
+      reason,
+    } = user;
     res.status(200).json({
       _id,
       name,
@@ -199,6 +215,14 @@ const getOneUser = asyncHandler(async (req, res) => {
       phone,
       bio,
       role,
+      nic,
+      roletype,
+      eid,
+      image,
+      location,
+      nicback,
+      petOwnerShip,
+      reason,
     });
   } else {
     res.status(400);

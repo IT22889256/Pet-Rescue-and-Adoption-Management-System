@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   getAdoptions,
   getAdoption,
+  getMyAdoptions,
   createAdoption,
   updateAdoption,
   deleteAdoption,
@@ -11,6 +12,9 @@ const {
 
 router.get("/", getAdoptions);
 // router.get("/:id", getAdoption);
+
+//het my adoption requests
+router.get("/my/:email", getMyAdoptions);
 
 // create an adoption
 router.post("/adoptionProfile/createRequest", createAdoption);
