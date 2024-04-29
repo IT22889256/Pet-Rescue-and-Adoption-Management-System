@@ -3,18 +3,44 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(false);
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Advanced front-end validations
+    const newErrors = {};
+    if (!formData.name || formData.name.trim() === "") {
+      newErrors.name = "Name is required.";
+    }
+    if (!formData.email || !/^\S+@\S+\.\S+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+    if (!formData.password || formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters long.";
+    }
+    if (!/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])/.test(formData.password)) {
+      newErrors.password =
+        "Password must contain at least one number, one special character, and one letter.";
+    }
+    if (formData.password !== formData.password2) {
+      newErrors.password2 = "Passwords do not match.";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     try {
       setLoading(true);
-      setError(false);
+      setErrors({});
       const { name, email, password } = formData;
       const response = await fetch("http://localhost:3000/api/users/register", {
         method: "POST",
@@ -27,14 +53,15 @@ const Register = () => {
       setLoading(false);
       console.log(data);
       if (data.success === false) {
-        setError(true);
+        setErrors({ general: "Something went wrong." });
         return;
       }
+      alert("Account created successfully. Please log in.");
       navigate("/log-in");
     } catch (error) {
       console.log(error);
       setLoading(false);
-      setError(true);
+      setErrors({ general: "Something went wrong." });
     }
   };
 
@@ -56,13 +83,18 @@ const Register = () => {
                     Your name
                   </label>
                   <input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 ${
+                      errors.name ? "border-red-500" : ""
+                    }`}
                     type="text"
                     placeholder="Name"
                     required
                     name="name"
                     onChange={handleChange}
                   />
+                  {errors.name && (
+                    <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+                  )}
                 </div>
 
                 <div>
@@ -73,13 +105,18 @@ const Register = () => {
                     Your email
                   </label>
                   <input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 ${
+                      errors.email ? "border-red-500" : ""
+                    }`}
                     type="email"
                     placeholder="Email"
                     required
                     name="email"
                     onChange={handleChange}
                   />
+                  {errors.email && (
+                    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -89,13 +126,20 @@ const Register = () => {
                     Password
                   </label>
                   <input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 ${
+                      errors.password ? "border-red-500" : ""
+                    }`}
                     type="password"
                     placeholder="Password"
                     required
                     name="password"
                     onChange={handleChange}
                   />
+                  {errors.password && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.password}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -105,13 +149,20 @@ const Register = () => {
                     Confirm Password
                   </label>
                   <input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 ${
+                      errors.password2 ? "border-red-500" : ""
+                    }`}
                     type="password"
                     placeholder="Confirm Password"
                     required
                     name="password2"
                     onChange={handleChange}
                   />
+                  {errors.password2 && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.password2}
+                    </p>
+                  )}
                 </div>
                 <div className="flex items-start">
                   <div className="flex items-center">
@@ -153,7 +204,7 @@ const Register = () => {
                   </Link>
                 </p>
                 <p className="text-red-700 mt-2">
-                  {error && "Something went wrong!"}
+                  {errors.general && errors.general}
                 </p>
               </form>
             </div>
