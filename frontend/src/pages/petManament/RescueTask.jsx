@@ -48,7 +48,10 @@ export default function RescueTask() {
 								<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
 									<div >{rescueTask.rescue_task_priority}</div>
 								</td>)}
-								<td>{rescueTask.date}</td>
+								<td>
+						{/* {rescueTask.createdAt} */}2024/04/30
+						</td>
+								{/* <td>{rescueTask.date}</td> */}
 								{rescueTask.rescue_task_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
 										<div>{rescueTask.rescue_task_status}</div>
@@ -101,10 +104,10 @@ export default function RescueTask() {
 						</td>)}
 
 						<td>
-						{rescueTask.date}
+						{/* {rescueTask.createdAt} */}2024/04/30
 						</td>
 
-						{rescueTask.rescue_task_status === "Completed" && (
+						{/* {rescueTask.rescue_task_status === "Completed" && (
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
 							<div>{rescueTask.rescue_task_status}</div>
 						</td>)}
@@ -115,7 +118,28 @@ export default function RescueTask() {
 						{rescueTask.rescue_task_status === "In Progress" && (
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
 							<div >{rescueTask.rescue_task_status}</div>
-						</td>)}
+						</td>)} */}
+
+{rescueTask.rescue_task_status=== "Pending" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-centerml">
+										<div>{rescueTask.rescue_task_status}</div>
+									</td>)}
+									{rescueTask.rescue_task_status=== "In Progress" && (
+									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
+										<div>{rescueTask.rescue_task_status}</div>
+									</td>)}
+									{rescueTask.rescue_task_status=== "In Waiting List" && (
+									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+										<div>{rescueTask.rescue_task_status}</div>
+									</td>)}
+									{rescueTask.rescue_task_status=== "Failed" && (
+									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+										<div>{rescueTask.rescue_task_status}</div>
+									</td>)}
+									{rescueTask.rescue_task_status=== "Completed" && (
+									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
+										<div>{rescueTask.rescue_task_status}</div>
+									</td>)}
 					<td>
 						<Link to={`/petManager/rescueTask/viewRescueTask/${rescueTask._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 					</td>
