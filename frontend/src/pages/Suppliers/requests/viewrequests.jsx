@@ -40,14 +40,13 @@ export default function Viewrequest() {
 		const data = {
 			"requests_status":"Reject"
 		}
-		
 		console.log('result')
         axios.put(`http://localhost:3000/suppliers/editorder/${id}`,data)
         .then(result => {
 			
             alert('updated')
             console.log(result)
-            navigate(`/Suppliers/order`)
+            navigate('/Suppliers/order')
         })
         .catch(err => console.log(err))
 	}
@@ -90,15 +89,15 @@ return (
 								<td>
 									{requests.requests_date}
 								</td >
-									{requests.order_status=== "Pending" && (
+									{requests.order_status === "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-centerml">
 										<div>{requests.order_status}</div>
 									</td>)}
-									{requests.order_status=== "Accept" && (
+									{requests.order_status === "Accept" && (
 									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
 										<div>{requests.order_status}</div>
 									</td>)}
-									{requests.order_status=== "Reject" && (
+									{requests.order_status === "Reject" && (
 									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
 										<div>{requests.order_status}</div>
 									</td>)}

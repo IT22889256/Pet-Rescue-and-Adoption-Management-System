@@ -40,7 +40,7 @@ const requestFundsSchema = mongoose.Schema(
 
   
 
-    request_date:{
+  request_date:{
         type: Date, // Change type to Date
         default: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()), // Set default value to current date
     },

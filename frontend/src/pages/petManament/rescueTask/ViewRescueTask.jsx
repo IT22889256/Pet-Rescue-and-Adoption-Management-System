@@ -66,9 +66,7 @@ return (<>
                     </dl>
                 </div>
             </div>
-        </div>
-		
-		
+        </div>		
 </>
 	)
 }

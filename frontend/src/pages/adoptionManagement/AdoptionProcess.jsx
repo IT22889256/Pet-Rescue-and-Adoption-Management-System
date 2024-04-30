@@ -70,7 +70,7 @@ export default function AdoptionProcess() {
 				</table>
 			</div>
 		</div>
-	)
+	) 
 }
 // {pets.map((pets)=>(
 // 	<>

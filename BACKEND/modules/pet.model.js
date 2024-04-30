@@ -43,7 +43,7 @@ const PetSchema = mongoose.Schema({
     },
     imgUrl:{
         type: String,
-        required: true
+
     },
 })
 
