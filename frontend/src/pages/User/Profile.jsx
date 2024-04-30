@@ -38,30 +38,6 @@ const Profile = () => {
       });
   }, []);
 
-  const handleDeleteAccount = async () => {
-    dispatch(deleteUserStart());
-    try {
-      const res = await fetch(
-        `http://localhost:3000/api/users/delete/${currentUser._id}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        }
-      );
-      const data = await res.json();
-      if (data.success === false) {
-        dispatch(deleteUserFailure(data));
-        return;
-      }
-
-      dispatch(deleteUserSuccess());
-
-      alert("Account deleted successfully");
-    } catch (error) {
-      dispatch(deleteUserFailure(error));
-    }
-  };
-
   const handleLogout = async () => {
     try {
       await fetch("http://localhost:3000/api/users/logout");
@@ -163,12 +139,12 @@ const Profile = () => {
               </button>
             </Link>
 
-            <button
-              onClick={handleDeleteAccount}
+            <Link
+              to={`/delete-account/${currentUser._id}`}
               className="text-white px-5  rounded-lg bg-red-500 font-semibold ml-4 hover:opacity-95 disabled:opacity-80"
             >
               Delete Account
-            </button>
+            </Link>
           </div>
 
           <p>
