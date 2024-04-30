@@ -13,7 +13,18 @@ export default function Supplier () {
 		})
 	},[])
 
+	const [searchQuery, setSearchQuery] = useState("");
+	console.log(searchQuery);
+
 	return (
+		<div className="relative">
+        <input
+		onChange={(e) => setSearchQuery(e.target.value)}
+          type="text"
+		  name='search'
+          placeholder="Search..."
+          className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[24rem] h-10 pl-11 pr-4 rounded-sm"
+        />
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">supplier</strong>
 			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to="/InventoryManager/supplier/addsupplier" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Add supplier</Link></div>
@@ -35,7 +46,11 @@ export default function Supplier () {
 						</tr>
 					</thead>
 					{<tbody>
-						{Supps.map((supplier) => (
+						{Supps.filter((supplier) => {
+							return searchQuery === '' 
+							? supplier 
+							: supplier.supplier_name.includes(searchQuery)
+						}).map((supplier) => (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={supplier._id}>
 								<td>
 									{supplier._id}
@@ -73,6 +88,7 @@ const [supplier_phonenumber,setsupplierphonenumber] = useState() */}
 					
 				</table>
 			</div>
+		</div>
 		</div>
 	)
 }
