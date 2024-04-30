@@ -210,11 +210,11 @@ import CreateSchedule from './pages/transportManagement/scheduleProfile/CreateSc
 import EditSchedule from './pages/transportManagement/scheduleProfile/EditSchedule'
 import ViewSchedule from './pages/transportManagement/scheduleProfile/ViewSchedule'
 import RemoveSchedule from './pages/transportManagement/scheduleProfile/RemoveSchedule' 
-import CreateVehicle from './pages/transportManagement/vehicleProfile/CreateVehicle'
+import CreateVehicle from './pages/transportManagement/VehicleProfile/CreateVehicle'
 import VehicleProfile from './pages/transportManagement/VehicleProfile'
-import EditVehicle from './pages/transportManagement/vehicleProfile/EditVehicle'
-import ViewVehicle from './pages/transportManagement/vehicleProfile/ViewVehicle'
-import RemoveVehicle from './pages/transportManagement/vehicleProfile/RemoveVehicle'
+import EditVehicle from './pages/transportManagement/VehicleProfile/EditVehicle'
+import ViewVehicle from './pages/transportManagement/VehicleProfile/ViewVehicle'
+import RemoveVehicle from './pages/transportManagement/VehicleProfile/RemoveVehicle'
 import TaskRequest from './pages/transportManagement/TaskRequest'
 import ViewTaskRequest from './pages/transportManagement/taskRequest/ViewTaskRequest'
 import EditTaskRequest from './pages/transportManagement/taskRequest/EditTaskRequest'
@@ -229,6 +229,9 @@ import DoctorAvailability from "./pages/DoctorAvailability";
 
 //Helper Availabilty
 import HelperAvailability from "./pages/HelperAvailability";
+
+//janitor availability
+import JanitorAvailability from "./pages/JanitorAvailability";
 
 //Driver imports
 import DriverLayout from "./components/driver/DriverLayout";
@@ -571,6 +574,7 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
+        <Route path="/JanitorAvailability" element={<JanitorAvailability />} />
        </Routes>
 
        

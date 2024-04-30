@@ -108,6 +108,7 @@ const jobRoleRoute = require("./routes/jobRole.route.js"); // Importing job role
 const emailRoute = require("./routes/email.route.js"); // Importing email route
 const deactivateEmployeesRoute = require("./routes/deactivateEmployees.route.js"); // Importing deactivate employees route
 const employeeLeave = require("./routes/leave.route.js"); // Importing leave route
+const janitorScheduleRoute = require("./routes/janitorSchedule.route.js"); // Importing janitor schedule route
 
 // Routes
 //danuka routes
@@ -233,6 +234,7 @@ app.use("/EmployeeManager/jobRole", jobRoleRoute); // Job role routes
 app.use("/EmployeeManager/email", emailRoute); // Email routes
 app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // Deactivate employees routes
 app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
+app.use("/EmployeeManager/janitorSchedule", janitorScheduleRoute); // Janitor schedule routes
 
 
 
