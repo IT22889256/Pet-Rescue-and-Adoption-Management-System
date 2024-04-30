@@ -38,7 +38,7 @@ export default function ViewRescueRequest() {
         axios.put(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`,data)
         .then(result => {
 			
-            alert('updated')
+            alert('Accepted')
             console.log(result)
             navigate(`/petManager/rescueTask/createRescueTask/${id}`)
         })
@@ -55,7 +55,7 @@ export default function ViewRescueRequest() {
         axios.put(`http://localhost:3000/petManager/rescueRequest/viewRescueRequest/${id}`,data)
         .then(result => {
 			
-            alert('updated')
+            alert('Rejected')
             console.log(result)
             navigate(`/petManager/rescueRequest`)
         })
