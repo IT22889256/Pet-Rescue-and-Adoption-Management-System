@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from '../../../firebase';
+import Apple from '../../Apple';
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditSponPet() {
@@ -163,19 +164,16 @@ export default function EditSponPet() {
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet ID
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="task_id"
-                                        id="task-id"
-                                        value={pet_id}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                                        <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Pet ID
+                                        </label>
+                                        <div 
+                                                id="pet-name"
+                                                value={pet_id}
+                                                onChange={(e) => setPetId(e.target.value)} >
+                                           <Apple/>
+                                        </div>
+                                    </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
                                     Pet Name
