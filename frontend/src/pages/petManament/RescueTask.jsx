@@ -118,7 +118,7 @@ export default function RescueTask() {
 
 						{rescueTask.rescue_task_status === "In Progress" && (
 						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
-							<div >{rescueTask.rescue_task_status}</div>
+							<div>{rescueTask.rescue_task_status}</div>
 						</td>)}
 
 					<td>

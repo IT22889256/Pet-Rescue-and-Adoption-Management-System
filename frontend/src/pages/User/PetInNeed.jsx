@@ -12,11 +12,21 @@ const PetInNeed = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   axios.get("http://localhost:3000/petManager/petProfile").then((res) => {
+  //     console.log(res);
+  //     setPets(res.data);
+  //   });
+  // }, []);
+  const [SponsorshipPets, setSponsorshipPets] = useState([]);
+
   useEffect(() => {
-    axios.get("http://localhost:3000/petManager/petProfile").then((res) => {
-      console.log(res);
-      setPets(res.data);
-    });
+    axios
+      .get("http://localhost:3000/donationManager/sponseredPet")
+      .then((res) => {
+        console.log(res);
+        setSponsorshipPets(res.data);
+      });
   }, []);
 
   const Submit = (e) => {
@@ -47,23 +57,27 @@ const PetInNeed = () => {
 
         <table className="max-w-xl mx-auto rounded-lg my-7 py-5  bg-white line">
           <tbody>
-            {pets.map((pet) => (
-              <tr key={pet._id}>
+            {SponsorshipPets.map((SponsorshipPet) => (
+              <tr key={SponsorshipPet._id}>
                 <td>
                   <div className="max-w-sm rounded overflow-hidden shadow-lg mt-5">
-                    <img className=" w-40 h-40" src={pet.imgUrl} alt="Pet" />
+                    <img
+                      className=" w-40 h-40"
+                      src={SponsorshipPet.pet_image}
+                      alt="Pet"
+                    />
                     <div className="px-6 py-4 text-left">
                       <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Pet Id : {pet.pet_id}
+                        Pet Id : {SponsorshipPet.pet_id}
                       </h1>
                       <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Name : {pet.pet_name}
+                        Name : {SponsorshipPet.pet_name}
                       </h1>
                       <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Age : {pet.pet_age}
+                        Age : {SponsorshipPet.pet_age}
                       </h1>
                       <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Breed : {pet.health_status}
+                        Breed : {SponsorshipPet.health_status}
                       </h1>
                     </div>
                   </div>
@@ -84,7 +98,7 @@ const PetInNeed = () => {
                 onChange={(e) => setPetId(e.target.value)}
                 className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
-                {pets.map((opts, i) => (
+                {SponsorshipPets.map((opts, i) => (
                   <option key={i}>{opts.pet_id}</option>
                 ))}
               </select>

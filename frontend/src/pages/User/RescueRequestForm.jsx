@@ -10,6 +10,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import app from "../../firebase";
+import { useSelector } from "react-redux";
 const RescueRequestForm = () => {
   const [user_id, setUserId] = useState();
   const [pet_type, setPettype] = useState();
@@ -19,9 +20,10 @@ const RescueRequestForm = () => {
   const [imgUrl, setPetImage] = useState();
   const [rescue_request_status, setRescueRequestStatus] = useState("Pending");
   const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   const [img, setImg] = useState(null);
-
+  const [validationErrors, setValidationErrors] = useState({});
   useEffect(
     (e) => {
       if (img) {
@@ -84,7 +86,40 @@ const RescueRequestForm = () => {
     );
   };
 
+  const validateForm = () => {
+    const errors = {}; // Object to store validation errors
+
+    if (!user_id) {
+      errors.user_id = "User ID is required";
+    }
+
+    if (!pet_type) {
+      errors.pet_type = "Pet type is required";
+    }
+
+    if (!health_status) {
+      errors.health_status = "Health status is required";
+    }
+
+    if (!location) {
+      errors.location = "Location is required";
+    }
+    if (!img) {
+      errors.img = "Image is required";
+    }
+
+    // You can add more validation rules here, e.g., email validation for location
+
+    setValidationErrors(errors); // Update validation errors state
+    return Object.keys(errors).length === 0; // Return true if no errors
+  };
+
   const Submit = (e) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      return; // Don't submit if validation fails
+    }
+
     const data = {
       user_id,
       pet_type,
@@ -92,7 +127,6 @@ const RescueRequestForm = () => {
       location,
       rescue_request_status,
       imgUrl,
-      date,
     };
     console.log("result");
     axios
@@ -140,7 +174,7 @@ const RescueRequestForm = () => {
             Create Your Resque Request
           </h1>
         </div>
-        <form>
+        <form action="">
           <div className="max-w-xl mx-auto rounded-lg my-7 py-5 px-16 bg-gray-300 bg-opacity-60">
             <div className="sm:col-span-3">
               <label
@@ -154,7 +188,7 @@ const RescueRequestForm = () => {
                   type="text"
                   name="user_id"
                   id="user-id"
-                  value={user_id}
+                  value={currentUser._id}
                   onChange={(e) => setUserId(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -174,7 +208,7 @@ const RescueRequestForm = () => {
                     type="radio"
                     id="pet-types"
                     name="pet_type"
-                    value={"Dog"}
+                    value={"Cat"}
                     onChange={(e) => setPettype(e.target.value)}
                   />
                   <label className="p-1" for="pet-type">
@@ -185,7 +219,7 @@ const RescueRequestForm = () => {
                     type="radio"
                     id="pet-type"
                     name="pet_type"
-                    value={"Cat"}
+                    value={"Dog"}
                     onChange={(e) => setPettype(e.target.value)}
                   />
                   <label className="p-1" for="pet-type">
@@ -194,24 +228,12 @@ const RescueRequestForm = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="sm:col-span-3">
-                                        <label htmlFor="health-status" className="block text-sm font-medium leading-6 text-gray-900">
-                                        Health Status
-                                        </label>
-                                            <div className="mt-2">
-                                                <select
-                                                    id="health-status"
-                                                    name="health_status"
-                                                    value={health_status}
-                                                    onChange={(e) => setHealStatus(e.target.value)}
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                                    ><option></option>
-                                                    <option className='bg-[#15803d]'>Good</option>
-                                                    <option className='bg-[#be123c]'>Need Treament</option>
-                                                    
-                                    </select>
-                                        </div>
-                </div> */}
+            {validationErrors.pet_type && (
+              <p className="text-red-500 text-xs">
+                {validationErrors.pet_type}
+              </p>
+            )}
+
             <div className="sm:col-span-3 hidden">
               <label
                 htmlFor="health-status"
@@ -259,7 +281,11 @@ const RescueRequestForm = () => {
                 </label>
               </div>
             </div>
-
+            {validationErrors.health_status && (
+              <p className="text-red-500 text-xs">
+                {validationErrors.health_status}
+              </p>
+            )}
             <div className="col-span-full">
               <label
                 htmlFor="location"
@@ -278,16 +304,13 @@ const RescueRequestForm = () => {
                   autoComplete="street-address"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {validationErrors.location && (
+                  <p className="text-red-500 text-xs">
+                    {validationErrors.location}
+                  </p>
+                )}
               </div>
             </div>
-            {/* <iframe
-  src="https://www.google.com/maps/embed?{$location}"
-  width="600"
-  height="450"
-  
-  allowfullscreen=""
-  loading="lazy"
-></iframe> */}
 
             {
               <div className="col-span-full">
@@ -311,6 +334,7 @@ const RescueRequestForm = () => {
                       >
                         <span>Upload a file</span>
                         <input
+                          required
                           id="file-upload"
                           name="file_upload"
                           type="file"
@@ -323,10 +347,16 @@ const RescueRequestForm = () => {
                     <p className="text-xs leading-5 text-gray-600">
                       PNG, JPG, GIF up to 10MB
                     </p>
+                    {validationErrors.img && (
+                      <p className="text-red-500 text-xs">
+                        {validationErrors.img}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
             }
+
             <div className="mt-6 flex items-center justify-end gap-x-6">
               <button
                 type="button"

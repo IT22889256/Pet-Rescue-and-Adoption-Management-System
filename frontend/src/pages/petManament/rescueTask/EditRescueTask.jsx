@@ -291,7 +291,7 @@ export default function EditRescueTask() {
                   name="file_upload"
                   type="file"
                   className="sr-only"
-                  value={pet_image}
+                  value={imgUrl}
                   onChange={(e) => setPetImage(e.target.value)}
                 />
               </label>
