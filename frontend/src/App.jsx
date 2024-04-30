@@ -234,6 +234,9 @@ import HelperAvailability from "./pages/HelperAvailability";
 //janitor availability
 import JanitorAvailability from "./pages/JanitorAvailability";
 
+//jobrole availability
+import JobRoleAvailability from "./pages/jobroleAvailability";
+
 //Driver imports
 import DriverLayout from "./components/driver/DriverLayout";
 import AssignedSheduleProfile from "./pages/driver/AssignedSheduleProfile";
@@ -576,6 +579,7 @@ function App() {
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
         <Route path="/JanitorAvailability" element={<JanitorAvailability />} />
+        <Route path="/JobRoleAvailability" element={<JobRoleAvailability />} />
        </Routes>
 
        

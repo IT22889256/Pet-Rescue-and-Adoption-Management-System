@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import JobRoleAvailability from "../../jobroleAvailability";
 
 
 import {
@@ -14,9 +13,9 @@ import {
 import app from "../../../firebase";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 
-// import { PhotoIcon} from '@heroicons/react/24/solid'
+
 export default function CreateEmployee() {
-  // const [eid, setEid] = useState();
+  
   const [nic, setNic] = useState();
   const [firstName, setFirstName] = useState();
   const [middleName, setMiddleName] = useState();
@@ -148,7 +147,7 @@ export default function CreateEmployee() {
         }
     }
 
-//validation
+//string validation
 const stringValidator = (value)=>{
   let regex = /^[a-zA-Z\s]*$/; // Updated regex to include spaces
   if(!regex.test(value) ){
@@ -160,9 +159,6 @@ const stringValidator = (value)=>{
       setValid(true);
   }
 }
-
-
-
 
 
 
@@ -301,30 +297,21 @@ const numberValidator = (value)=>{
         
           
 
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="jobRole"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                jobRole
-              </label>
-              <div className="mt-2">
-                <select
-                  name="jobRole"
-                  id="jobRole"
-                  value={jobRole}
-                  onChange={(e) => setJobRole(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                >
-                  <option></option>
-                  <option>doctor</option>
-                  <option>driver</option>
-                  <option>cleaner</option>
-                  <option>manager</option>
-                  <option>supportive staff member</option>
-                </select>
-              </div>
-            </div>
+              <div className="sm:col-span-3">
+                                          <label htmlFor="jobRole" className="block text-sm font-medium leading-6 text-gray-900">
+                                          jobRole <span className="text-sm font-small leading-6 text-gray-400">(Available jobRole Appear Here)</span>
+                                          </label>
+                                          <div
+                                          
+                                          id="jobRole"
+                                          name="jobRole"
+                                          value={jobRole}
+                                          
+                                          onChange={(e) => setJobRole(e.target.value)}>  <JobRoleAvailability/>
+                                            </div>
+                                      </div>
+
+
 
             <div className="sm:col-span-3">
               <label
@@ -396,10 +383,7 @@ const numberValidator = (value)=>{
                 </label>
                 <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                   <div className="text-center">
-                    <PhotoIcon
-                      className="mx-auto h-12 w-12 text-gray-300"
-                      aria-hidden="true"
-                    />
+                  <img src={employeeimgUrl} className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                     <div className="mt-4 flex text-sm leading-6 text-gray-600">
                       <label
                         htmlFor="file-upload"
