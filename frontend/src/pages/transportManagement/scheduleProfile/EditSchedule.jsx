@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import DriverAvailability from '../../DriverAvailability'
+import DoctorAvailability from '../../DoctorAvailability'
+import HelperAvailability from '../../HelperAvailability'
 
 
 
@@ -13,6 +16,10 @@ export default function EditSchedule() {
     const [Vet_nary_Doctor, setVet] = useState()
     const [Staff_Member, setStaffMem] = useState()
     const navigate = useNavigate()
+
+        //validation
+        const [nameError,setNameError]=useState("");
+        const [valid,setValid] = useState(true);
    
     const {id} = useParams()
     useEffect((e) => {
@@ -50,6 +57,32 @@ export default function EditSchedule() {
         })
         .catch(err => console.log(err))
     }
+
+     //validation
+     const stringValidator = (value)=>{
+        let regex = /^[a-zA-Z]*$/;
+        if(!regex.test(value) ){
+            setNameError("Invalid input");
+            setValid(false);
+        }
+        else{
+            setNameError("");
+            setValid(true);
+        }
+    }
+
+    const numberValidator = (value)=>{
+        let regex = /^(?:[1-9]|1[0-9]|20|30)$/;
+        if(!regex.test(value) ){
+            setNameError("Invalid input");
+            setValid(false);
+        }
+        else{
+            setNameError("");
+            setValid(true);
+        }
+    }
+//
         return (
 
         
@@ -66,16 +99,19 @@ export default function EditSchedule() {
 
 
                          <div className="sm:col-span-3">
+                            {/* validation */}
+                            <div className='text-red-600'>{nameError}</div>
+                                {/* validation */}
                                         <label htmlFor="Transport_Type" className="block text-sm font-medium leading-6 text-gray-900">
                                         Transport Type - <value>{Transport_Type}</value>
                                         </label>
                                         <div className="mt-2">
                                             
-                                            <input type="radio" value="Emergency" name="Transport_Type" className='m-1' onChange={(e) => setTransTyp(e.target.value)}/>
+                                            <input type="radio" value="Emergency" name="Transport_Type" className='m-1' checked={Transport_Type === "Emergency"} onChange={(e) => setTransTyp(e.target.value)}/>
                                             <label htmlFor="Transport_Type" className="m-1 text-sm font-medium leading-6 text-gray-900">
                                             Emergency
                                             </label>
-                                            <input type="radio" value="Normal" name="Transport_Type" className='m-1' onChange={(e) => setTransTyp(e.target.value)}/>
+                                            <input type="radio" value="Normal" name="Transport_Type" className='m-1' checked={Transport_Type === "Normal"} onChange={(e) => setTransTyp(e.target.value)}/>
                                             <label htmlFor="Transport_Type" className="m-1 text-sm font-medium leading-6 text-gray-900">
                                             Normal
                                         </label>
@@ -87,11 +123,13 @@ export default function EditSchedule() {
                                 </label>
                                 <div className="mt-2">
                                     <input
+                                        required
                                         type="Number_of_Pets"
                                         name="Number_of_Pets"
                                         id="Number_of_Pets-id"
                                         value={Number_of_Pets}
-                                        onChange={(e) => setNoPet(e.target.value)}
+                                        onChange={(e) => {setNoPet(e.target.value);
+                                        numberValidator(e.target.value);}}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -121,9 +159,9 @@ export default function EditSchedule() {
                                         name="Driver"
                                         id="Driver"
                                         value={Driver}
-                                        onChange={(e) => setDriver(e.target.value)}
+                                        onChange={(e) => setDriver(e.target.value)} 
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
+                                    />    
                                 </div>
                             </div>
 

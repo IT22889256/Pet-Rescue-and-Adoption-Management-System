@@ -59,7 +59,13 @@ export default function ViewSchedule() {
                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt className="text-sm font-medium text-gray-500">Actions</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                            <Link to={`/transportManager/scheduleProfile/EditSchedule/${schedule._id}`} className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 text-xs text-gray-400 ml-1">Edit</Link>
+
+                        {schedule.schedule_status !== "Completed" && (
+									
+									<Link to={`/transportManager/scheduleProfile/EditSchedule/${schedule._id}`} className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 text-xs text-gray-400 ml-1">Edit</Link>
+									)}
+
+                            {/* <Link to={`/transportManager/scheduleProfile/EditSchedule/${schedule._id}`} className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 text-xs text-gray-400 ml-1">Edit</Link> */}
                             <Link to={`/transportManager/scheduleProfile/RemoveSchedule/${schedule._id}`} className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700 text-xs text-gray-400 ml-1">Remove</Link>
                         </dd></div>
                     </dl>
