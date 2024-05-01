@@ -236,6 +236,7 @@ import DriverLayout from "./components/driver/DriverLayout";
 import AssignedSheduleProfile from "./pages/driver/AssignedSheduleProfile";
 import ViewAssignedTask from "./pages/driver/assignedShedules/ViewAssignedTask";
 import EditAssignedTask from "./pages/driver/assignedShedules/EditAssignedTask";
+import Map from "./pages/driver/Map";
 
 //employee management imports
 import EmployeeLayout from "./components/employeeManager/EmployeeLayout";
@@ -572,6 +573,7 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
+        
        </Routes>
 
        
@@ -585,6 +587,7 @@ function App() {
             <Route path="/driver/assignedShedules/ViewAssignedTask/:id" element={<ViewAssignedTask />} />
             
             <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
+            <Route path="/driver/Map" element={<Map />} />
           </Route>
           </Route>
         </Routes>

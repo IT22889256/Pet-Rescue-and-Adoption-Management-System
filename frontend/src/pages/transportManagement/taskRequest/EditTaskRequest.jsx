@@ -179,12 +179,31 @@ export default function EditTaskRequest() {
                     </div>
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                     <Link to={`/transportManager/taskRequest`} className="text-sm font-semibold leading-6 text-gray-900">Cancel</Link>
-                <button
+                {/* <button
                     onClick={Submit}
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                     Submit
-                </button>
+                </button> */}
+
+                {rescue_task_status === "In Waiting List" && (
+                <button
+                  onClick={Submit}
+                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                 Submit
+                 </button>
+                )}
+                {rescue_task_status === "In Progress" && (
+                <button
+                  onClick={Submit}
+                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                 Submit
+                 </button>
+                )}
+                
+
                 {rescue_task_status === "Pending" && (
                 <button
                   onClick={Edit}
@@ -192,7 +211,7 @@ export default function EditTaskRequest() {
                 >
                  Submit
                  </button>
-)}
+                )}
 
         </div>
 </div>

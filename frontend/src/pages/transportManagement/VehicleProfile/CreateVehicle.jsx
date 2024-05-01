@@ -19,6 +19,11 @@ export default function CreateVehicle() {
     const [Vehicle_image, setvehImg] = useState()
     const navigate = useNavigate()
 
+    //validation
+    const [nameError,setNameError]=useState("");
+    const [valid,setValid] = useState(true);
+    // 
+
     const [showSuccess, setShowSuccess] = useState(false);
 
     const Submit = (e) => {
@@ -112,6 +117,32 @@ export default function CreateVehicle() {
         }
       );
     }
+
+    //validation
+    const stringValidator = (value)=>{
+      let regex = /^[a-zA-Z]*$/;
+      if(!regex.test(value) ){
+          setNameError("Invalid input");
+          setValid(false);
+      }
+      else{
+          setNameError("");
+          setValid(true);
+      }
+  }
+
+  const numberValidator = (value) => {
+    let regex = /^(20[0-2][0-3])$/;
+    if (!regex.test(value)) {
+      setNameError("Invalid input");
+      setValid(false);
+      }
+      else{
+          setNameError("");
+          setValid(true);
+      }
+  }
+//
         return (
 
             <div>
@@ -142,7 +173,12 @@ export default function CreateVehicle() {
 
             <div>
                     <div className="space-y-12">
+                        {/* validation */}
+                        <div className='text-red-600'>{nameError}</div>
+                                {/* validation */}
+       
                         <div className="border-b border-gray-900/10 pb-12">
+                          
                         <div className='text-xl font-bold text-center'>Create Vehicle Profile</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                                 <div className="sm:col-span-3">
@@ -157,7 +193,7 @@ export default function CreateVehicle() {
                                             value={Vehicle_Serial_No}
                                             onChange={(e) => setSerNo(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
+                                            /> 
                                         </div>
                                                 </div>
                                     <div className="sm:col-span-3">
@@ -200,7 +236,8 @@ export default function CreateVehicle() {
                                                 name="Year_Manufactured"
                                                 id="Year_Manufactured"
                                                 value={Year_Manufactured}
-                                                onChange={(e) => setYearMan(e.target.value)}
+                                                onChange={(e) => {setYearMan(e.target.value);
+                                                  numberValidator(e.target.value)}}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
@@ -283,6 +320,7 @@ export default function CreateVehicle() {
                                     <div className="text-center">
                                         <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                                         <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                                        <img src={Vehicle_image} className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                                             <label
                                                 htmlFor="file-upload"
                                                 className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
