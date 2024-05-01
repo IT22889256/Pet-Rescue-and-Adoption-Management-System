@@ -46,9 +46,12 @@ export default function CreateRescueTask() {
         };
         console.log('result')
         axios.post('http://localhost:3000/petManager/rescueTask/createRescueTask',data)
-        .then(result => {
-            console.log(result)
-            navigate('/petManager/rescueTask')
+        .then(result => 
+            {
+                alert('Created')
+                navigate('/petManager/rescueTask')
+                console.log(result)
+            
         })
         .catch(err => console.log(err))
     }
@@ -75,6 +78,7 @@ export default function CreateRescueTask() {
                         <div className="border-b border-gray-900/10 pb-12">
                         <div className='text-xl font-bold '>Create A Task</div>
                         <img className='object-cover h-60 w-60 m-5 rounded-full' src={imgUrl} alt='profile_Image'/>
+                        
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div className="sm:col-span-3">
                                         <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
@@ -82,6 +86,7 @@ export default function CreateRescueTask() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            disabled
                                                 type="text"
                                                 name="request_id"
                                                 id="request-id"
@@ -96,6 +101,7 @@ export default function CreateRescueTask() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            disabled
                                                 type="text"
                                                 name="user_id"
                                                 id="user-id"
@@ -110,6 +116,7 @@ export default function CreateRescueTask() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            disabled
                                                 type="text"
                                                 name="pet_type"
                                                 id="pet-type"
@@ -138,11 +145,11 @@ export default function CreateRescueTask() {
                                             Task Priority
                                         </label>
                                         <div className="mt-2">
-                                            <input type="radio" value="High" name="task_priority" className='m-1' onChange={(e) => setRescueTaskpriority(e.target.value)}/>
+                                            <input required type="radio" value="High" name="task_priority" className='m-1' onChange={(e) => setRescueTaskpriority(e.target.value)}/>
                                             <label htmlFor="task-priority" className="m-1 text-sm font-medium leading-6 text-gray-900">
                                             High
                                             </label>
-                                            <input type="radio" value="Low" name="task_priority" className='m-1' onChange={(e) => setRescueTaskpriority(e.target.value)}/>
+                                            <input required type="radio" value="Low" name="task_priority" className='m-1' onChange={(e) => setRescueTaskpriority(e.target.value)}/>
                                             <label htmlFor="task-priority" className="m-1 text-sm font-medium leading-6 text-gray-900">
                                             Low
                                         </label>
@@ -154,6 +161,7 @@ export default function CreateRescueTask() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            disabled
                                                 type="text"
                                                 name="health_status"
                                                 id="health-status"
@@ -169,6 +177,7 @@ export default function CreateRescueTask() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            disabled
                                                 type="text"
                                                 name="location"
                                                 id="locations"
@@ -180,6 +189,7 @@ export default function CreateRescueTask() {
                                     </div>
                                     
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div className="mt-6 flex items-center justify-end gap-x-6">
@@ -187,12 +197,14 @@ export default function CreateRescueTask() {
                             Cancel
                         </button>
                         <button
+                        typeof='onSubmit'
                             onClick={Submit}
                             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
-                            Submit
+                            Create Task
                         </button>
                 </div>
+                
         </div>
     )
 }
