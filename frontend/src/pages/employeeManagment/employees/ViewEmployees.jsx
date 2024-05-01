@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import {useReactToPrint} from 'react-to-print'
 import axios from 'axios';
  
 
@@ -28,10 +29,22 @@ export default function ViewEmployee() {
         return `${day}/${month}/${year}`;
     };
 
+	const ComponetRef = useRef();
+	const handlePrint = useReactToPrint({
+		content: () => ComponetRef.current,
+		DocumentTItle:"individual employee Report",
+		onafterprint: ()=>("individual Employee Report Successfully Download")
+	})
+
+
     return (
         <div className="max-w-4xl mx-auto px-1 py-1 bg-neutral-200 sm:rounded-lg">
             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><button onClick={handlePrint} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Generate Report</button></div> 
+			<div  ref={ComponetRef} className="border-x border-gray-200 rounded-sm mt-3">
+
                 <div className="px-4 py-5 sm:px-6">
+
                     <h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Employee Profile</h3>
                 </div>
                 <div className="mt-3 flex text-xs justify-center">
@@ -105,6 +118,7 @@ export default function ViewEmployee() {
 				</div>
 					</dl>
                 </div>
+				
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 						<Link to={`/employeeManager/salary/CreateSalary/${employee.eid}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Create salary</Link>
@@ -113,7 +127,7 @@ export default function ViewEmployee() {
                     </div>
                 </div>
             </div>
-			
+			</div>
         </div>
     );
 }
