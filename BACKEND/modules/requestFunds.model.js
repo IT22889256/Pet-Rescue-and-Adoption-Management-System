@@ -3,19 +3,13 @@ const mongoose = require("mongoose");
 const requestFundsSchema = mongoose.Schema(
   {
  
-    request_id:{
+    requestId:{
      type:String,
     required:false,
-    //default: 'RF' + Math.floor(Date.now() / 1000)
+    unique:true
 
     },
 
-    request_no: {
-      type: String,
-      required: false,
-     // default: 'RF' + Math.floor(Date.now() / 2000000)
-     
-  },
 
     amount: {
     type: Number,
@@ -40,7 +34,7 @@ const requestFundsSchema = mongoose.Schema(
 
   
 
-  request_date:{
+    request_date:{
         type: Date, // Change type to Date
         default: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()), // Set default value to current date
     },
