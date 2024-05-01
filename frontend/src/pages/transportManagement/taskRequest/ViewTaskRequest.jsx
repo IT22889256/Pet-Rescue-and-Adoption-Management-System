@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
 import { Link, useParams,useNavigate } from 'react-router-dom'
-// import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
 export default function ViewTaskRequest() {

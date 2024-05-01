@@ -17,14 +17,20 @@ export default function RemoveUser() {
       });
   };
   return (
-    <div>
-      {" "}
-      <button
-        className="p-4 bg-red-600 text-white m-8 w-full"
-        onClick={handleDeleteUser}
-      >
-        Yes, Delete it
-      </button>
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+      role="alert"
+    >
+      <strong class="font-bold">Are you sure you want to remove user?</strong>
+      <span class="block sm:inline"> This action cannot be undone.</span>
+      <div className="flex justify-end">
+        <button
+          className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+          onClick={handleDeleteUser}
+        >
+          Yes, Remove User
+        </button>
+      </div>
     </div>
   );
 }

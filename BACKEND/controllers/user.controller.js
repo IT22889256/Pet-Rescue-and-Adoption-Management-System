@@ -107,6 +107,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const token = generateToken(user._id);
   console.log(token);
   if (passwordIsCorrect) {
+    console.log("password is correct");
     // Send HTTP-only cookie
     console.log(token);
     res.cookie("token", token, {
@@ -118,19 +119,34 @@ const loginUser = asyncHandler(async (req, res) => {
   }
   // Modify the part in your loginUser function that sends the response
   if (user && passwordIsCorrect) {
-    const { _id, name, email, role, photo, roletype } = user; // Include role here
+    const {
+      _id,
+      name,
+      email,
+      role,
+      photo,
+      roletype,
+      phone,
+      eid,
+      bio,
+      jobRole,
+    } = user; // Include role here
 
     res.status(200).json({
       _id,
       name,
       email,
+      phone,
       role, // Send role to the frontend
       roletype, // Send roletype to the frontend
       photo,
+      eid,
+      jobRole,
+      bio,
       token,
     });
   } else {
-    res.status(400).json({ message: "Invalid email or password" });
+    res.status(400).json({ message: "Invalid password" });
   }
 });
 
@@ -174,7 +190,23 @@ const getOneUser = asyncHandler(async (req, res) => {
   const user = await User.findById(id);
 
   if (user) {
-    const { _id, name, email, photo, phone, bio, role } = user;
+    const {
+      _id,
+      name,
+      email,
+      photo,
+      phone,
+      bio,
+      role,
+      nic,
+      roletype,
+      eid,
+      image,
+      location,
+      nicback,
+      petOwnerShip,
+      reason,
+    } = user;
     res.status(200).json({
       _id,
       name,
@@ -183,6 +215,14 @@ const getOneUser = asyncHandler(async (req, res) => {
       phone,
       bio,
       role,
+      nic,
+      roletype,
+      eid,
+      image,
+      location,
+      nicback,
+      petOwnerShip,
+      reason,
     });
   } else {
     res.status(400);

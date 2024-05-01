@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const Adopter = require("../modules/adopter.model");
 const AdopterRequest = require("../modules/adopterrequests.model");
 const User = require("../modules/user.model");
 const bcrypt = require("bcryptjs");
@@ -18,25 +17,20 @@ const createAdopterRequest = asyncHandler(async (req, res, next) => {
   const {
     name,
     email,
-    password,
     role,
     photo,
     phone,
     bio,
     location,
     nic,
-    drivngLicense,
+    dob,
     image,
+    nicback,
     petOwnerShip,
     reason,
     empStatus,
   } = req.body; // Make sure to include 'role' if it's being sent from the front end
   try {
-    // Validation
-    if (!name || !email || !password) {
-      res.status(400);
-      throw new Error("Please fill in the name and email");
-    }
     // Check if adopter email already exists
     const adopterRequestExists = await AdopterRequest.findOne({ email });
     if (adopterRequestExists) {
@@ -44,19 +38,19 @@ const createAdopterRequest = asyncHandler(async (req, res, next) => {
       throw new Error("You are already made an adopter request!");
     }
 
-    // Create new adopter
+    // Create new adopter request
     const adopterRequest = await AdopterRequest.create({
       name,
       email,
-      password,
       role,
       photo,
       phone,
       bio,
       location,
       nic,
-      drivngLicense,
+      dob,
       image,
+      nicback,
       petOwnerShip,
       reason,
       empStatus,
@@ -74,8 +68,9 @@ const createAdopterRequest = asyncHandler(async (req, res, next) => {
         bio,
         location,
         nic,
-        drivngLicense,
+        dob,
         image,
+        nicback,
         petOwnerShip,
         reason,
         empStatus,
@@ -90,8 +85,9 @@ const createAdopterRequest = asyncHandler(async (req, res, next) => {
         bio,
         location,
         nic,
-        drivngLicense,
+        dob,
         image,
+        nicback,
         petOwnerShip,
         reason,
         empStatus,
@@ -131,10 +127,12 @@ const getOneAdopterRequest = asyncHandler(async (req, res) => {
       role,
       location,
       nic,
-      drivngLicense,
+      dob,
       image,
+      nicback,
       petOwnerShip,
       reason,
+      empStatus,
     } = adopterRequest;
     res.status(200).json({
       _id,
@@ -146,10 +144,12 @@ const getOneAdopterRequest = asyncHandler(async (req, res) => {
       role,
       location,
       nic,
-      drivngLicense,
+      dob,
       image,
+      nicback,
       petOwnerShip,
       reason,
+      empStatus,
     });
   } else {
     res.status(400);
@@ -187,108 +187,67 @@ const deleteAopterRequest = async (req, res) => {
   }
 };
 
-//Accept Adopter Request
 const acceptAdopterRequest = asyncHandler(async (req, res, next) => {
   console.log("1234 : ", req.params.id);
   const { id } = req.params;
-  const adopterRequest = await AdopterRequest.findById(id);
-  console.log("adopterRequest : ", adopterRequest);
-  const {
-    name,
-    email,
-    password,
-    role,
-    photo,
-    phone,
-    bio,
-    location,
-    nic,
-    drivngLicense,
-    image,
-    petOwnerShip,
-    reason,
-  } = adopterRequest; // Make sure to include 'role' if it's being sent from the front end
 
   try {
-    const adopter = await Adopter.create({
-      name,
+    const adopterRequest = await AdopterRequest.findById(id);
+    console.log("adopterRequest : ", adopterRequest);
+
+    if (!adopterRequest) {
+      return res.status(404).json({ message: "Adopter request not found!" });
+    }
+
+    const {
       email,
-      password,
-      role: "adopter", // Assuming you want to hardcode role here
-      photo,
-      phone,
-      bio,
       location,
       nic,
-      drivngLicense,
+      dob,
       image,
+      nicback,
+      phone,
       petOwnerShip,
       reason,
-    });
+      empStatus,
+    } = adopterRequest;
 
-    if (adopter) {
-      const {
-        _id,
-        name: adopterName, // Renamed to avoid conflict
-        email,
-        photo,
-        phone,
-        bio,
+    const user = await User.findOneAndUpdate(
+      { email },
+      {
+        role: "adopter",
         location,
         nic,
-        drivngLicense,
+        dob,
         image,
+        nicback,
+        phone,
         petOwnerShip,
         reason,
         empStatus,
-      } = adopter;
-      res.status(201).json({
-        _id,
-        name: adopterName, // Used renamed variable
-        email,
-        role,
-        photo,
-        phone,
-        bio,
-        location,
-        nic,
-        drivngLicense,
-        image,
-        petOwnerShip,
-        reason,
-        empStatus,
-      });
-
-      try {
-        const user = await User.findOneAndUpdate(
-          { email },
-          { role: "adopter" }
-        );
-        if (!user) {
-          return res.status(404).json({ message: "User not found" });
-        }
-
-        const updatedUser = await User.findOne({ email });
-
-        //delete adopter request
-        const adopterRequest = await AdopterRequest.findOneAndDelete({ email });
-      } catch (error) {
-        res
-          .status(500)
-          .json({ message: "Error updating user role", error: error.message });
       }
-    } else {
-      res.status(400).json({ message: "Invalid adopter data" });
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found!" });
     }
-  } catch (err) {
-    next(err);
+
+    // Delete adopter request after successfully updating user role
+    await AdopterRequest.findByIdAndDelete(id);
+
+    res.status(200).json({ message: "User role updated successfully" });
+  } catch (error) {
+    console.error("Error updating user role:", error);
+    res
+      .status(500)
+      .json({ message: "Error updating user role", error: error.message });
   }
 });
 
 // Get all Adopters
 const getAdopters = async (req, res) => {
   try {
-    const adopters = await Adopter.find();
+    const adopters = await User.find({ role: "adopter" });
     res.status(200).json(adopters);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -29,6 +29,8 @@ return (
 							<th>Pet Type</th>
 							{/* <th>Pet Name</th> */}
 							{/* <th>Type</th> */}
+							
+							<th>Image</th>
 							<th>Health Status</th>
 							<th>Action</th>
 						</tr>
@@ -44,6 +46,9 @@ return (
 								<td>
 									{sponserPet.pet_type}
 								</td >
+								<div className="mt-3 flex text-xs justify-center">
+                <img className='object-cover h-60 w-60 m-5 rounded-full' src={sponserPet.pet_image} alt='profile_Image'/>
+				</div>
 								<td>
 									{sponserPet.health_status}
 								</td >

@@ -6,8 +6,9 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function ApplyLeave() {
 
-   // const { eid } = useParams()
-    const [eid, setEid] = useState('');
+   const { eid } = useParams()
+   console.log(eid)
+    //const [eid, setEid] = useState('');
     const [reason, setReason] = useState('');
     const [note, setNote] = useState('');
     const [startDate, setStartDate] = useState('');
@@ -30,12 +31,13 @@ export default function ApplyLeave() {
         axios.post('http://localhost:3000/EmployeeManager/leave/requestLeave/',data)
         .then(result => {
             console.log(result)
-            navigate('/EmployeeManager/ManageEmployees')
+            alert('Leave Requested Successfully')
         })
         .catch(err => console.log(err))
     }
         return (
-
+            <div className="mx-20 ">
+            <div className="mx-4 rounded-lg my-7 mx-32  p-4 bg-gray-200 ">
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
@@ -55,8 +57,8 @@ export default function ApplyLeave() {
                                             name="eid"
                                             id="eid"
                                             value={eid}
-                                            //readOnly
-                                           onChange={(e) => setEid(e.target.value)}
+                                            readOnly
+                                          // onChange={(e) => setEid(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
@@ -143,6 +145,8 @@ export default function ApplyLeave() {
                             Submit
                         </button>
                 </div>
+        </div>
+        </div>
         </div>
     )
 }

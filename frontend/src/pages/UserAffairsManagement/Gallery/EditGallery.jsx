@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
-
-// import { PhotoIcon} from '@heroicons/react/24/solid'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import app from '../../../firebase';
 export default function EditImage() {
     
     const [image_id, setImgId] = useState()
     const [pet_name, setPetName] = useState()
     const [pet_image, setPetImage] = useState()
+    const [preImg, setPre] = useState()
     const navigate = useNavigate()
     const {id} = useParams()
     useEffect((e) => {
@@ -37,16 +38,86 @@ export default function EditImage() {
         })
         .catch(err => console.log(err))
     }
-        return (
 
-        
+    const [img, setImg] = useState(null);
+    const [imgPerc, setImgPerc] = useState();
+    const [videoPerc, setVideoPerc] = useState();
+  
+  
+    useEffect((e) => {
+        if (img) {
+          uploadFile(img, "imgUrl");
+        }
+      }, [img]);
+  
+    const uploadFile = (file, fileType) => {
+      const storage = getStorage(app);
+      const folder = fileType === "imgUrl" ? "images/" : "videos/";
+      const fileName = new Date().getTime() + file.name;
+      const storageRef = ref(storage, folder + fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+  
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          fileType === "imgUrl"
+            ? setImgPerc(Math.round(progress))
+            : setVideoPerc(Math.round(progress));
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              console.log(error);
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+            default:
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            
+            console.log('DownloadURL - ', downloadURL);
+            
+            setPetImage(() => {
+                // console.log("45"+JSON.parse(downloadURL));
+                setPre(downloadURL)
+              return downloadURL
+            });
+          });
+        }
+      );
+    }
+
+        return (
             <div>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                 <div className='text-xl font-bold '>Gallery Details</div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                         <div className="sm:col-span-3">
-                            <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="image_id" className="block text-sm font-medium leading-6 text-gray-900">
                                 Image ID
                             </label>
                             <div className="mt-2">
@@ -78,12 +149,12 @@ export default function EditImage() {
                             </div>
                             
                             { <div className="col-span-full">
-                            <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="pet_image" className="block text-sm font-medium leading-6 text-gray-900">
                             Pet Image
                             </label>
                             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                             <div className="text-center">
-                                <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
+                                <img src={pet_image} className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                                 <div className="mt-4 flex text-sm leading-6 text-gray-600">
                                     <label
                                         htmlFor="file-upload"
@@ -91,8 +162,7 @@ export default function EditImage() {
                                     >
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            value={pet_image}
-                                            onChange={(e) => setPetImage(e.target.value)}
+                                            onChange={(e) => setPetImage(() => e.target.files[0])}
                                         />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>

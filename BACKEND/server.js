@@ -78,10 +78,11 @@ cron.schedule("0 0 28-31 * *", async () => {
   }
 });
 
-//import routes
 
 
-//const complaintRouter = require('./routes/complaint.route');
+
+
+
 //const petRouter = require('./routes/pet.route')
 const feedbackRouter = require('./routes/feedback.route');
 const issuesandconcernsRouter = require('./routes/issuesandconcerns.route');
@@ -94,8 +95,10 @@ app.use("/userAffairsManager", feedbackRouter);
 app.use("/userAffairsManager", issuesandconcernsRouter);
 app.use("/userAffairsManager", galleryRouter);
 
+
 const rescueRequest = require('./routes/rescueRequest.route')
 app.use("/petManager", rescueRequest);
+
 
 
 const employeeRoute = require("./routes/employee.route.js"); // Importing employee route
@@ -109,6 +112,7 @@ const employeeLeave = require("./routes/leave.route.js"); // Importing leave rou
 // Routes
 //danuka routes
 
+
 //import routes
 
 const petRouter = require("./routes/pet.route");
@@ -119,19 +123,34 @@ app.get("/", (req, res) => {
 });
 
 //import routes
-const sponserpetRouter = require("./routes/sponserpet.route");
+
+const sponserpetRouter = require('./routes/sponserpet.route');
 
 //donations
 
-const donationRouter = require("./routes/donation.route");
-const reccuringdonationsRouter = require("./routes/reccuringdonation.route");
-const specificneeddonationRouter = require("./routes/specificneeddonation.route");
-const sponsorDonationRouter = require("./routes/sponsordonation.route");
+const donationRouter = require('./routes/donation.route');
+const reccuringdonationsRouter = require('./routes/reccuringdonation.route');
+const specificneeddonationRouter =require('./routes/specificneeddonation.route');
+const sponsorDonationRouter = require('./routes/sponsordonation.route');
+const financialRoutes = require('./routes/financial.route');
+
+const requestFunds = require('./routes/requestFunds.route');
+
+
+
+
+// const donationRouter = require("./routes/donation.route");
+// const reccuringdonationsRouter = require("./routes/reccuringdonation.route");
+// const specificneeddonationRouter = require("./routes/specificneeddonation.route");
+// const sponsorDonationRouter = require("./routes/sponsordonation.route");
 
 
 //import pet routes
 
 const rescueTask = require("./routes/task.route");
+
+
+
 
 //import adoption routes
 
@@ -162,15 +181,19 @@ app.use("/petManager", petRouter);
 
 
 //import inventory routes
+
 const itemRouter = require("./routes/product.route");
 const supplierRouter = require("./routes/supplier.routes");
 const requestRouter = require("./routes/request.route");
 const orderRouter = require("./routes/order.route");
+const messagesRouter = require("./routes/messages.route.js")
 
 app.use("/inventoryManager", itemRouter);
 app.use("/inventoryManager", supplierRouter);
 app.use("/inventoryManager", requestRouter);
 app.use("/inventoryManager", orderRouter);
+app.use("/inventoryManager", messagesRouter);
+
 app.use("/suppliers", orderRouter);
 
 app.use("/adoptionManager", adoptionRouter);
@@ -188,7 +211,8 @@ app.use("/donationManager/donation", donationRouter);
 app.use("/donationManager/reccuringdonation", reccuringdonationsRouter);
 app.use("/donationManager/specificneedsdonations", specificneeddonationRouter);
 app.use("/donationManager/sponsordonation", sponsorDonationRouter);
-
+app.use("/donationManager/financial", financialRoutes);
+app.use("/donationManager/fundrequests", requestFunds);
 // app.use('/donationManager',require('./routes/reccuringdonation.route'));
 
 // const rescueTask = require('./routes/task.route');
@@ -196,9 +220,11 @@ app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 
 
 
+
 app.use("/petManager", rescueRequest);
 app.use("/petManager", rescueTask)
 
+app.use("/user", rescueRequest);
 
 
 //induwara routes
@@ -211,9 +237,9 @@ app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // De
 app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
 
 
+
 app.listen(PORT, () =>{
 
     console.log(`Server is up and running on ${PORT}`);
-
 
 });

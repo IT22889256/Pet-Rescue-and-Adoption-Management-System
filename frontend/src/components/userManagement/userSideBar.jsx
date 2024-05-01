@@ -22,6 +22,7 @@ export default function UserSideBar() {
     try {
       await fetch("http://localhost:3000/api/users/logout");
       dispatch(logOut());
+
       document.cookie =
         "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       navigate("/log-in");

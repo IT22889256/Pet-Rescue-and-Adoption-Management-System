@@ -8,7 +8,7 @@ export default function Removeitem() {
   const handleDeleteBook = () => {
     
     axios
-      .delete(`http://localhost:3000/inventoryManager/supplier/removesupplier/${id}`)
+      .delete(`http://localhost:3000/InventoryManager/supplier/removesupplier/${id}`)
       .then(() => {
         alert('deleted')
         navigate('/InventoryManager/supplier');

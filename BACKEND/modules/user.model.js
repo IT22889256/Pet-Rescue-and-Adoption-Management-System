@@ -33,6 +33,9 @@ const userSchema = mongoose.Schema(
       enum: [
         "user",
         "employee",
+        "doctor",
+        "supplier",
+        "driver",
         "userManager",
         "petManager",
         "transportManager",
@@ -61,6 +64,38 @@ const userSchema = mongoose.Schema(
       type: String,
       maxLength: [250, "Bio must not be more than 250 characters"],
       default: "",
+    },
+    jobRole: {
+      type: String,
+      default: "Null",
+    },
+    location: {
+      type: String,
+    },
+    nic: {
+      type: String,
+      unique: true,
+      trim: true,
+    },
+    drivngLicense: {
+      type: String,
+      unique: true,
+      trim: true,
+    },
+    image: {
+      type: String,
+    },
+    nicback: {
+      type: String,
+    },
+    petOwnerShip: {
+      type: String,
+    },
+    reason: {
+      type: String,
+    },
+    empStatus: {
+      type: String,
     },
   },
   {

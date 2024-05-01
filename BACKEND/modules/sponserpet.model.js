@@ -29,7 +29,7 @@ const SponserPetSchema = mongoose.Schema({
     },
        pet_image: {
         type: String,
-      //   required: true
+       required: true
     },
     health_status: {
         type: String,

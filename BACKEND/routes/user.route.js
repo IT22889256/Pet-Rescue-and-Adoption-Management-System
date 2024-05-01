@@ -14,6 +14,7 @@ const {
   resetPassword,
   deleteUserAccount,
   generateOTP,
+  getOneUser,
   verifyOTP,
   resetPasswordSession,
 } = require("../controllers/user.controller");

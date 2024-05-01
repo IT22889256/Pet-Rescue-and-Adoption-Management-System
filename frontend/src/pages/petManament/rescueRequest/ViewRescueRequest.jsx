@@ -63,76 +63,7 @@ export default function ViewRescueRequest() {
 	}
 
 return (
-		// <div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-		// 	<strong className="text-gray-700 font-medium">Rescue request</strong>
-		// 	<div className="border-x border-gray-200 rounded-sm mt-3">
-		// 		<table className="bg-[#f3f3f3] w-full text-gray-700 h-full">
-		// 			<thead className="bg-[#c1c3c558]" >
-		// 				<tr>
-		// 					<th>Request ID</th>
-		// 					<th>User ID</th>
-		// 					<th>Pet Type</th>
-		// 					<th>Health Status</th>
-		// 					<th>Location</th>
-		// 					<th>Date</th>
-		// 					<th>Rescue Request Status</th>
-
-		// 						{rescueRequest.rescue_request_status==='Pending' &&(
-		// 						<th>Action</th>
-
-		// 						)}
-		// 				</tr>
-		// 			</thead>
-		// 				<tbody>
-		// 				<tr className='border-b-2 border-[#c1c3c558] text-center'>
-		// 						<td>
-		// 							{rescueRequest._id}
-		// 						</td >
-		// 						<td>
-		// 							{rescueRequest.user_id}
-		// 						</td >
-		// 						<td>
-		// 							{rescueRequest.pet_type}
-		// 						</td >
-		// 						<td>
-		// 							{rescueRequest.health_status}
-		// 						</td >
-		// 						<td>
-		// 							{rescueRequest.location}
-		// 						</td >
-		// 						<td>
-		// 							{rescueRequest.createdAt}
-		// 						</td >
-		// 							{rescueRequest.rescue_request_status=== "Pending" && (
-		// 							<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-centerml">
-		// 								<div>{rescueRequest.rescue_request_status}</div>
-		// 							</td>)}
-		// 							{rescueRequest.rescue_request_status=== "Accept" && (
-		// 							<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
-		// 								<div>{rescueRequest.rescue_request_status}</div>
-		// 							</td>)}
-		// 							{rescueRequest.rescue_request_status=== "Reject" && (
-		// 							<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
-		// 								<div>{rescueRequest.rescue_request_status}</div>
-		// 							</td>)}
-								
-		// 						<td>
-		// 						{rescueRequest.rescue_request_status==='Pending' &&(
-		// 						<>
-		// 							<Link onClick={Accept} to={`/petManager/rescueRequest/viewRescueRequest/${rescueRequest._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept
-		// 							</Link>
-		// 							<Link  onClick={Reject} to={`/petManager/rescueRequest/viewRescueRequest/${rescueRequest._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link>
-		// 						</>
-
-		// 						)}
-		// 						</td> 
-								
-		// 					</tr>
-		// 			</tbody>
-					
-		// 		</table>
-		// 	</div>
-		// </div>
+	
 
 		<div className="max-w-4xl mx-auto px-1 py-1 bg-neutral-200 sm:rounded-lg">
             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -146,7 +77,7 @@ return (
                     <dl>
 					<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-lg text-black-500 font-medium">Request ID</dt>
-                            <dd className="mt-1 text-base text-gray-900 sm:col-span-2">{rescueRequest._id}</dd>
+                            <dd className="mt-1 text-base text-gray-900 sm:col-span-2">{rescueRequest.rescue_req_id}</dd>
                         </div>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-lg font-medium text-black-500">User ID</dt>
@@ -166,7 +97,7 @@ return (
                         </div>
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-lg font-medium text-black-500">Date</dt>
-                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{rescueRequest.createdAt}</dd>
+                            <dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{rescueRequest.date}</dd>
                         </div>
 						{rescueRequest.rescue_request_status=== "Pending" && (
 						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

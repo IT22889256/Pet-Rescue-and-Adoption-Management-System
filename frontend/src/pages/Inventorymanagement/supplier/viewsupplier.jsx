@@ -2,73 +2,107 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
+import Supplier from '../supplier'
 
-export default function Viewsupplier() {
+export default function ViewPet() {
 	
-	const [supplier,setsupplier] = useState({})
+	const [supplier, setitem] = useState({})
 	const {id} = useParams()
 
 	useEffect(() => {
-		axios.get(`http://localhost:3000/inventoryManager/supplier/viewsupplier/${id}`)
+		axios.get(`http://localhost:3000/InventoryManager/supplier/viewsupplier/${id}`)
 		.then((res) => {
-			setsupplier(res.data)
+			setitem(res.data)
 			
 		}).catch((err) => {
 			console.log(err);
 		})
 	},[])
+	
+    // supplier_name: {
+	// 	type: String,
+	// 	 required: true,
+	   
+	// },
+	// supplier_address: {
+	// 	type: String,
+	// 	required: true,
+	//   },
+  
+	//   supplier_email:{
+	// 	type:String,
+	// 	required: true,
+	//   },
+	
+	//   supplier_age:{
+	// 	type: String,
+	// 	required: true,
+	// },
+	// supplier_phonenumber:{
+	//   type:String,
+	//   required: true,
+	// },
+	// supplier_image:{
+	//   type:String,
+	//   required: true,
+	// }
+	
+  
 return (
-		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-			<strong className="text-gray-700 font-medium">supplier</strong>
-			<div className="border-x border-gray-200 rounded-sm mt-3">
-				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
-					<thead className="bg-[#c1c3c558]" >
-						<tr>
-							<th>supplier name</th>
-							<th>supplier category</th>
-							<th>supplier quantity</th>
-							<th>supplier price</th>
-							<th>supplier image</th>
-							<th>supplier date</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-						<tbody>
-						<tr className='border-b-2 border-[#c1c3c558] text-center'>
-								<td>
-									{supplier._id}
-								</td >
-								<td>
-									{supplier.supplier_name}
-								</td >
-								<td>
-									{supplier.supplier_category}
-								</td >
-								<td>
-									{supplier.supplier_quantity}
-								</td >
-								<td>
-									{supplier.supplier_price}
-								</td >
-								<td>
-									{supplier.supplier_image}
-								</td >
-								<td>
-									{supplier.supplier_date}
-								</td >
-								<td>
-								<Link to={`/InventoryManager/supplier/editsupplier/${supplier._id}`} className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">Edit</Link>
-								
-								<Link to={`/InventoryManager/supplier/removesupplier/${supplier._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Remove</Link>
-								</td >
-								
-							</tr>
-						
-					</tbody>
-					
-				</table>
-			</div>
+	<div className="max-w-4xl mx-auto px-1 py-1 bg-neutral-200 sm:rounded-lg">
+	<div className="bg-white shadow overflow-hidden sm:rounded-lg">
+		<div className="px-4 py-5 sm:px-6">
+			<h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Supplier</h3>
 		</div>
+		<div className="mt-3 flex text-xs justify-center">
+		<img className='object-cover h-60 w-60 m-5 rounded-full' src={supplier.supplier_image} alt='profile_Image'/>
+		</div>
+		<div className="border-t border-gray-200">
+			<dl>
+				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt className="text-lg font-medium text-black-500">Supplier Name</dt>
+					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_name}</dd>
+				</div>
+				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt className="text-lg font-medium text-black-500">supplier Address</dt>
+					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_address}</dd>
+				</div>
+				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt className="text-lg font-medium text-black-500">Supplier Email</dt>
+					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_email}</dd>
+				</div>
+				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt className="text-lg font-medium text-black-500">Supplier Age</dt>
+					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_age}</dd>
+				</div>
+				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt className="text-lg font-medium text-black-500"> Supplier pno</dt>
+					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{supplier.supplier_phonenumber}</dd>
+				</div>
+
+				{/* <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt className="text-lg font-medium text-black-500">Pet Age</dt>
+					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{items.pet_age}</dd>
+				</div>
+				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt className="text-lg font-medium text-black-500">Pet Appearance</dt>
+					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{items.pet_appearance}</dd>
+				</div>
+				<div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt className="text-lg font-medium text-black-500">Found Location</dt>
+					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{items.location}</dd>
+				</div> */}
+				<div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 justify-center">
+				<Link to={`/InventoryManager/supplier/editsupplier/${supplier._id}`} className="bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-lg text-gray-400 text-center ml-1">Edit</Link>
+						
+				<Link to={`/InventoryManager/supplier/removesupplier/${supplier._id}`} className="bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-lg text-gray-400  text-center ml-1">Remove</Link>
+							
+				</div>
+				
+			</dl>
+		</div>
+	</div>
+</div>
 	)
 }
 

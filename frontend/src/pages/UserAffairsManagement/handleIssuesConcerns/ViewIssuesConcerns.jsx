@@ -55,64 +55,60 @@ export default function ViewIssueAndConcern() {
 			console.log(err);
 		})
 	},[])
-return (
-		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-			<strong className="text-gray-700 font-medium">Technical Issues And Adoption Related Concerns</strong>
-			<div className="border-x border-gray-200 rounded-sm mt-3">
-				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
-					<thead className="bg-[#c1c3c558]" >
-						<tr>
-							<th>User ID</th>
-							<th>Issue or Concern ID</th>
-							<th>Email</th>
-							<th>Message</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-						<tbody>
-						<tr className='border-b-2 border-[#c1c3c558] text-center'>
-								<td>
-									{issueandconcern.user_id}
-								</td >
-								<td>
-									{issueandconcern._id}
-								</td >
-								<td>
-									{issueandconcern.email}
-								</td >
-								<td>
-									{issueandconcern.message}
-								</td >
-								   
-								
-								<td>
-								{issueandconcern.issuesandconcerns_status==='Waiting' &&(
 
-								<>
-									<Link onClick={Accept} to={`/userAffairsManager/issueandconcern/${issueandconcern._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept</Link>
-									<Link  onClick={Reject} to={`/userAffairsManager/issueandconcern/${issueandconcern._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link>
-								</>
-								)}
-
-							{issueandconcern.issuesandconcerns_status=== "Accept" && (
-									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
-										<div>{issueandconcern.issuesandconcerns_status}</div>
-									</td>)}
-									{issueandconcern.issuesandconcerns_status=== "Reject" && (
-									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
-										<div>{issueandconcern.issuesandconcerns_status}</div>
-									</td>)}
-
-								
-								</td> 
-
-							</tr>
+return (<>
+	<div className="max-w-4xl mx-auto px-1 py-1 bg-neutral-200 sm:rounded-lg">
+			<div className="bg-white shadow overflow-hidden sm:rounded-lg">
+				<div className="px-4 py-5 sm:px-6">
+					<h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Technical Issues And Adoption Related Concerns</h3>
+				</div>
+				<div className="border-t border-gray-200">
+					<dl>
+					<div className="mt-3 flex text-xs justify-center">
+ 						<img className='object-cover h-60 w-60 m-5 rounded-full' src={issueandconcern.imgUrl} alt='profile_Image'/>
+					</div>
+					<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+							<dt className="text-lg text-black-500 font-medium">User ID</dt>
+							<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{issueandconcern.user_id}</dd>
+						</div>
+						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+							<dt className="text-lg font-medium text-black-500">Issue/Concern ID</dt>
+							<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{issueandconcern._id}</dd>
+						</div>
+						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+							<dt className="text-lg font-medium text-black-500">Email</dt>
+							<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{issueandconcern.email}</dd>
+						</div>
+						<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+							<dt className="text-lg font-medium text-black-500">Message</dt>
+							<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{issueandconcern.message}</dd>
+						</div>
 						
-					</tbody>
-					
-				</table>
+						<div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 justify-center">
+						
+									{issueandconcern.issuesandconcerns_status==='Waiting' &&(
+	
+									<>
+										<Link onClick={Accept} to={`/userAffairsManager/issueandconcern/${issueandconcern._id}`} className=" bg-green-500 text-white py-2 px-2 rounded hover:bg-green-700 text-xs text-gray-400  text-center text-justify ml-1 ">Accept</Link>
+										<Link  onClick={Reject} to={`/userAffairsManager/issueandconcern/${issueandconcern._id}`} className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 ">Recject</Link>
+									</>
+									)}
+	
+							   {issueandconcern.issuesandconcerns_status=== "Accept" && (
+										<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
+											<div>{issueandconcern.issuesandconcerns_status}</div>
+										</td>)}
+										{issueandconcern.issuesandconcerns_status=== "Reject" && (
+										<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+											<div>{issueandconcern.issuesandconcerns_status}</div>
+										</td>)}
+						</div>
+					</dl>
+				</div>
 			</div>
-		</div>
+		</div>	
+	</>
 	)
-}
-
+	}
+	
+	

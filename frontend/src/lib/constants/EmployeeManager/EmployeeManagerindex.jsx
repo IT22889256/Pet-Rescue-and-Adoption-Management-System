@@ -67,11 +67,11 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	},
 
 	{
-		key: 'Leave Apply',
-		label: 'Leave Apply',
-		path: '/EmployeeManager/LeaveApply',
+		key: 'Create Leave',
+		label: 'Create Leave',
+		path: '/EmployeeManager/CreateLeave',
 		icon: <BsFillSendArrowDownFill />
-	},
+	}
 
 ]
 
