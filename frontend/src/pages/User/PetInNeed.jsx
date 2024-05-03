@@ -61,23 +61,19 @@ const PetInNeed = () => {
               <tr key={SponsorshipPet._id}>
                 <td>
                   <div className="max-w-sm rounded overflow-hidden shadow-lg mt-5">
-                    <img
-                      className=" w-40 h-40"
-                      src={SponsorshipPet.pet_image}
-                      alt="Pet"
-                    />
+                    <div className="flex justify-items-center">
+                      <img
+                        className=" w-auto h-60"
+                        src={SponsorshipPet.pet_image}
+                        alt="Pet"
+                      />
+                    </div>
                     <div className="px-6 py-4 text-left">
-                      <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Pet Id : {SponsorshipPet.pet_id}
-                      </h1>
                       <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
                         Name : {SponsorshipPet.pet_name}
                       </h1>
                       <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Age : {SponsorshipPet.pet_age}
-                      </h1>
-                      <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Breed : {SponsorshipPet.health_status}
+                        Description : {SponsorshipPet.pet_description}
                       </h1>
                     </div>
                   </div>

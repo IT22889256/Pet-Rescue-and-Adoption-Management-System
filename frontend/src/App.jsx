@@ -15,6 +15,8 @@ import Adopters from "./pages/userManagement/Adopters";
 import EmployeesRequests from "./pages/userManagement/employeeRequests/EmployeeRequests";
 import ViewEmployeeRequest from "./pages/userManagement/employeeRequests/ViewEmployeeRequest";
 import EmployeeProfiles from "./pages/User/EmployeeProfile";
+import ViewOneAdopter from "./pages/userManagement/adopterRequests/ViewOneAdopters";
+import ViewLogins from "./pages/userManagement/logins/ViewLogins";
 
 import UserAffairsLayout from "./components/UserAffairsManager/UserAffairsLayout";
 import UserAffairsManagerDashboard from "./pages/UserAffairsManagement/UserAffairsManagerDashboard";
@@ -46,7 +48,6 @@ import ViewIssuesConcerns from "../src/pages/UserAffairsManagement/handleIssuesC
 import AllFeedback from "../src/pages/UserAffairsManagement/handleFeedback/AllFeedback";
 import ViewFeedback1 from "../src/pages/UserAffairsManagement/handleFeedback/viewFeedback";
 
-import UserRequest from "./pages/userManagement/UserRequest";
 import UserProfile from "./pages/userManagement/UserProfile";
 
 import CreateUser from "./pages/userManagement/userProfile/CreateUser";
@@ -362,7 +363,8 @@ function App() {
             path="/userManager/employeeRequests"
             element={<EmployeesRequests />}
           />
-
+          ///userManager/login-history
+          <Route path="/userManager/login-history" element={<ViewLogins />} />
           <Route
             path="/userManager/employees/viewEmployee/:id"
             element={<ViewEmployeeRequest />}
@@ -371,6 +373,10 @@ function App() {
           <Route
             path="/userManager/userProfile/viewUser/:id"
             element={<ViewUser />}
+          />
+          <Route
+            path="/userManager/view-adopter/:id"
+            element={<ViewOneAdopter />}
           />
           <Route
             path="/userManager/userProfile/RemoveUser/:id"
@@ -385,7 +391,6 @@ function App() {
             path="/userManager/verificationRequest/viewRequest/rejectRquest/:id"
             element={<RejectRequest />}
           />
-
           <Route
             path="/userManager/verificationRequest/viewRequest/acceptRquest/:id"
             element={<AcceptRequest />}
