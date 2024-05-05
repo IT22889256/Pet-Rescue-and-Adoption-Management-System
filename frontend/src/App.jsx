@@ -104,6 +104,7 @@ import CreateRequest from "./pages/adoptionManagement/adoptionRequest/CreateRequ
 import ViewAdoptionRequest from "./pages/adoptionManagement/adoptionRequest/ViewRequest"
 import EditRequest from "./pages/adoptionManagement/adoptionRequest/EditRequest";
 import DeleteRequest from "./pages/adoptionManagement/adoptionRequest/DeleteRequest";
+import ViewOneRequest from "./pages/adoptionManagement/adoptionRequest/ViewOneRequest";
 
 //supply request
 import CreateSupplyRequest from "./pages/adoptionManagement/supplyRequest/CreateSupplyRequest";
@@ -871,9 +872,10 @@ function App() {
 
                     {/*adoption profile routes*/}
                     <Route path="/adoptionManager/adoptionRequest/CreateRequest" element={<CreateRequest />} />
-                    <Route path="/adoptionManager/adoptionRequest/viewRequest/:id" element={<ViewAdoptionRequest />} />
+                    {/* <Route path="/adoptionManager/adoptionRequest/viewRequest/:id" element={<ViewAdoptionRequest />} /> */}
                     <Route path="/adoptionManager/adoptionRequest/editRequest/:id" element={<EditRequest />} />
                     <Route path="/adoptionManager/adoptionRequest/deleteRequest/:id" element={<DeleteRequest />} />
+                    <Route path="/adoptionManager/adoptionRequest/viewRequest/:id" element={<ViewOneRequest/>} />
 
                     {/*pet suppliment routes */}
                     <Route path="/adoptionManager/supplyRequest/CreateSupplyRequest" element={<CreateSupplyRequest />} />
