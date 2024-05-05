@@ -6,6 +6,10 @@ const AppoinmentSchema = mongoose.Schema(
     //   type: String,
     //   required: false,
     // },
+    appoinment_id: {
+      type: String,
+      // required: true
+    },
     appoinment_time: {
       type: String,
       required: true,
@@ -13,6 +17,10 @@ const AppoinmentSchema = mongoose.Schema(
     appoinment_doctor: {
       type: String,
       required: true,
+    },
+    appoinment_status: {
+      type: String,
+      default:'Pending' ,
     },
     // status: {
     //   type: String,
