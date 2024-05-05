@@ -11,12 +11,15 @@ import {
   logOut,
 } from "../../redux/user/userSlice";
 
+import cardImage from "../../image/card.png";
+
 const Profile = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
 
   const [feedback, setFeedback] = useState([]);
   const [adoptionProcesses, setAdoptionProcesses] = useState([]);
+  const [card, setCard] = useState("");
 
   useEffect(() => {
     axios
@@ -35,6 +38,21 @@ const Profile = () => {
       .then((res) => {
         console.log(res);
         setAdoptionProcesses(res.data);
+      });
+  }, []);
+
+  //get card details
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3000/donationManager/cards/getCardDetails/${currentUser._id}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        setCard(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 
@@ -141,7 +159,7 @@ const Profile = () => {
 
             <Link
               to={`/delete-account/${currentUser._id}`}
-              className="text-white px-5  rounded-lg bg-red-500 font-semibold ml-4 hover:opacity-95 disabled:opacity-80"
+              className="text-white px-5 py-3 rounded-lg bg-red-600 font-semibold  hover:opacity-95 disabled:opacity-80 ml-10"
             >
               Delete Account
             </Link>
@@ -161,12 +179,33 @@ const Profile = () => {
         {/* Right Section: Donation, Complaint, Adoption, Feedback */}
         <div className="md:w-1/2 space-y-4 my-7">
           {/* Donation History */}
-          <div className="bg-gray-200 mx-4 rounded-lg py-16">
-            <div className="text-center">
-              <p className="text-gray-600">My donation amount</p>
-              <p className="text-2xl font-semibold">Rs. 15,000.00</p>
+          {card ? (
+            <div className="bg-gray-200 mx-4 rounded-lg py-16">
+              <div className="flex flex-col md:flex-row">
+                <div className="text-center md:w-1/2">
+                  <img
+                    src={cardImage}
+                    alt="card"
+                    className="h-20 w-auto ml-20"
+                  />
+                </div>
+                <div className=" md:w-1/2">
+                  <p className="text-gray-600">
+                    Card Number : **** **** **** *
+                    {card?.cardNumber.slice(13, 16)}
+                  </p>
+                  <p className="text-2xl font-semibold">Rs. 1,000.00</p>
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="bg-gray-200 mx-4 rounded-lg py-16">
+              <div className="text-center">
+                <p className="text-gray-600">My donation amount</p>
+                <p className="text-2xl font-semibold">Rs. 00.00</p>
+              </div>
+            </div>
+          )}
           {/* Complaint History */}
           <div className="bg-gray-200 mx-4 rounded-lg py-16">
             <div className="text-center">
