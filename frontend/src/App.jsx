@@ -301,6 +301,7 @@ function App() {
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route path="/" element={<Home />} />
+
           <Route path="user/:id/available-pets" element={<AvailablePets />} />
           <Route path="/pet-profile/:id" element={<PetsProfile />} />
           <Route path="/user/:id/pet-in-need" element={<PetInNeed />} />
