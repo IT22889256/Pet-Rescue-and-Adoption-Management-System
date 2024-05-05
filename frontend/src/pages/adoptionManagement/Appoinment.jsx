@@ -23,25 +23,40 @@ export default function Appoinment() {
 						<tr>
 							<th>Appoinment ID</th>
 							<th>Date</th>
-							<th>Time</th>
-							<th>Doctor</th>
+							{/* <th>Time</th> */}
+							{/* <th>Doctor</th> */}
+							<th>Appoinment Status</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					{<tbody>
 						{appoinments.map((appoinment) => (
-							<tr className='border-b-2 border-[#c1c3c558] text-center' key={appoinment._id}>
+							<tr className='border-b-2 border-[#c1c3c558] text-center' key={appoinment.appoinment_id}>
 								<td>
-									{appoinment._id}
+									{appoinment.appoinment_id}
 								</td >
 								<td>
 									{appoinment.createdAt}
 								</td>
-								<td>
+								{/* <td>
 									{appoinment.appoinment_time}
 								</td>
                                 <td>
 									{appoinment.appoinment_doctor}
+								</td> */}
+								<td>
+								{appoinment.appoinment_status=== "Completed" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
+										<div>{appoinment.appoinment_status}</div>
+									</td>)}
+									{appoinment.appoinment_status=== "In Progress" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
+										<div>{appoinment.appoinment_status}</div>
+									</td>)}
+									{appoinment.appoinment_status=== "Pending" && (
+									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
+										<div>{appoinment.appoinment_status}</div>
+									</td>)}
 								</td>
                                 <td>
 									<Link to={`/adoptionManager/AppoinmentSchedule/ViewAppoinment/${appoinment._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>

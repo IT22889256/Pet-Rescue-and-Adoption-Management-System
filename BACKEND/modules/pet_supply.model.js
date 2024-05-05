@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const SupplySchema = mongoose.Schema(
   {
-  //   supply_id:{
-  //     type:String,
-  //     unique:true
-  // },
+    supply_id:{
+      type:String,
+      // unique:true
+  },
     supply_item: {
       type: String,
       required: true,

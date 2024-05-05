@@ -19,7 +19,9 @@ const RescueRequestForm = () => {
     const [img, setImg] = useState(null);
 
 
+
     const [validationErrors, setValidationErrors] = useState({}); 
+
 
 
     useEffect((e) => {
@@ -120,6 +122,7 @@ const RescueRequestForm = () => {
             user_id,pet_type,health_status,location,rescue_request_status,imgUrl
 
 
+
         };
         console.log('result')
         axios.post('http://localhost:3000/user/rescueRequest/createRescueRequest',data)
@@ -165,7 +168,9 @@ return (
             </div>
 
 
+
             <form action="">
+
 
 
             <div className="max-w-xl mx-auto rounded-lg my-7 py-5 px-16 bg-gray-300 bg-opacity-60">
@@ -186,6 +191,7 @@ return (
 
 
                 </div>
+
 
 
                 </div>
@@ -250,14 +256,13 @@ return (
                                             />
 
 
+
                                             {validationErrors.location && (
             <p className="text-red-500 text-xs">{validationErrors.location}</p>
           )}
                                         </div>
                                     </div>
                              
-
-
 
 
                                     {<div className="col-span-full">
@@ -275,7 +280,9 @@ return (
                                                 <span>Upload a file</span>
 
 
+
                                                 <input required id="file-upload" name="file_upload"  type="file" className="sr-only" 
+
 
 
                                                 onChange={(e) => setImg(() => e.target.files[0])}
@@ -286,12 +293,14 @@ return (
                                             <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
 
 
+
                                             {validationErrors.img && (
             <p className="text-red-500 text-xs">{validationErrors.img}</p>
           )}
                                     </div>
                                     </div>
                                     </div> }
+
 
 
                                         <div className="mt-6 flex items-center justify-end gap-x-6">
