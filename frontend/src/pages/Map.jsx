@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { FaLocationArrow, FaTimes } from 'react-icons/fa';
 import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api';
 
-const center = { lat: 48.8584, lng: 2.2945 };
+const center = { lat: 6.915432, lng: 79.972936 };
 
 function Map() {
   const { isLoaded } = useJsApiLoader({
@@ -84,13 +84,13 @@ function Map() {
             <button
               className="bg-pink-500 text-white px-4 py-2 rounded"
               type="submit"
-              onClick={calculateRoute}
+              onClick={() => calculateRoute()}
             >
               Calculate Route
             </button>
             <button
               className="bg-gray-300 text-gray-700 px-2 py-2 rounded-full"
-              onClick={clearRoute}
+              onClick={() => clearRoute()}
             >
               <FaTimes />
             </button>

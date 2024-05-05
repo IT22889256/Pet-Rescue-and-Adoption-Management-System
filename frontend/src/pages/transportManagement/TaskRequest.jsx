@@ -70,7 +70,7 @@ export default function TaskRequest() {
 									{taskRequest.location}
 								</td>
 								<td>
-									{taskRequest.date}
+									{new Date(taskRequest.createdAt).toLocaleDateString()}
 								</td>
 								
 									{taskRequest.rescue_task_status=== "Pending" && (
@@ -113,7 +113,7 @@ export default function TaskRequest() {
 									{taskRequest.pet_type}
 								</td>
 								<td>
-									{taskRequest.location}
+									{new Date(taskRequest.createdAt).toLocaleDateString()}
 								</td>
 								<td>
 									{taskRequest.date}

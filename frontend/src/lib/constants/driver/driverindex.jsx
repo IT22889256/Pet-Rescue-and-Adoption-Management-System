@@ -15,7 +15,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'Map',
 		label: 'Map',
-		path: '/driver/Map',
+		path: '/map',
 		icon: <FiMapPin />
 	}
 ]
