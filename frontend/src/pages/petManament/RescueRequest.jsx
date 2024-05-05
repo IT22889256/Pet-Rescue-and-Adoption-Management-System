@@ -86,7 +86,7 @@ export default function RescueRequest() {
 										<div>{rescueRequest.health_status}</div>
 									</td>)}
 								<td>
-									{rescueRequest.createdAt}
+									{rescueRequest.createdAt.split(' ')[0]}
 								</td>
 									{rescueRequest.rescue_request_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
@@ -120,9 +120,9 @@ export default function RescueRequest() {
 					
 					{<tbody>
 						{rescueRequests.filter((rescueRequest) => {
-							return searchQuery.toUpperCase() === '' 
+							return searchQuery === '' 
 							? rescueRequest 
-							: rescueRequest.rescue_req_id.toUpperCase().includes(searchQuery)
+							: (rescueRequest.pet_type).includes(searchQuery) || rescueRequest.rescue_req_id.includes(searchQuery)|| rescueRequest.rescue_request_status.includes(searchQuery)
 						}).map((rescueRequest) => (
 								rescueRequest.rescue_request_status !== 'Pending' &&(
 									<tr className='border-b-2 border-[#c1c3c558] text-center' key={rescueRequest._id}>

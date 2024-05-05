@@ -154,7 +154,7 @@ import Editorder from '../src/pages/Inventorymanagement/order/Editorder'
 import Vieworder from '../src/pages/Inventorymanagement/order/Vieworder'
 import Removeorder from '../src/pages/Inventorymanagement/order/Removeorder'
 //messages
-import messsages from '../src/pages/Inventorymanagement/message'
+import Messsages from './pages/Inventorymanagement/message'
 import Createmessages from './pages/Inventorymanagement/messages/Createmessages'
 import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
 import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
@@ -190,6 +190,7 @@ import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundreq
 //Employeee
 
 
+
 //Suppliers
 import Supplierslayout from "./components/Supplier/Supplierslayout";
 
@@ -211,9 +212,9 @@ import EditSchedule from './pages/transportManagement/scheduleProfile/EditSchedu
 import ViewSchedule from './pages/transportManagement/scheduleProfile/ViewSchedule'
 import RemoveSchedule from './pages/transportManagement/scheduleProfile/RemoveSchedule' 
 import CreateVehicle from './pages/transportManagement/VehicleProfile/CreateVehicle'
-import VehicleProfile from './pages/transportManagement/VehicleProfile/ViewVehicle'
-import EditVehicle from './pages/transportManagement/VehicleProfile/EditVehicle'
 
+import VehicleProfile from './pages/transportManagement/VehicleProfile'
+import EditVehicle from './pages/transportManagement/VehicleProfile/EditVehicle'
 
 import ViewVehicle from './pages/transportManagement/VehicleProfile/ViewVehicle'
 import RemoveVehicle from './pages/transportManagement/VehicleProfile/RemoveVehicle'
@@ -232,11 +233,18 @@ import DoctorAvailability from "./pages/DoctorAvailability";
 //Helper Availabilty
 import HelperAvailability from "./pages/HelperAvailability";
 
+//janitor availability
+import JanitorAvailability from "./pages/JanitorAvailability";
+
+//jobrole availability
+import JobRoleAvailability from "./pages/jobroleAvailability";
+
 //Driver imports
 import DriverLayout from "./components/driver/DriverLayout";
 import AssignedSheduleProfile from "./pages/driver/AssignedSheduleProfile";
 import ViewAssignedTask from "./pages/driver/assignedShedules/ViewAssignedTask";
 import EditAssignedTask from "./pages/driver/assignedShedules/EditAssignedTask";
+import Map from "./pages/driver/Map";
 
 //employee management imports
 import EmployeeLayout from "./components/employeeManager/EmployeeLayout";
@@ -325,6 +333,10 @@ function App() {
 
           <Route
             path="/user/:id/rescuerequestForm"
+            element={<RescueRequestForm />}
+          />
+           <Route
+            path="/rescuerequestForm"
             element={<RescueRequestForm />}
           />
 
@@ -573,6 +585,10 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
+
+        <Route path="/JanitorAvailability" element={<JanitorAvailability />} />
+        <Route path="/JobRoleAvailability" element={<JobRoleAvailability />} />
+
        </Routes>
 
        
@@ -586,6 +602,7 @@ function App() {
             <Route path="/driver/assignedShedules/ViewAssignedTask/:id" element={<ViewAssignedTask />} />
             
             <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
+            <Route path="/driver/Map" element={<Map />} />
           </Route>
           </Route>
         </Routes>
@@ -972,7 +989,8 @@ import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
 import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
 import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
         </Route> */}
-        <Route path="/InventoryManager/messages" element={<messsages />} />
+        <Route path="/InventoryManager/messages" element={<Messsages />} />
+        
           {/* order routes*/}
           <Route
             path="/InventoryManager/messages/Viewmessages/:id"

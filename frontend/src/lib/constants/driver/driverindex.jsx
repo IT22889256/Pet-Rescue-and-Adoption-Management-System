@@ -3,6 +3,7 @@ import {
 	HiOutlineQuestionMarkCircle
 } from 'react-icons/hi'
 import { FaTasks } from "react-icons/fa";
+import { FiMapPin } from "react-icons/fi";
 export const DASHBOARD_SIDEBAR_LINKS = [
 	
 	{
@@ -11,6 +12,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/driver/AssignedSheduleProfile',
 		icon: <FaTasks />
 	},
+	{
+		key: 'Map',
+		label: 'Map',
+		path: '/driver/Map',
+		icon: <FiMapPin />
+	}
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
