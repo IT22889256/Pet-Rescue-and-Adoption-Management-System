@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -8,8 +8,20 @@ import {
   deleteUserFailure,
   logOut,
 } from "../../redux/user/userSlice";
+import axios from 'axios'
 
 const Profile = () => {
+
+  const [rescueRequests, setRescueRequests] = useState([]);
+
+	useEffect(() => {
+		axios.get('http://localhost:3000/petManager/rescueRequest').then(res => {
+			console.log(res);
+			setRescueRequests(res.data)
+		})
+	},[])
+
+
   const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const handleDeleteAccount = async () => {
@@ -165,13 +177,22 @@ const Profile = () => {
             </div>
           </div>
           {/* Complaint History */}
+          
           <div className="bg-gray-200 mx-4 rounded-lg py-16">
             <div className="text-center">
-              <p className="text-gray-600">My complaints</p>
-              <p className="text-green-500">
-                I am writing to inform you about an injured animal that requires
-                immediate attention (In progress)
-              </p>
+             
+            {rescueRequests.map((rescueRequest) => (
+              
+              rescueRequest.user_id === currentUser._id &&(
+              <div>
+                <p className="text-gray-600">My complaints</p>
+                  <p className="text-green-500">
+                    {rescueRequest.rescue_req_id}
+                  </p>
+                  
+              </div>
+              )
+            ))}
             </div>
           </div>
           <div className="bg-gray-100  flex flex-col md:flex-row">

@@ -4,9 +4,8 @@ import { useParams,useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from '../../../firebase';
-// import QRCode from 'qrcode'
 const QRCode = require('qrcode')
-// import { PhotoIcon} from '@heroicons/react/24/solid'
+
 export default function CreatePet() {
     
     const [rescue_req_id, setReqId] = useState()
@@ -125,11 +124,7 @@ export default function CreatePet() {
             }
             console.log('result')
             console.log(imgUrl);
-            // let stJson = JSON.stringify(data)
-            //     QRCode.toFile(`${id}.png`,stJson, function(err,code){
-            //         if(err) return console.log("error");
-            //         console.log(code);
-            //     });
+            
            
             axios.post(`http://localhost:3000/petManager/petProfile/createPet`,{...data})
             axios.put(`http://localhost:3000/petManager/rescueTask/editRescueTask/${id}`,update)
@@ -142,50 +137,7 @@ export default function CreatePet() {
         }
 
         
-        // const handleBlur = (e) => { 
-        //     setPetName(e.target.value);
-        //     const trimmedValue = e.target.value.trim();
-        //     var inputArray = [];
-        //     const allowedCharsRegex = /^[a-zA-Z0-9 ]+$/;
-
-        //     // let nameLength = e.target.value.length
-        //     inputArray = e.target.value
-        //     console.log(inputArray);
-        //     if(inputArray.value === '@' ) {
-        //         alert("error")
-        //     }
-
-        //     if (!allowedCharsRegex.test(trimmedValue)) {
-        //         alert("Error: Special characters are not allowed. Please use letters, numbers, or spaces only.");
-        //         // Optionally, clear the input field to enforce the restriction
-        //         e.target.value = "";
-        //         return; // Exit function early to prevent setting petName with invalid input
-        //       }
-        
-        //     if(inputArray.length >= 4){
-        //         alert("error")
-        //     }
-            
-        //     const trimmedValue = e.target.value.trim();
-        //     const allowedCharsRegex = /^[a-zA-Z ]+$/;
-        //     if (!trimmedValue) { 
-        //         // alert("Error: The field is required. Please enter your pet's name using letters or spaces only.");
-        //         e.target.focus(); 
-        //         return;// Set focus back to the input field for immediate correction
-        //       } else if (!allowedCharsRegex.test(trimmedValue)) {
-               
-                
-        //         alert("Error: Special characters are not allowed. Please use letters or spaces only.");
-        //         e.target.value = ""; // Clear the input field
-        //         e.target.focus(); // Set focus back to the input field
-        //       } 
-        //       else {
-        //         // Update petName only if validation passes and no alerts were shown
-        //         setPetName(trimmedValue);
-        //       }
-                
-        // }; 
-
+     
         const stringValidator = (value)=>{
             let regex = /^[a-zA-Z]*$/;
             if(!regex.test(value) ){
@@ -273,21 +225,7 @@ export default function CreatePet() {
                                         </div>
                                         
                                     </div>
-                                    {/* <div className="sm:col-span-3">
-                                        <label htmlFor="pet-gender" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet Gender
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="text"
-                                                name="pet_gender"
-                                                id="pet-gender"
-                                                value={pet_gender}
-                                                onChange={(e) => setPetGender(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div> */}
+                                    
                                     <div className="sm:col-span-3">
     <label htmlFor="pet-gender" className="block text-sm font-medium leading-6 text-gray-900">
         Pet Gender
