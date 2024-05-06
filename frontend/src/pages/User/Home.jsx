@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
 import homeImg from '../../image/homeImg.jpg'
+import axios from 'axios'
 
 const Home = () => {
+
+
+  const [feedbacks, setfeedbacks] = useState([]);
+
+	useEffect(() => {
+		axios.get('http://localhost:3000/userAffairsManager/feedback').then(res => {
+			console.log(res);
+			setfeedbacks(res.data)
+		})
+	},[])
+
+
   return <>
   
   <div className="flex m-10">
@@ -43,12 +56,51 @@ const Home = () => {
         </table>
       </div>
     </div>
-    
+
+   
     
     <div className="basis-1/3">
       <img className="h-30 w-full" src={homeImg} alt="homeIMG" />
     </div>
   </div>
+  
+  
+  <div class="grid gap-6 text-center md:grid-cols-3 lg:gap-12">
+  {feedbacks.map((feedback) => (
+  <div class="mb-12 md:mb-0">
+    <div class="mb-6 flex justify-center">
+      <img
+        src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(1).jpg"
+        class="w-32 rounded-full shadow-lg dark:shadow-black/30" />
+    </div>
+    <h5 class="mb-4 text-xl font-semibold">{feedback.email}</h5>
+    <h6 class="mb-4 font-semibold text-primary dark:text-primary-400">
+     
+    </h6>
+    <p class="mb-4 text-neutral-600 dark:text-neutral-300">
+      <span class="inline-block pe-2 [&>svg]:w-5"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 448 512">
+          
+          <path
+            d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320 288 216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V320 288 216z" />
+        </svg>
+      </span>
+     {feedback.reason}
+    </p>
+    
+  </div>
+  ))}
+  
+  </div>
+
+
+
+
+
+    
   <div className="flex m-10 ">
     <div className="box-border h-40 w-full">
       <img className="opacity-50 h-screen w-full object-cover" src={homeImg} alt="homeIMG" />

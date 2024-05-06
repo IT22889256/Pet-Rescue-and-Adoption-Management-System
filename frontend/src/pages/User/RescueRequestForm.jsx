@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import background from "../../image/background-image.jpg";
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { PhotoIcon} from '@heroicons/react/24/solid'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from '../../firebase';
+import { useSelector } from "react-redux";
 const RescueRequestForm = () => {
     
-    const [user_id, setUserId] = useState()
+    
     const [pet_type, setPettype] = useState()
     const [health_status, setHealStatus] = useState()
     const [location, setLocation] = useState()
@@ -16,6 +16,8 @@ const RescueRequestForm = () => {
     const [rescue_request_status, setRescueRequestStatus] = useState("Pending")
     const navigate = useNavigate()
     
+    const currentUser = useSelector((state) => state.user.currentUser);
+    const [user_id, setUserId] = useState(currentUser._id)
     const [img, setImg] = useState(null);
     const [validationErrors, setValidationErrors] = useState({}); 
     useEffect((e) => {
@@ -166,12 +168,12 @@ return (
                         </label>
                 <div className="mt-2">
                 <input
-                
+                  disabled
                     type="text"
                     name="user_id"
                     id="user-id"
-                    value={user_id}
-                    onChange={(e) => setUserId(e.target.value)}
+                    value={currentUser._id}
+                   
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 </div>

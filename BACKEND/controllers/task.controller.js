@@ -98,11 +98,26 @@ const displayOneTask = async(req, res) => {
 //     }
 // }
 
+
+const deletePet = async(req, res) => {
+    try{
+        const {id} = req.params;
+        const pet = await Pet.findByIdAndDelete(id);
+        if(!pet) {
+            return res.status(404).json({message: "Complaint not found"});
+        }
+        res.status(200).json({message: "Comaplint deleted successfully"});
+
+    }catch(error) {
+        res.status(500).json({message: error.message});
+    }
+}
+
 module.exports = {
     displayTask,
     addTask,
     editTask,
     displayOneTask,
-    // deletePet
+    // deleteTask,
 }
 
