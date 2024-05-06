@@ -1,4 +1,5 @@
 const Gallery = require("../modules/gallery.model")
+const Counter = require('../modules/counter.model');
 
 const getImages = async (req, res) => {
   try {
@@ -21,7 +22,14 @@ const getImage = async (req, res) => {
 
 const createImage = async (req, res) => {
   try {
-    const image = await Gallery.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'galleryimageId' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+  
+    const galleryimageId = 'IMG' + String(counter.seq).padStart(3, '0');
+    const image = await Gallery.create({...req.body,imageId:galleryimageId});
     res.status(200).json(image);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-datepicker": "^6.9.0",
     "react-redux": "^9.1.0"
   }
 }

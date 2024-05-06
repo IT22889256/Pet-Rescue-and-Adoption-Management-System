@@ -30,7 +30,6 @@ const [request_no, setrequestno] = useState()
 const [request_to, setrequestto] = useState()
 const [request_date,setrequestdate] = useState() */}
 							<th>Request Id</th>
-							<th>Request no</th>
 							<th>Request to</th>
 							<th>Request date</th>
 							<th>Action</th>
@@ -40,9 +39,6 @@ const [request_date,setrequestdate] = useState() */}
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
 						<td>
 									{request.requestId}
-								</td >
-								<td>
-									{request.request_no}
 								</td >
 								<td>
 									{request.request_to}
