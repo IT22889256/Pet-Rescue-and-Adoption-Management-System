@@ -9,6 +9,8 @@ const mongoose = require("mongoose");
 const otpGenerator = require("otp-generator");
 const { LocalStorage } = require("node-localstorage");
 const localStorage = new LocalStorage("./scratch");
+const Counter = require("../modules/counter.model");
+const Login = require("../modules/login.model");
 // Generate Token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
@@ -34,8 +36,17 @@ const registerUser = asyncHandler(async (req, res, next) => {
       throw new Error("Email has already been registered");
     }
 
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: "userId" },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+
+    const userId = "USER" + String(counter.seq).padStart(3, "0");
+
     // Create new user
     const user = await User.create({
+      user_id: userId,
       name,
       email,
       password,
@@ -121,6 +132,7 @@ const loginUser = asyncHandler(async (req, res) => {
   if (user && passwordIsCorrect) {
     const {
       _id,
+      user_id,
       name,
       email,
       role,
@@ -131,9 +143,18 @@ const loginUser = asyncHandler(async (req, res) => {
       bio,
       jobRole,
     } = user; // Include role here
-
+    const login = await Login.create({
+      user_id: user_id,
+      name: name,
+      email: email,
+      role: role,
+      eid: eid,
+      time: new Date().toLocaleTimeString(),
+      status: "loged in",
+    });
     res.status(200).json({
       _id,
+      user_id,
       name,
       email,
       phone,
@@ -227,6 +248,42 @@ const getOneUser = asyncHandler(async (req, res) => {
   } else {
     res.status(400);
     throw new Error("User Not Found");
+  }
+});
+
+//Get one Adopter
+// Get User Data - userManager
+const getAdopter = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const adopter = await User.find({ _id: id, role: "adopter" });
+  console.log("Adopter", adopter);
+
+  if (adopter) {
+    const {
+      _id,
+      name,
+      email,
+      photo,
+      phone,
+      bio,
+      role,
+      nic,
+      roletype,
+      eid,
+      image,
+      location,
+      nicback,
+      petOwnerShip,
+      reason,
+    } = adopter;
+    res.status(200).json({
+      Data: {
+        adopter,
+      },
+    });
+  } else {
+    res.status(400);
+    throw new Error("Adopter Not Found");
   }
 });
 
@@ -406,9 +463,10 @@ const forgotPassword = asyncHandler(async (req, res) => {
 // Generate OTP
 const generateOTP = asyncHandler(async (req, res) => {
   const OTP = await otpGenerator.generate(6, {
-    lowerCaseAlphabets: false,
-    upperCaseAlphabets: false,
-    specialChars: false,
+    digits: true,
+    lowerCaseAlphabets: true,
+    upperCaseAlphabets: true,
+    specialChars: true,
   });
   console.log("generated OTP", OTP);
   localStorage.setItem("OTP", OTP); // Store OTP in localStorage
@@ -422,7 +480,7 @@ const generateOTP = asyncHandler(async (req, res) => {
 const verifyOTP = asyncHandler(async (req, res) => {
   const { otp } = req.body;
   console.log("hello ", otp, localStorage.getItem("OTP"));
-  if (parseInt(otp) === parseInt(localStorage.getItem("OTP"))) {
+  if (otp === localStorage.getItem("OTP")) {
     localStorage.setItem("OTP", null); // reset OTP
     localStorage.setItem("resetSession", true); // reset resetSession
 
@@ -464,11 +522,18 @@ const resetPassword = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Password updated" });
 });
 
+//get all login data
+const getLoginData = asyncHandler(async (req, res) => {
+  const login = await Login.find({}).sort("-createdAt"); // Fetch all login data without filtering by user ID
+  res.status(200).json(login);
+});
+
 module.exports = {
   registerUser,
   loginUser,
   logout,
   getUser,
+  getAdopter,
   getUsers,
   loginStatus,
   updateUser,
@@ -482,4 +547,5 @@ module.exports = {
   generateOTP,
   verifyOTP,
   resetPasswordSession,
+  getLoginData,
 };

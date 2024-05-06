@@ -68,6 +68,7 @@ export default function EditPet() {
                                 </label>
                                 <div className="mt-2">
                                     <input
+                                    required
                                         type="text"
                                         name="pet_name"
                                         id="pet-name"
@@ -83,6 +84,7 @@ export default function EditPet() {
                                 </label>
                                 <div className="mt-2">
                                     <input
+                                    required
                                         type="text"
                                         name="pet_gender"
                                         id="pet-gender"
@@ -98,6 +100,7 @@ export default function EditPet() {
                                 </label>
                                 <div className="mt-2">
                                     <input
+                                    required
                                         type="text"
                                         name="pet_age"
                                         id="pet-age"
@@ -113,6 +116,7 @@ export default function EditPet() {
                                 </label>
                                 <div className="mt-2">
                                     <input
+                                    required
                                         type="text"
                                         name="pet_appearance"
                                         id="pet-appearance"
@@ -128,6 +132,7 @@ export default function EditPet() {
                                 </label>
                                     <div className="mt-2">
                                         <select
+                                        required
                                             id="pet-type"
                                             name="pet_type"
                                             value={pet_type}
@@ -146,6 +151,7 @@ export default function EditPet() {
                                 </label>
                                     <div className="mt-2">
                                         <select
+                                        required
                                             id="health-status"
                                             name="health_status"
                                             value={health_status}

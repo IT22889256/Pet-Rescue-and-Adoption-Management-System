@@ -1,4 +1,5 @@
 const Appoinment = require("../modules/appoinment_schedule.model");
+const Counter = require('../modules/counter.model');
 
 const getAppoinments = async (req, res) => {
   try {
@@ -21,7 +22,16 @@ const getAppoinment = async (req, res) => {
 
 const createAppoinment = async (req, res) => {
   try {
-    const appoinment = await Appoinment.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'appoinmentId' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+  
+    const appoinmentId = 'AP' + String(counter.seq).padStart(3, '0');
+    
+    const appoinment = await Appoinment.create({ ...req.body, appoinment_id: appoinmentId });
+
     res.status(200).json(appoinment);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -45,9 +45,8 @@ export default function RemovePet() {
                 data-original="#000000" />
             </svg>
             <h4 className="text-xl font-semibold mt-6">Are you sure you want to delete it?</h4>
-            <p className="text-sm text-gray-500 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor auctor
-              arcu,
-              at fermentum dui. Maecenas</p>
+            <p className="text-sm text-gray-500 mt-4">You can ReActivate the employee if you want, from delete employee table
+              </p>
           </div>
           <div className="flex flex-col space-y-2">
            

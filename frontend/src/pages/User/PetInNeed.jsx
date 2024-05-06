@@ -12,35 +12,62 @@ const PetInNeed = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   axios.get("http://localhost:3000/petManager/petProfile").then((res) => {
-  //     console.log(res);
-  //     setPets(res.data);
-  //   });
-  // }, []);
+  const [cardholderName, setName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [expirationMonth, setExpirationMonth] = useState("");
+  const [expirationYear, setExpirationYear] = useState("");
+  const [cvv, setCvv] = useState("");
   const [SponsorshipPets, setSponsorshipPets] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/donationManager/sponseredPet")
       .then((res) => {
-        console.log(res);
         setSponsorshipPets(res.data);
       });
   }, []);
 
   const Submit = (e) => {
-    const data = {
+    e.preventDefault();
+
+    // Validation check
+    if (
+      !cardholderName ||
+      !cardNumber ||
+      !expirationMonth ||
+      !expirationYear ||
+      !cvv
+    ) {
+      alert("Please fill all the input fields");
+      return;
+    }
+
+    const data1 = {
       user_id: currentUser._id,
       amount: amount,
       pet_id: pet_id,
     };
-    console.log("result");
+
     axios
-      .post("http://localhost:3000/donationManager/sponsordonation/add", data)
+      .post("http://localhost:3000/donationManager/sponsordonation/add", data1)
       .then((result) => {
-        console.log(result);
-        alert("Donation Successfull");
+        alert("Successfully Added Donation Details");
+      })
+      .catch((err) => console.log(err));
+
+    const data = {
+      user_id: currentUser.user_id,
+      cardholderName,
+      cardNumber,
+      expirationMonth,
+      expirationYear,
+      cvv,
+    };
+
+    axios
+      .post("http://localhost:3000/donationManager/cards/add", data)
+      .then((result) => {
+        alert("Donation Successful");
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -61,23 +88,22 @@ const PetInNeed = () => {
               <tr key={SponsorshipPet._id}>
                 <td>
                   <div className="max-w-sm rounded overflow-hidden shadow-lg mt-5">
-                    <img
-                      className=" w-40 h-40"
-                      src={SponsorshipPet.pet_image}
-                      alt="Pet"
-                    />
+                    <div className="flex justify-items-center">
+                      <img
+                        className=" w-auto h-60"
+                        src={SponsorshipPet.pet_image}
+                        alt="Pet"
+                      />
+                    </div>
                     <div className="px-6 py-4 text-left">
                       <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Pet Id : {SponsorshipPet.pet_id}
+                        PetID : {SponsorshipPet.pet_id}
                       </h1>
                       <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
                         Name : {SponsorshipPet.pet_name}
                       </h1>
                       <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Age : {SponsorshipPet.pet_age}
-                      </h1>
-                      <h1 className="bg-white  text-gray-800 font-semibold  px-4  ">
-                        Breed : {SponsorshipPet.health_status}
+                        Description : {SponsorshipPet.pet_description}
                       </h1>
                     </div>
                   </div>
@@ -179,14 +205,126 @@ const PetInNeed = () => {
               disabled
             ></input>
           </div>
-
-          <div className="flex justify-end my-5">
-            <button
-              onClick={Submit}
-              className="text-gray-950 px-8 py-3 rounded-lg bg-orange-300 font-semibold hover:opacity-95 disabled:opacity-80"
-            >
-              Submit
-            </button>
+        </div>
+        <div className="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10 pt-16">
+          <div
+            className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700"
+            style={{ maxWidth: "600px" }}
+          >
+            <div className="w-full pt-1 pb-5">
+              <div className="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
+                <i className="mdi mdi-credit-card-outline text-3xl"></i>
+              </div>
+            </div>
+            <div className="mb-10">
+              <h1 className="text-center font-bold text-xl uppercase">
+                Secure payment info
+              </h1>
+            </div>
+            <div className="mb-3 flex -mx-2">
+              <div className="px-2">
+                <label
+                  htmlFor="type1"
+                  className="flex items-center cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    className="form-radio h-5 w-5 text-indigo-500"
+                    name="type"
+                    id="type1"
+                    checked
+                  />
+                  <img
+                    src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
+                    alt="Credit Card"
+                    className="h-8 ml-3"
+                  />
+                </label>
+              </div>
+            </div>
+            <div className="mb-3">
+              <label className="font-bold text-sm mb-2 ml-1" htmlFor="cardName">
+                Name on card
+              </label>
+              <input
+                id="cardName"
+                className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                placeholder="John Smith"
+                type="text"
+                required
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                className="font-bold text-sm mb-2 ml-1"
+                htmlFor="cardNumber"
+              >
+                Card number
+              </label>
+              <input
+                onChange={(e) => setCardNumber(e.target.value)}
+                id="cardNumber"
+                className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                placeholder="0000 0000 0000 0000"
+                type="text"
+                required
+              />
+            </div>
+            <div className="mb-3 -mx-2 flex items-end">
+              <div className="px-2 w-1/2">
+                <label
+                  className="font-bold text-sm mb-2 ml-1"
+                  htmlFor="expiryDate"
+                >
+                  Expiration Month
+                </label>
+                <input
+                  type="text"
+                  id="expiryMonth"
+                  onChange={(e) => setExpirationMonth(e.target.value)}
+                  required
+                  className=" w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                ></input>
+              </div>
+              <div className="px-2 w-1/2">
+                <label
+                  className="font-bold text-sm mb-2 ml-1"
+                  htmlFor="expiryYear"
+                >
+                  Expiration year
+                </label>
+                <input
+                  type="text"
+                  id="expiryYear"
+                  onChange={(e) => setExpirationYear(e.target.value)}
+                  className=" w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors "
+                ></input>
+              </div>
+            </div>
+            <div className="mb-10">
+              <label
+                className="font-bold text-sm mb-2 ml-1"
+                htmlFor="securityCode"
+              >
+                Security code
+              </label>
+              <input
+                id="cvv"
+                className="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                placeholder="000"
+                onChange={(e) => setCvv(e.target.value)}
+                type="text"
+              />
+            </div>
+            <div>
+              <div
+                onClick={Submit}
+                className=" text-center block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+              >
+                <i className="mdi mdi-lock-outline mr-1"></i> PAY NOW
+              </div>
+            </div>
           </div>
         </div>
       </div>

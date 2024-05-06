@@ -7,26 +7,34 @@ import app from '../../../firebase'
 
 
 
+
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditPet() {
     
-//   const [request_id, setReqId] = useState()
-//     const [task_id, setTaskId] = useState()
-//     const [pet_name, setPetName] = useState()
-//     const [pet_type, setPettype] = useState()
-//     const [health_status, setHealStatus] = useState()
-//     const [pet_gender, setPetGender] = useState()
-//     const [pet_age, setPetAge] = useState()
-//     const [pet_appearance, setPetappearance] = useState()
-//     const [location, setLocation] = useState()
-//     const [pet_image, setPetImage] = useState()
+    
+ 
+        const [mfDateError, setMfDateError] = useState("");
+    
+        const handleMfDateChange = (e) => {
+            const value = e.target.value;
+            setMfodate(value);
+    
+            // Regular expression to match date in format YYYY-MM-DD
+            const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    
+            if (!dateRegex.test(value)) {
+                setMfDateError("Please enter a valid date in the format YYYY-MM-DD");
+            } else {
+                setMfDateError("");
+            }
+        };
 
 const [item_name, setItemName] = useState()
-const [item_category, setItemcategory] = useState()
+const [item_category, setItemCategory] = useState()
 const [item_quantity, setquantity] = useState()
 const [item_price,setprice] = useState()
 const [item_image,setimage] = useState()
-const [item_mfodate,setmfodate]=useState()
+const [item_mfodate,setMfodate]=useState()
 const [item_expdate,setexpdate]=useState()
 
     const navigate = useNavigate()
@@ -37,11 +45,11 @@ const [item_expdate,setexpdate]=useState()
         axios.get(`http://localhost:3000/InventoryManager/items/viewitem/${id}`)
         .then((res) => {
             setItemName(res.data.item_name)
-            setItemcategory(res.data.item_category)
+            setItemCategory(res.data.item_category)
             setquantity(res.data.item_quantity)
             setprice(res.data.item_price)
             setimage(res.data.item_image)
-            setmfodate(res.data.item_mfodate)
+            setMfodate(res.data.item_mfodate)
             setexpdate(res.data.item_expdate)
         
             // setPetAge(res.data.pet_age)
@@ -136,6 +144,11 @@ const [item_expdate,setexpdate]=useState()
         }
       );
     }
+  
+
+
+
+   
         return (
 
         
@@ -174,15 +187,44 @@ const [item_expdate,setexpdate]=useState()
                                     Item category
                                 </label>
                                 <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="item_category"
-                                        id="item_category"
-                                        value={item_category}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+        <div className="flex items-center">
+            <input
+                id="petCare"
+                name="item_category"
+                type="radio"
+                value="pet care"
+                checked={item_category === 'pet care'}
+                onChange={(e) => setItemCategory(e.target.value)}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+            />
+            <label htmlFor="petCare" className="ml-3 block text-sm font-medium text-gray-700">Pet Care</label>
+        </div>
+        <div className="flex items-center mt-2">
+            <input
+                id="petToys"
+                name="item_category"
+                type="radio"
+                value="pet toys"
+                checked={item_category === 'pet toys'}
+                onChange={(e) => setItemCategory(e.target.value)}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+            />
+            <label htmlFor="petToys" className="ml-3 block text-sm font-medium text-gray-700">Pet Toys</label>
+        </div>
+        <div className="flex items-center mt-2">
+            <input
+                id="petFoods"
+                name="item_category"
+                type="radio"
+                value="pet foods"
+                checked={item_category === 'pet foods'}
+                onChange={(e) => setItemCategory(e.target.value)}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+            />
+            <label htmlFor="petFoods" className="ml-3 block text-sm font-medium text-gray-700">Pet Foods</label>
+        </div>
+    </div>
+</div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
                                     Item quantity
@@ -231,21 +273,21 @@ const [item_expdate,setexpdate]=useState()
                             </div> */}
                      {/* setMFOdate(res.data.item_mfodate)
             setEXPdate(res.data.item_expdate) */}
-                            <div className="sm:col-span-3">
-                                <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Item MFO Date
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="item_mfodate"
-                                        id="item_mfodate"
-                                        value={item_mfodate}
-                                        onChange={(e) => setmfodate(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                           <div className="sm:col-span-3">
+    <label htmlFor="item_mfodate" className="block text-sm font-medium leading-6 text-gray-900">
+        Item MFO Date
+    </label>
+    <div className="mt-2">
+        <input
+            type="date"
+            name="item_mfodate"
+            id="item_mfodate"
+            value={item_mfodate}
+            onChange={(e) => setMfodate(e.target.value)}
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
+    </div>
+</div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
                                     Item EXP Date

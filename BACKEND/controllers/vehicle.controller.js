@@ -1,5 +1,5 @@
 const Vehicle = require('../modules/vehicle.model');
-
+const Counter = require('../modules/counter.model');
 
 const getVehicles = async (req, res) => {
 
@@ -24,8 +24,19 @@ const getVehicle = async (req, res) => {
 
 const createVehicle = async (req, res) => {
     try {
-
-        const vehicle = await Vehicle.create(req.body);
+        
+        const counter = await Counter.findByIdAndUpdate(
+            { _id: 'vehID' },
+            { $inc: { seq: 1 } },
+            { new: true, upsert: true }
+          );
+        
+          const vehID = 'VEH' + String(counter.seq).padStart(3, '0');
+        
+          
+          const vehicle = await Vehicle.create({ ...req.body, Vehicle_ID: vehID });
+    
+      
         res.status(200).json(vehicle);
 
     } catch (error) {

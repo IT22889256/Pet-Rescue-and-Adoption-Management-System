@@ -23,8 +23,9 @@ export default function Createrequest() {
     
 
     
-    const [request_no, setrequestno] = useState()
+   
     const [request_to, setrequestto] = useState()
+    const [amount, setamount] = useState()
     const [request_date,setrequestdate] = useState()
    // const [request_status,setrequestdate] = useState("Pending")
 
@@ -36,7 +37,7 @@ export default function Createrequest() {
 
         const data = {
             
-            request_no,request_to,request_date
+            amount,request_to,request_date
          
         };
         console.log('result')
@@ -71,16 +72,16 @@ export default function Createrequest() {
                                         </div> 
                                     </div> */}
                                     <div className="sm:col-span-3">
-                                    <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    request no
+                                    <label htmlFor="amount" className="block text-sm font-medium leading-6 text-gray-900">
+                                    amount
                                     </label>
                                     <div className="mt-2">
                                         <input
-                                            type="text"
-                                            name="request_no"
-                                            id="request_no"
-                                            value={request_no}
-                                            onChange={(e) =>setrequestno (e.target.value)}
+                                            type="number"
+                                            name="amount"
+                                            id="amount"
+                                            value={amount}
+                                            onChange={(e) =>setamount (e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div> 
@@ -104,7 +105,7 @@ export default function Createrequest() {
                                     Request date                              </label>
                                     <div className="mt-2">
                                         <input
-                                            type="text"
+                                            type="date"
                                             name="request_date"
                                             id="request_date"
                                             value={request_date}
