@@ -316,8 +316,6 @@ import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAt
 import ViewOneAdopter from "./pages/userManagement/adopterRequests/ViewOneAdopters";
 
 
-//employee attendance
-import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
 
 import ViewLogins from "./pages/userManagement/logins/ViewLogins"
 import Map from "./pages/Map"
