@@ -45,7 +45,7 @@ export default function PetSupply() {
 							<th>Supply ID</th>
                             <th>Item Type</th>
 							<th>Pet Type</th>
-							<th>Brand</th>
+							{/* <th>Brand</th> */}
 							{/*<th>Message</th>*/}
 							<th>Action</th>
 						</tr>
@@ -54,11 +54,11 @@ export default function PetSupply() {
 						{supplies.filter((supply) => {
 							return searchQuery === '' 
 							? supply 
-							: supply._id.includes(searchQuery)
+							: supply.supply_id.includes(searchQuery)
 						}).map((supply) => (
-							<tr className='border-b-2 border-[#c1c3c558] text-center' key={supply._id}>
+							<tr className='border-b-2 border-[#c1c3c558] text-center' key={supply.supply_id}>
 								<td>
-									{supply._id}
+									{supply.supply_id}
 								</td >
 								<td>
 									{supply.supply_item}
@@ -66,9 +66,9 @@ export default function PetSupply() {
 								<td>
 									{supply.supply_pettype}
 								</td>
-								<td>
+								{/* <td>
 									{supply.supply_brand}
-								</td>
+								</td> */}
 								{/*<td>
 									{supply.supply_message}
 								</td>*/}
