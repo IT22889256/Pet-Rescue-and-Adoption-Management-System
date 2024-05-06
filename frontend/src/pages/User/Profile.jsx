@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { useState, useEffect } from "react";
 import {
   deleteUserStart,
   deleteUserSuccess,
   deleteUserFailure,
   logOut,
 } from "../../redux/user/userSlice";
-import axios from 'axios'
+
 
 import cardImage from "../../image/card.png";
 

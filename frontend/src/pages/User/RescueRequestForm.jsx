@@ -116,7 +116,7 @@ const RescueRequestForm = () => {
           }
 
         const data = {
-            user_id,pet_type,health_status,location,rescue_request_status,imgUrl
+            user_id : currentUser.user_id,pet_type,health_status,location,rescue_request_status,imgUrl
         };
         console.log('result')
         axios.post('http://localhost:3000/user/rescueRequest/createRescueRequest',data)
@@ -172,7 +172,7 @@ return (
                     type="text"
                     name="user_id"
                     id="user-id"
-                    value={currentUser._id}
+                    value={currentUser.user_id}
                    
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
