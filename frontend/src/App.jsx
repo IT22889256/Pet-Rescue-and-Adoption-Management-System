@@ -212,11 +212,13 @@ import CreateSchedule from './pages/transportManagement/scheduleProfile/CreateSc
 import EditSchedule from './pages/transportManagement/scheduleProfile/EditSchedule'
 import ViewSchedule from './pages/transportManagement/scheduleProfile/ViewSchedule'
 import RemoveSchedule from './pages/transportManagement/scheduleProfile/RemoveSchedule' 
+
 import CreateVehicle from './pages/transportManagement/VehicleProfile/CreateVehicle'
 import VehicleProfile from './pages/transportManagement/VehicleProfile'
 import EditVehicle from './pages/transportManagement/VehicleProfile/EditVehicle'
 import ViewVehicle from './pages/transportManagement/VehicleProfile/ViewVehicle'
 import RemoveVehicle from './pages/transportManagement/VehicleProfile/RemoveVehicle'
+
 import TaskRequest from './pages/transportManagement/TaskRequest'
 import ViewTaskRequest from './pages/transportManagement/taskRequest/ViewTaskRequest'
 import EditTaskRequest from './pages/transportManagement/taskRequest/EditTaskRequest'
@@ -588,25 +590,20 @@ function App() {
 
 
         <Route path="/map" element={<Map />} />
-      </Routes>
+       </Routes>
 
-      {/* Driver main routes */}
-      <Routes>
-        <Route>
-          <Route path="/driver" element={<DriverLayout />}>
-            <Route
-              path="/driver/AssignedSheduleProfile"
-              element={<AssignedSheduleProfile />}
-            />
-            <Route
-              path="/driver/assignedShedules/ViewAssignedTask/:id"
-              element={<ViewAssignedTask />}
-            />
+       
 
-            <Route
-              path="/driver/assignedShedules/EditAssignedTask/:id"
-              element={<EditAssignedTask />}
-            />
+
+          {/* Driver main routes */}
+       <Routes> 
+         <Route> 
+            <Route path="/driver" element={<DriverLayout />}>
+            <Route path="/driver/AssignedSheduleProfile" element={<AssignedSheduleProfile />} />
+            <Route path="/driver/assignedShedules/ViewAssignedTask/:id" element={<ViewAssignedTask />} />
+            
+            <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
+          </Route>
 
 
           </Route>

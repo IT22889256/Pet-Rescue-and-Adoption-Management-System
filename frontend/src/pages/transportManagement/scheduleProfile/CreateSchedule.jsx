@@ -8,6 +8,7 @@ import HelperAvailability from '../../HelperAvailability'
 
 
 
+
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateSchedule() {
 
@@ -19,6 +20,8 @@ export default function CreateSchedule() {
     const [Staff_Member, setStaffMem] = useState()
     const [schedule_status, setSchStatus] = useState("Pending")
 
+    const [validationErrors, setValidationErrors] = useState({}); 
+
     const navigate = useNavigate()
 
     //validation
@@ -27,7 +30,34 @@ export default function CreateSchedule() {
 
     const [showSuccess, setShowSuccess] = useState(false);
 
+    const validateForm = () => {
+      const errors = {}; // Object to store validation errors
+  
+      if (!Transport_Type) {
+        errors.Transport_Type = 'Transport Type is required';
+      }
+  
+      if (!Number_of_Pets) {
+        errors.Number_of_Pets = 'Number of pets is required';
+      }
+  
+      if (!Location) {
+        errors.Location = 'Location is required';
+      }
+      
+   
+      // You can add more validation rules here, e.g., email validation for location
+  
+      setValidationErrors(errors); // Update validation errors state
+      return Object.keys(errors).length === 0; // Return true if no errors
+    };
+
     const Submit = (e) => {
+      e.preventDefault();
+        if (!validateForm()) {
+            return; // Don't submit if validation fails
+          }
+
 
         const data = {
             Transport_Type,
@@ -124,6 +154,7 @@ export default function CreateSchedule() {
                                         </label>
                                         <div className="mt-2">
                                             <input type="radio" value="Emergency" name="Transport_Type" className='m-1' onChange={(e) => setTransTyp(e.target.value)}/>
+                                            
                                             <label htmlFor="Transport_Type" className="m-1 text-sm font-medium leading-6 text-gray-900">
                                             Emergency
                                             </label>
@@ -131,6 +162,9 @@ export default function CreateSchedule() {
                                             <label htmlFor="Transport_Type" className="m-1 text-sm font-medium leading-6 text-gray-900">
                                             Normal
                                         </label>
+                                        {validationErrors.Transport_Type && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Transport_Type}</p>
+                                             )}
                                         </div>
                                     </div>
 
@@ -151,7 +185,13 @@ export default function CreateSchedule() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
+                                        {validationErrors.Number_of_Pets && (
+                                    <p className="text-red-500 text-xs">{validationErrors.Number_of_Pets}</p>
+          )}
+              
                                     </div>
+                                      
+
                                     <div className="sm:col-span-3">
                                         <label htmlFor="Location" className="block text-sm font-medium leading-6 text-gray-900">
                                         Location
@@ -171,6 +211,9 @@ export default function CreateSchedule() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
+                                        {validationErrors.Location && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Location}</p>
+                                             )}
                                     </div>
 
                                     <div className="sm:col-span-3">

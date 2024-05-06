@@ -70,12 +70,34 @@ const deleteSchedule = async (req, res) => {
 
     }};
 
+    //get card details of one user by user id
+    const getAssignDetails = async (req, res) => {
+    try {
+      const { driver } = req.params;
+  
+      const schedule = await Schedule.find({ Driver: driver });
+  
+      console.log(schedule);
+      if (!schedule) {
+        return res.status(404).json({ message: "Driver not found" });
+      }
+  
+      // Send card data to the frontend only if database has data related to the provided user_id
+      if (schedule) {
+        res.status(200).json(schedule);
+      }
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+
 module.exports = { 
     getSchedules,
     getSchedule,
     createSchedule,
     updateSchedule,
-    deleteSchedule
+    deleteSchedule,
+    getAssignDetails
 };
 
 
