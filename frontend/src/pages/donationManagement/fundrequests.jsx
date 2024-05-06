@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link} from 'react-router-dom'
+import {useReactToPrint} from 'react-to-print'
 import { format } from 'date-fns'
 // import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
@@ -22,10 +23,17 @@ export default function FundRequest() {
 		})
 	},[])
 
+	const ComponetRef = useRef();
+	const handlePrint = useReactToPrint({
+		content: () => ComponetRef.current,
+		DocumentTItle:"Rescue Requests Report",
+		onafterprint: ()=>("Rescue Requests Report Successfully Download")
+	})
+
 	return (<>
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-			<strong className="text-gray-700 font-medium">Recent Request</strong>
-
+			<strong className="text-gray-700 font-medium">Recent Request test</strong>
+			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><button onClick={handlePrint} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Generate Report</button></div> 
 			<div className="border-x border-gray-200 rounded-sm mt-3">
 				<table className="bg-[#f3f3f3] w-full text-gray-700">
 					<thead className="bg-[#c1c3c558]">
@@ -44,7 +52,7 @@ export default function FundRequest() {
 							fundrequest.status === 'pending' &&(
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={fundrequest._id}>
 								<td>
-									{fundrequest._id}
+									{fundrequest.requestId}
 								</td >
 								<td>
 									{fundrequest.request_from}
@@ -53,7 +61,7 @@ export default function FundRequest() {
 									{fundrequest.amount}
 								</td>
 								<td>
-									{formatDate(fundrequest.request_date)}
+									{formatDate(fundrequest.createdAt)}
 								</td>
 							
 									{fundrequest.status=== "pending" && (
@@ -72,6 +80,7 @@ export default function FundRequest() {
 		</div>
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">history</strong>
+			<div ref={ComponetRef}  className="border-x border-gray-200 rounded-sm mt-3">
 			<div className="border-x border-gray-200 rounded-sm mt-3">
 				<table className="bg-[#f3f3f3] w-full text-gray-700">
 					<thead className="bg-[#c1c3c558]">
@@ -125,6 +134,7 @@ export default function FundRequest() {
 					
 				</table>
 			</div>
+		</div>
 		</div>
 		</>
 	)

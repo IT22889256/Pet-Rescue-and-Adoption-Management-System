@@ -13,6 +13,10 @@ const SponsorDonationSchema = mongoose.Schema({
     pet_id:{
       type: String, 
       required: true
+    },
+    spid:{
+        type: String,
+
     }
 },
     { timestamps: true}

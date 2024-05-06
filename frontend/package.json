@@ -25,6 +25,7 @@
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.7.3",
     "js-file-download": "^0.4.12",
+    "jspdf": "^2.5.1",
     "mongoose": "^8.2.2",
     "navigator": "^1.0.1",
     "nodemon": "^3.1.0",

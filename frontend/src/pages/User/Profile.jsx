@@ -17,6 +17,7 @@ import cardImage from "../../image/card.png";
 
 const Profile = () => {
   const [rescueRequests, setRescueRequests] = useState([]);
+  
 
   useEffect(() => {
     axios.get("http://localhost:3000/petManager/rescueRequest").then((res) => {
@@ -26,16 +27,17 @@ const Profile = () => {
   }, []);
 
   const currentUser = useSelector((state) => state.user.currentUser);
+  console.log(currentUser)
   const dispatch = useDispatch();
 
   const [feedback, setFeedback] = useState([]);
   const [adoptionProcesses, setAdoptionProcesses] = useState([]);
-  const [card, setCard] = useState("");
+  const [card, setCard] = useState(null);
 
   useEffect(() => {
     axios
       .get(
-        `http://localhost:3000/userAffairsManager/feedback/my/${currentUser._id}`
+        `http://localhost:3000/userAffairsManager/feedback/my/${currentUser.user_id}`
       )
       .then((res) => {
         setFeedback(res.data);
@@ -56,7 +58,7 @@ const Profile = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:3000/donationManager/cards/getCardDetails/${currentUser._id}`
+        `http://localhost:3000/donationManager/cards/getCardDetails/${currentUser.user_id}`
       )
       .then((res) => {
         console.log(res.data);
@@ -66,6 +68,16 @@ const Profile = () => {
         console.log(err);
       });
   }, []);
+  const handleRemoveCard = () => {
+    console.log(card._id);
+    axios.delete(`http://localhost:3000/donationManager/cards/delete/${card._id}`)
+      .then(() => {
+        setCard(null);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleLogout = async () => {
     try {
@@ -206,6 +218,9 @@ const Profile = () => {
                     {card?.cardNumber.slice(13, 16)}
                   </p>
                   <p className="text-2xl font-semibold">Rs. 1,000.00</p>
+                  <button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg" onClick={handleRemoveCard}>
+                  Remove Card
+                </button>
                 </div>
               </div>
             </div>
@@ -216,6 +231,7 @@ const Profile = () => {
                 <p className="text-2xl font-semibold">Rs. 00.00</p>
               </div>
             </div>
+            
           )}
           {/* Complaint History */}
 

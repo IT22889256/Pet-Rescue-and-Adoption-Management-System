@@ -1,4 +1,5 @@
 const SpecificNeedDonation = require('../modules/specificneeddonation.model');
+const Counter = require('../modules/counter.model');
 
 //display all specific need donations
 
@@ -15,9 +16,18 @@ const displaySpecificNeedDonations = async(req, res) => {
 const addSpecificNeedDonation = async (req, res) => {
 
     try {
-        SpecificNeedDonation.create(req.body)
-        .then(specificNeedDonation => res.json(specificNeedDonation))
-        .catch(err => res.json(err))
+        const counter = await Counter.findByIdAndUpdate(
+          { _id: 'snid' },
+          { $inc: { seq: 1 } },
+          { new: true, upsert: true }
+        );
+      
+        const snid = 'SND' + String(counter.seq).padStart(3, '0');
+        // Create new employee using employeeId and request body
+        
+        const specificneeddonation = await SpecificNeedDonation.create({ ...req.body, snid: snid });
+  
+        res.status(200).json(specificneeddonation);
     }catch(error) {
         res.status(500).json({message: error.message});
     }
