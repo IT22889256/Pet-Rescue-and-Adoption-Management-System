@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const GallerySchema = mongoose.Schema(
   {
-    image_id: {
+    imageId: {
       type: String,
-      required: true 
+      required: false 
       //required: [true, "Please enter name"],
     },
 
@@ -14,6 +14,10 @@ const GallerySchema = mongoose.Schema(
     },
 
     pet_name:{
+      type: String,
+      required: true 
+    },
+    about:{
       type: String,
       required: true 
     },
