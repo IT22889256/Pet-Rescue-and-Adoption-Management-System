@@ -321,8 +321,6 @@ import ViewLogins from "./pages/userManagement/logins/ViewLogins"
 import Map from "./pages/Map"
 
 
-import ViewLogins from "./pages/userManagement/logins/ViewLogins"
-import Map from "./pages/Map"
 
 
 function App() {
