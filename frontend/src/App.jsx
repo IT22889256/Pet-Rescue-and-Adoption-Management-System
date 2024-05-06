@@ -47,7 +47,7 @@ import ViewIssuesConcerns from "../src/pages/UserAffairsManagement/handleIssuesC
 import AllFeedback from "../src/pages/UserAffairsManagement/handleFeedback/AllFeedback";
 import ViewFeedback1 from "../src/pages/UserAffairsManagement/handleFeedback/viewFeedback";
 
-// import UserRequest from "./pages/userManagement/UserRequest";
+
 import UserProfile from "./pages/userManagement/UserProfile";
 
 
@@ -159,6 +159,7 @@ import Createmessages from './pages/Inventorymanagement/messages/Createmessages'
 import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
 import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
 import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
+
 
 
 //donation management imports
@@ -277,6 +278,14 @@ import ViewOneAttendance from "./pages/employeeManagment/attendanceManagement/Vi
 import RescueRequestForm from "./pages/User/RescueRequestForm";
 
 
+//create schedule for janitors
+import ManageScheduleForJanitors from "./pages/employeeManagment/ManageJanitorSchedule";
+import CreateSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/CreateJanitorSchedule";
+import ViewSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/ViewJanitorSchedule";
+import EditSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/EditJanitorSchedule";
+import DeleteSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/RemoveJanitorSchedule"; 
+
+
 
 import LeaveApply from './pages/employeeManagment/LeaveApply'
 import ViewLeaveApply from './pages/employeeManagment/LeaveApply/viewLeaveApply'
@@ -293,7 +302,10 @@ import PetQR from "./pages/User/PetQR";
 import UserGallery from "./pages/User/Gallery";
 
 //employee attendance
+
+
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+
 
 
 function App() {
@@ -326,10 +338,7 @@ function App() {
             path="/user/:id/rescuerequestForm"
             element={<RescueRequestForm />}
           />
-           <Route
-            path="/rescuerequestForm"
-            element={<RescueRequestForm />}
-          />
+          <Route path="/rescuerequestForm" element={<RescueRequestForm />} />
 
           
           <Route path="/petAdoption" element={<PetAdoption/>} />
@@ -576,20 +585,30 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
-       </Routes>
-
-       
 
 
-          {/* Driver main routes */}
-       <Routes> 
-         <Route> 
-            <Route path="/driver" element={<DriverLayout />}>
-            <Route path="/driver/AssignedSheduleProfile" element={<AssignedSheduleProfile />} />
-            <Route path="/driver/assignedShedules/ViewAssignedTask/:id" element={<ViewAssignedTask />} />
-            
-            <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
-          </Route>
+        <Route path="/map" element={<Map />} />
+      </Routes>
+
+      {/* Driver main routes */}
+      <Routes>
+        <Route>
+          <Route path="/driver" element={<DriverLayout />}>
+            <Route
+              path="/driver/AssignedSheduleProfile"
+              element={<AssignedSheduleProfile />}
+            />
+            <Route
+              path="/driver/assignedShedules/ViewAssignedTask/:id"
+              element={<ViewAssignedTask />}
+            />
+
+            <Route
+              path="/driver/assignedShedules/EditAssignedTask/:id"
+              element={<EditAssignedTask />}
+            />
+
+
           </Route>
         </Routes>
 
@@ -736,6 +755,34 @@ function App() {
             path="/employeeManager/deactivateEmployees/ViewDeactivateEmployees/:id"
             element={<ViewDeactivateEmployees />}
           />
+
+          {/* create schedule for janitors */}
+          <Route
+            path="/employeeManager/ManageJanitorSchedule"
+            element={<ManageScheduleForJanitors />}
+          />
+
+
+          <Route
+            path="/employeeManager/CreateJanitorSchedule"
+            element={<CreateSheduleForJanitors />}
+          />
+
+          <Route
+            path="/employeeManager/ViewJanitorSchedule/:id"
+            element={<ViewSheduleForJanitors/>}
+          />
+
+          <Route
+            path="/employeeManager/EditJanitorSchedule/:id"
+            element={<EditSheduleForJanitors />}
+          />
+          
+          <Route
+            path="/employeeManager/RemoveJanitorSchedule/:id"
+            element={<DeleteSheduleForJanitors />}
+          />
+
         </Route>
       </Routes>
       <Routes>

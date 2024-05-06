@@ -34,7 +34,7 @@ export default function CreateJanitorSchedule() {
             setShowSuccess(true);
             setTimeout(() => {
               setShowSuccess(false);
-              navigate('/transportManager/scheduleProfile');
+              navigate('/EmployeeManager/ManageJanitorSchedule');
             }, 3000);
           })
           .catch((error) => {
@@ -100,7 +100,7 @@ export default function CreateJanitorSchedule() {
 
                                     <div className="sm:col-span-3">
                                         <label htmlFor="Staff_Member1" className="block text-sm font-medium leading-6 text-gray-900">
-                                        Staff Member 1 <span className="text-sm font-small leading-6 text-gray-400">(Available Staff members Appear Here)</span>
+                                        Staff Member 1 <span className="text-sm font-small leading-6 text-gray-400">(Select a Group Leader)</span>
                                         </label>
                                         <div
                                         
@@ -152,7 +152,7 @@ export default function CreateJanitorSchedule() {
                         {/* <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
                             Cancel
                         </button> */}
-                        <Link to={`/transportManager/ScheduleProfile`} className="text-sm font-semibold leading-6 text-gray-900">Cancel</Link>
+                        <Link to={`/EmployeeManager/ManageJanitorSchedule`} className="text-sm font-semibold leading-6 text-gray-900">Cancel</Link>
                         <button
                             onClick={Submit}
                             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

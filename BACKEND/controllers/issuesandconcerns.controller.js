@@ -1,4 +1,6 @@
 const IssuesAndConcerns = require("../modules/issuesandconcerns.model")
+const Counter = require('../modules/counter.model');
+
 
 const getIssuesAndConcerns = async (req, res) => {
   try {
@@ -21,7 +23,14 @@ const getIssueAndConcern = async (req, res) => {
 
 const createIssuesAndConcerns = async (req, res) => {
   try {
-    const issueandconcern = await IssuesAndConcerns.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'IssueandConcernId' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+  
+    const IssueandConcernId = 'IC' + String(counter.seq).padStart(3, '0');
+    const issueandconcern = await IssuesAndConcerns.create({...req.body,issuesandconcernsId:IssueandConcernId});
     res.status(200).json(issueandconcern);
   } catch (error) {
     res.status(500).json({ message: error.message });
