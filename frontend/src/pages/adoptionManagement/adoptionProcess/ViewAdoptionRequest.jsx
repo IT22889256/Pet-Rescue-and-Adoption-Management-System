@@ -4,7 +4,20 @@ import axios from 'axios'
 
 export default function ViewAdoptionPRequest() {
 
-	const navigate = useNavigate()
+	const navigate = useNavigate({})
+	const [adopter, setRequest] = useState({})
+	const {id} = useParams()
+
+	useEffect(() => {
+		axios.get(`http://localhost:3000/adoptionManager/adoptionProfile/viewRequest/${id}`)
+		.then((res) => {
+			setRequest(res.data)
+			
+		}).catch((err) => {
+			console.log(err);
+		})
+	},[])
+
 	const Accept = (e) => {
 		
 		const data = {
@@ -14,8 +27,8 @@ export default function ViewAdoptionPRequest() {
 		console.log('result')
         axios.put(`http://localhost:3000/adoptionManager/adoptionProcess/editAdoptionProcess/${id}`,data)
         .then(result => {
-			
-            alert('updated')
+
+            alert('accepted')
             console.log(result)
             navigate('/adoptionManager/adoptionProcess')
         })
@@ -32,25 +45,12 @@ export default function ViewAdoptionPRequest() {
         axios.put(`http://localhost:3000/adoptionManager/adoptionProcess/editAdoptionProcess/${id}`,data)
         .then(result => {
 			
-            alert('updated')
+            alert('rejected')
             console.log(result)
             navigate('/adoptionManager/adoptionProcess')
         })
         .catch(err => console.log(err))
 	}
-	
-	const [adopter, setRequest] = useState({})
-	const {id} = useParams()
-
-	useEffect(() => {
-		axios.get(`http://localhost:3000/adoptionManager/adoptionProfile/viewRequest/${id}`)
-		.then((res) => {
-			setRequest(res.data)
-			
-		}).catch((err) => {
-			console.log(err);
-		})
-	},[])
 
 return (
 	<div className="max-w-4xl mx-auto px-1 py-1 bg-neutral-200 sm:rounded-lg">
@@ -99,7 +99,7 @@ return (
 						</>				
 							{adopter.adopter_status=== "Accept" && (
 								<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
-									<div>{adopter.issuesandconcerns_status}</div>
+									<div>{adopter.adopter_status}</div>
 								</td>)}
 								{adopter.adopter_status=== "Reject" && (
 								<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">

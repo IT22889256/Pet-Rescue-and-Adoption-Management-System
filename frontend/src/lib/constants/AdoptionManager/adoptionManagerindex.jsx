@@ -18,12 +18,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	path: '/adoptionManager/adoptionProcess',
 	icon: <MdOutlinePets />
 	},
-	{
-		key: 'Adoption',
-		label: 'Adoption',
-		path: '/adoptionManager/Adoption',
-		icon: <MdOutlinePets />
-	},
+	// {
+	// 	key: 'Adoption',
+	// 	label: 'Adoption',
+	// 	path: '/adoptionManager/Adoption',
+	// 	icon: <MdOutlinePets />
+	// },
 	{
 		key: 'Pet Supply',
 		label: 'Pet Supply',

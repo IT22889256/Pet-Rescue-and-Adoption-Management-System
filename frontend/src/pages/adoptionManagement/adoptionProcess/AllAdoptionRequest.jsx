@@ -52,13 +52,13 @@ export default function AllAdoptionRequest() {
               <thead className="bg-[#c1c3c558]">
                 <tr>
                   <th>Adoption ID</th>
-                  <th>NIC</th>
+                  {/* <th>NIC</th> */}
                   <th>Name</th>
-                  <th>Phone Number</th>
-                  <th>Email</th>
+                  {/* <th>Phone Number</th>
+                  <th>Email</th> */}
                   <th>Pet Name</th>
-                  <th>Pet Type</th>
-                  <th>Message</th>
+                  {/* <th>Pet Type</th>
+                  <th>Message</th> */}
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -66,13 +66,7 @@ export default function AllAdoptionRequest() {
 
               {
                 <tbody>
-                  {adoptionProcesses
-                    .filter((adoptionProcess) => {
-                      return searchQuery === ""
-                        ? adoptionProcess
-                        : adoptionProcess.adopter_name.includes(searchQuery);
-                    })
-                    .map(
+                  {adoptionProcesses.map(
                       (adoptionProcess) =>
                         adoptionProcess.adopter_status === "Pending" && (
                           <tr
@@ -80,13 +74,13 @@ export default function AllAdoptionRequest() {
                             key={adoptionProcess.adoption_id}
                           >
                             <td>{adoptionProcess.adoption_id}</td>
-                            <td>{adoptionProcess.adopter_nic}</td>
+                            {/* <td>{adoptionProcess.adopter_nic}</td> */}
                             <td>{adoptionProcess.adopter_name}</td>
-                            <td>{adoptionProcess.adopter_phone}</td>
+                            {/* <td>{adoptionProcess.adopter_phone}</td>
                             <td>{adoptionProcess.adopter_email}</td>
-                            <td>{adoptionProcess.adopter_pettype}</td>
+                            <td>{adoptionProcess.adopter_pettype}</td> */}
                             <td>{adoptionProcess.adopter_petname}</td>
-                            <td>{adoptionProcess.adopter_message}</td>
+                            {/* <td>{adoptionProcess.adopter_message}</td> */}
                             {adoptionProcess.adopter_status === "Pending" && (
                               <td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
                                 <div>{adoptionProcess.adopter_status}</div>
@@ -121,7 +115,7 @@ export default function AllAdoptionRequest() {
 
        
 
-		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
+		{/* <div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Recent Request</strong>
 			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><button onClick={handlePrint} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Adopted Pet Report</button></div>
 			<div className="border-x border-gray-200 rounded-sm mt-3">
@@ -186,7 +180,7 @@ export default function AllAdoptionRequest() {
 					
 				</table>
 			</div>
-		</div>
+		</div> */}
 
 		{/*search bar */}
 		{/* <div className="relative">
@@ -219,7 +213,12 @@ export default function AllAdoptionRequest() {
 					</thead>
 					
 					{<tbody>
-						{adoptionProcesses.map((adoptionProcess) => (
+						{adoptionProcesses
+                    		.filter((adoptionProcess) => {
+                      			return searchQuery === ""
+                        			? adoptionProcess
+                        			: adoptionProcess.adopter_name.includes(searchQuery);
+                    		}).map((adoptionProcess) => (
 								adoptionProcess.adopter_status !== 'Pending' &&(
 									<tr className='border-b-2 border-[#c1c3c558] text-center' key={adoptionProcess.adoption_id}>
 								<td>

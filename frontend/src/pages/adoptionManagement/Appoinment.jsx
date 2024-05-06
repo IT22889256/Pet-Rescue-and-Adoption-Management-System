@@ -36,7 +36,7 @@ export default function Appoinment() {
 									{appoinment.appoinment_id}
 								</td >
 								<td>
-									{appoinment.createdAt}
+									{new Date(appoinment.createdAt).toLocaleDateString()}
 								</td>
 								{/* <td>
 									{appoinment.appoinment_time}

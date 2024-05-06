@@ -4,7 +4,7 @@ import { getPetHealth } from "../../../lib/helpers/petManager/petHealthStatus";
 import axios from "axios";
 
 export default function ViewAdoptionPRequest() {
-  const [adopter, setRequest] = useState();
+  const [adopter, setRequest] = useState({});
   const { id } = useParams();
 
 	useEffect(() => {

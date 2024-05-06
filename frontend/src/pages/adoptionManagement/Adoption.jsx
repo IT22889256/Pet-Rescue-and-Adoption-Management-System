@@ -42,9 +42,9 @@ export default function Adoption() {
               {adopters.map((adopter) => (
                 <tr
                   className="border-b-2 border-[#c1c3c558] text-center"
-                  key={adopter._id}
+                  key={adopter.adoption_id}
                 >
-                  <td>{adopter._id}</td>
+                  <td>{adopter.adoption_id}</td>
                   <td>{adopter.adopter_nic}</td>
                   <td>{adopter.adopter_name}</td>
                   <td>{adopter.adopter_pettype}</td>

@@ -117,7 +117,7 @@ export default function CreateRequest() {
     
         let birthYear = parseInt(nic.substring(0, 4));
 
-        if (regexAlphaNumeric.test(nic) && birthYear < 2000) {
+        if (regexAlphaNumeric.test(nic) && birthYear > 5000) {
             setNameError("");
             setValid(true);
         } else if(regexNumeric.test(nic)){
@@ -155,9 +155,7 @@ export default function CreateRequest() {
                                             />
                                     </div>
                                 </div>*/}
-                                {validationErrors.adopter_nic && (
-                                    <p className="text-red-500 text-xs">{validationErrors.adopter_nic}</p>
-                                )}
+                                
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-nic" className="block text-sm font-medium leading-6 text-gray-900">
                                             NIC
@@ -175,10 +173,10 @@ export default function CreateRequest() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                    </div>
-                                    {validationErrors.adopter_name && (
-                                        <p className="text-red-500 text-xs">{validationErrors.adopter_name}</p>
+                                    </div>{validationErrors.adopter_nic && (
+                                    <p className="text-red-500 text-xs">{validationErrors.adopter_nic}</p>
                                     )}
+                                    
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-name" className="block text-sm font-medium leading-6 text-gray-900">
                                             Name
@@ -194,10 +192,10 @@ export default function CreateRequest() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                    </div>
-                                    {validationErrors.adopter_phone && (
-                                        <p className="text-red-500 text-xs">{validationErrors.adopter_phone}</p>
+                                    </div>{validationErrors.adopter_name && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_name}</p>
                                     )}
+                                    
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-phone" className="block text-sm font-medium leading-6 text-gray-900">
                                             Phone Number
@@ -217,10 +215,10 @@ export default function CreateRequest() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                    </div>
-                                    {validationErrors.adopter_email && (
-                                        <p className="text-red-500 text-xs">{validationErrors.adopter_email}</p>
+                                    </div>{validationErrors.adopter_phone && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_phone}</p>
                                     )}
+                                    
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-email" className="block text-sm font-medium leading-6 text-gray-900">
                                             Email
@@ -238,10 +236,10 @@ export default function CreateRequest() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                    </div>
-                                    {validationErrors.adopter_pettype && (
-                                        <p className="text-red-500 text-xs">{validationErrors.adopter_pettype}</p>
+                                    </div>{validationErrors.adopter_email && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_email}</p>
                                     )}
+                                    
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-pettype" className="block text-sm font-medium leading-6 text-gray-900">
                                             Pet Type
@@ -260,10 +258,10 @@ export default function CreateRequest() {
                                                     <option>Dog</option>
                                                 </select>
                                         </div>
-                                    </div>
-                                    {validationErrors.adopter_petname && (
-                                        <p className="text-red-500 text-xs">{validationErrors.adopter_petname}</p>
+                                    </div>{validationErrors.adopter_pettype && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_pettype}</p>
                                     )}
+                                    
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-petname" className="block text-sm font-medium leading-6 text-gray-900">
                                             Pet Name
@@ -279,10 +277,10 @@ export default function CreateRequest() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                    </div>
-                                    {validationErrors.adopter_message && (
-                                        <p className="text-red-500 text-xs">{validationErrors.adopter_message}</p>
+                                    </div>{validationErrors.adopter_petname && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_petname}</p>
                                     )}
+                                    
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-message" className="block text-sm font-medium leading-6 text-gray-900">
                                             Message
@@ -298,7 +296,10 @@ export default function CreateRequest() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                    </div>
+                                    </div>{validationErrors.adopter_message && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_message}</p>
+                                    )}
+                                    
                                     {/*<div className="sm:col-span-3">
                                         <label htmlFor="adopter-status" className="block text-sm font-medium leading-6 text-gray-900">
                                             Status
