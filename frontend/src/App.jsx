@@ -131,6 +131,8 @@ import AllPetHealth from "./pages/doctorManagement/petHealth/AllPetHealth";
 import ViewPetHealth from "./pages/doctorManagement/petHealth/ViewPetHealth";
 import EditPetHealth from "./pages/doctorManagement/petHealth/EditPetHealth";
 
+import ViewAppoinmentTask from "./pages/doctorManagement/appoinmentTask/ViewAppoinmentTask";
+
 //Inventory manager
 import Inventorylayout from './components/InventoryManager/Inventorylayout'
 import InventoryManagerdashboard from '../src/pages/Inventorymanagement/InventoryManagerdashboard'
@@ -304,6 +306,7 @@ import UserGallery from "./pages/User/Gallery";
 
 //employee attendance
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+import ViewTask from "./pages/doctorManagement/appoinmentTask/ViewAppoinmentTask";
 
 
 function App() {
@@ -906,6 +909,9 @@ function App() {
                     {/* <Route path="/doctor/petHealth" element={<AllPetHealth />} /> */}
                     <Route path="/doctor/petHealth/ViewPetHealth/:id" element={<ViewPetHealth />} />
                     <Route path="/doctor/petHealth/EditPetHealth/:id" element={<EditPetHealth />} />
+
+                    {/*doctor appoinment*/}
+                    <Route path="/doctor/ViewAppoinmentTask" element={< ViewAppoinmentTask />} />
             </Route>
             </Routes>
             
