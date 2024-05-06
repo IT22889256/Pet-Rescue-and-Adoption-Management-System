@@ -103,9 +103,12 @@ function Header() {
             </Link>
           )}
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            to="/gallery"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Gallery
-          </a>
+          </Link>
 
           {isLogedin ? (
             <Link

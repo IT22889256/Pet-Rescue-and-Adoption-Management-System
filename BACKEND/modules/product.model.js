@@ -3,6 +3,11 @@ const mongoose = require("mongoose");
 const ProductSchema = mongoose.Schema(
   {
  
+    pid:{
+      type:String,
+
+    },
+    
     item_name:{
       type:String,
       // required:true,

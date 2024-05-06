@@ -7,16 +7,16 @@ import app from '../../../firebase'
 import { useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 
-// import { PhotoIcon} from '@heroicons/react/24/solid'
+
 export default function CreatePet() {
 
     const [item_name, setItemName] = useState()
-    const [item_category, setItemcategory] = useState()
+    const [item_category, setItemCategory] = useState()
     const [item_quantity, setquantity] = useState()
     const [item_price,setprice] = useState()
     const [item_image,setimage] = useState()
-    const[item_mfodate,setmfodate]=useState()
-    const[item_expdate,setexpdate]=useState()
+    const[item_mfodate,setMfodate]=useState()
+    const[item_expdate,setExpdate]=useState()
 
 
 
@@ -156,20 +156,49 @@ export default function CreatePet() {
                                         </div> 
                                     </div>
                                     <div className="sm:col-span-3">
-                                    <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Item category
-                                    </label>
-                                    <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="item_category"
-                                            id="item_category"
-                                            value={item_category}
-                                            onChange={(e) =>setItemcategory (e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div> 
-                                    </div>
+    <label htmlFor="item_category" className="block text-sm font-medium leading-6 text-gray-900">
+        Item category
+    </label>
+    <div className="mt-2">
+        <div className="flex items-center">
+            <input
+                id="petCare"
+                name="item_category"
+                type="radio"
+                value="pet care"
+                checked={item_category === 'pet care'}
+                onChange={(e) => setItemCategory(e.target.value)}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+            />
+            <label htmlFor="petCare" className="ml-3 block text-sm font-medium text-gray-700">Pet Care</label>
+        </div>
+        <div className="flex items-center mt-2">
+            <input
+                id="petToys"
+                name="item_category"
+                type="radio"
+                value="pet toys"
+                checked={item_category === 'pet toys'}
+                onChange={(e) => setItemCategory(e.target.value)}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+            />
+            <label htmlFor="petToys" className="ml-3 block text-sm font-medium text-gray-700">Pet Toys</label>
+        </div>
+        <div className="flex items-center mt-2">
+            <input
+                id="petFoods"
+                name="item_category"
+                type="radio"
+                value="pet foods"
+                checked={item_category === 'pet foods'}
+                onChange={(e) => setItemCategory(e.target.value)}
+                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+            />
+            <label htmlFor="petFoods" className="ml-3 block text-sm font-medium text-gray-700">Pet Foods</label>
+        </div>
+    </div>
+</div>
+
                                     <div className="sm:col-span-3">
                                     <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
                                     Item quantity                                    </label>
@@ -198,52 +227,39 @@ export default function CreatePet() {
                                             />
                                         </div> 
                                     </div>
-                                    {/* <div className="sm:col-span-3">
-                                    <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Item image                                   </label>
-                                    <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="item_image"
-                                            id="item_image"
-                                            value={item_image}
-                                            onChange={(e) => setimage(e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div> 
-                                    </div> */}
-                                    {/* const[item_mfodate,setmfodate]=useState()
-    const[item_expdate,setexpdate]=useState() */}
-                                   <div className="sm:col-span-3">
-                                <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Item MFO Date
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="item_mfodate"
-                                        id="item_mfodate"
-                                        value={item_mfodate}
-                                        onChange={(e) => setmfodate(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                                   
                             <div className="sm:col-span-3">
-                                <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Item EXP Date
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="item_expdate"
-                                        id="item_expdate"
-                                        value={item_expdate}
-                                        onChange={(e) => setexpdate(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+    <label htmlFor="item_mfodate" className="block text-sm font-medium leading-6 text-gray-900">
+        Item MFO Date
+    </label>
+    <div className="mt-2">
+        <input
+            type="date"
+            name="item_mfodate"
+            id="item_mfodate"
+            value={item_mfodate}
+            onChange={(e) => setMfodate(e.target.value)}
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
+    </div>
+</div>
+
+<div className="sm:col-span-3">
+    <label htmlFor="item_expdate" className="block text-sm font-medium leading-6 text-gray-900">
+        Item EXP Date
+    </label>
+    <div className="mt-2">
+        <input
+            type="date"
+            name="item_expdate"
+            id="item_expdate"
+            value={item_expdate}
+            onChange={(e) => setExpdate(e.target.value)}
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
+    </div>
+</div>
+
                            
                             </div>
                             </div>
@@ -269,4 +285,3 @@ export default function CreatePet() {
         </div>
     )
 }
-
