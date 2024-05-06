@@ -4,7 +4,6 @@ import axios from 'axios'
 
 const Home = () => {
 
-
   const [feedbacks, setfeedbacks] = useState([]);
 
 	useEffect(() => {

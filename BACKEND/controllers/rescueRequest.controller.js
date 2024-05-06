@@ -26,6 +26,8 @@ const displayRescueRequests= async(req, res) => {
 // }
 
 const createRescueRequest = async (req, res) => {
+    console.log("create request");
+    console.log(req.body);
     try {
       const counter = await Counter.findByIdAndUpdate(
         { _id: 'resReqId' },
@@ -35,9 +37,9 @@ const createRescueRequest = async (req, res) => {
     
       const resReqId = 'RES' + String(counter.seq).padStart(3, '0');
       // Create new employee using employeeId and request body
-      
+      console.log(req.body);
       const rescueRequest = await RescueRequest.create({ ...req.body, rescue_req_id: resReqId });
-
+     
       res.status(200).json(rescueRequest);
     } catch (error) {
       res.status(500).json({ message: error.message });
