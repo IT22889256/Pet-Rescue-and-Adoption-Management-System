@@ -130,6 +130,11 @@ import AllPetHealth from "./pages/doctorManagement/petHealth/AllPetHealth";
 import ViewPetHealth from "./pages/doctorManagement/petHealth/ViewPetHealth";
 import EditPetHealth from "./pages/doctorManagement/petHealth/EditPetHealth";
 
+
+import ViewAppoinmentTask from "./pages/doctorManagement/appoinmentTask/ViewAppoinmentTask";
+import EditAppoinmentTask from "./pages/doctorManagement/appoinmentTask/EditAppoinmentTask";
+
+
 //Inventory manager
 import Inventorylayout from './components/InventoryManager/Inventorylayout'
 import InventoryManagerdashboard from '../src/pages/Inventorymanagement/InventoryManagerdashboard'
@@ -213,11 +218,11 @@ import EditSchedule from './pages/transportManagement/scheduleProfile/EditSchedu
 import ViewSchedule from './pages/transportManagement/scheduleProfile/ViewSchedule'
 import RemoveSchedule from './pages/transportManagement/scheduleProfile/RemoveSchedule' 
 
-import CreateVehicle from './pages/transportManagement/vehicleProfile/CreateVehicle'
+import CreateVehicle from './pages/transportManagement/VehicleProfile/CreateVehicle'
 import VehicleProfile from './pages/transportManagement/VehicleProfile'
-import EditVehicle from './pages/transportManagement/vehicleProfile/EditVehicle'
-import ViewVehicle from './pages/transportManagement/vehicleProfile/ViewVehicle'
-import RemoveVehicle from './pages/transportManagement/vehicleProfile/RemoveVehicle'
+import EditVehicle from './pages/transportManagement/VehicleProfile/EditVehicle'
+import ViewVehicle from './pages/transportManagement/VehicleProfile/ViewVehicle'
+import RemoveVehicle from './pages/transportManagement/VehicleProfile/RemoveVehicle'
 
 import TaskRequest from './pages/transportManagement/TaskRequest'
 import ViewTaskRequest from './pages/transportManagement/taskRequest/ViewTaskRequest'
@@ -327,6 +332,7 @@ import ViewLogins from "./pages/userManagement/logins/ViewLogins"
 import Map from "./pages/Map"
 
 
+
 function App() {
   return (
     <Router>
@@ -375,6 +381,7 @@ function App() {
 
 
 
+
           <Route path="user/:id/donation" element={<RecurringDonationForm />} />
           <Route path="/gallery" element={<UserGallery/>} />
           <Route path="/donation" element={<RecurringDonationForm />} />
@@ -415,6 +422,7 @@ function App() {
             path="/userManager/view-adopter/:id"
             element={<ViewOneAdopter />}
           />
+
 
 
 
@@ -622,6 +630,7 @@ function App() {
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
 
         <Route path="/map" element={<Map />} />
+
 
        </Routes>
 
@@ -965,6 +974,11 @@ function App() {
                     {/* <Route path="/doctor/petHealth" element={<AllPetHealth />} /> */}
                     <Route path="/doctor/petHealth/ViewPetHealth/:id" element={<ViewPetHealth />} />
                     <Route path="/doctor/petHealth/EditPetHealth/:id" element={<EditPetHealth />} />
+
+
+                    <Route path="/doctor/ViewAppoinmentTask" element={<ViewAppoinmentTask />}/>
+                    <Route path="/doctor/EditAppoinmentTask/:id" element={<EditAppoinmentTask />}/>
+
             </Route>
             </Routes>
             

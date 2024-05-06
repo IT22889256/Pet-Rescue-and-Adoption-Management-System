@@ -20,39 +20,73 @@ export default function CreateRequest() {
   const [nameError, setNameError] = useState("");
   const [valid, setValid] = useState(true);
 
-  const Submit = (e) => {
-    const data = {
-      adopter_nic,
-      adopter_name,
-      adopter_phone,
-      adopter_email,
-      adopter_pettype,
-      adopter_petname,
-      adopter_message,
-      adopter_status,
-    };
-    console.log("result");
-    axios
-      .post(
-        "http://localhost:3000/adoptionManager/adoptionProfile/createRequest",
-        data
-      )
-      .then((result) => {
-        console.log(result);
-        navigate("/adoptionManager/Adoption");
-      })
-      .catch((err) => console.log(err));
-  };
 
-  //phone number validate
-  const numberValidator = (value) => {
-    let regex = /^[0-9]{10}$/;
-    if (!regex.test(value)) {
-      setNameError("Invalid input");
-      setValid(false);
-    } else {
-      setNameError("");
-      setValid(true);
+    const [nameError,setNameError]=useState("");
+    const [valid,setValid] = useState(true);
+    const [validationErrors, setValidationErrors] = useState({}); 
+
+    const validateForm = () => {
+        const errors = {}; // Object to store validation errors
+    
+        if (!adopter_nic) {
+          errors.adopter_nic = 'NIC is required';
+        }
+    
+        if (!adopter_name) {
+          errors.adopter_name = 'Name is required';
+        }
+    
+        if (!adopter_phone) {
+          errors.adopter_phone = 'Phone is required';
+        }
+        
+        if (!adopter_email) {
+          errors.adopter_email = 'Email is required';
+        }
+        if (!adopter_pettype) {
+            errors.adopter_pettype = 'Pet Type is required';
+        }
+        if (!adopter_petname) {
+            errors.adopter_petname = 'Pet Name is required';
+        }
+        if (!adopter_message) {
+            errors.adopter_message = 'Message is required';
+        }
+        // You can add more validation rules here, e.g., email validation for location
+    
+        setValidationErrors(errors); // Update validation errors state
+        return Object.keys(errors).length === 0; // Return true if no errors
+      };
+
+    const Submit = (e) => {
+        e.preventDefault();
+        if (!validateForm()) {
+            return; // Don't submit if validation fails
+        }
+        const data = {
+            adopter_nic,adopter_name,adopter_phone,adopter_email,adopter_pettype,adopter_petname,adopter_message,adopter_status,
+        };
+        console.log('result')
+        axios.post('http://localhost:3000/adoptionManager/adoptionProfile/createRequest',data)
+        .then(result => {
+            console.log(result)
+            navigate('/adoptionManager/Adoption')
+        })
+        .catch(err => console.log(err))
+    }
+
+    //phone number validate
+    const numberValidator = (value)=>{
+        let regex = /^[0-9]{10}$/;
+        if(!regex.test(value) ){
+            setNameError("Invalid input");
+            setValid(false);
+        }
+        else{
+            setNameError("");
+            setValid(true);
+        }
+
     }
   };
   //email validate
@@ -79,11 +113,21 @@ export default function CreateRequest() {
   //     }
   // }
 
-  const nicValidator = (nic) => {
-    let regexNumeric = /^[0-9]{12}$/;
-    let regexAlphaNumeric = /^[0-9]{4}[0-9]{5}[vV]$/;
-    //let regexAlphaNumeric = /^[0-9]{9}[vV]$/;
-    //let regexCombined = /^([0-9]{10}||[0-9]{9}[vV]),$/;
+        if (regexAlphaNumeric.test(nic) && birthYear > 5000) {
+            setNameError("");
+            setValid(true);
+        } else if(regexNumeric.test(nic)){
+            setNameError("");
+            setValid(true);
+        }
+        else{
+            setNameError("Invalid NIC number");
+            setValid(false);
+        }
+    }
+    
+    
+
 
     let birthYear = parseInt(nic.substring(0, 4));
 
@@ -121,152 +165,154 @@ export default function CreateRequest() {
                                             />
                                     </div>
                                 </div>*/}
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="adopter-nic"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                NIC
-              </label>
-              <div className="mt-2">
-                <input
-                  required
-                  type="text"
-                  name="adopter_nic"
-                  id="adopter-nic"
-                  value={adopter_nic}
-                  onChange={(e) => {
-                    setNIC(e.target.value);
-                    nicValidator(e.target.value);
-                  }}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="adopter-name"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Name
-              </label>
-              <div className="mt-2">
-                <input
-                  required
-                  type="text"
-                  name="adopter_name"
-                  id="adopter-name"
-                  value={adopter_name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="adopter-phone"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Phone Number
-              </label>
-              <div className="mt-2">
-                <input
-                  required
-                  type="text"
-                  name="adopter_phone"
-                  id="adopter-phone"
-                  value={adopter_phone}
-                  onChange={(e) => {
-                    setPhoneNumber(e.target.value);
-                    numberValidator(e.target.value);
-                  }}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="adopter-email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Email
-              </label>
-              <div className="mt-2">
-                <input
-                  required
-                  type="text"
-                  name="adopter_email"
-                  id="adopter-email"
-                  value={adopter_email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    emailValidator(e.target.value);
-                  }}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="adopter-pettype"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Pet Type
-              </label>
-              <div className="mt-2">
-                <select
-                  required
-                  id="adopter-pettype"
-                  name="adopter_pettype"
-                  value={adopter_pettype}
-                  onChange={(e) => setPetType(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                >
-                  <option></option>
-                  <option>Cat</option>
-                  <option>Dog</option>
-                </select>
-              </div>
-            </div>
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="adopter-petname"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Pet Name
-              </label>
-              <div className="mt-2">
-                <input
-                  required
-                  type="text"
-                  name="adopter_petname"
-                  id="adopter-petname"
-                  value={adopter_petname}
-                  onChange={(e) => setPetName(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="adopter-message"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Message
-              </label>
-              <div className="mt-2">
-                <textarea
-                  required
-                  type="text"
-                  name="adopter_message"
-                  id="adopter-message"
-                  value={adopter_message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            {/*<div className="sm:col-span-3">
+
+                                
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="adopter-nic" className="block text-sm font-medium leading-6 text-gray-900">
+                                            NIC
+                                        </label>
+                                        <div className="mt-2">
+                                            <input
+                                            required
+                                                type="text"
+                                                name="adopter_nic"
+                                                id="adopter-nic"
+                                                value={adopter_nic}
+                                                onChange={(e) => {
+                                                    setNIC(e.target.value)
+                                                    nicValidator(e.target.value)}}
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            />
+                                        </div>
+                                    </div>{validationErrors.adopter_nic && (
+                                    <p className="text-red-500 text-xs">{validationErrors.adopter_nic}</p>
+                                    )}
+                                    
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="adopter-name" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Name
+                                        </label>
+                                        <div className="mt-2">
+                                            <input
+                                            required
+                                                type="text"
+                                                name="adopter_name"
+                                                id="adopter-name"
+                                                value={adopter_name}
+                                                onChange={(e) => setName(e.target.value)}
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            />
+                                        </div>
+                                    </div>{validationErrors.adopter_name && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_name}</p>
+                                    )}
+                                    
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="adopter-phone" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Phone Number
+                                        </label>
+                                        <div className="mt-2">
+                                            <input
+                                            required
+                                                type="text"
+                                                name="adopter_phone"
+                                                id="adopter-phone"
+                                                value={adopter_phone}
+                                                onChange={(e) => {
+                                                    setPhoneNumber(e.target.value);
+                                                    numberValidator(e.target.value); 
+                                                }}
+                                               
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            />
+                                        </div>
+                                    </div>{validationErrors.adopter_phone && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_phone}</p>
+                                    )}
+                                    
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="adopter-email" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Email
+                                        </label>
+                                        <div className="mt-2">
+                                            <input
+                                            required
+                                                type="text"
+                                                name="adopter_email"
+                                                id="adopter-email"
+                                                value={adopter_email}
+                                                onChange={(e) => {
+                                                    setEmail(e.target.value)
+                                                    emailValidator(e.target.value)}}
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            />
+                                        </div>
+                                    </div>{validationErrors.adopter_email && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_email}</p>
+                                    )}
+                                    
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="adopter-pettype" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Pet Type
+                                        </label>
+                                            <div className="mt-2">
+                                                <select
+                                                required
+                                                    id="adopter-pettype"
+                                                    name="adopter_pettype"
+                                                    value={adopter_pettype}
+                                                    
+                                                    onChange={(e) => setPetType(e.target.value)}
+                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                                                    ><option></option>
+                                                    <option>Cat</option>
+                                                    <option>Dog</option>
+                                                </select>
+                                        </div>
+                                    </div>{validationErrors.adopter_pettype && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_pettype}</p>
+                                    )}
+                                    
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="adopter-petname" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Pet Name
+                                        </label>
+                                        <div className="mt-2">
+                                            <input
+                                            required
+                                                type="text"
+                                                name="adopter_petname"
+                                                id="adopter-petname"
+                                                value={adopter_petname}
+                                                onChange={(e) => setPetName(e.target.value)}
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            />
+                                        </div>
+                                    </div>{validationErrors.adopter_petname && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_petname}</p>
+                                    )}
+                                    
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="adopter-message" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Message
+                                        </label>
+                                        <div className="mt-2">
+                                            <textarea
+                                            required
+                                                type="text"
+                                                name="adopter_message"
+                                                id="adopter-message"
+                                                value={adopter_message}
+                                                onChange={(e) => setMessage(e.target.value)}
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            />
+                                        </div>
+                                    </div>{validationErrors.adopter_message && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_message}</p>
+                                    )}
+                                    
+                                    {/*<div className="sm:col-span-3">
+
                                         <label htmlFor="adopter-status" className="block text-sm font-medium leading-6 text-gray-900">
                                             Status
                                         </label>

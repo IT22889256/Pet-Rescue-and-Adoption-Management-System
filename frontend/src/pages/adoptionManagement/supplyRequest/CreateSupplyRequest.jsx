@@ -22,8 +22,9 @@ export default function CreateSupplyRequest() {
     const [img, setImg] = useState(null);
     const [imgPerc, setImgPerc] = useState();
     const [videoPerc, setVideoPerc] = useState();
-  
-  
+    const [validationErrors, setValidationErrors] = useState({}); 
+
+
     useEffect((e) => {
         if (img) {
           uploadFile(img, "imgUrl");
@@ -88,8 +89,46 @@ export default function CreateSupplyRequest() {
         }
       );
     }
-    const Submit = (e) => {
 
+    const validateForm = () => {
+        const errors = {}; // Object to store validation errors
+    
+        if (!request_id) {
+          errors.request_id = 'ID is required';
+        }
+    
+        if (!supply_item) {
+          errors.supply_item = 'Item is required';
+        }
+    
+        if (!supply_pettype) {
+          errors.supply_pettype = 'Pet Type is required';
+        }
+        
+        if (!supply_brand) {
+          errors.supply_brand = 'Brand is required';
+        }
+        if (!supply_image) {
+            errors.supply_image = 'Item Image is required';
+        }
+        if (!supply_quantity) {
+            errors.supply_quantity = 'Item Quantity is required';
+        }
+        if (!supply_message) {
+            errors.supply_message = 'Message is required';
+        }
+        // You can add more validation rules here, e.g., email validation for location
+    
+        setValidationErrors(errors); // Update validation errors state
+        return Object.keys(errors).length === 0; // Return true if no errors
+      };
+
+
+    const Submit = (e) => {
+        e.preventDefault();
+        if (!validateForm()) {
+            return; // Don't submit if validation fails
+        }
         const data = {
             request_id,supply_item,supply_pettype,supply_brand,supply_quantity,supply_image,supply_message,
         };
@@ -142,7 +181,9 @@ export default function CreateSupplyRequest() {
                                                     <option>Medicine</option>
                                                 </select>
                                         </div>
-                                    </div>
+                                    </div>{validationErrors.supply_item && (
+                                    <p className="text-red-500 text-xs">{validationErrors.supply_item}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="supply-pettype" className="block text-sm font-medium leading-6 text-gray-900">
                                             Pet Type
@@ -161,7 +202,9 @@ export default function CreateSupplyRequest() {
                                                     <option>Dog</option>
                                                 </select>
                                         </div>
-                                    </div>
+                                    </div>{validationErrors.supply_pettype && (
+                                    <p className="text-red-500 text-xs">{validationErrors.supply_pettype}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="supply-brand" className="block text-sm font-medium leading-6 text-gray-900">
                                             Brand
@@ -177,7 +220,9 @@ export default function CreateSupplyRequest() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                    </div>
+                                    </div>{validationErrors.supply_brand && (
+                                    <p className="text-red-500 text-xs">{validationErrors.supply_brand}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="supply-quantity" className="block text-sm font-medium leading-6 text-gray-900">
                                             Quantity
@@ -193,7 +238,9 @@ export default function CreateSupplyRequest() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                    </div>
+                                    </div>{validationErrors.supply_quantity && (
+                                    <p className="text-red-500 text-xs">{validationErrors.supply_quantity}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="supply-message" className="block text-sm font-medium leading-6 text-gray-900">
                                             Message
@@ -209,7 +256,9 @@ export default function CreateSupplyRequest() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
-                                    </div>
+                                    </div>{validationErrors.supply_message && (
+                                    <p className="text-red-500 text-xs">{validationErrors.supply_message}</p>
+                                    )}
                                     <div className="col-span-full">
                                     <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
                                     Item Image
@@ -232,7 +281,9 @@ export default function CreateSupplyRequest() {
                                             <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                                     </div>
                                     </div>
-                                    </div>
+                                    </div>{validationErrors.supply_image && (
+                                    <p className="text-red-500 text-xs">{validationErrors.supply_image}</p>
+                                    )}
                                 </div>
                             </div>
                         </div>
