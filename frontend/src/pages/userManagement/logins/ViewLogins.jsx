@@ -1,17 +1,21 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
+
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 // import { getPetHealth } from '../../lib/helpers/petManager/petHealthStatus'
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
 
-export default function UserProfile() {
+const ViewLogins = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/userManager/userProfile").then((res) => {
-      console.log(res);
-      setUsers(res.data);
-    });
+    axios
+      .get("http://localhost:3000/userManager/userProfile/view-loginData")
+      .then((res) => {
+        console.log(res);
+        setUsers(res.data);
+      });
   }, []);
 
   const ComponetRef = useRef();
@@ -42,15 +46,8 @@ export default function UserProfile() {
         </button>
       </div>
       <div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-        <strong className="text-gray-700 font-medium">User Profiles</strong>
-        <div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1">
-          <Link
-            to="/userManager/userProfile/createUser"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Create Profile
-          </Link>
-        </div>
+        <strong className="text-gray-700 font-medium">Login History</strong>
+
         <div
           ref={ComponetRef}
           className="border-x border-gray-200 rounded-sm mt-3"
@@ -59,13 +56,11 @@ export default function UserProfile() {
             <thead className="bg-[#c1c3c558]">
               <tr>
                 <th>User ID</th>
-                <th>Name</th>
+                <th>Emp ID</th>
                 <th>Email</th>
-                <th>Password</th>
-                <th>Phone No</th>
+                <th>Login Date</th>
+                <th>Login Time</th>
                 <th>Role</th>
-                <th>Role Type</th>
-                <th>Actions</th>
               </tr>
             </thead>
             {
@@ -74,8 +69,7 @@ export default function UserProfile() {
                   .filter((user) => {
                     return searchQuery === ""
                       ? user
-                      : user.name.includes(searchQuery) ||
-                          user.email.includes(searchQuery) ||
+                      : user.eid.includes(searchQuery) ||
                           user.role.includes(searchQuery);
                   })
                   .map((user) => (
@@ -84,35 +78,11 @@ export default function UserProfile() {
                       key={user._id}
                     >
                       <td>{user.user_id}</td>
-                      <td>{user.name}</td>
+                      <td>{user.eid}</td>
                       <td>{user.email}</td>
-                      <td>{`********`}</td>
-                      <td>{user.phone}</td>
+                      <td>{user.createdAt.slice(0, 10)}</td>
+                      <td>{user.time}</td>
                       <td>{user.role}</td>
-                      <td>{user.roletype}</td>
-
-                      <td>
-                        <Link
-                          to={`/userManager/userProfile/viewUser/${user._id}`}
-                          className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 "
-                        >
-                          View
-                        </Link>
-
-                        <Link
-                          to={`/userManager/userProfile/EditUser/${user._id}`}
-                          className=" bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 "
-                        >
-                          Edit
-                        </Link>
-
-                        <Link
-                          to={`/userManager/userProfile/RemoveUser/${user._id}`}
-                          className=" bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700 text-xs text-gray-400  text-center text-justify ml-1 "
-                        >
-                          Remove
-                        </Link>
-                      </td>
                     </tr>
                   ))}
               </tbody>
@@ -122,4 +92,6 @@ export default function UserProfile() {
       </div>
     </div>
   );
-}
+};
+
+export default ViewLogins;

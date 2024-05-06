@@ -21,12 +21,12 @@ export default function Feedback() {
     console.log("result");
     axios
       .post(
-        "http://localhost:3001/userAffairsManager/feedback/createFeedback",
+        "http://localhost:3000/userAffairsManager/feedback/createFeedback",
         data
       )
       .then((result) => {
         console.log(result);
-        navigate("/UserAffairsManager/Feedback");
+        navigate("/UserAffairsManager/handleFeedback");
       })
       .catch((err) => console.log(err));
   };
@@ -56,7 +56,6 @@ export default function Feedback() {
               </div>
             </div>
 
-
             <div className="sm:col-span-3">
               <label
                 htmlFor="pet-name"
@@ -66,7 +65,7 @@ export default function Feedback() {
               </label>
               <div className="mt-2">
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                   value={email}
@@ -112,7 +111,6 @@ export default function Feedback() {
               </div>
             </div>
           </div>
-
         </div>
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <button

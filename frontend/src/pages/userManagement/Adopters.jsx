@@ -20,6 +20,7 @@ const Adopters = () => {
         <table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
           <thead className="bg-[#c1c3c558]">
             <tr>
+              <th>User ID</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone No</th>
@@ -37,6 +38,7 @@ const Adopters = () => {
                   className="h-12 border-b-2 border-[#c1c3c558] text-center "
                   key={adopter._id}
                 >
+                  <td>{adopter.user_id}</td>
                   <td>{adopter.name}</td>
                   <td>{adopter.email}</td>
                   <td>{adopter.phone}</td>
@@ -47,7 +49,7 @@ const Adopters = () => {
 
                   <td>
                     <Link
-                      to={`/userManager/verificationRequest/viewRequest/${adopter._id}`}
+                      to={`/userManager/view-adopter/${adopter._id}`}
                       className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 "
                     >
                       View

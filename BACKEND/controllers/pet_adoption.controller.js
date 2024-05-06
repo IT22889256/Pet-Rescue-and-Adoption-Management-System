@@ -20,6 +20,19 @@ const getAdoption = async (req, res) => {
   }
 };
 
+const getMyAdoptions = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const adoptions = await Adoption.find({
+      adopter_email: email,
+    });
+    console.log(adoptions);
+    res.status(200).json(adoptions);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const createAdoption = async (req, res) => {
   try {
     const counter = await Counter.findByIdAndUpdate(
@@ -75,6 +88,7 @@ const deleteAdoption = async (req, res) => {
 module.exports = {
   getAdoptions,
   getAdoption,
+  getMyAdoptions,
   createAdoption,
   updateAdoption,
   deleteAdoption,

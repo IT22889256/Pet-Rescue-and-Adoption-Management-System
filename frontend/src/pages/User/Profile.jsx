@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import {
   deleteUserStart,
   deleteUserSuccess,
@@ -9,6 +11,8 @@ import {
   logOut,
 } from "../../redux/user/userSlice";
 import axios from 'axios'
+
+import cardImage from "../../image/card.png";
 
 const Profile = () => {
 
@@ -24,28 +28,45 @@ const Profile = () => {
 
   const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
-  const handleDeleteAccount = async () => {
-    dispatch(deleteUserStart());
-    try {
-      const res = await fetch(
-        `http://localhost:3000/api/users/delete/${currentUser._id}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        }
-      );
-      const data = await res.json();
-      if (data.success === false) {
-        dispatch(deleteUserFailure(data));
-        return;
-      }
 
-      dispatch(deleteUserSuccess());
-      alert("Account deleted successfully");
-    } catch (error) {
-      dispatch(deleteUserFailure(error));
-    }
-  };
+  const [feedback, setFeedback] = useState([]);
+  const [adoptionProcesses, setAdoptionProcesses] = useState([]);
+  const [card, setCard] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3000/userAffairsManager/feedback/my/${currentUser._id}`
+      )
+      .then((res) => {
+        setFeedback(res.data);
+        console.log(res.data); // Move console.log here
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/adoptionManager/my/${currentUser.email}`)
+      .then((res) => {
+        console.log(res);
+        setAdoptionProcesses(res.data);
+      });
+  }, []);
+
+  //get card details
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3000/donationManager/cards/getCardDetails/${currentUser._id}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        setCard(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -148,12 +169,12 @@ const Profile = () => {
               </button>
             </Link>
 
-            <button
-              onClick={handleDeleteAccount}
-              className="text-white px-5  rounded-lg bg-red-500 font-semibold ml-4 hover:opacity-95 disabled:opacity-80"
+            <Link
+              to={`/delete-account/${currentUser._id}`}
+              className="text-white px-5 py-3 rounded-lg bg-red-600 font-semibold  hover:opacity-95 disabled:opacity-80 ml-10"
             >
               Delete Account
-            </button>
+            </Link>
           </div>
 
           <p>
@@ -170,12 +191,33 @@ const Profile = () => {
         {/* Right Section: Donation, Complaint, Adoption, Feedback */}
         <div className="md:w-1/2 space-y-4 my-7">
           {/* Donation History */}
-          <div className="bg-gray-200 mx-4 rounded-lg py-16">
-            <div className="text-center">
-              <p className="text-gray-600">My donation amount</p>
-              <p className="text-2xl font-semibold">Rs. 15,000.00</p>
+          {card ? (
+            <div className="bg-gray-200 mx-4 rounded-lg py-16">
+              <div className="flex flex-col md:flex-row">
+                <div className="text-center md:w-1/2">
+                  <img
+                    src={cardImage}
+                    alt="card"
+                    className="h-20 w-auto ml-20"
+                  />
+                </div>
+                <div className=" md:w-1/2">
+                  <p className="text-gray-600">
+                    Card Number : **** **** **** *
+                    {card?.cardNumber.slice(13, 16)}
+                  </p>
+                  <p className="text-2xl font-semibold">Rs. 1,000.00</p>
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="bg-gray-200 mx-4 rounded-lg py-16">
+              <div className="text-center">
+                <p className="text-gray-600">My donation amount</p>
+                <p className="text-2xl font-semibold">Rs. 00.00</p>
+              </div>
+            </div>
+          )}
           {/* Complaint History */}
           
           <div className="bg-gray-200 mx-4 rounded-lg py-16">
@@ -200,11 +242,34 @@ const Profile = () => {
               {/* Adoption History */}
               <div className="text-center">
                 <div className="bg-white rounded-xl py-1 mb-3 ">
-                  <p className="text-gray-600">Adoption history</p>
+                  <p className="text-gray-600">Adoption Requests</p>
                 </div>
-                <p className="text-gray-600">Name: Tommy</p>
-                <p className="text-gray-600">Age: 2 years</p>
-                <p className="text-gray-600">Gender: Male</p>
+                <table className="bg-[#f3f3f3] w-full text-gray-700">
+                  <thead className="bg-[#c1c3c558]">
+                    <tr>
+                      <th>Pet Type</th>
+                      <th>Pet Name</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  {adoptionProcesses.map((adoptionProcesses) => (
+                    <tr
+                      className="border-b-2 border-[#c1c3c558] text-center"
+                      key={adoptionProcesses._id}
+                    >
+                      <td className=" text-left">
+                        {adoptionProcesses.adopter_pettype}
+                      </td>
+                      <td className=" text-left">
+                        {adoptionProcesses.adopter_petname}
+                      </td>
+
+                      <td className="overflow-auto py-1 capitalize rounded-md text-s text-yellow-600  text-center ml">
+                        <div>{adoptionProcesses.adopter_status}</div>
+                      </td>
+                    </tr>
+                  ))}
+                </table>
               </div>
             </div>
             <div className="mx-4 rounded-lg mt-8 md:w-1/2 p-4 bg-gray-200 h-56 w-20">
@@ -214,8 +279,27 @@ const Profile = () => {
                   <p className="text-gray-600">Feedback history</p>
                 </div>
                 {/* Example feedback data */}
-                <p className="text-gray-600">Received positive feedback</p>
-                <p className="text-gray-600">Great service!</p>
+
+                <table className="bg-[#f3f3f3] w-full text-gray-700">
+                  <thead className="bg-[#c1c3c558]">
+                    <tr>
+                      <th>Feedback</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  {feedback.map((feedback) => (
+                    <tr
+                      className="border-b-2 border-[#c1c3c558] text-center"
+                      key={feedback._id}
+                    >
+                      <td className=" text-left">{feedback.reason}</td>
+
+                      <td className="overflow-auto py-1 capitalize rounded-md text-s text-yellow-600 text-center ml">
+                        <div>{feedback.status}</div>
+                      </td>
+                    </tr>
+                  ))}
+                </table>
               </div>
             </div>
           </div>
