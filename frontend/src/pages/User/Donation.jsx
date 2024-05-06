@@ -40,7 +40,7 @@ const Donation = () => {
             </div>
           </Link>
 
-          <Link to="">
+          <Link to={`/user/${currentUser._id}/pet-in-need`}>
             <div className="bg-orange-50 rounded-xl h-64 px-10 py-10 hover:bg-orange-200 active:bg-orange-300 focus:outline-none focus:ring focus:ring-orange-200">
               <h1 className=" font-bold text-xl my-2">
                 Sponsoring pet in need

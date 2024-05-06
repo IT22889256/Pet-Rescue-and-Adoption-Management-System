@@ -39,7 +39,7 @@ const [request_date,setrequestdate] = useState() */}
 						<tbody>
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
 						<td>
-									{request._id}
+									{request.requestId}
 								</td >
 								<td>
 									{request.request_no}

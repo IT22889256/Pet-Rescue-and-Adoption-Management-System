@@ -9,6 +9,24 @@ import { PhotoIcon} from '@heroicons/react/24/solid'
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreatePet() {
+ 
+    
+    const [ageError, setAgeError] = useState("");
+
+    const handleAgeChange = (e) => {
+        const value = e.target.value;
+        setSupplierAge(value);
+
+        // Regular expression to match only numeric values
+        const numericRegex = /^\d+$/;
+
+        if (!numericRegex.test(value)) {
+            setAgeError("Please enter a valid numeric value for the supplier age.");
+        } else {
+            setAgeError("");
+        }
+    };
+
 
     // supplier_name: {
     //     type: String,
@@ -39,11 +57,12 @@ export default function CreatePet() {
     const [supplier_name, setsuppliername] = useState()
     const [supplier_address, setsupplieraddress] = useState()
     const [supplier_email, setsupplieremail] = useState()
-    const [supplier_age,setsupplierage] = useState()
+    const [supplier_age,setSupplierAge] = useState()
     const [supplier_phonenumber,setsupplierphonenumber] = useState()
     const [supplier_image,setimage] = useState()
 
-
+    const [nameError,setNameError]=useState("");
+    const [valid,setValid] = useState(true);
 
    
     const navigate = useNavigate()
@@ -66,7 +85,18 @@ export default function CreatePet() {
     const [img, setImg] = useState(null);
     const [imgPerc, setImgPerc] = useState();
     const [videoPerc, setVideoPerc] = useState();
-  
+
+    const emailValidator = (email) => {
+      let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!regex.test(email)) {
+          setNameError("Invalid email address");
+          setValid(false);
+      } else {
+          setNameError("");
+          setValid(true);
+      }
+  }
+
   
     useEffect((e) => {
         if (img) {
@@ -137,7 +167,7 @@ export default function CreatePet() {
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
-                        <div className='text-xl font-bold '>Add suppliers</div>
+                        <div className='text-xl font-bold '>Add suppliers</div><div className='text-red-600'>{nameError}</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
 
                             { <div className="col-span-full">
@@ -209,25 +239,28 @@ export default function CreatePet() {
                                             name="supplier_email"
                                             id="supplier_email"
                                             value={supplier_email}
-                                            onChange={(e) => setsupplieremail(e.target.value)}
+                                            onChange={(e) => {setsupplieremail(e.target.value)
+                                              emailValidator(e.target.value)}}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div> 
                                     </div>
                                     <div className="sm:col-span-3">
-                                    <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Supplier age                                  </label>
-                                    <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="supplier_age"
-                                            id="supplier_age"
-                                            value={supplier_age}
-                                            onChange={(e) => setsupplierage(e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div> 
-                                    </div>
+            <label htmlFor="supplier_age" className="block text-sm font-medium leading-6 text-gray-900">
+                Supplier Age
+            </label>
+            <div className="mt-2">
+                <input
+                    type="text"
+                    name="supplier_age"
+                    id="supplier_age"
+                    value={supplier_age}
+                    onChange={handleAgeChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {ageError && <p className="text-red-500 text-sm">{ageError}</p>}
+            </div>
+        </div>
                                     {/* <div className="sm:col-span-3">
                                     <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
                                     Item image                                   </label>

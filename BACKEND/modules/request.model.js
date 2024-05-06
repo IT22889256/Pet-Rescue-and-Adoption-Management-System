@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const requestSchema = mongoose.Schema(
   {
  
-    
+    rid:{
+      type: String,
+    },
 
     request_no: {
       type: String,
