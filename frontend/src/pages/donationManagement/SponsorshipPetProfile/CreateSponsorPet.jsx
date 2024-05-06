@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 import app from '../../../firebase';
-import Apple from '../../Apple';
+
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateSponsorPet() {
@@ -15,7 +15,7 @@ export default function CreateSponsorPet() {
     const [pet_type, setPettype] = useState()
     const [pet_description, setPetDescription] = useState()
     const [added_date, setAddedDate] = useState()
-    const [sponsorship_status, setSponsorshipStatus] = useState()
+   
     const [pet_image, setPetImage] = useState()
     const [health_status, setHealthStatus] = useState()
     const navigate = useNavigate()
@@ -23,8 +23,18 @@ export default function CreateSponsorPet() {
     const [img, setImg] = useState(null);
     const [imgPerc, setImgPerc] = useState();
     const [videoPerc, setVideoPerc] = useState();
+    const [validationErrors, setValidationErrors] = useState({}); 
   
-  
+
+    const [Pets, setPets] = useState([]);
+
+    useEffect(() => {
+      axios.get('http://localhost:3000/petManager/petProfile').then(res => {
+        console.log(res);
+        setPets(res.data)
+      })
+    },[])
+
     useEffect((e) => {
         if (img) {
           uploadFile(img, "imgUrl");
@@ -90,13 +100,52 @@ export default function CreateSponsorPet() {
       );
     }
 
+    const validateForm = () => {
+      const errors = {}; // Object to store validation errors
+  
+      if (!added_date) {
+        errors.added_date = 'added date  is required';
+      }
+      if (!pet_description) {
+        errors.pet_description = 'Pet description is required';
+      }
+      if (!pet_id) {
+        errors.pet_id = 'Pet ID is required';
+      }
+  
+      if (!pet_type) {
+        errors.pet_type = 'Pet type is required';
+      }
+  
+      if (!health_status) {
+        errors.health_status = 'Health status is required';
+      }
+      
+      if (!pet_name) {
+        errors.pet_name = 'Pet Name is required';
+      }
+      if (!img) {
+          errors.img = 'Image is required';
+        }
+  
+      // You can add more validation rules here, e.g., email validation for location
+  
+      setValidationErrors(errors); // Update validation errors state
+      return Object.keys(errors).length === 0; // Return true if no errors
+    };
+
     const Submit = (e) => {
+      e.preventDefault();
+      if (!validateForm()) {
+          return; // Don't submit if validation fails
+        }
 
         const data = {
-            pet_id,sponsorship_id,pet_name,pet_type,pet_description,added_date,sponsorship_status,pet_image,health_status  };
+            pet_id,sponsorship_id,pet_name,pet_type,pet_description,added_date,pet_image,health_status  };
         console.log('result')
         axios.post('http://localhost:3000/donationManager/sponseredPet/createSponseredPet',data)
         .then(result => {
+          console.log(pet_id);
             console.log(result)
             navigate('/donationManager/SponsorshipPets')
         })
@@ -125,34 +174,48 @@ export default function CreateSponsorPet() {
                                             onChange={(e) => setPetName(e.target.value)}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
-                                        </div>
+                                        </div>{validationErrors.pet_name && (
+            <p className="text-red-500 text-xs">{validationErrors.pet_name}</p>
+          )}
                                                 </div>
+                                                <input
+    type="date"
+    name="task_id"
+    id="task-id"
+    value={added_date}
+    onChange={(e) => setAddedDate(e.target.value)}
+    
+    min={getCurrentDate()} // Set the minimum date to the current date
+    max={getCurrentDate()} // Set the maximum date to the current date
+    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+/>{validationErrors.added_date && (
+            <p className="text-red-500 text-xs">{validationErrors.added_date}</p>
+          )}
+
+
+
+                                    
+                                    
                                     <div className="sm:col-span-3">
-                                        <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Added Date
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                                type="date"
-                                                name="task_id"
-                                                id="task-id"
-                                                value={added_date}
-                                                onChange={(e) => setAddedDate(e.target.value)}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="sm:col-span-3">
-                                        <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Pet ID
-                                        </label>
-                                        <div 
-                                                id="pet-name"
-                                                value={pet_id}
-                                                onChange={(e) => setPetId(e.target.value)} >
-                                           <Apple/>
-                                        </div>
-                                    </div>
+    <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
+        Pet ID
+    </label>
+    <select 
+        id="pet-name"
+        value={pet_id}
+        onChange={(e) => {
+            setPetId(e.target.value);
+        }}
+        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <option value="">Select Pet ID</option>
+        {Pets.map((pet) => (
+            <option key={pet.pet_id} value={pet.pet_id}>{pet.pet_id}</option>
+        ))}
+    </select>
+    {validationErrors.pet_id && (
+            <p className="text-red-500 text-xs">{validationErrors.pet_id}</p>
+          )}
+</div>
                                   
                                    
                                     <div className="sm:col-span-3">
@@ -188,7 +251,9 @@ export default function CreateSponsorPet() {
           Dog
         </label>
       </div>
-    </div>
+    </div>{validationErrors.pet_type && (
+            <p className="text-red-500 text-xs">{validationErrors.pet_type}</p>
+          )}
   </fieldset>
 </div>
 
@@ -238,7 +303,9 @@ export default function CreateSponsorPet() {
           Treating
         </label>
       </div>
-    </div>
+    </div>{validationErrors.health_status && (
+            <p className="text-red-500 text-xs">{validationErrors.health_status}</p>
+          )}
   </fieldset>
 </div>
 
@@ -257,7 +324,9 @@ export default function CreateSponsorPet() {
                                                 onChange={(e) => setPetDescription(e.target.value)}
                                                 autoComplete="street-address"
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
+                                            />{validationErrors.pet_description && (
+                                              <p className="text-red-500 text-xs">{validationErrors.pet_description}</p>
+                                            )}
                                         </div>
                                     </div>
                                     { <div className="col-span-full">
@@ -302,6 +371,22 @@ export default function CreateSponsorPet() {
                         </button>
                 </div>
         </div>
+        
     )
 }
+
+function getCurrentDate() {
+  const now = new Date();
+  const year = now.getFullYear();
+  let month = now.getMonth() + 1;
+  let day = now.getDate();
+
+  // Convert month and day to strings if they are single digits
+  month = month < 10 ? '0' + month : month.toString();
+  day = day < 10 ? '0' + day : day.toString();
+
+  return `${year}-${month}-${day}`;
+}
+
+
 

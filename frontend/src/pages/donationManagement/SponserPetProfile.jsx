@@ -25,7 +25,7 @@ export default function PetProfile() {
 							<th>Pet ID</th>
 							<th>Pet Name</th>
 							<th>Added Date</th>
-							<th>Sponsorship Status $</th>
+							{/* <th>Sponsorship Status $</th> */}
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -46,7 +46,7 @@ export default function PetProfile() {
 								<td>
 									{SponsorshipPet.added_date}
 								</td>
-								<td>{SponsorshipPet.sponsorship_status}</td>
+								{/* <td>{SponsorshipPet.sponsorship_status}</td> */}
 								<td>
 									<Link to={`/DonationManager/SponsorshipPets/viewSponsorPet/${SponsorshipPet._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								
