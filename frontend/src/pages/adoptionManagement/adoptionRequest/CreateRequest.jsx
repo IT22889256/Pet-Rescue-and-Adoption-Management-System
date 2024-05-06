@@ -21,9 +21,46 @@ export default function CreateRequest() {
 
     const [nameError,setNameError]=useState("");
     const [valid,setValid] = useState(true);
+    const [validationErrors, setValidationErrors] = useState({}); 
+
+    const validateForm = () => {
+        const errors = {}; // Object to store validation errors
+    
+        if (!adopter_nic) {
+          errors.adopter_nic = 'NIC is required';
+        }
+    
+        if (!adopter_name) {
+          errors.adopter_name = 'Name is required';
+        }
+    
+        if (!adopter_phone) {
+          errors.adopter_phone = 'Phone is required';
+        }
+        
+        if (!adopter_email) {
+          errors.adopter_email = 'Email is required';
+        }
+        if (!adopter_pettype) {
+            errors.adopter_pettype = 'Pet Type is required';
+        }
+        if (!adopter_petname) {
+            errors.adopter_petname = 'Pet Name is required';
+        }
+        if (!adopter_message) {
+            errors.adopter_message = 'Message is required';
+        }
+        // You can add more validation rules here, e.g., email validation for location
+    
+        setValidationErrors(errors); // Update validation errors state
+        return Object.keys(errors).length === 0; // Return true if no errors
+      };
 
     const Submit = (e) => {
-
+        e.preventDefault();
+        if (!validateForm()) {
+            return; // Don't submit if validation fails
+        }
         const data = {
             adopter_nic,adopter_name,adopter_phone,adopter_email,adopter_pettype,adopter_petname,adopter_message,adopter_status,
         };
@@ -118,6 +155,9 @@ export default function CreateRequest() {
                                             />
                                     </div>
                                 </div>*/}
+                                {validationErrors.adopter_nic && (
+                                    <p className="text-red-500 text-xs">{validationErrors.adopter_nic}</p>
+                                )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-nic" className="block text-sm font-medium leading-6 text-gray-900">
                                             NIC
@@ -136,6 +176,9 @@ export default function CreateRequest() {
                                             />
                                         </div>
                                     </div>
+                                    {validationErrors.adopter_name && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_name}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-name" className="block text-sm font-medium leading-6 text-gray-900">
                                             Name
@@ -152,6 +195,9 @@ export default function CreateRequest() {
                                             />
                                         </div>
                                     </div>
+                                    {validationErrors.adopter_phone && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_phone}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-phone" className="block text-sm font-medium leading-6 text-gray-900">
                                             Phone Number
@@ -172,6 +218,9 @@ export default function CreateRequest() {
                                             />
                                         </div>
                                     </div>
+                                    {validationErrors.adopter_email && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_email}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-email" className="block text-sm font-medium leading-6 text-gray-900">
                                             Email
@@ -190,6 +239,9 @@ export default function CreateRequest() {
                                             />
                                         </div>
                                     </div>
+                                    {validationErrors.adopter_pettype && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_pettype}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-pettype" className="block text-sm font-medium leading-6 text-gray-900">
                                             Pet Type
@@ -209,6 +261,9 @@ export default function CreateRequest() {
                                                 </select>
                                         </div>
                                     </div>
+                                    {validationErrors.adopter_petname && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_petname}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-petname" className="block text-sm font-medium leading-6 text-gray-900">
                                             Pet Name
@@ -225,6 +280,9 @@ export default function CreateRequest() {
                                             />
                                         </div>
                                     </div>
+                                    {validationErrors.adopter_message && (
+                                        <p className="text-red-500 text-xs">{validationErrors.adopter_message}</p>
+                                    )}
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-message" className="block text-sm font-medium leading-6 text-gray-900">
                                             Message
