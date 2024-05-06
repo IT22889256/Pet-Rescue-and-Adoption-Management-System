@@ -3,42 +3,38 @@ const mongoose = require("mongoose");
 const requestSchema = mongoose.Schema(
   {
  
-    request_id:{
-     type:String,
-     required:true,
+    rid:{
+      type: String,
     },
 
     request_no: {
       type: String,
-      // required: true,
+      required: true,
      
   },
 
-  amount: {
-    type: Number,
-    required: true,
-   
-},
-  
+
 
   request_to: {
     type: String,
-    enum: ['donation manager', 'supplier'], 
-    default: 'donation manager' 
+    // enum: ['donation manager', 'supplier'], 
+    // default: 'donation manager' 
+    required: true,
 
   },
 
     request_date:{
       type:String,
+      required: true,
     },
   
   
-    status: {
-      type: String,
-      enum: ['pending', 'accepted', 'rejected'], 
-      default: 'pending' 
+    // status: {
+    //   type: String,
+    //   enum: ['pending', 'accepted', 'rejected'], 
+    //   default: 'pending' 
 
-    }
+    // }
 
     
   // },

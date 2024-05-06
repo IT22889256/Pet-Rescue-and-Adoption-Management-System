@@ -1,4 +1,5 @@
 const Supplier = require("../modules/supplier.model");
+const Counter = require('../modules/counter.model');
 
 // const getProducts = async (req, res) => {
 //   try {
@@ -31,7 +32,17 @@ const getsupplier = async (req, res) => {
 
 const createsupplier = async (req, res) => {
   try {
-    const supplier = await Supplier.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'sid' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+  
+    const sid = 'SID' + String(counter.seq).padStart(3, '0');
+    // Create new employee using employeeId and request body
+    
+    const supplier = await Supplier.create({ ...req.body, sid: sid });
+
     res.status(200).json(supplier);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -77,7 +88,7 @@ const updatesupplier = async (req, res) => {
       return res.status(404).json({ message: "supplier not found" });
     }
 
-    const updatedsupplier = await supplier.findById(id);
+    const updatedsupplier = await Supplier.findById(id);
     res.status(200).json(updatedsupplier);
   } catch (error) {
     res.status(500).json({ message: error.message });

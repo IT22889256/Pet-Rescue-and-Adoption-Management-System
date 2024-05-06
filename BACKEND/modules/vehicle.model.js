@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const VehicleSchema = new mongoose.Schema(
 
     {
-
+        Vehicle_ID: {
+            type: String,
+        },
         Vehicle_Serial_No: {
             type: String,
             required: [true],
@@ -42,6 +44,10 @@ const VehicleSchema = new mongoose.Schema(
             type: String,
             required: [true],
         },
+        Vehicle_image:{
+            type: String,
+            required: [true],
+        }
 
     
     },

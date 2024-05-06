@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
 import { Link, useParams,useNavigate } from 'react-router-dom'
-// import { getPetHealth } from '../../../lib/helpers/petManager/petHealthStatus'
 import axios from 'axios'
 
 export default function ViewTaskRequest() {
@@ -36,12 +35,11 @@ return (
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-full">
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
-						<td className='text-center'>Task ID</td>
-							<th>Request ID</th>
-							<th>User ID</th>
-							<th>Task Priority</th>
-							
-							<th>Task Request Status</th>
+						<td className='text-center'>Task Priority</td>
+							<th>Pet type</th>
+							<th>Location</th>
+							<th>Date</th>
+							<th>Status</th>
 
 								{taskRequest.rescue_task_status==='Pending' &&(
 								<th>Action</th>
@@ -63,16 +61,17 @@ return (
 						<tbody>
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
 								<td>
-									{taskRequest._id}
+								{taskRequest.rescue_task_priority}
+									
 								</td >
 								<td>
-									{taskRequest.request_id}
+									{taskRequest.pet_type}
 								</td >
 								<td>
-									{taskRequest.user_id}
+									{taskRequest.location}
 								</td >
 								<td>
-									{taskRequest.rescue_task_priority}
+								{taskRequest.date}
 								</td >
 								{/* { <td>
 									{taskRequest.rescue_task_status}
@@ -92,6 +91,10 @@ return (
 									</td>)}
 									{taskRequest.rescue_task_status=== "Failed" && (
 									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
+										<div>{taskRequest.rescue_task_status}</div>
+									</td>)}
+									{taskRequest.rescue_task_status=== "Completed" && (
+									<td className="capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
 										<div>{taskRequest.rescue_task_status}</div>
 									</td>)}
 								

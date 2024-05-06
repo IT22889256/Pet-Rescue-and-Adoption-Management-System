@@ -2,7 +2,7 @@ const Salary = require("../modules/salary.model");
 const JobRoles = require("../modules/jobRole.model");
 const Employee = require("../modules/employee.model");
 const RequestFunds = require("../modules/requestFunds.model");
-
+const Counter = require("../modules/counter.model");
 
 
 
@@ -167,22 +167,31 @@ const deleteSalary = async (req, res) => {
 //it will update the request fund document
 
 const calculateTotalSalary = async (req, res) => {
-  
   try {
-    const salaries = await Salary.find();
-    const totalfund = salaries.reduce((acc, emp) => acc + emp.totalSalary, 0);
+    const salaries = await Salary.find(); // Fetch all salary records
+    console.log(salaries)
+    const totalSalary = salaries.reduce((acc, emp) => acc + emp.totalSalary, 0); // Calculate total
 
-    // Create or update the 'reqFund' document
-    const reqFund = await RequestFunds.findOneAndUpdate(
-      {},
-      { amount: totalfund },
-      { upsert: true, new: true }
-    );
+    
+        const counter = await Counter.findByIdAndUpdate(
+          { _id: 'requestId' },
+          { $inc: { seq: 1 } },
+          { new: true, upsert: true }
+        );
+      
+        const rid = 'RID' + String(counter.seq).padStart(3, '0');
+    
 
-    res.json({ totalfund, reqFund });
+    // Create a new document for total salary
+    const totalSalaryRecord = new RequestFunds({ amount:totalSalary ,requestId: rid });
+console.log(totalSalaryRecord)
+    // Save the document in the database
+    await totalSalaryRecord.save();
+
+    res.json({ message: 'Total salary calculated and saved successfully' });
   } catch (error) {
-    console.error('Error fetching total salary:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Error calculating total salary:', error);
+    res.status(500).json({ message: 'Failed to calculate total salary' });
   }
 };
 

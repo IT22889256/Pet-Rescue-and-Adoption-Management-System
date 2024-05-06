@@ -13,7 +13,20 @@ export default function Supplier () {
 		})
 	},[])
 
+	//search
+
+	const [searchQuery, setSearchQuery] = useState("");
+	console.log(searchQuery);
+
 	return (
+		<div className="relative">
+        <input
+		onChange={(e) => setSearchQuery(e.target.value)}
+          type="text"
+		  name='search'
+          placeholder="Search..."
+          className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[24rem] h-10 pl-11 pr-4 rounded-sm"
+        />
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">supplier</strong>
 			<div className="text-xs text-gray-400 pl-1.5 mb-1 float-right mt-1"><Link to="/InventoryManager/supplier/addsupplier" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Add supplier</Link></div>
@@ -22,23 +35,28 @@ export default function Supplier () {
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
 							<th>supplier id</th>
-							<th>supplier name</th>
-							<th>supplier address</th>
-							<th>supplier email</th>
-							<th>supplier age</th>
-							<th>supplier phonenumber</th>
-							<th>supplier image</th>
+							<th> name</th>
+							<th> address</th>
+							<th> email</th>
+							<th> age</th>
+							<th> phonenumber</th>
+						
 							
 							
 
 							<th>Action</th>
 						</tr>
 					</thead>
+					{/* search */}
 					{<tbody>
-						{Supps.map((supplier) => (
-							<tr className='border-b-2 border-[#c1c3c558] text-center' key={supplier._id}>
+						{Supps.filter((supplier) => {
+							return searchQuery === '' 
+							? supplier 
+							: supplier.supplier_name.includes(searchQuery)
+						}).map((supplier) => (
+							<tr className='border-b-2 border-[#c1c3c558] text-center' key={supplier.sid}>
 								<td>
-									{supplier._id}
+									{supplier.sid}
 								</td >
 								<td>
 									{supplier.supplier_name}
@@ -55,10 +73,7 @@ export default function Supplier () {
 								<td>
 									{supplier.supplier_phonenumber}
 								</td>
-								<td>
-									{supplier.supplier_image}
-								</td>
-								
+							
 								<td>
 									<Link to={`/InventoryManager/supplier/veiwsupplier/${supplier._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 									
@@ -76,6 +91,7 @@ const [supplier_phonenumber,setsupplierphonenumber] = useState() */}
 					
 				</table>
 			</div>
+		</div>
 		</div>
 	)
 }

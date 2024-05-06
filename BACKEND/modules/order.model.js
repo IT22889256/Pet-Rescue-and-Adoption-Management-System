@@ -4,33 +4,42 @@ const OrderSchema = mongoose.Schema(
   {
  
     
-    
-
-    order_id: {
-      type: String,
-      // required: true,
+  //   order_id: {
+  //     type: String,
+  //      required: true
      
+  // },
+
+  oid:{
+    type:String,
   },
 
-  
-  item_id: {
-      type: String,
-      
-    },
+ 
 
     order_quantity:{
       type:String,
+      required: true
     },
+    order_category:{
+      type:String,
+      required: true
+
+    },
+
     order_status:{
-      type:String
+      type:String,
+      required: true,
+      default:"pending"
     },
   
-    item_image:{
-      type: String
+  //   item_image:{
+  //     type: String,
+  //     required: true
       
-  },
+  // },
   date:{
-    type:String
+    type:String,
+    required: true
   }
 
 

@@ -1,5 +1,5 @@
 const Order = require("../modules/order.model");
-
+const Counter = require('../modules/counter.model');
 // const getProducts = async (req, res) => {
 //   try {
 //     const products = await Product.find({});
@@ -31,7 +31,19 @@ const getorder = async (req, res) => {
 
 const createorder = async (req, res) => {
   try {
-    const order = await Order.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'oid' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+  
+    const oid = 'OID' + String(counter.seq).padStart(3, '0');
+    // Create new employee using employeeId and request body
+    
+    const order = await Order.create({ ...req.body, oid: oid });
+
+    res.status(200).json(Order);
+
     res.status(200).json(order);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -77,7 +89,7 @@ const updateorder = async (req, res) => {
       return res.status(404).json({ message: "order not found" });
     }
 
-    const updatedorder = await order.findById(id);
+    const updatedorder = await Order.findById(id);
     res.status(200).json(updatedorder);
   } catch (error) {
     res.status(500).json({ message: error.message });

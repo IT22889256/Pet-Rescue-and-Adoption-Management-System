@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useParams } from 'react-router-dom';
+import {useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function ViewVehicle() {
@@ -21,11 +21,17 @@ export default function ViewVehicle() {
                 <div className="px-4 py-5 sm:px-6">
                     <h3 className="text-lg font-medium leading-6 text-gray-900 text-center">Vehicle Profile</h3>
                 </div>
+
+                <div className="mt-3 flex text-xs justify-center">
+                <img className='object-cover h-60 w-60 m-5 rounded-full' src={vehicle.Vehicle_image} alt='profile_Image'/>
+				</div>
+
                 <div className="border-t border-gray-200">
+                    
                     <dl>
 					<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-sm font-medium text-gray-500">Vehicle ID</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle._id}</dd>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.Vehicle_ID}</dd>
                         </div>
                         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-sm font-medium text-gray-500">Vehicle Serial Number</dt>
@@ -59,7 +65,12 @@ export default function ViewVehicle() {
                             <dt className="text-sm font-medium text-gray-500">Vehicle Status</dt>
                             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{vehicle.vehicle_status}</dd>
                         </div>
-                       
+                        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">Actions</dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            <Link to={`/transportManager/vehicleProfile/EditVehicle/${vehicle._id}`} className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 text-xs text-gray-400 ml-1">Edit</Link>
+                            <Link to={`/transportManager/vehicleProfile/RemoveVehicle/${vehicle._id}`} className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700 text-xs text-gray-400 ml-1">Remove</Link>
+                        </dd></div>
                     </dl>
                 </div>
             </div>

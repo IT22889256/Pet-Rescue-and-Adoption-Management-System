@@ -35,9 +35,9 @@ export default function AdoptionProcess() {
 					</thead>
 					{<tbody>
 						{adoptionProcess.map((adoptionProcess) => (
-							<tr className='border-b-2 border-[#c1c3c558] text-center h-10' key={adoptionProcess._id}>
+							<tr className='border-b-2 border-[#c1c3c558] text-center h-10' key={adoptionProcess.adoption_id}>
 								<td>
-									{adoptionProcess._id}
+									{adoptionProcess.adoption_id}
 								</td >
 								<td>
 									{adoptionProcess.adopter_nic}
@@ -70,7 +70,7 @@ export default function AdoptionProcess() {
 				</table>
 			</div>
 		</div>
-	)
+	) 
 }
 // {pets.map((pets)=>(
 // 	<>

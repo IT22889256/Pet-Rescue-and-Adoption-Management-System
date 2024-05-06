@@ -1,5 +1,5 @@
 const Supply = require("../modules/pet_supply.model");
-
+const Counter = require('../modules/counter.model');
 const getSupplies = async (req, res) => {
   try {
     const supplies = await Supply.find({});
@@ -21,9 +21,33 @@ const getSupply = async (req, res) => {
 
 const createSupply = async (req, res) => {
   try {
-    const supply = await Supply.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'supplyId' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+  
+    const supplyId = 'SUP' + String(counter.seq).padStart(3, '0');
+    
+    const supply = await Supply.create({ ...req.body, supply_id: supplyId });
+
     res.status(200).json(supply);
-  } catch (error) {
+  }
+  // try {
+  //     const counter = await Counter.findByIdAndUpdate(
+  //       { _id: 'SupplyId' },
+  //       { $inc: { seq: 1 } },
+  //       { new: true, upsert: true }
+  //     );
+    
+  //     const SupplyId = 'Supply' + String(counter.seq).padStart(3, '0');
+  //     // Create new employee using employeeId and request body
+      
+  //     const Supply = await Supply.create({ ...req.body, supply_id: SupplyId });
+
+  //     res.status(200).json(Supply);
+  //   }
+  catch (error) {
     res.status(500).json({ message: error.message });
   }
 };

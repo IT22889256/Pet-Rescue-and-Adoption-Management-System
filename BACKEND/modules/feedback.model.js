@@ -4,7 +4,12 @@ const FeedbackSchema = mongoose.Schema(
   {
     user_id: {
       type: String,
-      required: true
+      required: true,
+    },
+
+    feedbackId: {
+      type: String,
+      required: true,
     },
 
     feedbackId: {
@@ -14,21 +19,18 @@ const FeedbackSchema = mongoose.Schema(
 
     email: {
       type: String,
-      required: true
-     
+      required: true,
     },
 
     reason: {
       type: String,
-      required: true 
-    
+      required: true,
     },
 
     status: {
-      type:String,
-      required: true 
-    }
-
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

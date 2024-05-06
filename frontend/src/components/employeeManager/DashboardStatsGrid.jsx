@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import {IoPeople} from 'react-icons/io5'
 import { MdOutlinePets  } from "react-icons/md";
 import { FaTasks,FaHome  } from "react-icons/fa";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import axios from 'axios'
 
 
@@ -31,8 +32,7 @@ export default function DashboardStatsGrid() {
 				<div className="pl-4">
 					
 					<div className="flex items-center">
-						<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=660975c4-4d23-46c2-8b1d-cc24564b7a4a&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
-					</div>
+					<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=66265ae1-e069-4f5f-8cb0-69c4c5c005ef&maxDataAge=60&theme=light&autoRefresh=true"></iframe></div>
 				</div>
 			</BoxWrapper>
 			<BoxWrapper>
@@ -42,20 +42,18 @@ export default function DashboardStatsGrid() {
 				<div className="pl-4">
 					
 					<div className="flex items-center">
-						
-						<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=66097daf-aeba-4fba-8718-bf93760ed5c5&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
+					<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=662643ec-e569-4d89-8bd9-3df617244e2b&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
 					</div>
-				</div>
+					</div>
 			</BoxWrapper>
 			<BoxWrapper>
 				<div className="rounded-full h-12 w-12 flex items-center justify-center bg-yellow-400">
-					<MdOutlinePets className="text-2xl text-white" />
+					<RiMoneyDollarCircleFill  className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
 					
 					<div className="flex items-center">
-					<iframe src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=66097f8a-dc56-4b3d-8544-1494930a9d58&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
-						
+					<iframe  src="https://charts.mongodb.com/charts-test-tjqsf/embed/charts?id=66264c14-8ace-40e5-8215-15b17c590032&maxDataAge=60&theme=light&autoRefresh=true"></iframe>	
 					</div>
 				</div>
 			</BoxWrapper>

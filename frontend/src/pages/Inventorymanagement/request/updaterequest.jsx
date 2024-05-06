@@ -13,7 +13,24 @@ export default function Updaterequest() {
 const [request_id, setrequestid] = useState()
 const [request_no, setrequestno] = useState()
 const [request_to, setrequestto] = useState()
-const [request_date,setrequestdate] = useState()
+const [request_date,setRequestDate] = useState()
+
+
+    const [dateError, setDateError] = useState("");
+
+    const handleDateChange = (e) => {
+        const value = e.target.value;
+        setRequestDate(value);
+
+        // Regular expression to match date in format YYYY-MM-DD
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+        if (!dateRegex.test(value)) {
+            setDateError("Please enter a valid date in the format YYYY-MM-DD");
+        } else {
+            setDateError("");
+        }
+    };
 
 
 
@@ -27,7 +44,7 @@ const [request_date,setrequestdate] = useState()
             setrequestid(res.data.request_id)
             setrequestno(res.data.request_no)
             setrequestto(res.data.request_to)
-            setrequestdate(res.data.request_date)
+            setRequestDate(res.data.request_date)
           
             // setPetAge(res.data.pet_age)
             // setPetappearance(res.data.pet_appearance)
@@ -120,20 +137,21 @@ const [request_date,setrequestdate] = useState() */}
                             </div>
 
                             <div className="sm:col-span-3">
-                                <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                    request date
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="request_date"
-                                        id="request_date"
-                                        value={request_date}
-                                        onChange={(e) => setrequestdate(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+            <label htmlFor="request_date" className="block text-sm font-medium leading-6 text-gray-900">
+                Request Date
+            </label>
+            <div className="mt-2">
+                <input
+                    type="text"
+                    name="request_date"
+                    id="request_date"
+                    value={request_date}
+                    onChange={handleDateChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {dateError && <p className="text-red-500 text-sm">{dateError}</p>}
+            </div>
+        </div>
                            
                            
                            

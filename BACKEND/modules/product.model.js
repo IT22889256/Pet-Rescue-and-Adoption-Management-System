@@ -3,6 +3,11 @@ const mongoose = require("mongoose");
 const ProductSchema = mongoose.Schema(
   {
  
+    pid:{
+      type:String,
+
+    },
+    
     item_name:{
       type:String,
       // required:true,
@@ -26,13 +31,18 @@ const ProductSchema = mongoose.Schema(
     },
   
     item_image:{
-      type: String
+      type: String,
+        required: true,
+    
       
   },
-  item_date:{
+  item_expdate:{
+    type:String,
+  },
+
+  item_mfodate:{
     type:String
   }
-
 
     
   // },

@@ -10,7 +10,7 @@ const ScheduleSchema = new mongoose.Schema(
         },
 
         Number_of_Pets: {
-            type: String,
+            type: Number,
             required: [true],
         },
 
@@ -33,6 +33,10 @@ const ScheduleSchema = new mongoose.Schema(
             type: String,
             required: [true],
         },
+        schedule_status: {
+            type: String,
+            default:'Pending' ,
+          },
     },
         {
             timestamps: true

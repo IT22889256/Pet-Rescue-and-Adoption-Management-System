@@ -3,34 +3,37 @@ const mongoose = require("mongoose");
 const SupplierSchema = mongoose.Schema(
   {
  
-    // supplier_id:{
-    //   type:String,
-    //   // required:true,
+    sid:{
+      type:String,
+     
 
-    // },
+    },
     supplier_name: {
       type: String,
-      // required: true,
+       required: true,
      
   },
   supplier_address: {
       type: String,
-      
+      required: true,
     },
 
     supplier_email:{
       type:String,
+      required: true,
     },
   
     supplier_age:{
-      type: String
-      
+      type: String,
+      required: true,
   },
   supplier_phonenumber:{
-    type:String
+    type:String,
+    required: true,
   },
   supplier_image:{
-    type:String
+    type:String,
+    required: true,
   }
 
 
