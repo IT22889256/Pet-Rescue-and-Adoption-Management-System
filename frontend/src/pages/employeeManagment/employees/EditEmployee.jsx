@@ -60,6 +60,7 @@ export default function EditEmployee() {
             
 
             console.log(res);
+            console.log(res.data.birthday);
         }).catch(err => console.log(err))
     },[])
     const Edit = (e) => {
@@ -167,15 +168,25 @@ export default function EditEmployee() {
 
    //nic validate
    const nicValidator = (nic) => {
-    let regex = /^[0-9]{12}$/;
-    if (!regex.test(nic)) {
-        setNameError("Invalid NIC number");
-        setValid(false);
-    } else {
+    let regexNumeric = /^[0-9]{12}$/;
+    let regexAlphaNumeric = /^[0-9]{4}[0-9]{5}[vV]$/;
+    //let regexAlphaNumeric = /^[0-9]{9}[vV]$/;
+    //let regexCombined = /^([0-9]{10}||[0-9]{9}[vV]),$/;
+
+    let birthYear = parseInt(nic.substring(0, 4));
+
+    if (regexAlphaNumeric.test(nic) && birthYear > 5000) {
+        setNameError("");
+        setValid(true);
+    } else if(regexNumeric.test(nic)){
         setNameError("");
         setValid(true);
     }
-}
+    else{
+        setNameError("Invalid NIC number");
+        setValid(false);
+        }
+    }
 
 //string validation
 const stringValidator = (value)=>{
@@ -358,7 +369,7 @@ else{
                                                 type="date"
                                                 name="recruitedDate"
                                                 id="recruitedDate"
-                                                value={recruitedDate}
+                                                value={recruitedDate.slice(0,10)}
                                                 onChange={(e) => setRecruitedDate(e.target.value)}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
@@ -374,7 +385,8 @@ else{
                                                 type="date"
                                                 name="birthday"
                                                 id="birthday"
-                                                value={birthday}
+                                                value={birthday.slice(0,10)}
+                                               
                                                 onChange={(e) => setBirthday(e.target.value)}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
