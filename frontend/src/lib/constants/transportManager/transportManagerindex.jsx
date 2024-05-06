@@ -5,6 +5,7 @@ import {
 import { FaTasks } from "react-icons/fa";
 import { MdEmojiTransportation } from 'react-icons/md'
 import { GrSchedulePlay } from "react-icons/gr";
+import { FiMapPin } from "react-icons/fi";
 
 
 
@@ -36,6 +37,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/transportManager/vehicleProfile',
 		icon: <MdEmojiTransportation />
 	},
+	{
+		key: 'Map',
+		label: 'Map',
+		path: '/map',
+		icon: <FiMapPin />
+	}
 
 ]
 

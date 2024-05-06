@@ -28,7 +28,9 @@ const FeedbackForm = () => {
         console.log(result);
         navigate(`user/${currentUser._id}/feedback`);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

@@ -34,6 +34,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     path: "/userManager/employeeRequests",
     icon: <IoPeopleSharp />,
   },
+  {
+    key: "Login History",
+    label: "Login History",
+    path: "/userManager/login-history",
+    icon: <MdOutlinePets />,
+  },
 ];
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [

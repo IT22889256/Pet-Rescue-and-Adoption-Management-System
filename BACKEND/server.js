@@ -27,7 +27,6 @@ app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(errorHandler);
 
-
 //user management
 
 //user routes
@@ -60,13 +59,11 @@ connection.once("open", () => {
   console.log("Mongodb Connection success");
 });
 
-
 // Reset employee leave count every 31st of the month
 
 const {
   resetEmployeeLeaveCount,
 } = require("./controllers/employeeLeaveCount.controller.js");
-
 
 cron.schedule("0 0 28-31 * *", async () => {
   try {
@@ -78,15 +75,10 @@ cron.schedule("0 0 28-31 * *", async () => {
   }
 });
 
-
-
-
-
-
 //const petRouter = require('./routes/pet.route')
-const feedbackRouter = require('./routes/feedback.route');
-const issuesandconcernsRouter = require('./routes/issuesandconcerns.route');
-const galleryRouter = require('./routes/gallery.route');
+const feedbackRouter = require("./routes/feedback.route");
+const issuesandconcernsRouter = require("./routes/issuesandconcerns.route");
+const galleryRouter = require("./routes/gallery.route");
 
 //complaint
 //app.use("/complain", complaintRouter);
@@ -95,11 +87,8 @@ app.use("/userAffairsManager", feedbackRouter);
 app.use("/userAffairsManager", issuesandconcernsRouter);
 app.use("/userAffairsManager", galleryRouter);
 
-
-const rescueRequest = require('./routes/rescueRequest.route')
+const rescueRequest = require("./routes/rescueRequest.route");
 app.use("/petManager", rescueRequest);
-
-
 
 const employeeRoute = require("./routes/employee.route.js"); // Importing employee route
 const attendanceRoute = require("./routes/daily_attendance.route.js"); // Importing attendance route
@@ -108,10 +97,10 @@ const jobRoleRoute = require("./routes/jobRole.route.js"); // Importing job role
 const emailRoute = require("./routes/email.route.js"); // Importing email route
 const deactivateEmployeesRoute = require("./routes/deactivateEmployees.route.js"); // Importing deactivate employees route
 const employeeLeave = require("./routes/leave.route.js"); // Importing leave route
+const janitorScheduleRoute = require("./routes/janitorSchedule.route.js"); // Importing janitor schedule route
 
 // Routes
 //danuka routes
-
 
 //import routes
 
@@ -124,33 +113,26 @@ app.get("/", (req, res) => {
 
 //import routes
 
-const sponserpetRouter = require('./routes/sponserpet.route');
+const sponserpetRouter = require("./routes/sponserpet.route");
 
 //donations
 
-const donationRouter = require('./routes/donation.route');
-const reccuringdonationsRouter = require('./routes/reccuringdonation.route');
-const specificneeddonationRouter =require('./routes/specificneeddonation.route');
-const sponsorDonationRouter = require('./routes/sponsordonation.route');
-const financialRoutes = require('./routes/financial.route');
+const donationRouter = require("./routes/donation.route");
+const reccuringdonationsRouter = require("./routes/reccuringdonation.route");
+const specificneeddonationRouter = require("./routes/specificneeddonation.route");
+const sponsorDonationRouter = require("./routes/sponsordonation.route");
+const financialRoutes = require("./routes/financial.route");
 
-const requestFunds = require('./routes/requestFunds.route');
-
-
-
+const requestFunds = require("./routes/requestFunds.route");
 
 // const donationRouter = require("./routes/donation.route");
 // const reccuringdonationsRouter = require("./routes/reccuringdonation.route");
 // const specificneeddonationRouter = require("./routes/specificneeddonation.route");
 // const sponsorDonationRouter = require("./routes/sponsordonation.route");
 
-
 //import pet routes
 
 const rescueTask = require("./routes/task.route");
-
-
-
 
 //import adoption routes
 
@@ -159,7 +141,6 @@ const supplyRouter = require("./routes/pet_supply.route");
 const appoinmentRouter = require("./routes/appoinment_schedule.route");
 const adoptionProcessRouter = require("./routes/adoption_process.route");
 const doctorRouter = require("./routes/pet.route");
-
 
 //import routes(Schedule)
 const Schedule = require("./modules/schedule.model.js");
@@ -179,14 +160,13 @@ app.use("/api/schedules", scheduleRoute);
 
 app.use("/petManager", petRouter);
 
-
 //import inventory routes
 
 const itemRouter = require("./routes/product.route");
 const supplierRouter = require("./routes/supplier.routes");
 const requestRouter = require("./routes/request.route");
 const orderRouter = require("./routes/order.route");
-const messagesRouter = require("./routes/messages.route.js")
+const messagesRouter = require("./routes/messages.route.js");
 
 app.use("/inventoryManager", itemRouter);
 app.use("/inventoryManager", supplierRouter);
@@ -206,6 +186,9 @@ app.use("/doctor", doctorRouter);
 //sponserpet
 app.use("/donationManager", sponserpetRouter);
 
+//card router
+const cardRouter = require("./routes/card.route.js");
+
 //donations
 app.use("/donationManager/donation", donationRouter);
 app.use("/donationManager/reccuringdonation", reccuringdonationsRouter);
@@ -213,19 +196,17 @@ app.use("/donationManager/specificneedsdonations", specificneeddonationRouter);
 app.use("/donationManager/sponsordonation", sponsorDonationRouter);
 app.use("/donationManager/financial", financialRoutes);
 app.use("/donationManager/fundrequests", requestFunds);
+app.use("/donationManager/cards", cardRouter);
+
 // app.use('/donationManager',require('./routes/reccuringdonation.route'));
 
 // const rescueTask = require('./routes/task.route');
 // app.use("/petManager", rescueTask);
 
-
-
-
-app.use("/petManager", rescueRequest);
-app.use("/petManager", rescueTask)
+app.use("/petManager", rescueRequest);
+app.use("/petManager", rescueTask);
 
 app.use("/user", rescueRequest);
-
 
 //induwara routes
 app.use("/EmployeeManager/employees", employeeRoute); // Employee routes
@@ -235,11 +216,8 @@ app.use("/EmployeeManager/jobRole", jobRoleRoute); // Job role routes
 app.use("/EmployeeManager/email", emailRoute); // Email routes
 app.use("/EmployeeManager/deactivateEmployees", deactivateEmployeesRoute); // Deactivate employees routes
 app.use("/EmployeeManager/leave", employeeLeave); // Leave routes
+app.use("/EmployeeManager/janitorSchedule", janitorScheduleRoute); // Janitor schedule routes
 
-
-
-app.listen(PORT, () =>{
-
-    console.log(`Server is up and running on ${PORT}`);
-
+app.listen(PORT, () => {
+  console.log(`Server is up and running on ${PORT}`);
 });

@@ -31,6 +31,8 @@ export default function EditTaskRequest() {
             console.log(res);
         }).catch(err => console.log(err))
     },[])
+
+
     const Edit = (e) => {
         const data = {
             request_id,user_id,pet_type,location,rescue_task_priority,rescue_task_status
@@ -40,25 +42,38 @@ export default function EditTaskRequest() {
         .then(result => {
             alert('updated')
             console.log(result)
-            navigate('/transportManager/taskRequest')
+            navigate('/transportManager/scheduleProfile/createSchedule')
         })
         .catch(err => console.log(err))
     }
+
+    const Submit = (e) => {
+        const data = {
+            request_id,user_id,pet_type,location,rescue_task_priority,rescue_task_status
+        };
+        console.log('result')
+        axios.put(`http://localhost:3000/petManager/rescueTask/editRescueTask/${id}`,data)
+        .then(result => {
+            alert('updated')
+            console.log(result)
+            navigate('/transportManager/TaskRequest')
+        })
+        .catch(err => console.log(err))
+    }
+
+
+
         return (
 
         
         <div>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
-                <div className='text-xl font-bold '>Edit Task Profile</div>
+                <div className='text-xl font-bold '>Edit Requested Task</div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                     <div className="col-span-full">
-            <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
-            Profile picture
-            </label>
-            <div className="mt-2 flex items-center gap-x-3">
-            <img className="h-20 w-20 text-gray-300" alt='image' />
-            </div>
+           
+           
         </div>
                         <div className="sm:col-span-3">
                             <label htmlFor="request_id" className="block text-sm font-medium leading-6 text-gray-900">
@@ -163,15 +178,41 @@ export default function EditTaskRequest() {
                         </div>
                     </div>
                     <div className="mt-6 flex items-center justify-end gap-x-6">
-                <Link type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                    Cancel
-                </Link>
-                <button
-                    onClick={Edit}
+                    <Link to={`/transportManager/taskRequest`} className="text-sm font-semibold leading-6 text-gray-900">Cancel</Link>
+                {/* <button
+                    onClick={Submit}
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                     Submit
-                </button>
+                </button> */}
+
+                {rescue_task_status === "In Waiting List" && (
+                <button
+                  onClick={Submit}
+                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                 Submit
+                 </button>
+                )}
+                {rescue_task_status === "In Progress" && (
+                <button
+                  onClick={Submit}
+                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                 Submit
+                 </button>
+                )}
+                
+
+                {rescue_task_status === "Pending" && (
+                <button
+                  onClick={Edit}
+                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                 Submit
+                 </button>
+                )}
+
         </div>
 </div>
 

@@ -6,11 +6,10 @@ const requestFundsSchema = mongoose.Schema(
     requestId:{
      type:String,
     required:false,
-   
+
+    unique:true
 
     },
-
-   
 
     amount: {
     type: Number,
@@ -35,7 +34,7 @@ const requestFundsSchema = mongoose.Schema(
 
   
 
-  request_date:{
+    request_date:{
         type: Date, // Change type to Date
         default: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()), // Set default value to current date
     },

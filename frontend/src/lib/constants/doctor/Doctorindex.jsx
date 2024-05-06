@@ -20,6 +20,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	// 	icon: <IoPeople />
 	// },
 	{
+		key: 'My Task',
+		label: 'My Task',
+		path: '/doctor/ViewAppoinmentTask',
+		icon: <FaUserDoctor />
+	},
+	{
 		key: 'Pet HealthCare',
 		label: 'Pet HealthCare',
 		path: '/doctor',
