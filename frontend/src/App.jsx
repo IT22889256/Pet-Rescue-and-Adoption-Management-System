@@ -312,6 +312,8 @@ import ViewOneAdopter from "./pages/userManagement/adopterRequests/ViewOneAdopte
 
 
 import ViewLogins from "./pages/userManagement/logins/ViewLogins"
+import Map from "./pages/Map"
+
 
 function App() {
   return (
