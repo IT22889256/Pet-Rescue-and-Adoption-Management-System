@@ -365,29 +365,144 @@
 //         </div>
 //     )
 // }
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+// import React, { useState, useEffect } from 'react'
+// import axios from 'axios'
+// import { Link, useNavigate, useParams } from 'react-router-dom'
+
+// export default function Editorder() {
+//     const [order_id, setOrderId] = useState('')
+//     const [item_id, setItemId] = useState('')
+//     const [order_quantity, setOrderQuantity] = useState('')
+//     const [date, setDate] = useState('')
+//     const navigate = useNavigate()
+//     const { id } = useParams()
+
+//     useEffect(() => {
+//         axios.get(`http://localhost:3000/InventoryManager/order/vieworder/${id}`)
+//             .then((res) => {
+//                 const { order_id, item_id, order_quantity, date } = res.data
+//                 setOrderId(order_id)
+//                 setItemId(item_id)
+//                 setOrderQuantity(order_quantity)
+//                 setDate(date)
+//             })
+//             .catch(err => console.log(err))
+//     }, [id])
+
+//     const Edit = () => {
+//         const data = {
+//             order_id,
+//             item_id,
+//             order_quantity,
+//             date
+//         };
+
+//         axios.put(`http://localhost:3000/InventoryManager/order/editorder/${id}`, data)
+//             .then(result => {
+//                 alert('Order updated successfully!')
+//                 navigate('/InventoryManager/order')
+//             })
+//             .catch(err => console.log(err))
+//     }
+
+//     return (
+//         <div>
+//             <div className="space-y-12">
+//                 <div className="border-b border-gray-900/10 pb-12">
+//                     <div className='text-xl font-bold '>Edit order</div>
+//                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+//                         <div className="col-span-3">
+//                             <label htmlFor="order_id" className="block text-sm font-medium leading-6 text-gray-900">
+//                                 Order Id
+//                             </label>
+//                             <input
+//                                 type="text"
+//                                 name="order_id"
+//                                 id="order_id"
+//                                 value={id}
+//                                 onChange={(e) => setOrderId(e.target.value)}
+//                                 className="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+//                             />
+//                         </div>
+//                         <div className="col-span-3">
+//                             <label htmlFor="item_id" className="block text-sm font-medium leading-6 text-gray-900">
+//                                 Item Id
+//                             </label>
+//                             <input
+//                                 type="text"
+//                                 name="item_id"
+//                                 id="item_id"
+//                                 value={item_id}
+//                                 onChange={(e) => setItemId(e.target.value)}
+//                                 className="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+//                             />
+//                         </div>
+//                         <div className="col-span-3">
+//                             <label htmlFor="order_quantity" className="block text-sm font-medium leading-6 text-gray-900">
+//                                 Order quantity
+//                             </label>
+//                             <input
+//                                 type="text"
+//                                 name="order_quantity"
+//                                 id="order_quantity"
+//                                 value={order_quantity}
+//                                 onChange={(e) => setOrderQuantity(e.target.value)}
+//                                 className="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+//                             />
+//                         </div>
+//                         <div className="col-span-3">
+//                             <label htmlFor="date" className="block text-sm font-medium leading-6 text-gray-900">
+//                                 Item date
+//                             </label>
+//                             <input
+//                                 type="text"
+//                                 name="date"
+//                                 id="date"
+//                                 value={date}
+//                                 onChange={(e) => setDate(e.target.value)}
+//                                 className="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+//                             />
+//                         </div>
+//                     </div>
+//                 </div>
+//                 <div className="mt-6 flex items-center justify-end gap-x-6">
+//                     <Link to="/InventoryManager/order" className="text-sm font-semibold leading-6 text-gray-900">
+//                         Cancel
+//                     </Link>
+//                     <button
+//                         onClick={Edit}
+//                         className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+//                     >
+//                         Submit
+//                     </button>
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function Editorder() {
-    const [order_id, setOrderId] = useState('')
-    const [item_id, setItemId] = useState('')
-    const [order_quantity, setOrderQuantity] = useState('')
-    const [date, setDate] = useState('')
-    const navigate = useNavigate()
-    const { id } = useParams()
+    const [order_id, setOrderId] = useState('');
+    const [item_id, setItemId] = useState('');
+    const [order_quantity, setOrderQuantity] = useState('');
+    const [date, setDate] = useState('');
+    const navigate = useNavigate();
+    const { id } = useParams();
 
     useEffect(() => {
         axios.get(`http://localhost:3000/InventoryManager/order/vieworder/${id}`)
             .then((res) => {
-                const { order_id, item_id, order_quantity, date } = res.data
-                setOrderId(order_id)
-                setItemId(item_id)
-                setOrderQuantity(order_quantity)
-                setDate(date)
+                const { order_id, item_id, order_quantity, date } = res.data;
+                setOrderId(order_id);
+                setItemId(item_id);
+                setOrderQuantity(order_quantity);
+                setDate(date);
             })
-            .catch(err => console.log(err))
-    }, [id])
+            .catch(err => console.log(err));
+    }, [id]);
 
     const Edit = () => {
         const data = {
@@ -399,11 +514,11 @@ export default function Editorder() {
 
         axios.put(`http://localhost:3000/InventoryManager/order/editorder/${id}`, data)
             .then(result => {
-                alert('Order updated successfully!')
-                navigate('/InventoryManager/order')
+                alert('Order updated successfully!');
+                navigate('/InventoryManager/order');
             })
-            .catch(err => console.log(err))
-    }
+            .catch(err => console.log(err));
+    };
 
     return (
         <div>
@@ -419,7 +534,7 @@ export default function Editorder() {
                                 type="text"
                                 name="order_id"
                                 id="order_id"
-                                value={id}
+                                value={order_id}
                                 onChange={(e) => setOrderId(e.target.value)}
                                 className="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
@@ -455,7 +570,7 @@ export default function Editorder() {
                                 Item date
                             </label>
                             <input
-                                type="text"
+                                type="date"
                                 name="date"
                                 id="date"
                                 value={date}
@@ -478,5 +593,5 @@ export default function Editorder() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
