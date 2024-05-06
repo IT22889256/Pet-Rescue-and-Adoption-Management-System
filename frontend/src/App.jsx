@@ -321,6 +321,10 @@ import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAt
 
 import ViewLogins from "./pages/userManagement/logins/ViewLogins"
 
+import ViewLogins from "./pages/userManagement/logins/ViewLogins"
+import Map from "./pages/Map"
+
+
 function App() {
   return (
     <Router>

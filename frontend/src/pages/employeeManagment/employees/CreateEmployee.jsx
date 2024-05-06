@@ -140,16 +140,25 @@ export default function CreateEmployee() {
   }
 
    //nic validate
-    const nicValidator = (nic) => {
-        let regex = /^[0-9]{12}$/;
-        if (!regex.test(nic)) {
-            setNameError("Invalid NIC number");
-            setValid(false);
-        } else {
-            setNameError("");
-            setValid(true);
-        }
+   const nicValidator = (nic) => {
+    let regexNumeric = /^[0-9]{12}$/;
+    let regexAlphaNumeric = /^[0-9]{4}[0-9]{5}[vV]$/;
+   
+
+    let birthYear = parseInt(nic.substring(0, 4));
+
+    if (regexAlphaNumeric.test(nic) && birthYear > 5000) {
+        setNameError("");
+        setValid(true);
+    } else if(regexNumeric.test(nic)){
+        setNameError("");
+        setValid(true);
     }
+    else{
+        setNameError("Invalid NIC number");
+        setValid(false);
+        }
+    }
 
 //string validation
 const stringValidator = (value)=>{
