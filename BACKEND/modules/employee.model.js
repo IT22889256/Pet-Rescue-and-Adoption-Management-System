@@ -4,19 +4,19 @@ const EmployeeSchema = mongoose.Schema(
   {
     eid: {
       type: String,
-      //  required: [true, "Please enter Employee ID"],
+      required: true,
       unique: true,
     },
 
     nic: {
       type: String,
-      // required: [true, "Please enter NIC"],
-      // unique: true,
+       required: [true, "Please enter NIC"],
+       unique: true,
     },
 
     firstName: {
       type: String,
-      // required: [true, "Please enter first name"],
+      required: [true, "Please enter first name"],
     },
 
     middleName: {
@@ -26,7 +26,7 @@ const EmployeeSchema = mongoose.Schema(
 
     lastName: {
       type: String,
-      // required: [true, "Please enter last name"],
+      required: [true, "Please enter last name"],
     },
 
     jobRole: {
@@ -40,32 +40,32 @@ const EmployeeSchema = mongoose.Schema(
         "supportive staff member",
       ],
       default: "doctor",
-      //required: [true, "Please enter job-role"],
+      required: [true, "Please enter job-role"],
     },
 
     recruitedDate: {
       type: Date,
       default: Date.now,
-      // required: [true, "Please enter recruitedDate"],
+      required: [true, "Please enter recruitedDate"],
     },
 
     birthday: {
       type: Date,
-      // required: false,
+      required: false,
     },
 
     address: {
       type: String,
-      // required: [true, "Please enter address"],
+      required: [true, "Please enter address"],
     },
 
     city: {
       type: String,
-      // required: [true, "Please enter city"],
+      required: [true, "Please enter city"],
     },
 
     postalCode: {
-      type: String,
+      type: Number,
       // required: [true, "Please enter postal code"],
     },
 

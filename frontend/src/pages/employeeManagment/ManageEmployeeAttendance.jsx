@@ -103,10 +103,16 @@ export default function ManageEmployeeAttendance() {
 					</thead>
 					{<tbody>
 						{employees.filter((employee) => {
-							return searchQuery.toUpperCase() === '' 
-							? employee 
-							: employee.eid.toUpperCase().includes(searchQuery)
-						}).map((employee) => (
+    const query = searchQuery.toLowerCase(); // Convert searchQuery to lowercase
+    const eid = employee.eid.toLowerCase(); // Convert employee ID to lowercase
+    const firstName = employee.firstName.toLowerCase(); // Convert firstName to lowercase
+    const jobRole = employee.jobRole.toLowerCase(); // Convert jobRole to lowercase
+    
+    return query === '' ||
+        eid.includes(query) ||
+        firstName.includes(query) ||
+        jobRole.includes(query);
+}).map((employee) => (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={employee._id}>
 								<td>
 									{employee.eid}

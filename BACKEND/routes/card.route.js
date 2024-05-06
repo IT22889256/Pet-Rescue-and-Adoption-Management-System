@@ -1,19 +1,28 @@
-const router = require('express').Router();
-const {displayCards, addCard, editCard, displayOneCard, deleteCard}= require('../controllers/card.controller');
+const router = require("express").Router();
+const {
+  displayCards,
+  addCard,
+  editCard,
+  displayOneCard,
+  deleteCard,
+  getCardDetails,
+} = require("../controllers/card.controller");
 
 //display all cards
-router.get('/display', displayCards);
+router.get("/display", displayCards);
 
 // create a card
-router.post('/add' , addCard);
+router.post("/add", addCard);
 
 // update a card
-router.put('/update/:id', editCard);
+router.put("/update/:id", editCard);
 
 //delete a card
-router.delete('/delete/:id', deleteCard);
+router.delete("/delete/:id", deleteCard);
 
 //display one card
-router.get('/display/:id', displayOneCard);
+router.get("/display/:id", displayOneCard);
 
+//get card details
+router.get("/getCardDetails/:id", getCardDetails);
 module.exports = router;

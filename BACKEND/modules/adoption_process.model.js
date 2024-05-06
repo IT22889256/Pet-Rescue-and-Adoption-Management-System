@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const AdoptionProcessSchema = mongoose.Schema(
   {
+    adoption_id: {
+      type: String,
+      // required: true
+    },
     adopter_nic: {
       type: String,
       required: true,

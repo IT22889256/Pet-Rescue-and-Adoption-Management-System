@@ -10,7 +10,7 @@ const ScheduleSchema = new mongoose.Schema(
         },
 
         Number_of_Pets: {
-            type: String,
+            type: Number,
             required: [true],
         },
 

@@ -2,7 +2,7 @@ const Salary = require("../modules/salary.model");
 const JobRoles = require("../modules/jobRole.model");
 const Employee = require("../modules/employee.model");
 const RequestFunds = require("../modules/requestFunds.model");
-
+const Counter = require("../modules/counter.model");
 
 
 
@@ -172,8 +172,18 @@ const calculateTotalSalary = async (req, res) => {
     console.log(salaries)
     const totalSalary = salaries.reduce((acc, emp) => acc + emp.totalSalary, 0); // Calculate total
 
+    
+        const counter = await Counter.findByIdAndUpdate(
+          { _id: 'requestId' },
+          { $inc: { seq: 1 } },
+          { new: true, upsert: true }
+        );
+      
+        const rid = 'RID' + String(counter.seq).padStart(3, '0');
+    
+
     // Create a new document for total salary
-    const totalSalaryRecord = new RequestFunds({ amount:totalSalary });
+    const totalSalaryRecord = new RequestFunds({ amount:totalSalary ,requestId: rid });
 console.log(totalSalaryRecord)
     // Save the document in the database
     await totalSalaryRecord.save();

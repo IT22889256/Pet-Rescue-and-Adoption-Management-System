@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 
@@ -18,6 +19,9 @@ export default function CreateRequest() {
 
     const navigate = useNavigate()
 
+    const [nameError,setNameError]=useState("");
+    const [valid,setValid] = useState(true);
+
     const Submit = (e) => {
 
         const data = {
@@ -32,12 +36,72 @@ export default function CreateRequest() {
         .catch(err => console.log(err))
     }
 
+    //phone number validate
+    const numberValidator = (value)=>{
+        let regex = /^[0-9]{10}$/;
+        if(!regex.test(value) ){
+            setNameError("Invalid input");
+            setValid(false);
+        }
+        else{
+            setNameError("");
+            setValid(true);
+        }
+    }
+    //email validate
+    const emailValidator = (email) => {
+        let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(email)) {
+            setNameError("Invalid email address");
+            setValid(false);
+        } else {
+            setNameError("");
+            setValid(true);
+        }
+    }
+    
+    //nic validate
+    // const nicValidator = (nic) => {
+    //     let regex = /^[0-9]{12}$/;
+    //     if (!regex.test(nic)) {
+    //         setNameError("Invalid NIC number");
+    //         setValid(false);
+    //     } else {
+    //         setNameError("");
+    //         setValid(true);
+    //     }
+    // }
+
+    const nicValidator = (nic) => {
+        let regexNumeric = /^[0-9]{12}$/;
+        let regexAlphaNumeric = /^[0-9]{4}[0-9]{5}[vV]$/;
+        //let regexAlphaNumeric = /^[0-9]{9}[vV]$/;
+        //let regexCombined = /^([0-9]{10}||[0-9]{9}[vV]),$/;
+    
+        let birthYear = parseInt(nic.substring(0, 4));
+
+        if (regexAlphaNumeric.test(nic) && birthYear < 2000) {
+            setNameError("");
+            setValid(true);
+        } else if(regexNumeric.test(nic)){
+            setNameError("");
+            setValid(true);
+        }
+        else{
+            setNameError("Invalid NIC number");
+            setValid(false);
+        }
+    }
+    
+    
+
         return (
 
             <div>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
                         <div className='text-xl font-bold '>Create Adoption Profile</div>
+                        <div className='text-red-600'>{nameError}</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                              {/*<div className="sm:col-span-3">
                                     <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
@@ -60,11 +124,14 @@ export default function CreateRequest() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            required
                                                 type="text"
                                                 name="adopter_nic"
                                                 id="adopter-nic"
                                                 value={adopter_nic}
-                                                onChange={(e) => setNIC(e.target.value)}
+                                                onChange={(e) => {
+                                                    setNIC(e.target.value)
+                                                    nicValidator(e.target.value)}}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
@@ -75,6 +142,7 @@ export default function CreateRequest() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            required
                                                 type="text"
                                                 name="adopter_name"
                                                 id="adopter-name"
@@ -90,11 +158,16 @@ export default function CreateRequest() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            required
                                                 type="text"
                                                 name="adopter_phone"
                                                 id="adopter-phone"
                                                 value={adopter_phone}
-                                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                                onChange={(e) => {
+                                                    setPhoneNumber(e.target.value);
+                                                    numberValidator(e.target.value); 
+                                                }}
+                                               
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
@@ -105,11 +178,14 @@ export default function CreateRequest() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            required
                                                 type="text"
                                                 name="adopter_email"
                                                 id="adopter-email"
                                                 value={adopter_email}
-                                                onChange={(e) => setEmail(e.target.value)}
+                                                onChange={(e) => {
+                                                    setEmail(e.target.value)
+                                                    emailValidator(e.target.value)}}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
@@ -120,6 +196,7 @@ export default function CreateRequest() {
                                         </label>
                                             <div className="mt-2">
                                                 <select
+                                                required
                                                     id="adopter-pettype"
                                                     name="adopter_pettype"
                                                     value={adopter_pettype}
@@ -138,6 +215,7 @@ export default function CreateRequest() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            required
                                                 type="text"
                                                 name="adopter_petname"
                                                 id="adopter-petname"
@@ -153,6 +231,7 @@ export default function CreateRequest() {
                                         </label>
                                         <div className="mt-2">
                                             <textarea
+                                            required
                                                 type="text"
                                                 name="adopter_message"
                                                 id="adopter-message"
@@ -180,9 +259,11 @@ export default function CreateRequest() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="mt-6 flex items-center justify-end gap-x-6">
-                        <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                            Cancel
+                        <div className="mt-6 flex items-center justify-end gap-x-6">
+                        <button>
+                            <Link to={'/adoptionManager/Adoption'} className="text-sm font-semibold leading-6 text-gray-900"
+        >                   Cancel
+                            </Link>
                         </button>
                         <button
                             onClick={Submit}

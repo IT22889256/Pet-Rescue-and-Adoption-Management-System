@@ -1,45 +1,33 @@
 // models/Card.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const cardSchema = new mongoose.Schema({
+  user_id: {
+    type: String,
+  },
+
   cardNumber: {
     type: String,
     required: true,
-    unique: true,
-    validate: {
-      validator: function(v) {
-        return /^\d{16}$/.test(v);
-      },
-      message: props => `${props.value} is not a valid card number!`
-    }
   },
-  expirationDate: {
-    type: Date,
+  expirationYear: {
+    type: String,
     required: true,
-    validate: {
-      validator: function(v) {
-        return v > new Date(); // Check if expiration date is in the future
-      },
-      message: props => `Card has expired!`
-    }
+  },
+  expirationMonth: {
+    type: String,
+    required: true,
   },
   cvv: {
     type: String,
     required: true,
-    validate: {
-      validator: function(v) {
-        return /^\d{3}$/.test(v);
-      },
-      message: props => `${props.value} is not a valid CVV!`
-    }
   },
   cardholderName: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
-const Card = mongoose.model('Card', cardSchema);
+const Card = mongoose.model("Card", cardSchema);
 
 module.exports = Card;
-

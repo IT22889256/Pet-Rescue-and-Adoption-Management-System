@@ -47,7 +47,7 @@ import ViewIssuesConcerns from "../src/pages/UserAffairsManagement/handleIssuesC
 import AllFeedback from "../src/pages/UserAffairsManagement/handleFeedback/AllFeedback";
 import ViewFeedback1 from "../src/pages/UserAffairsManagement/handleFeedback/viewFeedback";
 
-import UserRequest from "./pages/userManagement/UserRequest";
+//import UserRequest from "./pages/userManagement/UserRequest";
 import UserProfile from "./pages/userManagement/UserProfile";
 
 
@@ -189,6 +189,8 @@ import FundRequest from "./pages/donationManagement/fundrequests";
 import ViewFundRequest from "./pages/donationManagement/fundrequests/Viewfundrequests";
 //Employeee
 
+
+
 //Suppliers
 import Supplierslayout from "./components/Supplier/Supplierslayout";
 
@@ -234,6 +236,7 @@ import DriverLayout from "./components/driver/DriverLayout";
 import AssignedSheduleProfile from "./pages/driver/AssignedSheduleProfile";
 import ViewAssignedTask from "./pages/driver/assignedShedules/ViewAssignedTask";
 import EditAssignedTask from "./pages/driver/assignedShedules/EditAssignedTask";
+// import Map from "./pages/Map";
 
 //employee management imports
 import EmployeeLayout from "./components/employeeManager/EmployeeLayout";
@@ -290,6 +293,8 @@ import PetsProfile from "./pages/User/PetsProfile";
 import PetQR from "./pages/User/PetQR";
 import UserGallery from "./pages/User/Gallery";
 
+import PetInNeed from "./pages/User/PetInNeed"
+
 //employee attendance
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
 
@@ -324,6 +329,10 @@ function App() {
             path="/user/:id/rescuerequestForm"
             element={<RescueRequestForm />}
           />
+           <Route
+            path="/rescuerequestForm"
+            element={<RescueRequestForm />}
+          />
 
           
           <Route path="/petAdoption" element={<PetAdoption/>} />
@@ -336,6 +345,7 @@ function App() {
           <Route path="user/:id/feedback" element={<FeedbackForm />} />
 
           <Route path="user/:id/donation" element={<Donation />} />
+          <Route path="user/:id/pet-in-need" element={<PetInNeed />} />
 
 
           <Route path="user/:id/donation" element={<RecurringDonationForm />} />
@@ -570,6 +580,7 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
+        {/* <Route path="/map" element={<Map />} /> */}
        </Routes>
 
        

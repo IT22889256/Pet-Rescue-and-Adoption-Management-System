@@ -21,11 +21,18 @@ const getSupply = async (req, res) => {
 
 const createSupply = async (req, res) => {
   try {
-    const supply = await Supply.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'supplyId' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+  
+    const supplyId = 'SUP' + String(counter.seq).padStart(3, '0');
+    
+    const supply = await Supply.create({ ...req.body, supply_id: supplyId });
+
     res.status(200).json(supply);
-
-
-  } 
+  }
   // try {
   //     const counter = await Counter.findByIdAndUpdate(
   //       { _id: 'SupplyId' },

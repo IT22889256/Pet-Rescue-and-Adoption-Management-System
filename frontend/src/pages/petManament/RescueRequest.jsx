@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link} from 'react-router-dom'
+
 import {useReactToPrint} from 'react-to-print'
 import axios from 'axios'
-import { HiOutlineSearch } from "react-icons/hi";
 export default function RescueRequest() {
 
 	const [rescueRequests, setRescueRequests] = useState([]);
@@ -14,9 +14,7 @@ export default function RescueRequest() {
 		})
 	},[])
 
-	// const fetchHandler = async () => {
-	// 	return await axios.get('http://localhost:3000/petManager/rescueRequest').then((res) => res.data)
-	// }
+	
 
 	const ComponetRef = useRef();
 	const handlePrint = useReactToPrint({
@@ -25,19 +23,7 @@ export default function RescueRequest() {
 		onafterprint: ()=>("Rescue Requests Report Successfully Download")
 	})
 
-	// const [searchQuery, setSearchQuery] = useState("");
-	// const [noReasults, setNoResults] = useState(false);
 
-	// const handleSearch = () => {
-	// 	fetchHandler().then((data) => {
-	// 		const filterRescueRequests = data.rescueRequests.filter((rescueRequest) => 
-	// 		Object.values(rescueRequest).some((field) =>
-	// 		field.toString().toLowerCase().includes(searchQuery.toLowerCase())
-	// 		))
-	// 		setRescueRequests(filterRescueRequests)
-	// 		setNoResults(filterRescueRequests.lenght === 0)
-	// 	},[])
-	// }
 
 	const [searchQuery, setSearchQuery] = useState("");
 	console.log(searchQuery);
@@ -86,7 +72,7 @@ export default function RescueRequest() {
 										<div>{rescueRequest.health_status}</div>
 									</td>)}
 								<td>
-									{rescueRequest.createdAt}
+								{new Date(rescueRequest.createdAt).toLocaleDateString()}
 								</td>
 									{rescueRequest.rescue_request_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
@@ -104,7 +90,7 @@ export default function RescueRequest() {
 		</div>
 		<div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Rescue History</strong>
-			<div ref={ComponetRef}  className="border-x border-gray-200 rounded-sm mt-3">
+			<div   className="border-x border-gray-200 rounded-sm mt-3">
 				<table className="bg-[#f3f3f3] w-full text-gray-700">
 					<thead className="bg-[#c1c3c558]">
 						<tr>
@@ -120,9 +106,9 @@ export default function RescueRequest() {
 					
 					{<tbody>
 						{rescueRequests.filter((rescueRequest) => {
-							return searchQuery.toUpperCase() === '' 
+							return searchQuery === '' 
 							? rescueRequest 
-							: rescueRequest.rescue_req_id.toUpperCase().includes(searchQuery)
+							: (rescueRequest.pet_type).includes(searchQuery) || rescueRequest.rescue_req_id.includes(searchQuery)|| rescueRequest.rescue_request_status.includes(searchQuery)
 						}).map((rescueRequest) => (
 								rescueRequest.rescue_request_status !== 'Pending' &&(
 									<tr className='border-b-2 border-[#c1c3c558] text-center' key={rescueRequest._id}>
@@ -139,9 +125,9 @@ export default function RescueRequest() {
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
 										<div>{rescueRequest.health_status}</div>
 									</td>)}
-								<td>
-									{rescueRequest.createdAt}
-								</td>
+									<td>
+										{new Date(rescueRequest.createdAt).toLocaleDateString()}
+									</td>
 									{rescueRequest.rescue_request_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
 										<div>{rescueRequest.rescue_request_status}</div>

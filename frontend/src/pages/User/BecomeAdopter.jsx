@@ -22,6 +22,9 @@ const BecomeAdopter = () => {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
   const [email, setEmail] = useState(currentUser.email);
+  const [nicError, setNicError] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+  const [contactNumberError, setContactNumberError] = useState("");
 
   useEffect(() => {
     if (image) {
@@ -84,18 +87,82 @@ const BecomeAdopter = () => {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
       role: currentUser.role,
       email: email,
       photo: currentUser.photo,
       bio: currentUser.bio,
     });
+    if (name === "nic") {
+      validateNIC(value);
+    }
+    if (name === "phone") {
+      validateContactNumber(value);
+    }
+  };
+
+  const validateNIC = (nic) => {
+    const nicPattern = /^[0-9]{12}$/;
+    if (!nicPattern.test(nic)) {
+      setNicError("NIC should contain 12 digits only.");
+    } else {
+      setNicError("");
+    }
+  };
+
+  const validateContactNumber = (number) => {
+    const numberPattern = /^\d{10}$/;
+    if (!numberPattern.test(number)) {
+      setContactNumberError("Contact number should contain 10 digits only.");
+    } else {
+      setContactNumberError("");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    //validation check
+    if (formData.name === "" || formData.name === undefined) {
+      alert("Name is required");
+      return;
+    }
+    if (formData.image === "" || formData.image === undefined) {
+      alert("Front image of NIC is required");
+      return;
+    }
+    if (formData.nicback === "" || formData.nicback === undefined) {
+      alert("Rear image of NIC is required");
+      return;
+    }
+    if (formData.petOwnerShip === "" || formData.petOwnerShip === undefined) {
+      alert("Pet ownership status is required");
+      return;
+    }
+    if (formData.phone === "" || formData.phone === undefined) {
+      alert("Contact number is required");
+      return;
+    }
+    if (formData.reason === "" || formData.reason === undefined) {
+      alert("Reason for adopting a pet is required");
+      return;
+    }
+    if (formData.location === "" || formData.location === undefined) {
+      alert("Location is required");
+      return;
+    }
+    if (formData.empStatus === "" || formData.empStatus === undefined) {
+      alert("Employment status is required");
+      return;
+    }
+    if (formData.nic === "" || formData.nic === undefined) {
+      alert("NIC number is required");
+      return;
+    }
+
     console.log(formData);
     try {
       const res = await fetch(
@@ -313,6 +380,9 @@ const BecomeAdopter = () => {
                     onChange={handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  {contactNumberError && (
+                    <p className="text-red-500 text-sm">{contactNumberError}</p>
+                  )}
                 </div>
                 <p className="text-gray-500 text-sm">
                   We require this to be able to send you communications
@@ -358,14 +428,14 @@ const BecomeAdopter = () => {
                   htmlFor="empStatus"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Select your employeement status
+                  Select your employment status
                 </label>
                 <div className="mt-2">
                   <select
                     name="empStatus"
                     id="empStatus"
                     onChange={handleChange}
-                    className=" border-0 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="border-0 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   >
                     <option value=""></option>
                     <option value="full-time">Full-time employment</option>
@@ -374,7 +444,7 @@ const BecomeAdopter = () => {
                     <option value="unemployed">Unemployed</option>
                     <option value="student">Student</option>
                     <option value="retired">Retired</option>
-                    <option value="other">other</option>
+                    <option value="other">Other</option>
                   </select>
                 </div>
               </div>
@@ -393,6 +463,9 @@ const BecomeAdopter = () => {
                     onChange={handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  {nicError && (
+                    <p className="text-red-500 text-sm">{nicError}</p>
+                  )}
                 </div>
                 <p className="text-gray-500 text-sm">Enter your NIC number.</p>
               </div>

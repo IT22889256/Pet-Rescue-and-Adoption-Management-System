@@ -6,6 +6,8 @@ import DoctorAvailability from '../../DoctorAvailability'
 import HelperAvailability from '../../HelperAvailability'
 
 
+
+
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateSchedule() {
 
@@ -18,6 +20,10 @@ export default function CreateSchedule() {
     const [schedule_status, setSchStatus] = useState("Pending")
 
     const navigate = useNavigate()
+
+    //validation
+    const [nameError,setNameError]=useState("");
+    const [valid,setValid] = useState(true);
 
     const [showSuccess, setShowSuccess] = useState(false);
 
@@ -45,6 +51,33 @@ export default function CreateSchedule() {
             console.log(error);
           });
       };
+
+      //validation
+      const stringValidator = (value)=>{
+        let regex = /^[a-zA-Z]*$/;
+        if(!regex.test(value) ){
+            setNameError("Invalid input");
+            setValid(false);
+        }
+        else{
+            setNameError("");
+            setValid(true);
+        }
+    }
+
+    const numberValidator = (value)=>{
+        let regex = /^(?:[1-9]|1[0-9]|20|30)$/;
+        if(!regex.test(value) ){
+            setNameError("Invalid input");
+            setValid(false);
+        }
+        else{
+            setNameError("");
+            setValid(true);
+        }
+    }
+//
+
 
         return (
 
@@ -80,10 +113,12 @@ export default function CreateSchedule() {
                         <div className="border-b border-gray-900/10 pb-12">
                         <div className='text-xl font-bold text-center'>Create Transportation Schedule</div>
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
-                                
-                                  
 
                                     <div className="sm:col-span-3">
+                                        {/* validation */}
+                                 <div className='text-red-600'>{nameError}</div>
+                                {/* validation */}
+       
                                         <label htmlFor="Transport_Type" className="block text-sm font-medium leading-6 text-gray-900">
                                         Transport Type
                                         </label>
@@ -111,7 +146,8 @@ export default function CreateSchedule() {
                                                 name="Number_of_Pets"
                                                 id="Number_of_Pets"
                                                 value={Number_of_Pets}
-                                                onChange={(e) => setNoPet(e.target.value)}
+                                                onChange={(e) => {setNoPet(e.target.value);
+                                                numberValidator(e.target.value);}}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
@@ -122,11 +158,16 @@ export default function CreateSchedule() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                                required
                                                 type="text"
                                                 name="Location"
                                                 id="Location"
                                                 value={Location}
-                                                onChange={(e) => setLoc(e.target.value)}
+                                                onChange={(e) => {
+                                                  setLoc(e.target.value);
+                                                  // stringValidator(e.target.value); 
+                                                }}
+                                                
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
