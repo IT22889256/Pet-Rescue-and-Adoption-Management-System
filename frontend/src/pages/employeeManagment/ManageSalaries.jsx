@@ -82,10 +82,17 @@ export default function ManageSalaries() {
 					</thead>
 					{<tbody>
 						{salaries.filter((salary) => {
-							return searchQuery.toUpperCase() === '' 
-							? salary 
-							: salary.eid.toUpperCase().includes(searchQuery)
-						}).map((salary) => (
+    const query = searchQuery.toLowerCase(); // Convert searchQuery to lowercase
+    const eid = salary.eid.toLowerCase(); // Convert employee ID to lowercase
+    const firstName = salary.firstName.toLowerCase(); // Convert firstName to lowercase
+    const jobRole = salary.jobRole.toLowerCase(); // Convert jobRole to lowercase
+	
+    return query === '' ||
+        eid.includes(query) ||
+        firstName.includes(query) ||
+        jobRole.includes(query);
+		
+}).map((salary) => (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={salary._id}>
 								<td>
 									{salary.eid}

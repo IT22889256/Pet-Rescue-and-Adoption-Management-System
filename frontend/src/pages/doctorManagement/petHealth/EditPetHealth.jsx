@@ -48,7 +48,7 @@ export default function EditPetHealth() {
         .then(result => {
             alert('updated')
             console.log(result)
-            navigate('/doctor/petHealth')
+            navigate('/doctor')
         })
         .catch(err => console.log(err))
     }
@@ -61,12 +61,12 @@ export default function EditPetHealth() {
                 <div className='text-xl font-bold '>Edit Health Status</div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
                     <div className="col-span-full">
-          <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
+          {/* <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
             Profile picture
           </label>
           <div className="mt-2 flex items-center gap-x-3">
             <img className="h-20 w-20 text-gray-300" alt='image' />
-          </div>
+          </div> */}
         </div>
 
 
@@ -140,10 +140,12 @@ export default function EditPetHealth() {
                         </div>
                     </div>
                     <div className="mt-6 flex items-center justify-end gap-x-6">
-                <Link type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                    Cancel
-                </Link>
-                <button
+                    <button>
+                        <Link to={'/doctor'} className="text-sm font-semibold leading-6 text-gray-900"
+        >                   Cancel
+                        </Link>
+                    </button>
+                    <button
                     onClick={Edit}
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >

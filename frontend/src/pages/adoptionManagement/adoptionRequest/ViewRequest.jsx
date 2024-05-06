@@ -38,7 +38,7 @@ return (
 						<tbody>
 						<tr className='border-b-2 border-[#c1c3c558] text-center'>
 								<td>
-									{adopter._id}
+									{adopter.adoption_id}
 								</td >
 								<td>
 									{adopter.adopter_nic}

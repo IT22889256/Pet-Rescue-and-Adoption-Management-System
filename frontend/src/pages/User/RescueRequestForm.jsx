@@ -18,7 +18,11 @@ const RescueRequestForm = () => {
     
     const [img, setImg] = useState(null);
 
+
+
     const [validationErrors, setValidationErrors] = useState({}); 
+
+
 
     useEffect((e) => {
         if (img) {
@@ -80,7 +84,6 @@ const RescueRequestForm = () => {
     );
     }
 
-
     const validateForm = () => {
         const errors = {}; // Object to store validation errors
     
@@ -117,6 +120,8 @@ const RescueRequestForm = () => {
 
         const data = {
             user_id,pet_type,health_status,location,rescue_request_status,imgUrl
+
+
 
         };
         console.log('result')
@@ -162,7 +167,11 @@ return (
                 </h1>
             </div>
 
+
+
             <form action="">
+
+
 
             <div className="max-w-xl mx-auto rounded-lg my-7 py-5 px-16 bg-gray-300 bg-opacity-60">
                 <div className="sm:col-span-3">
@@ -180,7 +189,10 @@ return (
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
 
+
                 </div>
+
+
 
                 </div>
                 <div className="sm:col-span-3">
@@ -243,13 +255,14 @@ return (
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
 
+
+
                                             {validationErrors.location && (
             <p className="text-red-500 text-xs">{validationErrors.location}</p>
           )}
                                         </div>
                                     </div>
                              
-
 
 
                                     {<div className="col-span-full">
@@ -266,7 +279,11 @@ return (
                                             >
                                                 <span>Upload a file</span>
 
+
+
                                                 <input required id="file-upload" name="file_upload"  type="file" className="sr-only" 
+
+
 
                                                 onChange={(e) => setImg(() => e.target.files[0])}
                                                 />
@@ -275,12 +292,16 @@ return (
                                         </div>
                                             <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
 
+
+
                                             {validationErrors.img && (
             <p className="text-red-500 text-xs">{validationErrors.img}</p>
           )}
                                     </div>
                                     </div>
                                     </div> }
+
+
 
                                         <div className="mt-6 flex items-center justify-end gap-x-6">
                                 <button type="button" className="text-sm font-semibold leading-6 text-gray-900">

@@ -37,15 +37,13 @@ export default function DeleteRequest() {
               at fermentum dui. Maecenas</p>
           </div>
           <div className="flex flex-col space-y-2">
-           
             <button
-         className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded'
-       onClick={handleDeleteBook}
-         >
-           Yes, Delete it
-        </button>
-              <Link to={`/adoptionManager/adoptionRequest/viewRequest/${adopter._id}`} className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200 text-center">Cancel</Link>
-            
+              className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded'
+                onClick={handleDeleteBook}
+            >
+                Yes, Delete it
+            </button>
+              <Link to={`/adoptionManager/Adoption`} className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200 text-center">Cancel</Link>
           </div>
         </div>
       </div>

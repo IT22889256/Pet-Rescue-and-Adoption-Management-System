@@ -8,7 +8,7 @@ import app from '../../../firebase';
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditSupplyRequest() {
     
-    const [_id, setReqId] = useState()
+    const [supply_id, setReqId] = useState()
     const [supply_item, setItem] = useState()
     const [supply_pettype, setPetType] = useState()
     const [supply_brand, setSupplyBrand] = useState()
@@ -24,7 +24,7 @@ export default function EditSupplyRequest() {
         
         axios.get(`http://localhost:3000/adoptionManager/supplyRequest/viewSupplyRequest/${id}`)
         .then((res) => {
-            setReqId(res.data._id)
+            setReqId(res.data.supply_id)
             setItem(res.data.supply_item)
             setPetType(res.data.supply_pettype)
             setSupplyBrand(res.data.supply_brand)
@@ -37,7 +37,7 @@ export default function EditSupplyRequest() {
     },[])
     const Edit = (e) => {
         const data = {
-            _id,supply_item,supply_pettype,supply_brand,supply_quantity,supply_message,supply_image,
+            supply_id,supply_item,supply_pettype,supply_brand,supply_quantity,supply_message,supply_image,
         };
         
         console.log('result')
@@ -137,14 +137,15 @@ export default function EditSupplyRequest() {
                 </div> */}
                         <div className="sm:col-span-3">
                             <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                Request ID
+                                Supply ID
                             </label>
                             <div className="mt-2">
                                 <input
+                                required
                                     type="text"
                                     name="request_id"
                                     id="request-id"
-                                    value={_id}
+                                    value={supply_id}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -155,6 +156,7 @@ export default function EditSupplyRequest() {
                                 </label>
                                     <div className="mt-2">
                                         <select
+                                        required
                                             id="supply-item"
                                             name="supply_item"
                                             value={supply_item}
@@ -173,6 +175,7 @@ export default function EditSupplyRequest() {
                                 </label>
                                     <div className="mt-2">
                                         <select
+                                        required
                                             id="supply-pettype"
                                             name="supply_pettype"
                                             value={supply_pettype}
@@ -191,6 +194,7 @@ export default function EditSupplyRequest() {
                                 </label>
                                 <div className="mt-2">
                                     <input
+                                    required
                                         type="text"
                                         name="supply_brand"
                                         id="supply-brand"
@@ -206,6 +210,7 @@ export default function EditSupplyRequest() {
                                 </label>
                                 <div className="mt-2">
                                     <input
+                                    required
                                         type="text"
                                         name="supply_quantity"
                                         id="supply-quantity"
@@ -221,6 +226,7 @@ export default function EditSupplyRequest() {
                                 </label>
                                 <div className="mt-2">
                                     <textarea
+                                    required
                                         type="text"
                                         name="supply_message"
                                         id="supply-message"
@@ -236,16 +242,15 @@ export default function EditSupplyRequest() {
                             </label>
                             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                             <div className="text-center">
-                                <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
-                                <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                                <img src={supply_image} className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />                                <div className="mt-4 flex text-sm leading-6 text-gray-600">
                                     <label
                                         htmlFor="file-upload"
                                         className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                     >
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            value={supply_image}
-                                            //onChange={(e) => setPetImage(e.target.value)}
+                                            //value={supply_image}
+                                            onChange={(e) => setImg(() => e.target.files[0])}
                                         />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>
@@ -258,9 +263,11 @@ export default function EditSupplyRequest() {
                         </div>
                     </div>
                     <div className="mt-6 flex items-center justify-end gap-x-6">
-                <Link type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                    Cancel
-                </Link>
+                    <button>
+                        <Link to={'/adoptionManager/PetSupply'} className="text-sm font-semibold leading-6 text-gray-900"
+        >                   Cancel
+                        </Link>
+                        </button>
                 <button
                     onClick={Edit}
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
