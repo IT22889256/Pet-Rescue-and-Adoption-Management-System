@@ -3,19 +3,14 @@ const mongoose = require("mongoose");
 const requestFundsSchema = mongoose.Schema(
   {
  
-    request_id:{
+    requestId:{
      type:String,
     required:false,
-    //default: 'RF' + Math.floor(Date.now() / 1000)
+   
 
     },
 
-    request_no: {
-      type: String,
-      required: false,
-     // default: 'RF' + Math.floor(Date.now() / 2000000)
-     
-  },
+   
 
     amount: {
     type: Number,
@@ -26,7 +21,7 @@ const requestFundsSchema = mongoose.Schema(
   request_from: {
     type: String,
     enum: ['employee manager', 'inventory manager'], 
-    default: 'employee manager' 
+    default: 'inventory manager' 
 
   },
 

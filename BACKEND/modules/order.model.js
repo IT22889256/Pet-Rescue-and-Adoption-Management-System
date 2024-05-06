@@ -10,11 +10,11 @@ const OrderSchema = mongoose.Schema(
      
   // },
 
-  
-  item_id: {
-      type: String,
-      required: true
-    },
+  oid:{
+    type:String,
+  },
+
+ 
 
     order_quantity:{
       type:String,
