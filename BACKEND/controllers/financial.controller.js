@@ -1,11 +1,11 @@
 const Financial = require('../modules/financial.model');
-const Donation = require('../modules/donation.model');
+const SponsorDonation = require('../modules/sponsordonation.model');
 const RequestFunds = require('../modules/requestFunds.model');
 
 exports.getBudget = async (req, res) => {
     try {
         // Calculate total income from donations
-        const income = await Donation.aggregate([
+        const income = await SponsorDonation.aggregate([
             { $group: { _id: null, total: { $sum: '$amount' } } }
         ]);
 

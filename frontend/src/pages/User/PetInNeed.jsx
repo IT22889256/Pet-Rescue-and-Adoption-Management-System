@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import jsPDF from "jspdf";
+ import jsPDF from "jspdf";
+
 
 const PetInNeed = () => {
   const [pets, setPets] = useState([]);
@@ -19,7 +20,7 @@ const PetInNeed = () => {
   const [expirationYear, setExpirationYear] = useState("");
   const [cvv, setCvv] = useState("");
   const [SponsorshipPets, setSponsorshipPets] = useState([]);
-
+ 
   useEffect(() => {
     axios
       .get("http://localhost:3000/donationManager/sponseredPet")
@@ -27,37 +28,88 @@ const PetInNeed = () => {
         setSponsorshipPets(res.data);
       });
   }, []);
+  const generatePaymentSlip = () => {
+    // Create a new jsPDF instance
+    const doc = new jsPDF();
+
+ // Add content to the PDF
+doc.setFontSize(12);
+doc.text(`Dear ${cardholderName},`, 10, 10);
+doc.text("Thank you sincerely for your generous donation. Your support means everything to us and helps us make a real difference.", 10, 20, { maxWidth: 180 });
+doc.text("Payment Slip", 10, 50);
+doc.text(`Name: ${cardholderName}`, 10, 60);
+doc.text(`Amount: $${amount}`, 10, 70);
+// Add more content as needed
+
+    // Save the PDF as a file
+    doc.save("payment_slip.pdf");
+  };
 
   const Submit = (e) => {
     e.preventDefault();
 
-    // Your existing code...
+    // Validation check
+    const cardNumberRegex = /^[0-9]{16}$/; // Example: 16-digit card number
+    if (!cardNumberRegex.test(cardNumber)) {
+      alert("Please enter a valid card number");
+      return;
+    }
+    const expirationMonthRegex = /^(0[1-9]|1[0-2])$/; // Example: MM format (01-12)
+    const expirationYearRegex = /^[0-9]{2}$/; // Example: YY format (20 for 2020)
+    if (!expirationMonthRegex.test(expirationMonth) || !expirationYearRegex.test(expirationYear)) {
+      alert("Please enter a valid expiration date");
+      return;
+    }
+    const cvvRegex = /^[0-9]{3}$/; // Example: 3-digit CVV
+    if (!cvvRegex.test(cvv)) {
+      alert("Please enter a valid CVV");
+      return;
+    }
+   
+    if (
+      !cardholderName ||
+      !cardNumber ||
+      !expirationMonth ||
+      !expirationYear ||
+      !cvv
+    ) {
+      alert("Please fill all the input fields");
+      return;
+    }
+
+    const data1 = {
+      user_id: currentUser._id,
+      amount: amount,
+      pet_id: pet_id,
+    };
+
+    axios
+      .post("http://localhost:3000/donationManager/sponsordonation/add", data1)
+      .then((result) => {
+        alert("Successfully Added Donation Details");
+      })
+      .catch((err) => console.log(err));
+
+
+    const data = {
+      user_id: currentUser.user_id,
+      cardholderName,
+      cardNumber,
+      expirationMonth,
+      expirationYear,
+      cvv,
+    };
+
+    axios
+      .post("http://localhost:3000/donationManager/cards/add", data)
+      .then((result) => {
+        alert("Donation Successful");
+        generatePaymentSlip();
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
   };
-
-  const generatePaymentSlip = () => {
-    // Here you generate the payment slip dynamically
-    // You can use libraries like pdf-lib or jsPDF to create PDFs programmatically
-
-    // Create a new jsPDF instance
-    const pdf = new jsPDF();
-
-    // Add content to the PDF
-    pdf.text("Payment Slip", 10, 10);
-    pdf.text("Amount: $" + amount, 10, 20);
-    pdf.text("Cardholder Name: " + cardholderName, 10, 30);
-    // Add more details as needed
-
-    // Save the PDF as a Blob
-    const pdfBlob = pdf.output("blob");
-
-    // Create a temporary anchor element
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(pdfBlob);
-    a.download = "payment_slip.pdf"; // Set the file name
-    document.body.appendChild(a);
-    a.click(); // Click the anchor element to trigger download
-    document.body.removeChild(a); // Remove the anchor element from the DOM
-  };
+  
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row ">

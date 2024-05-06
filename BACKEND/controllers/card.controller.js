@@ -1,10 +1,10 @@
-const card = require("../modules/card.model");
+const Card = require("../modules/card.model");
 const { use } = require("../routes/card.route");
 
 //display all cards
 const displayCards = async (req, res) => {
   try {
-    const cards = await card.find({});
+    const cards = await Card.find({});
     res.status(200).json(cards);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -15,7 +15,7 @@ const displayCards = async (req, res) => {
 const addCard = async (req, res) => {
   console.log(req.body);
   try {
-    card
+    Card
       .create(req.body)
       .then((card) => res.json(card))
       .catch((err) => res.json(err));
@@ -28,11 +28,11 @@ const addCard = async (req, res) => {
 const editCard = async (req, res) => {
   try {
     const { id } = req.params;
-    const card = await card.findByIdAndUpdate(id, req.body);
+    const card = await Card.findByIdAndUpdate(id, req.body);
     if (!card) {
       return res.status(404).json({ message: "Card not found" });
     }
-    const updateCard = await card.findById(id);
+    const updateCard = await Card.findById(id);
     res.status(200).json(updateCard);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -43,7 +43,7 @@ const editCard = async (req, res) => {
 const displayOneCard = async (req, res) => {
   try {
     const { id } = req.params;
-    const card = await card.findById(id);
+    const card = await Card.findById(id);
     if (!card) {
       return res.status(404).json({ message: "Card not found" });
     }
@@ -57,7 +57,8 @@ const displayOneCard = async (req, res) => {
 const deleteCard = async (req, res) => {
   try {
     const { id } = req.params;
-    const card = await card.findByIdAndDelete(id);
+    console.log(id)
+    const card = await Card.findByIdAndDelete(id);
     if (!card) {
       return res.status(404).json({ message: "Card not found" });
     }
@@ -71,17 +72,18 @@ const deleteCard = async (req, res) => {
 const getCardDetails = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("id",id);
 
-    const Card = await card.findOne({ user_id: id });
+    const card = await Card.findOne({ user_id: id });
 
-    console.log(Card);
-    if (!Card) {
+    console.log(card);
+    if (!card) {
       return res.status(404).json({ message: "Card not found" });
     }
 
     // Send card data to the frontend only if database has data related to the provided user_id
-    if (Card) {
-      res.status(200).json(Card);
+    if (card) {
+      res.status(200).json(card);
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
