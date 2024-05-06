@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import JobRoleAvailability from "../../jobroleAvailability";
-
-
 
 import {
   getStorage,
@@ -16,7 +11,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import app from "../../../firebase";
-import { PhotoIcon } from "@heroicons/react/24/solid";
+
 
 
 export default function CreateEmployee() {

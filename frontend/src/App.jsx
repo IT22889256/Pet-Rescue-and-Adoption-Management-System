@@ -280,12 +280,14 @@ import ViewOneAttendance from "./pages/employeeManagment/attendanceManagement/Vi
 import RescueRequestForm from "./pages/User/RescueRequestForm";
 
 
+
 //create schedule for janitors
 import ManageScheduleForJanitors from "./pages/employeeManagment/ManageJanitorSchedule";
 import CreateSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/CreateJanitorSchedule";
 import ViewSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/ViewJanitorSchedule";
 import EditSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/EditJanitorSchedule";
 import DeleteSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/RemoveJanitorSchedule"; 
+
 
 
 
@@ -305,10 +307,11 @@ import UserGallery from "./pages/User/Gallery";
 
 //employee attendance
 
-
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+import ViewOneAdopter from "./pages/userManagement/adopterRequests/ViewOneAdopters";
 
 
+import ViewLogins from "./pages/userManagement/logins/ViewLogins"
 
 function App() {
   return (
@@ -316,6 +319,7 @@ function App() {
       <Routes>
         <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
         <Route path="/employeeProfiles/LeaveApply/:eid" element={<LeaveApply />} />
+
       </Routes>
 
       <Routes>
@@ -381,9 +385,20 @@ function App() {
             element={<VerificationRequests />}
           />
           <Route
+            path="/userManager/login-history"
+            element={<ViewLogins />}
+          />
+          <Route
             path="/userManager/employeeRequests"
             element={<EmployeesRequests />}
           />
+
+
+        <Route
+            path="/userManager/view-adopter/:id"
+            element={<ViewOneAdopter />}
+          />
+
 
           <Route
             path="/userManager/employees/viewEmployee/:id"
@@ -587,8 +602,6 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
-
-
         <Route path="/map" element={<Map />} />
        </Routes>
 
@@ -604,7 +617,6 @@ function App() {
             
             <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
           </Route>
-
 
           </Route>
         </Routes>
