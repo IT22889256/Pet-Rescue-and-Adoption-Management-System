@@ -87,10 +87,18 @@ export default function ManageLeaves() {
                     </thead>
                    { <tbody>
                     {leaves.filter((leave) => {
-							return searchQuery.toUpperCase() === '' 
-							? leave 
-							: leave.eid.toUpperCase().includes(searchQuery)
-						}).map((leave) => (
+    const query = searchQuery.toLowerCase(); 
+    const eid = leave.eid.toLowerCase(); 
+    const reason = leave.reason.toLowerCase(); 
+    const leaveID = leave.leaveID.toLowerCase(); 
+  
+    
+    return query === '' ||
+        eid.includes(query) ||
+        reason.includes(query) ||
+        leaveID.includes(query);
+        
+}).map((leave) => (
 							leave.status === 'pending' &&(
                             <tr className="border-b-2 border-[#c1c3c558] text-center" key={leave._id}>
                                 <td>{leave.leaveID}</td>
@@ -136,10 +144,18 @@ export default function ManageLeaves() {
                     </thead>
                     <tbody>
                     {leaves.filter((leave) => {
-							return searchQuery.toUpperCase() === '' 
-							? leave 
-							: leave.eid.toUpperCase().includes(searchQuery)
-						}).map((leave) => (
+    const query = searchQuery.toLowerCase(); 
+    const eid = leave.eid.toLowerCase(); 
+    const reason = leave.reason.toLowerCase(); 
+    const leaveID = leave.leaveID.toLowerCase(); 
+  
+    
+    return query === '' ||
+        eid.includes(query) ||
+        reason.includes(query) ||
+        leaveID.includes(query);
+        
+}).map((leave) => (
                             leave.status !== 'pending' && (
                                 <tr className="border-b-2 border-[#c1c3c558] text-center" key={leave._id}>
                                     <td>{leave.leaveID}</td>

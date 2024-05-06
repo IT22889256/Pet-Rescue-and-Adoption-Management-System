@@ -9,7 +9,6 @@ const RescueRequestSchema = mongoose.Schema({
     user_id:{
         type: String,
         required: true
-
     },
     pet_type: {
       type: String,
@@ -22,11 +21,6 @@ const RescueRequestSchema = mongoose.Schema({
 
     location:{
         type: String,
-        required: true
-    },
-
-    date:{
-        type: Date,
         required: true
     },
 

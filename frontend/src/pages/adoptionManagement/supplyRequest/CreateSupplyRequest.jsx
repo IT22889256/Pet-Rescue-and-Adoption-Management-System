@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -129,6 +130,7 @@ export default function CreateSupplyRequest() {
                                         </label>
                                             <div className="mt-2">
                                                 <select
+                                                required
                                                     id="supply-item"
                                                     name="supply_item"
                                                     value={supply_item}
@@ -147,6 +149,7 @@ export default function CreateSupplyRequest() {
                                         </label>
                                             <div className="mt-2">
                                                 <select
+                                                required
                                                     id="supply-pettype"
                                                     name="supply_pettype"
                                                     value={supply_pettype}
@@ -165,6 +168,7 @@ export default function CreateSupplyRequest() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            required
                                                 type="text"
                                                 name="supply_brand"
                                                 id="supply-brand"
@@ -180,6 +184,7 @@ export default function CreateSupplyRequest() {
                                         </label>
                                         <div className="mt-2">
                                             <input
+                                            required
                                                 type="text"
                                                 name="supply_quantity"
                                                 id="supply-quantity"
@@ -195,6 +200,7 @@ export default function CreateSupplyRequest() {
                                         </label>
                                         <div className="mt-2">
                                             <textarea
+                                            required
                                                 type="text"
                                                 name="supply_message"
                                                 id="supply-message"
@@ -210,16 +216,15 @@ export default function CreateSupplyRequest() {
                                     </label>
                                     <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                                     <div className="text-center">
-                                        <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
-                                        <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                                        <img src={supply_image} className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />                                        <div className="mt-4 flex text-sm leading-6 text-gray-600">
                                             <label
                                                 htmlFor="file-upload"
                                                 className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
                                                 <span>Upload a file</span>
-                                                <input id="file-upload" name="file_upload"  type="file" className="sr-only"  accept='image/'
+                                                <input id="file-upload" name="file_upload"  type="file" className="sr-only"
                                                     
-                                                    onChange={(e) => setImg((prev) => e.target.files[0])}
+                                                    onChange={(e) => setImg(() => e.target.files[0])}
                                                 />
                                             </label>
                                             <p className="pl-1">or drag and drop</p>
@@ -232,8 +237,10 @@ export default function CreateSupplyRequest() {
                             </div>
                         </div>
                         <div className="mt-6 flex items-center justify-end gap-x-6">
-                        <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                            Cancel
+                        <button>
+                        <Link to={'/adoptionManager/PetSupply'} className="text-sm font-semibold leading-6 text-gray-900"
+        >                   Cancel
+                        </Link>
                         </button>
                         <button
                             onClick={Submit}

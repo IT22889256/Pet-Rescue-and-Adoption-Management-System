@@ -13,6 +13,7 @@ export default function Adoption() {
     });
   }, []);
 
+
   return (
     <div className="bg-[#f8fafc] px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
       <strong className="text-gray-700 font-medium">Adoption Profiles</strong>
@@ -78,6 +79,7 @@ export default function Adoption() {
       </div>
     </div>
   );
+
 }
 // {pets.map((pets)=>(
 // 	<>
