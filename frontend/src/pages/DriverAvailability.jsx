@@ -20,7 +20,7 @@ function DriverAvailability(props) {
               employee.jobRole === "driver" && employee.availability === "available"
           )
           .map((opts, i) => (
-            <option key={i}>{opts.firstName}</option>
+            <option key={i}><option></option>{opts.firstName}</option>
           ))}
       </select>
     </div>

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {displayrequests, createrequests, editrequests,acceptrequest,displayOnerequests,rejectrequests} = require('../controllers/requests.controller');
+const {displayrequests, createrequests, editrequests,acceptrequest,displayOnerequests,rejectrequests} = require('../controllers/ordercontroller');
 
 // displayrequests,
 //   createrequests,

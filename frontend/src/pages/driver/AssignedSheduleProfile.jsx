@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Link} from 'react-router-dom'
 import axios from 'axios'
+import { useSelector } from "react-redux";
 
 export default function AssignedSheduleProfile() {
+	const currentUser = useSelector((state) => state.user.currentUser);
 
 	const [AssignedSheduleProfiles, setAssignedSheduleProfiles] = useState([]);
 
 	useEffect(() => {
-		axios.get('http://localhost:3000/api/schedules').then(res => {
+		axios.get(`http://localhost:3000/api/schedules/getAssignDetails/mufas`).then(res => {
 			console.log(res);
 			setAssignedSheduleProfiles(res.data)
 		})

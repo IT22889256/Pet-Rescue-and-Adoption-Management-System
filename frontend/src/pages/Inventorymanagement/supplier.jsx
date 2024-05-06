@@ -13,6 +13,8 @@ export default function Supplier () {
 		})
 	},[])
 
+	//search
+
 	const [searchQuery, setSearchQuery] = useState("");
 	console.log(searchQuery);
 
@@ -45,15 +47,16 @@ export default function Supplier () {
 							<th>Action</th>
 						</tr>
 					</thead>
+					{/* search */}
 					{<tbody>
 						{Supps.filter((supplier) => {
 							return searchQuery === '' 
 							? supplier 
 							: supplier.supplier_name.includes(searchQuery)
 						}).map((supplier) => (
-							<tr className='border-b-2 border-[#c1c3c558] text-center' key={supplier._id}>
+							<tr className='border-b-2 border-[#c1c3c558] text-center' key={supplier.id}>
 								<td>
-									{supplier._id}
+									{supplier.sid}
 								</td >
 								<td>
 									{supplier.supplier_name}

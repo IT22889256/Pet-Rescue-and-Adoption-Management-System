@@ -13,7 +13,24 @@ export default function Updaterequest() {
 const [request_id, setrequestid] = useState()
 const [request_no, setrequestno] = useState()
 const [request_to, setrequestto] = useState()
-const [request_date,setrequestdate] = useState()
+const [request_date,setRequestDate] = useState()
+
+
+    const [dateError, setDateError] = useState("");
+
+    const handleDateChange = (e) => {
+        const value = e.target.value;
+        setRequestDate(value);
+
+        // Regular expression to match date in format YYYY-MM-DD
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+        if (!dateRegex.test(value)) {
+            setDateError("Please enter a valid date in the format YYYY-MM-DD");
+        } else {
+            setDateError("");
+        }
+    };
 
 
 
@@ -27,12 +44,9 @@ const [request_date,setrequestdate] = useState()
             setrequestid(res.data.request_id)
             setrequestno(res.data.request_no)
             setrequestto(res.data.request_to)
-            setrequestdate(res.data.request_date)
+            setRequestDate(res.data.request_date)
           
-            // setPetAge(res.data.pet_age)
-            // setPetappearance(res.data.pet_appearance)
-            // setLocation(res.data.location)
-            // setPetImage(res.data.pet_image)
+
 
             console.log(res);
            
@@ -68,10 +82,6 @@ const [request_date,setrequestdate] = useState()
             <img className="h-20 w-20 text-gray-300" alt='image' />
           </div>
         </div>
-        {/* const [request_id, setrequestid] = useState()
-const [request_no, setrequestno] = useState()
-const [request_to, setrequestto] = useState()
-const [request_date,setrequestdate] = useState() */}
 
 
                         <div className="sm:col-span-3">
@@ -88,21 +98,7 @@ const [request_date,setrequestdate] = useState() */}
                                     />
                                 </div>
                             </div>
-                            <div className="sm:col-span-3">
-                                <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                request no
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="request_no"
-                                        id="request_no"
-                                        value={request_no}
-                                        onChange={(e) => setrequestno(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                           
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
                                     Supplier address
@@ -120,100 +116,21 @@ const [request_date,setrequestdate] = useState() */}
                             </div>
 
                             <div className="sm:col-span-3">
-                                <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                    request date
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="request_date"
-                                        id="request_date"
-                                        value={request_date}
-                                        onChange={(e) => setrequestdate(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
-                           
-                           
-                           
-                            {/* <div className="sm:col-span-3">
-                                <label htmlFor="pet-type" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet type
-                                </label>
-                                    <div className="mt-2">
-                                        <select
-                                            id="pet-type"
-                                            name="pet_type"
-                                            value={pet_type}
-                                            
-                                            onChange={(e) => setPettype(e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                            ><option></option>
-                                            <option>Cat</option>
-                                            <option>Dog</option>
-                                        </select>
-                                </div>
-                            </div>
-                            <div className="sm:col-span-3">
-                                <label htmlFor="health-status" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Health Status
-                                </label>
-                                    <div className="mt-2">
-                                        <select
-                                            id="health-status"
-                                            name="health_status"
-                                            value={health_status}
-                                            onChange={(e) => setHealStatus(e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                            ><option></option>
-                                            <option className='bg-[#15803d]'>Good</option>
-                                            <option className='bg-[#be123c]'>Need Treament</option>
-                                            <option className='bg-[#ca8a04]'>Treating</option>
-                                        </select>
-                                </div>
-                            </div>
-
-                            <div className="col-span-full">
-                                <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Location
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="location"
-                                        id="locations"
-                                        value={location}
-                                        onChange={(e) => setLocation(e.target.value)}
-                                        autoComplete="street-address"
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div> */}
-                            {/* { <div className="col-span-full">
-                            <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">
-                            supplier image
-                            </label>
-                            <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                            <div className="text-center">
-                                <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
-                                <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                    <label
-                                        htmlFor="file-upload"
-                                        className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                    >
-                                        <span>Upload a file</span>
-                                        <input id="file-upload" name="file_upload"  type="file" className="sr-only" 
-                                            value={supplier_image}
-                                            onChange={(e) => setsupplierimage(e.target.value)}
-                                        />
-                                    </label>
-                                    <p className="pl-1">or drag and drop</p>
-                                </div>
-                                    <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-                            </div>
-                            </div>
-                            </div> } */}
+            <label htmlFor="request_date" className="block text-sm font-medium leading-6 text-gray-900">
+                Request Date
+            </label>
+            <div className="mt-2">
+                <input
+                    type="text"
+                    name="request_date"
+                    id="request_date"
+                    value={request_date}
+                    onChange={handleDateChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {dateError && <p className="text-red-500 text-sm">{dateError}</p>}
+            </div>
+        </div>
                             </div>
                         </div>
                     </div>

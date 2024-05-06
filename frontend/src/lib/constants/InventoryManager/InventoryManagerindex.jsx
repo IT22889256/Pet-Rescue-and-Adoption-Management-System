@@ -3,6 +3,10 @@ import {
 	HiOutlineQuestionMarkCircle
 } from 'react-icons/hi'
 import { MdOutlinePets } from "react-icons/md";
+import { SiTemporal } from "react-icons/si";
+import { PiCarProfileBold } from "react-icons/pi";
+import { FaCodePullRequest } from "react-icons/fa6";
+import { FaMessage } from "react-icons/fa6";
 import { FaTasks } from "react-icons/fa";
 import {IoPeople} from 'react-icons/io5'
 export const DASHBOARD_SIDEBAR_LINKS = [
@@ -28,19 +32,19 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		key: 'Items',
 		label: 'Items',
 		path: "/InventoryManager/Items" ,
-		icon: <MdOutlinePets />
+		icon: <SiTemporal />
 	},
 	{
 		key: 'supllier',
 		label: 'supplier',
 		path: "/InventoryManager/supplier" ,
-		icon: <MdOutlinePets />
+		icon: <PiCarProfileBold /> 
 	},
 	{
 		key: 'Requests',
 		label: 'Requests',
 		path: "/InventoryManager/request" ,
-		icon: <MdOutlinePets />
+		icon: <FaCodePullRequest /> 
 	},
 
 	{
@@ -54,7 +58,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		key: 'messages',
 		label: 'messages',
 		path: "/InventoryManager/messages" ,
-		icon: <MdOutlinePets />
+		icon: <FaMessage />
 	}
 
 ]

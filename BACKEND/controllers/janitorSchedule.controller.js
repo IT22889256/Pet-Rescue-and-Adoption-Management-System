@@ -1,4 +1,6 @@
 const JanitorTask = require("../modules/janitorSchedule.model");
+const Counter = require('../modules/counter.model');
+
 
 
 const getJanitorSchedules = async (req, res) => {
@@ -25,7 +27,15 @@ const getJanitorSchedule = async (req, res) => {
 const createJanitorSchedule = async (req, res) => {
     try {
 
-        const schedule = await JanitorTask.create(req.body);
+        const counter = await Counter.findByIdAndUpdate(
+            { _id: 'JanitorTaskScheduleId' },
+            { $inc: { seq: 1 } },
+            { new: true, upsert: true }
+          );
+        
+          const JanitorTaskScheduleId = 'JTS' + String(counter.seq).padStart(3, '0');
+
+        const schedule = await JanitorTask.create({ ...req.body, JanitorTaskScheduleId: JanitorTaskScheduleId });
         res.status(200).json(schedule);
 
     } catch (error) {
