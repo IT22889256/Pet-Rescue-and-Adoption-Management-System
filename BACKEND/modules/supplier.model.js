@@ -6,7 +6,6 @@ const SupplierSchema = mongoose.Schema(
     sid:{
       type:String,
      
-
     },
     supplier_name: {
       type: String,

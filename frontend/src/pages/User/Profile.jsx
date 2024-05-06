@@ -13,6 +13,7 @@ import {
   logOut,
 } from "../../redux/user/userSlice";
 
+
 import cardImage from "../../image/card.png";
 
 const Profile = () => {
