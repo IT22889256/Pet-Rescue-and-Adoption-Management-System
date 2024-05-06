@@ -51,11 +51,17 @@ export default function ManageJobRoles() {
 						</tr>
 					</thead>
 					{<tbody>
-						{jobRoles.filter((jobrole) => {
+						{/* {jobRoles.filter((jobrole) => {
 							return searchQuery.toUpperCase() === '' 
 							? jobrole 
 							: jobrole.eid.toUpperCase().includes(searchQuery)
-						}).map((jobrole) => (
+						}). */}
+						{jobRoles.filter((jobrole)  => {
+							return searchQuery === '' 
+							? jobrole 
+							: (jobrole.jobId).includes(searchQuery) ||  jobrole.jobRole.includes(searchQuery)
+						}).
+						map((jobrole) => (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={jobRoles._id}>
 								<td>
 									{jobrole.jobId}

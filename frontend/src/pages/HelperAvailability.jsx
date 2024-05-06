@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function HelperAvailability() {
+function HelperAvailability(props) {
   const [values, setValues] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ function HelperAvailability() {
 
   return (
     <div>
-      <select className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+      <select value = {props.helper} className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
         {values
           .filter(
             (employee) =>

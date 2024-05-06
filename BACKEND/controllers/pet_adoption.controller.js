@@ -1,4 +1,5 @@
 const Adoption = require("../../BACKEND/modules/pet_adoption.model");
+const Counter = require('../modules/counter.model');
 
 const getAdoptions = async (req, res) => {
   try {
@@ -21,9 +22,19 @@ const getAdoption = async (req, res) => {
 
 const createAdoption = async (req, res) => {
   try {
-    const adoption = await Adoption.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'adoptionId' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+  
+    const adoptionId = 'AD' + String(counter.seq).padStart(3, '0');
+    
+    const adoption = await Adoption.create({ ...req.body, adoption_id: adoptionId });
+
     res.status(200).json(adoption);
-  } catch (error) {
+  }
+  catch (error) {
     res.status(500).json({ message: error.message });
   }
 };

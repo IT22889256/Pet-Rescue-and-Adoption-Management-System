@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-function DoctorAvailability(props) {
+function JanitorAvailability() {
   const [values, setValues] = useState([]);
-  
 
   useEffect(() => {
     fetch("http://localhost:3000/EmployeeManager/employees")
@@ -14,11 +13,11 @@ function DoctorAvailability(props) {
 
   return (
     <div>
-      <select value = {props.doctor} className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+      <select className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
         {values
           .filter(
             (employee) =>
-              employee.jobRole === "doctor" && employee.availability === "available"
+              employee.jobRole === "cleaner" && employee.availability === "available"
           )
           .map((opts, i) => (
             <option key={i}>{opts.firstName}</option>
@@ -28,4 +27,4 @@ function DoctorAvailability(props) {
   );
 }
 
-export default DoctorAvailability;
+export default JanitorAvailability;

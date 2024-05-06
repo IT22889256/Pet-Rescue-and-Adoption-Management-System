@@ -212,8 +212,11 @@ import EditSchedule from './pages/transportManagement/scheduleProfile/EditSchedu
 import ViewSchedule from './pages/transportManagement/scheduleProfile/ViewSchedule'
 import RemoveSchedule from './pages/transportManagement/scheduleProfile/RemoveSchedule' 
 import CreateVehicle from './pages/transportManagement/VehicleProfile/CreateVehicle'
+
 import VehicleProfile from './pages/transportManagement/VehicleProfile'
 import EditVehicle from './pages/transportManagement/VehicleProfile/EditVehicle'
+
+
 import ViewVehicle from './pages/transportManagement/VehicleProfile/ViewVehicle'
 import RemoveVehicle from './pages/transportManagement/VehicleProfile/RemoveVehicle'
 import TaskRequest from './pages/transportManagement/TaskRequest'
@@ -231,11 +234,18 @@ import DoctorAvailability from "./pages/DoctorAvailability";
 //Helper Availabilty
 import HelperAvailability from "./pages/HelperAvailability";
 
+//janitor availability
+import JanitorAvailability from "./pages/JanitorAvailability";
+
+//jobrole availability
+import JobRoleAvailability from "./pages/jobroleAvailability";
+
 //Driver imports
 import DriverLayout from "./components/driver/DriverLayout";
 import AssignedSheduleProfile from "./pages/driver/AssignedSheduleProfile";
 import ViewAssignedTask from "./pages/driver/assignedShedules/ViewAssignedTask";
 import EditAssignedTask from "./pages/driver/assignedShedules/EditAssignedTask";
+import Map from "./pages/Map";
 
 //employee management imports
 import EmployeeLayout from "./components/employeeManager/EmployeeLayout";
@@ -576,6 +586,14 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
+
+        <Route path="/map" element={<Map />} />
+        
+
+        <Route path="/JanitorAvailability" element={<JanitorAvailability />} />
+        <Route path="/JobRoleAvailability" element={<JobRoleAvailability />} />
+
+
        </Routes>
 
        
@@ -589,6 +607,7 @@ function App() {
             <Route path="/driver/assignedShedules/ViewAssignedTask/:id" element={<ViewAssignedTask />} />
             
             <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
+            {/* <Route path="/driver/Map" element={<Map />} /> */}
           </Route>
           </Route>
         </Routes>
