@@ -34,7 +34,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'Create Tasks',
 		label: 'Create Tasks',
-		path: '/EmployeeManager/CreateTasks',
+		path: '/EmployeeManager/ManageJanitorSchedule',
 		icon: <AiFillSchedule />
 	},
 

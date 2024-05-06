@@ -2,10 +2,19 @@ const mongoose = require("mongoose");
 
 // Define the schema for tasks
 const JanitorTaskSchema = mongoose.Schema(
+
+  
   {
-    taskName: {
+
+    JanitorTaskScheduleId: {
       type: String,
-      required: [true, "Please enter a task name"],
+      required: true,
+    },
+
+    
+    TaskName: {
+      type: String,
+      required: true,
     },
 
    
@@ -23,12 +32,6 @@ const JanitorTaskSchema = mongoose.Schema(
         type: String,
         required: false,
         },
-
-    date: {
-      type: Date,
-      default: Date.now,
-      required: [true, "Please specify a date"],
-    },
 
     status: {
         type: String,

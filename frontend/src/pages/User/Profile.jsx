@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+
 import axios from "axios";
+
 import {
   deleteUserStart,
   deleteUserSuccess,
@@ -14,16 +16,14 @@ import {
 import cardImage from "../../image/card.png";
 
 const Profile = () => {
-
   const [rescueRequests, setRescueRequests] = useState([]);
 
-	useEffect(() => {
-		axios.get('http://localhost:3000/petManager/rescueRequest').then(res => {
-			console.log(res);
-			setRescueRequests(res.data)
-		})
-	},[])
-
+  useEffect(() => {
+    axios.get("http://localhost:3000/petManager/rescueRequest").then((res) => {
+      console.log(res);
+      setRescueRequests(res.data);
+    });
+  }, []);
 
   const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
@@ -218,22 +218,20 @@ const Profile = () => {
             </div>
           )}
           {/* Complaint History */}
-          
+
           <div className="bg-gray-200 mx-4 rounded-lg py-16">
             <div className="text-center">
-             
-            {rescueRequests.map((rescueRequest) => (
-              
-              rescueRequest.user_id === currentUser._id &&(
-              <div>
-                <p className="text-gray-600">My complaints</p>
-                  <p className="text-green-500">
-                    {rescueRequest.rescue_req_id}
-                  </p>
-                  
-              </div>
-              )
-            ))}
+              {rescueRequests.map(
+                (rescueRequest) =>
+                  rescueRequest.user_id === currentUser._id && (
+                    <div>
+                      <p className="text-gray-600">My complaints</p>
+                      <p className="text-green-500">
+                        {rescueRequest.rescue_req_id}
+                      </p>
+                    </div>
+                  )
+              )}
             </div>
           </div>
           <div className="bg-gray-100  flex flex-col md:flex-row">
