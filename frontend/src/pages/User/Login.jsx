@@ -66,6 +66,8 @@ function Login() {
           navigate("/InventoryManager");
         } else if (data.roletype === "userAffairsManager") {
           navigate("/userAffairsManager");
+        } else if (data.roletype === "driver") {
+          navigate(`/user/driver/${data.name}`);
         } else {
           navigate("/");
         }

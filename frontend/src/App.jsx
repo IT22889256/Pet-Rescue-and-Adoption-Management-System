@@ -307,6 +307,7 @@ function App() {
           <Route path="/pet-profile/:id" element={<PetsProfile />} />
           <Route path="/user/:id/pet-in-need" element={<PetInNeed />} />
           <Route path="/delete-account/:id" element={<DeleteProfile />} />
+          <Route path="/user/driver/:name" element={<DriverAvailability />} />
 
           <Route
             path="user/:id/recurring-donation"

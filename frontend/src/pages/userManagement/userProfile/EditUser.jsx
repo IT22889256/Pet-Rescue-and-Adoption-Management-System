@@ -11,6 +11,7 @@ export default function EditUser() {
   const [phone, setPhone] = useState();
   const [bio, setBio] = useState();
   const [photo, setPhoto] = useState();
+  const [roleType, setRoleType] = useState();
   const navigate = useNavigate();
   const { id } = useParams();
   useEffect((e) => {
@@ -35,6 +36,7 @@ export default function EditUser() {
       email,
       // password,
       role,
+      roletype: roleType,
       phone,
       bio,
       photo,
@@ -147,6 +149,31 @@ export default function EditUser() {
                   <option>adopter</option>
                   <option>employee</option>
                   <option>admin</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="sm:col-span-3">
+              <label
+                htmlFor="Role"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Role Type
+              </label>
+              <div className="mt-2">
+                <select
+                  id="role"
+                  name="role"
+                  value={roleType}
+                  onChange={(e) => setRoleType(e.target.value)}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                >
+                  <option>user</option>
+                  <option>adopter</option>
+                  <option>employee</option>
+                  <option>driver</option>
+                  <option>doctor</option>
+                  <option>helper</option>
                 </select>
               </div>
             </div>
