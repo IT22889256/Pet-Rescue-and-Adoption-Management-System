@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import JobRoleAvailability from "../../jobroleAvailability";
 
-r
+
 
 import {
   getStorage,
