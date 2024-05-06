@@ -213,11 +213,11 @@ import EditSchedule from './pages/transportManagement/scheduleProfile/EditSchedu
 import ViewSchedule from './pages/transportManagement/scheduleProfile/ViewSchedule'
 import RemoveSchedule from './pages/transportManagement/scheduleProfile/RemoveSchedule' 
 
-import CreateVehicle from './pages/transportManagement/VehicleProfile/CreateVehicle'
+import CreateVehicle from './pages/transportManagement/vehicleProfile/CreateVehicle'
 import VehicleProfile from './pages/transportManagement/VehicleProfile'
-import EditVehicle from './pages/transportManagement/VehicleProfile/EditVehicle'
-import ViewVehicle from './pages/transportManagement/VehicleProfile/ViewVehicle'
-import RemoveVehicle from './pages/transportManagement/VehicleProfile/RemoveVehicle'
+import EditVehicle from './pages/transportManagement/vehicleProfile/EditVehicle'
+import ViewVehicle from './pages/transportManagement/vehicleProfile/ViewVehicle'
+import RemoveVehicle from './pages/transportManagement/vehicleProfile/RemoveVehicle'
 
 import TaskRequest from './pages/transportManagement/TaskRequest'
 import ViewTaskRequest from './pages/transportManagement/taskRequest/ViewTaskRequest'
@@ -239,6 +239,8 @@ import DriverLayout from "./components/driver/DriverLayout";
 import AssignedSheduleProfile from "./pages/driver/AssignedSheduleProfile";
 import ViewAssignedTask from "./pages/driver/assignedShedules/ViewAssignedTask";
 import EditAssignedTask from "./pages/driver/assignedShedules/EditAssignedTask";
+
+import Map from "./pages/Map"
 
 //employee management imports
 import EmployeeLayout from "./components/employeeManager/EmployeeLayout";
