@@ -49,8 +49,8 @@ export default function RescueTask() {
 									<div >{rescueTask.rescue_task_priority}</div>
 								</td>)}
 								<td>
-						{/* {rescueTask.createdAt} */}2024/04/30
-						</td>
+									{new Date(rescueTask.createdAt).toLocaleDateString()}
+								</td>
 								{/* <td>{rescueTask.date}</td> */}
 								{rescueTask.rescue_task_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center ml">
@@ -104,23 +104,12 @@ export default function RescueTask() {
 						</td>)}
 
 						<td>
-						{/* {rescueTask.createdAt} */}2024/04/30
+									{new Date(rescueTask.createdAt).toLocaleDateString()}
 						</td>
 
-						{/* {rescueTask.rescue_task_status === "Completed" && (
-						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#15803d] text-center">
-							<div>{rescueTask.rescue_task_status}</div>
-						</td>)}
-						{rescueTask.rescue_task_status === "Failed" && (
-						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#801515] text-center">
-							<div >{rescueTask.rescue_task_status}</div>
-						</td>)}
-						{rescueTask.rescue_task_status === "In Progress" && (
-						<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-center">
-							<div >{rescueTask.rescue_task_status}</div>
-						</td>)} */}
+					
 
-{rescueTask.rescue_task_status=== "Pending" && (
+								{rescueTask.rescue_task_status=== "Pending" && (
 									<td className="overflow-auto py-1 capitalize rounded-md text-s text-[#f8fafc] bg-[#cfbf28] text-centerml">
 										<div>{rescueTask.rescue_task_status}</div>
 									</td>)}
