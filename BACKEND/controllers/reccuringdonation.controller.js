@@ -1,4 +1,5 @@
-const reccuringDonation = require("../modules/reccuringdonation.model");
+const reccuringDonation = require('../modules/reccuringdonation.model');
+const Counter = require('../modules/counter.model');
 
 //display all reccuring donations
 const displayReccuringDonations = async (req, res) => {
@@ -12,15 +13,25 @@ const displayReccuringDonations = async (req, res) => {
 
 //create reccuring donation
 const addReccuringDonation = async (req, res) => {
+
   try {
-    reccuringDonation
-      .create(req.body)
-      .then((reccuringDonation) => res.json(reccuringDonation))
-      .catch((err) => res.json(err));
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+      const counter = await Counter.findByIdAndUpdate(
+        { _id: 'rid' },
+        { $inc: { seq: 1 } },
+        { new: true, upsert: true }
+      );
+    
+      const rid = 'RD' + String(counter.seq).padStart(3, '0');
+      // Create new employee using employeeId and request body
+      
+      const reccuringdonation = await reccuringDonation.create({ ...req.body, rid: rid });
+
+      res.status(200).json(reccuringdonation);
+    }catch(error) {
+        res.status(500).json({message: error.message});
+    }
+
+}
 
 //Edit a reccuring donation
 const editReccuringDonation = async (req, res) => {

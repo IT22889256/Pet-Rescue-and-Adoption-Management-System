@@ -281,12 +281,14 @@ import RescueRequestForm from "./pages/User/RescueRequestForm";
 
 
 
+
 //create schedule for janitors
 import ManageScheduleForJanitors from "./pages/employeeManagment/ManageJanitorSchedule";
 import CreateSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/CreateJanitorSchedule";
 import ViewSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/ViewJanitorSchedule";
 import EditSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/EditJanitorSchedule";
 import DeleteSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/RemoveJanitorSchedule"; 
+
 
 
 
@@ -305,11 +307,17 @@ import PetsProfile from "./pages/User/PetsProfile";
 import PetQR from "./pages/User/PetQR";
 import UserGallery from "./pages/User/Gallery";
 
+
+import PetInNeed from "./pages/User/PetInNeed"
+
 //employee attendance
 
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
 import ViewOneAdopter from "./pages/userManagement/adopterRequests/ViewOneAdopters";
 
+
+//employee attendance
+import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
 
 import ViewLogins from "./pages/userManagement/logins/ViewLogins"
 import Map from "./pages/Map"
@@ -359,6 +367,8 @@ function App() {
           <Route path="user/:id/feedback" element={<FeedbackForm />} />
 
           <Route path="user/:id/donation" element={<Donation />} />
+          <Route path="user/:id/pet-in-need" element={<PetInNeed />} />
+
 
 
           <Route path="user/:id/donation" element={<RecurringDonationForm />} />
@@ -396,10 +406,12 @@ function App() {
           />
 
 
+
         <Route
             path="/userManager/view-adopter/:id"
             element={<ViewOneAdopter />}
           />
+
 
 
           <Route
@@ -604,7 +616,9 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
+
         <Route path="/map" element={<Map />} />
+
        </Routes>
 
        
@@ -619,7 +633,6 @@ function App() {
             
             <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
           </Route>
-
           </Route>
         </Routes>
 

@@ -21,13 +21,21 @@ const RecurringDonationSchema = mongoose.Schema({
     },
 
     donation_start_date: {
-        type: String,
-        // required: true
+        type: Date,
+        required: function() {
+            return this.donation_frequency === 'monthly'; // Start date required only for monthly donations
+        }
     },
     donation_end_date: {
-        type: String,
-        // required: true
+        type: Date,
+        required: function() {
+            return this.donation_frequency === 'monthly'; // End date required only for monthly donations
+        }
     },
+
+    rid:{
+        type: String,
+    }
     // payment_status: {
     //     type: String,
     //     required: true
