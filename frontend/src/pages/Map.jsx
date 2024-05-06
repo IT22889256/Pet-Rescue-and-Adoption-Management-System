@@ -1,19 +1,25 @@
-import { useRef, useState } from 'react';
-import { FaLocationArrow, FaTimes } from 'react-icons/fa';
-import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api';
+import { useRef, useState } from "react";
+import { FaLocationArrow, FaTimes } from "react-icons/fa";
+import {
+  useJsApiLoader,
+  GoogleMap,
+  Marker,
+  Autocomplete,
+  DirectionsRenderer,
+} from "@react-google-maps/api";
 
 const center = { lat: 6.915432, lng: 79.972936 };
 
 function Map() {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries: ['places'],
+    libraries: ["places"],
   });
 
   const [map, setMap] = useState(null);
   const [directionsResponse, setDirectionsResponse] = useState(null);
-  const [distance, setDistance] = useState('');
-  const [duration, setDuration] = useState('');
+  const [distance, setDistance] = useState("");
+  const [duration, setDuration] = useState("");
 
   const originRef = useRef();
   const destinationRef = useRef();
@@ -25,7 +31,7 @@ function Map() {
   /* global google */
 
   async function calculateRoute() {
-    if (originRef.current.value === '' || destinationRef.current.value === '') {
+    if (originRef.current.value === "" || destinationRef.current.value === "") {
       return;
     }
     const directionsService = new google.maps.DirectionsService();
@@ -41,10 +47,10 @@ function Map() {
 
   function clearRoute() {
     setDirectionsResponse(null);
-    setDistance('');
-    setDuration('');
-    originRef.current.value = '';
-    destinationRef.current.value = '';
+    setDistance("");
+    setDuration("");
+    originRef.current.value = "";
+    destinationRef.current.value = "";
   }
 
   return (
@@ -53,7 +59,7 @@ function Map() {
         <GoogleMap
           center={center}
           zoom={15}
-          mapContainerStyle={{ width: '100%', height: '100%' }}
+          mapContainerStyle={{ width: "100%", height: "100%" }}
           options={{
             zoomControl: false,
             streetViewControl: false,
@@ -63,7 +69,9 @@ function Map() {
           onLoad={(map) => setMap(map)}
         >
           <Marker position={center} />
-          {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
+          {directionsResponse && (
+            <DirectionsRenderer directions={directionsResponse} />
+          )}
         </GoogleMap>
       </div>
       <div className="p-4 rounded-lg m-4 bg-white shadow-lg min-w-[320px] max-w-[640px] z-10">
