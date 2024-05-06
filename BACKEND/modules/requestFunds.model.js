@@ -6,10 +6,10 @@ const requestFundsSchema = mongoose.Schema(
     requestId:{
      type:String,
     required:false,
+
     unique:true
 
     },
-
 
     amount: {
     type: Number,
@@ -20,7 +20,7 @@ const requestFundsSchema = mongoose.Schema(
   request_from: {
     type: String,
     enum: ['employee manager', 'inventory manager'], 
-    default: 'employee manager' 
+    default: 'inventory manager' 
 
   },
 

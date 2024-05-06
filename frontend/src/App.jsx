@@ -154,11 +154,12 @@ import Editorder from '../src/pages/Inventorymanagement/order/Editorder'
 import Vieworder from '../src/pages/Inventorymanagement/order/Vieworder'
 import Removeorder from '../src/pages/Inventorymanagement/order/Removeorder'
 //messages
-import Messsages from './pages/Inventorymanagement/message'
-import Createmessages from './pages/Inventorymanagement/messages/Createmessages'
-import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
-import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
-import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
+
+import Messsages from "./pages/Inventorymanagement/message";
+import Createmessages from "./pages/Inventorymanagement/messages/Createmessages";
+import Viewmessages from "./pages/Inventorymanagement/messages/Viewmessages";
+import Editmessages from "./pages/Inventorymanagement/messages/Editmessages";
+import Deletemessages from "./pages/Inventorymanagement/messages/Deletemessages";
 
 
 //donation management imports
@@ -204,6 +205,7 @@ import CommonAR from "./pages/petManament/commonAR/CommonAR";
 
 //Transport management imports
 
+
 import TransportLayout from './components/transportManager/TransportLayout'
 import TransportManagerDashboard from './pages/transportManagement/TransportManagerDashboard'
 import ScheduleProfile from './pages/transportManagement/ScheduleProfile'
@@ -223,6 +225,7 @@ import EditTaskRequest from './pages/transportManagement/taskRequest/EditTaskReq
 
 
 //Driver Availability 
+
 import DriverAvailability from "./pages/DriverAvailability";
 
 //Doctor Availability
@@ -299,7 +302,9 @@ import PetQR from "./pages/User/PetQR";
 import UserGallery from "./pages/User/Gallery";
 
 //employee attendance
+
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+
 
 
 function App() {
@@ -332,10 +337,7 @@ function App() {
             path="/user/:id/rescuerequestForm"
             element={<RescueRequestForm />}
           />
-           <Route
-            path="/rescuerequestForm"
-            element={<RescueRequestForm />}
-          />
+          <Route path="/rescuerequestForm" element={<RescueRequestForm />} />
 
           
           <Route path="/petAdoption" element={<PetAdoption/>} />
@@ -582,20 +584,28 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
-       </Routes>
 
-       
+        <Route path="/map" element={<Map />} />
+      </Routes>
 
+      {/* Driver main routes */}
+      <Routes>
+        <Route>
+          <Route path="/driver" element={<DriverLayout />}>
+            <Route
+              path="/driver/AssignedSheduleProfile"
+              element={<AssignedSheduleProfile />}
+            />
+            <Route
+              path="/driver/assignedShedules/ViewAssignedTask/:id"
+              element={<ViewAssignedTask />}
+            />
 
-          {/* Driver main routes */}
-       <Routes> 
-         <Route> 
-            <Route path="/driver" element={<DriverLayout />}>
-            <Route path="/driver/AssignedSheduleProfile" element={<AssignedSheduleProfile />} />
-            <Route path="/driver/assignedShedules/ViewAssignedTask/:id" element={<ViewAssignedTask />} />
-            
-            <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
-          </Route>
+            <Route
+              path="/driver/assignedShedules/EditAssignedTask/:id"
+              element={<EditAssignedTask />}
+            />
+
           </Route>
         </Routes>
 
@@ -874,6 +884,7 @@ function App() {
         </Route>
 
 
+
 <Route path="/adoptionManager" element={<AdoptionLayout />}>
                     <Route index path="/adoptionManager" element={<AdoptionManagerDashboard />} />
                     <Route path="/adoptionManager/employeeProfile" element={<EmployeeProfile />} />
@@ -939,6 +950,7 @@ function App() {
                     <Route path="/InventoryManager/Items/additem" element={<Additem />} />
                     <Route path="/InventoryManager/Items/edititem/:id" element={<Edititem />} />
                     <Route path="/InventoryManager/Items/removeitem/:id" element={<Removeitem />} />
+
 
           {/* main routes */}
           <Route path="/InventoryManager/supplier" element={<Supplier />} />
@@ -1009,8 +1021,9 @@ import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
 import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
 import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
         </Route> */}
-        <Route path="/InventoryManager/messages" element={<Messsages />} />
-        
+
+          <Route path="/InventoryManager/messages" element={<Messsages />} />
+
           {/* order routes*/}
           <Route
             path="/InventoryManager/messages/Viewmessages/:id"

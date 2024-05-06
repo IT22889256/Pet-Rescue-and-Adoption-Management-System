@@ -1,4 +1,5 @@
 const Product = require("../modules/product.model");
+const Counter = require('../modules/counter.model');
 
 // const getProducts = async (req, res) => {
 //   try {
@@ -31,7 +32,17 @@ const getProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const product = await Product.create(req.body);
+    const counter = await Counter.findByIdAndUpdate(
+      { _id: 'pid' },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+  
+    const pid = 'PID' + String(counter.seq).padStart(3, '0');
+    // Create new employee using employeeId and request body
+    
+    const product = await Product.create({ ...req.body, pid: pid });
+
     res.status(200).json(product);
   } catch (error) {
     res.status(500).json({ message: error.message });
