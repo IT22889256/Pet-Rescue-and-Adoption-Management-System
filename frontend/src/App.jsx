@@ -154,12 +154,12 @@ import Editorder from '../src/pages/Inventorymanagement/order/Editorder'
 import Vieworder from '../src/pages/Inventorymanagement/order/Vieworder'
 import Removeorder from '../src/pages/Inventorymanagement/order/Removeorder'
 //messages
+import Messsages from './pages/Inventorymanagement/message'
+import Createmessages from './pages/Inventorymanagement/messages/Createmessages'
+import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
+import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
+import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
 
-import Messsages from "./pages/Inventorymanagement/message";
-import Createmessages from "./pages/Inventorymanagement/messages/Createmessages";
-import Viewmessages from "./pages/Inventorymanagement/messages/Viewmessages";
-import Editmessages from "./pages/Inventorymanagement/messages/Editmessages";
-import Deletemessages from "./pages/Inventorymanagement/messages/Deletemessages";
 
 
 //donation management imports
@@ -205,7 +205,6 @@ import CommonAR from "./pages/petManament/commonAR/CommonAR";
 
 //Transport management imports
 
-
 import TransportLayout from './components/transportManager/TransportLayout'
 import TransportManagerDashboard from './pages/transportManagement/TransportManagerDashboard'
 import ScheduleProfile from './pages/transportManagement/ScheduleProfile'
@@ -213,11 +212,13 @@ import CreateSchedule from './pages/transportManagement/scheduleProfile/CreateSc
 import EditSchedule from './pages/transportManagement/scheduleProfile/EditSchedule'
 import ViewSchedule from './pages/transportManagement/scheduleProfile/ViewSchedule'
 import RemoveSchedule from './pages/transportManagement/scheduleProfile/RemoveSchedule' 
+
 import CreateVehicle from './pages/transportManagement/VehicleProfile/CreateVehicle'
 import VehicleProfile from './pages/transportManagement/VehicleProfile'
 import EditVehicle from './pages/transportManagement/VehicleProfile/EditVehicle'
 import ViewVehicle from './pages/transportManagement/VehicleProfile/ViewVehicle'
 import RemoveVehicle from './pages/transportManagement/VehicleProfile/RemoveVehicle'
+
 import TaskRequest from './pages/transportManagement/TaskRequest'
 import ViewTaskRequest from './pages/transportManagement/taskRequest/ViewTaskRequest'
 import EditTaskRequest from './pages/transportManagement/taskRequest/EditTaskRequest'
@@ -225,7 +226,6 @@ import EditTaskRequest from './pages/transportManagement/taskRequest/EditTaskReq
 
 
 //Driver Availability 
-
 import DriverAvailability from "./pages/DriverAvailability";
 
 //Doctor Availability
@@ -279,12 +279,18 @@ import ViewOneAttendance from "./pages/employeeManagment/attendanceManagement/Vi
 
 import RescueRequestForm from "./pages/User/RescueRequestForm";
 
+
+
+
 //create schedule for janitors
 import ManageScheduleForJanitors from "./pages/employeeManagment/ManageJanitorSchedule";
 import CreateSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/CreateJanitorSchedule";
 import ViewSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/ViewJanitorSchedule";
 import EditSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/EditJanitorSchedule";
 import DeleteSheduleForJanitors from "./pages/employeeManagment/CreateJanitorTask/RemoveJanitorSchedule"; 
+
+
+
 
 
 import LeaveApply from './pages/employeeManagment/LeaveApply'
@@ -301,10 +307,18 @@ import PetsProfile from "./pages/User/PetsProfile";
 import PetQR from "./pages/User/PetQR";
 import UserGallery from "./pages/User/Gallery";
 
+
+import PetInNeed from "./pages/User/PetInNeed"
+
 //employee attendance
 
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+import ViewOneAdopter from "./pages/userManagement/adopterRequests/ViewOneAdopters";
 
+
+
+import ViewLogins from "./pages/userManagement/logins/ViewLogins"
+import Map from "./pages/Map"
 
 
 function App() {
@@ -313,6 +327,7 @@ function App() {
       <Routes>
         <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
         <Route path="/employeeProfiles/LeaveApply/:eid" element={<LeaveApply />} />
+
       </Routes>
 
       <Routes>
@@ -350,6 +365,8 @@ function App() {
           <Route path="user/:id/feedback" element={<FeedbackForm />} />
 
           <Route path="user/:id/donation" element={<Donation />} />
+          <Route path="user/:id/pet-in-need" element={<PetInNeed />} />
+
 
 
           <Route path="user/:id/donation" element={<RecurringDonationForm />} />
@@ -378,9 +395,22 @@ function App() {
             element={<VerificationRequests />}
           />
           <Route
+            path="/userManager/login-history"
+            element={<ViewLogins />}
+          />
+          <Route
             path="/userManager/employeeRequests"
             element={<EmployeesRequests />}
           />
+
+
+
+        <Route
+            path="/userManager/view-adopter/:id"
+            element={<ViewOneAdopter />}
+          />
+
+
 
           <Route
             path="/userManager/employees/viewEmployee/:id"
@@ -586,26 +616,21 @@ function App() {
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
 
         <Route path="/map" element={<Map />} />
-      </Routes>
 
-      {/* Driver main routes */}
-      <Routes>
-        <Route>
-          <Route path="/driver" element={<DriverLayout />}>
-            <Route
-              path="/driver/AssignedSheduleProfile"
-              element={<AssignedSheduleProfile />}
-            />
-            <Route
-              path="/driver/assignedShedules/ViewAssignedTask/:id"
-              element={<ViewAssignedTask />}
-            />
+       </Routes>
 
-            <Route
-              path="/driver/assignedShedules/EditAssignedTask/:id"
-              element={<EditAssignedTask />}
-            />
+       
 
+
+          {/* Driver main routes */}
+       <Routes> 
+         <Route> 
+            <Route path="/driver" element={<DriverLayout />}>
+            <Route path="/driver/AssignedSheduleProfile" element={<AssignedSheduleProfile />} />
+            <Route path="/driver/assignedShedules/ViewAssignedTask/:id" element={<ViewAssignedTask />} />
+            
+            <Route path="/driver/assignedShedules/EditAssignedTask/:id" element={<EditAssignedTask />} />
+          </Route>
           </Route>
         </Routes>
 
@@ -884,7 +909,6 @@ function App() {
         </Route>
 
 
-
 <Route path="/adoptionManager" element={<AdoptionLayout />}>
                     <Route index path="/adoptionManager" element={<AdoptionManagerDashboard />} />
                     <Route path="/adoptionManager/employeeProfile" element={<EmployeeProfile />} />
@@ -950,7 +974,6 @@ function App() {
                     <Route path="/InventoryManager/Items/additem" element={<Additem />} />
                     <Route path="/InventoryManager/Items/edititem/:id" element={<Edititem />} />
                     <Route path="/InventoryManager/Items/removeitem/:id" element={<Removeitem />} />
-
 
           {/* main routes */}
           <Route path="/InventoryManager/supplier" element={<Supplier />} />
@@ -1021,9 +1044,8 @@ import Viewmessages from './pages/Inventorymanagement/messages/Viewmessages'
 import Editmessages from './pages/Inventorymanagement/messages/Editmessages'
 import Deletemessages from './pages/Inventorymanagement/messages/Deletemessages'
         </Route> */}
-
-          <Route path="/InventoryManager/messages" element={<Messsages />} />
-
+        <Route path="/InventoryManager/messages" element={<Messsages />} />
+        
           {/* order routes*/}
           <Route
             path="/InventoryManager/messages/Viewmessages/:id"
