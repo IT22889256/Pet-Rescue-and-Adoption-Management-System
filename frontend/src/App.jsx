@@ -295,7 +295,10 @@ import UserGallery from "./pages/User/Gallery";
 
 //employee attendance
 import ManageEmployeeAttendance from './pages/employeeManagment/ManageEmployeeAttendance'
+import ViewOneAdopter from "./pages/userManagement/adopterRequests/ViewOneAdopters";
 
+
+import ViewLogins from "./pages/userManagement/logins/ViewLogins"
 
 function App() {
   return (
@@ -303,6 +306,7 @@ function App() {
       <Routes>
         <Route path="/employeeProfiles/:id" element={<EmployeeProfiles />} />
         <Route path="/employeeProfiles/LeaveApply/:eid" element={<LeaveApply />} />
+       
       </Routes>
 
       <Routes>
@@ -371,8 +375,17 @@ function App() {
             element={<VerificationRequests />}
           />
           <Route
+            path="/userManager/login-history"
+            element={<ViewLogins />}
+          />
+          <Route
             path="/userManager/employeeRequests"
             element={<EmployeesRequests />}
+          />
+
+        <Route
+            path="/userManager/view-adopter/:id"
+            element={<ViewOneAdopter />}
           />
 
           <Route
