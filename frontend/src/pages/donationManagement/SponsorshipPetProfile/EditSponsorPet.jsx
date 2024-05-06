@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { PhotoIcon} from '@heroicons/react/24/solid'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from '../../../firebase';
+import Apple from '../../Apple';
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditSponPet() {
@@ -31,7 +32,7 @@ export default function EditSponPet() {
             setPettype(res.data.pet_type)
             setSponsorshipId(res.data._id)
             
-            setPetDescription(res.data.pet_appearance)
+            setPetDescription(res.data.pet_description)
             setAddedDate(res.data.added_date)
             setHealStatus(res.data.health_status)
 
@@ -163,19 +164,16 @@ export default function EditSponPet() {
                                 </div>
                             </div>
                             <div className="sm:col-span-3">
-                                <label htmlFor="task-id" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet ID
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="task_id"
-                                        id="task-id"
-                                        value={pet_id}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                                        <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Pet ID
+                                        </label>
+                                        <div 
+                                                id="pet-name"
+                                                value={pet_id}
+                                                onChange={(e) => setPetId(e.target.value)} >
+                                           <Apple/>
+                                        </div>
+                                    </div>
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-name" className="block text-sm font-medium leading-6 text-gray-900">
                                     Pet Name
@@ -191,39 +189,10 @@ export default function EditSponPet() {
                                     />
                                 </div>
                             </div>
-                            {/* <div className="sm:col-span-3">
-                                <label htmlFor="pet-gender" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Type
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="pet_gender"
-                                        id="pet-gender"
-                                        value={pet_type}
-                                        onChange={(e) => setPettype(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div> */}
-                            {/* <div className="sm:col-span-3">
-                                <label htmlFor="pet-age" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Age
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="pet_age"
-                                        id="pet-age"
-                                        value={pet_age}
-                                        onChange={(e) => setPetAge(e.target.value)}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div> */}
+                            
                             <div className="sm:col-span-3">
                                 <label htmlFor="pet-appearance" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Pet Discription
+                                    Pet Description
                                 </label>
                                 <div className="mt-2">
                                     <textarea

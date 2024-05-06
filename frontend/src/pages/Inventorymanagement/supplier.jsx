@@ -54,7 +54,7 @@ export default function Supplier () {
 							? supplier 
 							: supplier.supplier_name.includes(searchQuery)
 						}).map((supplier) => (
-							<tr className='border-b-2 border-[#c1c3c558] text-center' key={supplier.sid}>
+							<tr className='border-b-2 border-[#c1c3c558] text-center' key={supplier.id}>
 								<td>
 									{supplier.sid}
 								</td >

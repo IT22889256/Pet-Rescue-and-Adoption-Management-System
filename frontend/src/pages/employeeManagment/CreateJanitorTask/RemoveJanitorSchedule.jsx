@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React ,{useState,useEffect}from 'react'
 import axios from 'axios';
-import { useNavigate, useParams ,Link} from 'react-router-dom';
+import { useNavigate, useParams,Link } from 'react-router-dom';
 
 export default function RemovePet() {
   const navigate = useNavigate();
-  const [sponserPet, setSponserPet] = useState({})
-  const { id } = useParams();
+  const [Employee, setEmployee] = useState({})
+	const {id} = useParams()
 
 	useEffect(() => {
-		axios.get(`http://localhost:3000/donationManager/sponseredPet/sponseredPet/${id}`)
+		axios.get(`http://localhost:3000/EmployeeManager/janitorSchedule/${id}`)
 		.then((res) => {
-			setSponserPet(res.data)
+			setEmployee(res.data)
 			
 		}).catch((err) => {
 			console.log(err);
 		})
 	},[])
 
-  const handleDeleteBook = () => {
+
+  const handleDeleteJanitorSchedule = () => {
     
     axios
-      .delete(`http://localhost:3000/donationManager/sponseredPet/removeSponseredPet/${id}`)
+    .delete(`http://localhost:3000/EmployeeManager/janitorSchedule/${id}`)
+
       .then(() => {
-        alert('deleted')
-        navigate('/DonationManager/SponsorshipPets'); 
+        navigate('/EmployeeManager/ManageJanitorSchedule'); 
+
       })
       .catch((error) => {
         
@@ -43,19 +45,18 @@ export default function RemovePet() {
                 data-original="#000000" />
             </svg>
             <h4 className="text-xl font-semibold mt-6">Are you sure you want to delete it?</h4>
-            <p className="text-sm text-gray-500 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor auctor
-              arcu,
-              at fermentum dui. Maecenas</p>
+            <p className="text-sm text-gray-500 mt-4">You cannot undo this action.please make sure you want to delete this schedule
+              </p>
           </div>
           <div className="flex flex-col space-y-2">
            
             <button
          className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded'
-       onClick={handleDeleteBook}
+       onClick={handleDeleteJanitorSchedule}
          >
            Yes, Delete it
         </button>
-              <Link to={`/DonationManager/SponsorshipPets/viewSponsorPet/${sponserPet._id}`} className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200 text-center">Cancel</Link>
+              <Link to={`/EmployeeManager/ManageJanitorSchedule`} className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200 text-center">Cancel</Link>
             
           </div>
         </div>

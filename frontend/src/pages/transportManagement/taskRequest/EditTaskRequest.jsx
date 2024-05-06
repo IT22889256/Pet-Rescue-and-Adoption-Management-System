@@ -6,21 +6,21 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function EditTaskRequest() {
     
-    const [request_id, setReqId] = useState()
+    const [rescue_req_id, setReqId] = useState()
     const [user_id, setUserId] = useState()
     const [pet_type, setPettype] = useState()
     const [location, setLocation] = useState()
     const [rescue_task_priority, setRescueTaskpriority] = useState()
     const [rescue_task_status, setRescueTaskStatus] = useState()
 
-
+    const [showSuccess, setShowSuccess] = useState(false);
 
     const navigate = useNavigate()
     const {id} = useParams()
     useEffect((e) => {
         axios.get(`http://localhost:3000/petManager/rescueTask/viewRescueTask/${id}`)
         .then((res) => {
-            setReqId(res.data.request_id)
+            setReqId(res.data.rescue_req_id)
             setUserId(res.data.user_id)
             setPettype(res.data.pet_type)
             setLocation(res.data.location)
@@ -35,35 +35,76 @@ export default function EditTaskRequest() {
 
     const Edit = (e) => {
         const data = {
-            request_id,user_id,pet_type,location,rescue_task_priority,rescue_task_status
+            rescue_req_id,user_id,pet_type,location,rescue_task_priority,rescue_task_status
         };
         console.log('result')
         axios.put(`http://localhost:3000/petManager/rescueTask/editRescueTask/${id}`,data)
-        .then(result => {
-            alert('updated')
-            console.log(result)
-            navigate('/transportManager/scheduleProfile/createSchedule')
-        })
+        .then(() => {
+            setShowSuccess(true);
+            setTimeout(() => {
+              setShowSuccess(false);
+              navigate('/transportManager/scheduleProfile/createSchedule');
+            }, 3000);
+          })
         .catch(err => console.log(err))
-    }
 
+        .catch((error) => {
+            console.log(error);
+          });
+      
+
+    }
+    
     const Submit = (e) => {
         const data = {
-            request_id,user_id,pet_type,location,rescue_task_priority,rescue_task_status
+            rescue_req_id,user_id,pet_type,location,rescue_task_priority,rescue_task_status
         };
         console.log('result')
         axios.put(`http://localhost:3000/petManager/rescueTask/editRescueTask/${id}`,data)
-        .then(result => {
-            alert('updated')
-            console.log(result)
-            navigate('/transportManager/TaskRequest')
-        })
+        .then(() => {
+            setShowSuccess(true);
+            setTimeout(() => {
+              setShowSuccess(false);
+              navigate( '/transportManager/TaskRequest');
+            }, 3000);
+          })
         .catch(err => console.log(err))
+
+        .catch((error) => {
+            console.log(error);
+          });
+      
+
     }
 
-
+   
 
         return (
+            <div>
+            <div className={`fixed inset-0 overflow-y-auto flex items-center justify-center z-50 ${showSuccess ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+              </div>
+              <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div className="sm:flex sm:items-start">
+                    <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                      <svg className="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                      <h3 className="text-lg leading-6 font-medium text-gray-900">Updated successful</h3>
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">The Requested task Status has been successfully Updated</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              </div>
+              </div>
+            </div>
 
         
         <div>
@@ -84,7 +125,7 @@ export default function EditTaskRequest() {
                                     type="text"
                                     name="request_id"
                                     id="request_id"
-                                    value={request_id}
+                                    value={rescue_req_id}
                                     // onChange={(e) => setReqId(e.target.value)}
                                     className="read-only:block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
@@ -186,7 +227,9 @@ export default function EditTaskRequest() {
                     Submit
                 </button> */}
 
-                {rescue_task_status === "In Waiting List" && (
+                
+                
+                 {rescue_task_status === "Failed" && (
                 <button
                   onClick={Submit}
                  className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -194,7 +237,23 @@ export default function EditTaskRequest() {
                  Submit
                  </button>
                 )}
-                {rescue_task_status === "In Progress" && (
+                {rescue_task_status === "Pending" && (
+                <button
+                  onClick={Submit}
+                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                 Submit
+                 </button>
+                )}
+                 {rescue_task_status === "Completed" && (
+                <button
+                  onClick={Submit}
+                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                 Submit
+                 </button>
+                )}
+                {rescue_task_status === "In Waiting List" && (
                 <button
                   onClick={Submit}
                  className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -204,7 +263,7 @@ export default function EditTaskRequest() {
                 )}
                 
 
-                {rescue_task_status === "Pending" && (
+                {rescue_task_status === "In Progress" && (
                 <button
                   onClick={Edit}
                  className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -212,6 +271,7 @@ export default function EditTaskRequest() {
                  Submit
                  </button>
                 )}
+                </div>
 
         </div>
 </div>

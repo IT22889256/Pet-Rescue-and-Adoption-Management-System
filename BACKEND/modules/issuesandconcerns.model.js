@@ -6,7 +6,10 @@ const IssuesAndConcernsSchema = mongoose.Schema(
       type: String,
       required: true 
     },
-
+    issuesandconcernsId: {
+      type: String,
+      required: true 
+    },
     email: {
       type: String,
       required: true      

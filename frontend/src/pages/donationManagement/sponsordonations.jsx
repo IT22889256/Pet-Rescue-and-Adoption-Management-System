@@ -30,9 +30,10 @@ export default function Donations() {
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48 ">
 					<thead className="bg-[#c1c3c558] ">
 						<tr>
-							<th>Donaiton ID</th>
+							{/* <th>Donaiton ID</th> */}
 				      <th>User ID</th>
 								<th> Pet ID</th>
+								<th>Amount</th>
               <th>Date</th>
 							
 						</tr>
@@ -40,9 +41,9 @@ export default function Donations() {
 					<tbody>
 						{SponsorDonations.map((SponsorDonations) => (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={SponsorDonations.id}>
-								<td>
-									{SponsorDonations._id}
-								</td>
+								{/* <td>
+									{SponsorDonations.spid}
+								</td> */}
 								
 								<td>
 									{SponsorDonations.user_id}
@@ -52,6 +53,7 @@ export default function Donations() {
 								<td>
 									{SponsorDonations.pet_id}
 								</td>
+								<td>{SponsorDonations.amount}</td>
                 <td>{formatDate(SponsorDonations.createdAt)}</td>
 								
                                 <td>

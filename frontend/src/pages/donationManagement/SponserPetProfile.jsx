@@ -21,20 +21,20 @@ export default function PetProfile() {
 				<table className="bg-[#f3f3f3] w-full text-gray-700 h-48">
 					<thead className="bg-[#c1c3c558]" >
 						<tr>
-							<th>Sponsorship ID</th>
+							{/* <th>Sponsorship ID</th> */}
 							<th>Pet ID</th>
 							<th>Pet Name</th>
 							<th>Added Date</th>
-							<th>Sponsorship Status $</th>
+							{/* <th>Sponsorship Status $</th> */}
 							<th>Action</th>
 						</tr>
 					</thead>
 					{<tbody>
 						{SponsorshipPets.map((SponsorshipPet) => (
 							<tr className='border-b-2 border-[#c1c3c558] text-center' key={SponsorshipPet._id}>
-								<td>
+								{/* <td>
 									{SponsorshipPet._id}
-								</td >
+								</td > */}
 								
 								<td>
 									{SponsorshipPet.pet_id}
@@ -46,7 +46,7 @@ export default function PetProfile() {
 								<td>
 									{SponsorshipPet.added_date}
 								</td>
-								<td>{SponsorshipPet.sponsorship_status}</td>
+								{/* <td>{SponsorshipPet.sponsorship_status}</td> */}
 								<td>
 									<Link to={`/DonationManager/SponsorshipPets/viewSponsorPet/${SponsorshipPet._id}`} className=" bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-700 text-xs text-gray-400  text-center text-justify ml-1 ">View</Link>
 								

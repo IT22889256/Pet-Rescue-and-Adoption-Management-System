@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+ import jsPDF from "jspdf";
+
 
 const PetInNeed = () => {
   const [pets, setPets] = useState([]);
@@ -18,7 +20,7 @@ const PetInNeed = () => {
   const [expirationYear, setExpirationYear] = useState("");
   const [cvv, setCvv] = useState("");
   const [SponsorshipPets, setSponsorshipPets] = useState([]);
-
+ 
   useEffect(() => {
     axios
       .get("http://localhost:3000/donationManager/sponseredPet")
@@ -26,11 +28,44 @@ const PetInNeed = () => {
         setSponsorshipPets(res.data);
       });
   }, []);
+  const generatePaymentSlip = () => {
+    // Create a new jsPDF instance
+    const doc = new jsPDF();
+
+ // Add content to the PDF
+doc.setFontSize(12);
+doc.text(`Dear ${cardholderName},`, 10, 10);
+doc.text("Thank you sincerely for your generous donation. Your support means everything to us and helps us make a real difference.", 10, 20, { maxWidth: 180 });
+doc.text("Payment Slip", 10, 50);
+doc.text(`Name: ${cardholderName}`, 10, 60);
+doc.text(`Amount: $${amount}`, 10, 70);
+// Add more content as needed
+
+    // Save the PDF as a file
+    doc.save("payment_slip.pdf");
+  };
 
   const Submit = (e) => {
     e.preventDefault();
 
     // Validation check
+    const cardNumberRegex = /^[0-9]{16}$/; // Example: 16-digit card number
+    if (!cardNumberRegex.test(cardNumber)) {
+      alert("Please enter a valid card number");
+      return;
+    }
+    const expirationMonthRegex = /^(0[1-9]|1[0-2])$/; // Example: MM format (01-12)
+    const expirationYearRegex = /^[0-9]{2}$/; // Example: YY format (20 for 2020)
+    if (!expirationMonthRegex.test(expirationMonth) || !expirationYearRegex.test(expirationYear)) {
+      alert("Please enter a valid expiration date");
+      return;
+    }
+    const cvvRegex = /^[0-9]{3}$/; // Example: 3-digit CVV
+    if (!cvvRegex.test(cvv)) {
+      alert("Please enter a valid CVV");
+      return;
+    }
+   
     if (
       !cardholderName ||
       !cardNumber ||
@@ -55,6 +90,7 @@ const PetInNeed = () => {
       })
       .catch((err) => console.log(err));
 
+
     const data = {
       user_id: currentUser.user_id,
       cardholderName,
@@ -68,10 +104,12 @@ const PetInNeed = () => {
       .post("http://localhost:3000/donationManager/cards/add", data)
       .then((result) => {
         alert("Donation Successful");
+        generatePaymentSlip();
         navigate("/");
       })
       .catch((err) => console.log(err));
   };
+  
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row ">

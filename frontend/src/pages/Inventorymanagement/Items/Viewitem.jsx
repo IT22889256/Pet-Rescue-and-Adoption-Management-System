@@ -65,7 +65,7 @@ return (
 			<dl>
 			<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-lg text-black-500 font-medium">Item ID</dt>
-					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{items._id}</dd>
+					<dd className="mt-1 text-lg text-gray-900 sm:col-span-2">{items.pid}</dd>
 				</div>
 				<div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 					<dt className="text-lg font-medium text-black-500">Item Name</dt>

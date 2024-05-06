@@ -69,7 +69,13 @@ function Login() {
         } else {
           navigate("/");
         }
-      } else {
+      }
+      else if (data.role === "employee") {
+        if (data.roletype === "driver") {
+          navigate("/driver");
+        }
+      }
+       else {
         navigate("/");
       }
     } catch (error) {

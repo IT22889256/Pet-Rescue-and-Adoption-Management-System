@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const RescueRequestSchema = mongoose.Schema({
     rescue_req_id:{
         type: String,

@@ -1,23 +1,25 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { Link} from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-import { PhotoIcon} from '@heroicons/react/24/solid'
+import React, { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { PhotoIcon } from "@heroicons/react/24/solid";
 
 // import { PhotoIcon} from '@heroicons/react/24/solid'
 export default function CreateRequest() {
+  const [adopter_nic, setNIC] = useState();
+  const [adopter_name, setName] = useState();
+  const [adopter_phone, setPhoneNumber] = useState();
+  const [adopter_email, setEmail] = useState();
+  const [adopter_pettype, setPetType] = useState();
+  const [adopter_petname, setPetName] = useState();
+  const [adopter_message, setMessage] = useState();
+  const [adopter_status, setStatus] = useState("Pending");
 
-    
-    const [adopter_nic, setNIC] = useState()
-    const [adopter_name, setName] = useState()
-    const [adopter_phone, setPhoneNumber] = useState()
-    const [adopter_email, setEmail] = useState()
-    const [adopter_pettype, setPetType] = useState()
-    const [adopter_petname, setPetName] = useState()
-    const [adopter_message, setMessage] = useState()
-    const [adopter_status, setStatus] = useState("Pending")
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const [nameError, setNameError] = useState("");
+  const [valid, setValid] = useState(true);
+
 
     const [nameError,setNameError]=useState("");
     const [valid,setValid] = useState(true);
@@ -84,38 +86,32 @@ export default function CreateRequest() {
             setNameError("");
             setValid(true);
         }
-    }
-    //email validate
-    const emailValidator = (email) => {
-        let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!regex.test(email)) {
-            setNameError("Invalid email address");
-            setValid(false);
-        } else {
-            setNameError("");
-            setValid(true);
-        }
-    }
-    
-    //nic validate
-    // const nicValidator = (nic) => {
-    //     let regex = /^[0-9]{12}$/;
-    //     if (!regex.test(nic)) {
-    //         setNameError("Invalid NIC number");
-    //         setValid(false);
-    //     } else {
-    //         setNameError("");
-    //         setValid(true);
-    //     }
-    // }
 
-    const nicValidator = (nic) => {
-        let regexNumeric = /^[0-9]{12}$/;
-        let regexAlphaNumeric = /^[0-9]{4}[0-9]{5}[vV]$/;
-        //let regexAlphaNumeric = /^[0-9]{9}[vV]$/;
-        //let regexCombined = /^([0-9]{10}||[0-9]{9}[vV]),$/;
-    
-        let birthYear = parseInt(nic.substring(0, 4));
+    }
+  };
+  //email validate
+  const emailValidator = (email) => {
+    let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(email)) {
+      setNameError("Invalid email address");
+      setValid(false);
+    } else {
+      setNameError("");
+      setValid(true);
+    }
+  };
+
+  //nic validate
+  // const nicValidator = (nic) => {
+  //     let regex = /^[0-9]{12}$/;
+  //     if (!regex.test(nic)) {
+  //         setNameError("Invalid NIC number");
+  //         setValid(false);
+  //     } else {
+  //         setNameError("");
+  //         setValid(true);
+  //     }
+  // }
 
         if (regexAlphaNumeric.test(nic) && birthYear > 5000) {
             setNameError("");
@@ -132,15 +128,29 @@ export default function CreateRequest() {
     
     
 
-        return (
 
-            <div>
-                    <div className="space-y-12">
-                        <div className="border-b border-gray-900/10 pb-12">
-                        <div className='text-xl font-bold '>Create Adoption Profile</div>
-                        <div className='text-red-600'>{nameError}</div>
-                            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"> 
-                             {/*<div className="sm:col-span-3">
+    let birthYear = parseInt(nic.substring(0, 4));
+
+    if (regexAlphaNumeric.test(nic) && birthYear < 2000) {
+      setNameError("");
+      setValid(true);
+    } else if (regexNumeric.test(nic)) {
+      setNameError("");
+      setValid(true);
+    } else {
+      setNameError("Invalid NIC number");
+      setValid(false);
+    }
+  };
+
+  return (
+    <div>
+      <div className="space-y-12">
+        <div className="border-b border-gray-900/10 pb-12">
+          <div className="text-xl font-bold ">Create Adoption Profile</div>
+          <div className="text-red-600">{nameError}</div>
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            {/*<div className="sm:col-span-3">
                                     <label htmlFor="request-id" className="block text-sm font-medium leading-6 text-gray-900">
                                         Request ID
                                     </label>
@@ -155,6 +165,7 @@ export default function CreateRequest() {
                                             />
                                     </div>
                                 </div>*/}
+
                                 
                                     <div className="sm:col-span-3">
                                         <label htmlFor="adopter-nic" className="block text-sm font-medium leading-6 text-gray-900">
@@ -301,6 +312,7 @@ export default function CreateRequest() {
                                     )}
                                     
                                     {/*<div className="sm:col-span-3">
+
                                         <label htmlFor="adopter-status" className="block text-sm font-medium leading-6 text-gray-900">
                                             Status
                                         </label>
@@ -315,23 +327,26 @@ export default function CreateRequest() {
                                             />
                                         </div>
                                     </div>*/}
-                                    </div>
-                                </div>
-                            </div>
-                        <div className="mt-6 flex items-center justify-end gap-x-6">
-                        <button>
-                            <Link to={'/adoptionManager/Adoption'} className="text-sm font-semibold leading-6 text-gray-900"
-        >                   Cancel
-                            </Link>
-                        </button>
-                        <button
-                            onClick={Submit}
-                            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                        >
-                            Submit
-                        </button>
-                </div>
+          </div>
         </div>
-    )
+      </div>
+      <div className="mt-6 flex items-center justify-end gap-x-6">
+        <button>
+          <Link
+            to={"/adoptionManager/Adoption"}
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            {" "}
+            Cancel
+          </Link>
+        </button>
+        <button
+          onClick={Submit}
+          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  );
 }
-

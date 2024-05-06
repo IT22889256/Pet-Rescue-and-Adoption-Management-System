@@ -23,10 +23,8 @@ const SponserPetSchema = mongoose.Schema({
         type: String,
         required: true
       },
-    sponsorship_status: {
-        type: String,
-        required: true
-    },
+    
+    
        pet_image: {
         type: String,
        required: true
@@ -37,9 +35,7 @@ const SponserPetSchema = mongoose.Schema({
     },
 
     
-    
-
-
+  
 })
 const SponserPet = mongoose.model('SponserPet', SponserPetSchema);
 
