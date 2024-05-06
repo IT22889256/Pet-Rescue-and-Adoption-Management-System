@@ -19,6 +19,8 @@ export default function CreateVehicle() {
     const [Vehicle_image, setvehImg] = useState()
     const navigate = useNavigate()
 
+    const [validationErrors, setValidationErrors] = useState({}); 
+
     //validation
     const [nameError,setNameError]=useState("");
     const [valid,setValid] = useState(true);
@@ -26,7 +28,57 @@ export default function CreateVehicle() {
 
     const [showSuccess, setShowSuccess] = useState(false);
 
+    const validateForm = () => {
+      const errors = {}; // Object to store validation errors
+  
+      if (!Vehicle_Serial_No) {
+        errors.Vehicle_Serial_No = 'Vehicle serial number is required';
+      }
+  
+      if (!Vehicle_Model) {
+        errors.Vehicle_Model = 'Vehicle model is required';
+      }
+  
+      if (!Plate_Number) {
+        errors.Plate_Number = 'Plate Number is required';
+      }
+      if (!Year_Manufactured) {
+        errors.Year_Manufactured = 'Year Manufactured is required';
+      }
+  
+      if (!vehicle_status) {
+        errors.vehicle_status = 'Vehicle Status is required';
+      }
+  
+      if (!Engine_Number) {
+        errors.Engine_Number = 'Engine Number is required';
+      }
+      
+      if (!Chassis_Number) {
+        errors.Chassis_Number = 'Chassis Number is required';
+      }
+  
+      if (!Vehicle_Type) {
+        errors.Vehicle_Type = 'Vehicle type is required';
+      }
+  
+      if (!Vehicle_image) {
+        errors.Vehicle_image = 'Vehicle image is required';
+      }
+      
+   
+      // You can add more validation rules here, e.g., email validation for location
+  
+      setValidationErrors(errors); // Update validation errors state
+      return Object.keys(errors).length === 0; // Return true if no errors
+    };
+
     const Submit = (e) => {
+
+      e.preventDefault();
+        if (!validateForm()) {
+            return; // Don't submit if validation fails
+          }
 
         const data = {
             Vehicle_Serial_No,Vehicle_Model,Plate_Number,Year_Manufactured,vehicle_status,Engine_Number,Chassis_Number,Vehicle_Type,Vehicle_image
@@ -195,6 +247,9 @@ export default function CreateVehicle() {
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             /> 
                                         </div>
+                                        {validationErrors.Vehicle_Serial_No && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Vehicle_Serial_No}</p>
+                                             )}
                                                 </div>
                                     <div className="sm:col-span-3">
                                         <label htmlFor="Vehicle_Model" className="block text-sm font-medium leading-6 text-gray-900">
@@ -210,6 +265,9 @@ export default function CreateVehicle() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
+                                        {validationErrors.Vehicle_Model && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Vehicle_Model}</p>
+                                             )}
                                     </div>
                                     <div className="sm:col-span-3">
                                         <label htmlFor="Plate_Number" className="block text-sm font-medium leading-6 text-gray-900">
@@ -225,6 +283,9 @@ export default function CreateVehicle() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
+                                        {validationErrors.Plate_Number && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Plate_Number}</p>
+                                             )}
                                     </div>
                                     <div className="sm:col-span-3">
                                         <label htmlFor="Year_Manufactured" className="block text-sm font-medium leading-6 text-gray-900">
@@ -241,6 +302,9 @@ export default function CreateVehicle() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
+                                        {validationErrors.Year_Manufactured && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Year_Manufactured}</p>
+                                             )}
                                     </div>
                                     <div className="sm:col-span-3">
                                         <label htmlFor="Engine_Number" className="block text-sm font-medium leading-6 text-gray-900">
@@ -256,6 +320,9 @@ export default function CreateVehicle() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
+                                        {validationErrors.Engine_Number && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Engine_Number}</p>
+                                             )}
                                     </div>
                                     <div className="sm:col-span-3">
                                         <label htmlFor="Chassis_Number" className="block text-sm font-medium leading-6 text-gray-900">
@@ -271,6 +338,9 @@ export default function CreateVehicle() {
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
                                         </div>
+                                        {validationErrors.Chassis_Number && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Chassis_Number}</p>
+                                             )}
                                     </div>
                                     <div className="sm:col-span-3">
                                         <label htmlFor="Vehicle_Type" className="block text-sm font-medium leading-6 text-gray-900">
@@ -290,6 +360,9 @@ export default function CreateVehicle() {
                                                     <option>Truck</option>
                                                 </select>
                                         </div>
+                                        {validationErrors.Vehicle_Type && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Vehicle_Type}</p>
+                                             )}
                                     </div>
                                     <div className="sm:col-span-3">
                                         <label htmlFor="vehicle_status" className="block text-sm font-medium leading-6 text-gray-900">
@@ -308,6 +381,9 @@ export default function CreateVehicle() {
                                                     <option className='bg-[#ca8a04]'>On Service</option>
                                                 </select>
                                         </div>
+                                        {validationErrors.vehicle_status && (
+                                            <p className="text-red-500 text-xs">{validationErrors.vehicle_status}</p>
+                                             )}
                                     </div>
                                 
 
@@ -334,8 +410,12 @@ export default function CreateVehicle() {
                                             <p className="pl-1">or drag and drop</p>
                                         </div>
                                             <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                                            {validationErrors.Vehicle_image && (
+                                            <p className="text-red-500 text-xs">{validationErrors.Vehicle_image}</p>
+                                             )}
                                     </div>
                                     </div>
+                                   
                                     </div> }
                                     </div>
                                 </div>
