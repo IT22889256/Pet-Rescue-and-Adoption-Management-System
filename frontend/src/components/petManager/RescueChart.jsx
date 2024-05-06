@@ -13,48 +13,48 @@ import {
 const data = [
   {
     name: "Jan",
-    Rejected: 4,
-    Accepted: 10,
+    Rejected: 2,
+    Accepted: 7,
   },
   {
     name: "Feb",
     Rejected: 4,
-    Accepted: 10,
+    Accepted: 2,
   },
   {
     name: "Mar",
-    Rejected: 4,
-    Accepted: 10,
+    Rejected: 10,
+    Accepted: 7,
   },
   {
     name: "Apr",
-    Rejected: 4,
-    Accepted: 10,
+    Rejected: 2,
+    Accepted: 3,
   },
   {
     name: "May",
-    Rejected: 4,
-    Accepted: 10,
+    Rejected: 8,
+    Accepted: 4,
   },
   {
     name: "Jun",
-    Rejected: 4,
-    Accepted: 10,
+    Rejected: 7,
+    Accepted: 6,
   },
   {
     name: "July",
     Rejected: 4,
-    Accepted: 10,
+    Accepted: 6,
   },
   {
     name: "Aug",
     Rejected: 4,
-    Accepted: 10,
+    Accepted: 3,
   },
   {
     name: "Sep",
-    Rejected: 4,
-    Accepted: 10,
+    Rejected: 1,
+    Accepted: 9,
   },
   {
     name: "Oct",
@@ -64,12 +64,12 @@ const data = [
   {
     name: "Nov",
     Rejected: 4,
-    Accepted: 10,
+    Accepted: 9,
   },
   {
     name: "Dec",
     Rejected: 4,
-    Accepted: 10,
+    Accepted: 5,
   },
 ];
 

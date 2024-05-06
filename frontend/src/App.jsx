@@ -226,7 +226,6 @@ import DriverLayout from "./components/driver/DriverLayout";
 import AssignedSheduleProfile from "./pages/driver/AssignedSheduleProfile";
 import ViewAssignedTask from "./pages/driver/assignedShedules/ViewAssignedTask";
 import EditAssignedTask from "./pages/driver/assignedShedules/EditAssignedTask";
-import Map from "./pages/Map";
 
 //employee management imports
 import EmployeeLayout from "./components/employeeManager/EmployeeLayout";
@@ -281,6 +280,9 @@ import PetsProfile from "./pages/User/PetsProfile";
 import PetQR from "./pages/User/PetQR";
 import UserGallery from "./pages/User/Gallery";
 
+import PetInNeed from "./pages/User/PetInNeed";
+import ViewLogins from "./pages/userManagement/logins/ViewLogins";
+
 //employee attendance
 import ManageEmployeeAttendance from "./pages/employeeManagment/ManageEmployeeAttendance";
 
@@ -327,6 +329,7 @@ function App() {
           <Route path="/resetpassword/:email" element={<ResetPassword />} />
           <Route path="/user/become-adopter" element={<BecomeAdopter />} />
           <Route path="user/:id/feedback" element={<FeedbackForm />} />
+          <Route path="user/:id/pet-in-need" element={<PetInNeed />} />
 
           <Route path="user/:id/donation" element={<Donation />} />
 
@@ -355,6 +358,8 @@ function App() {
             path="/userManager/account-vericifacton-requests"
             element={<VerificationRequests />}
           />
+          <Route path="/userManager/login-history" element={<ViewLogins />} />
+
           <Route
             path="/userManager/employeeRequests"
             element={<EmployeesRequests />}
@@ -561,7 +566,6 @@ function App() {
         <Route path="/DriverAvailability" element={<DriverAvailability />} />
         <Route path="/DoctorAvailability" element={<DoctorAvailability />} />
         <Route path="/HelperAvailability" element={<HelperAvailability />} />
-        <Route path="/map" element={<Map />} />
       </Routes>
 
       {/* Driver main routes */}

@@ -71,6 +71,7 @@ const deleteCard = async (req, res) => {
 const getCardDetails = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("id", id);
 
     const Card = await card.findOne({ user_id: id });
 

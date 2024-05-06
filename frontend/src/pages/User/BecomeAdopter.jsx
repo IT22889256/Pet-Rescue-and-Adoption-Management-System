@@ -105,9 +105,15 @@ const BecomeAdopter = () => {
   };
 
   const validateNIC = (nic) => {
-    const nicPattern = /^[0-9]{12}$/;
-    if (!nicPattern.test(nic)) {
-      setNicError("NIC should contain 12 digits only.");
+    let nicPattern = /^[0-9]{12}$/;
+    let nicAlphaPattern = /^[0-9]{4}[0-9]{5}[vV]$/;
+
+    let birthYear = parseInt(nic.substring(0, 4));
+
+    if (!nicAlphaPattern.test(nic) && birthYear > 5000) {
+      setNicError("NIC should contain 12 digits only or 9 digits and 1 Vv.");
+    } else if (nicPattern.test(nic)) {
+      setNicError("NIC should contain 12 digits only or 9 digits and 1 Vv.");
     } else {
       setNicError("");
     }
